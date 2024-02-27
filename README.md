@@ -19,7 +19,7 @@ make check
 ## run `pg_regress` on local `clapdb`
 
 ```
-src/test/regress/pg_regress --use-existing --dbname=local --host=localhost --port=8888 --schedule=parallel_schedule --user=admin.stdb --max-connections=1 --inputdir=.
+./postgres/src/test/regress/pg_regress --use-existing --dbname=local --host=localhost --port=8888 --schedule=parallel_schedule --user=admin.stdb --max-connections=1 --inputdir=.
 ```
 
 ## input data from postgress
