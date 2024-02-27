@@ -1,10 +1,25 @@
 # pg_regress_input
 input data for pg_regress test
 
+## build `pg_regress`
+
+ref: https://www.postgresql.org/docs/current/install-make.html
+
+```
+cd postgres/
+./configure
+make
+// after success make, pg_regress will locate at src/test/regress/pg_regress
+
+// run pg_regress with temp started pg instance
+make check
+
+```
+
 ## run `pg_regress` on local `clapdb`
 
 ```
-pg_regress --use-existing --dbname=local --host=localhost --port=8888 --schedule=parallel_schedule --user=admin.stdb --max-connections=1 --inputdir=.
+src/test/regress/pg_regress --use-existing --dbname=local --host=localhost --port=8888 --schedule=parallel_schedule --user=admin.stdb --max-connections=1 --inputdir=.
 ```
 
 ## input data from postgress
