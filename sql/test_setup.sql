@@ -31,9 +31,9 @@
 -- of these tables in later tests, as it may affect other tests.)
 --
 
-CREATE TABLE CHAR_TBL(f1 char(4));
+CREATE TABLE CHAR_TBL_1(f1 char(4));
 
-INSERT INTO CHAR_TBL (f1) VALUES
+INSERT INTO CHAR_TBL_1 (f1) VALUES
   ('a'),
   ('ab'),
   ('abcd'),
@@ -110,6 +110,27 @@ CREATE TABLE onek (
 \set filename :abs_srcdir '/data/onek.data'
 COPY onek FROM :'filename';
 
+CREATE TABLE onek2 (
+	unique1		int4,
+	unique2		int4,
+	two			int4,
+	four		int4,
+	ten			int4,
+	twenty		int4,
+	hundred		int4,
+	thousand	int4,
+	twothousand	int4,
+	fivethous	int4,
+	tenthous	int4,
+	odd			int4,
+	even		int4,
+	stringu1	name,
+	stringu2	name,
+	string4		name
+);
+\set filename :abs_srcdir '/data/onek.data'
+COPY onek2 FROM :'filename';
+
 CREATE TABLE tenk1 (
 	unique1		int4,
 	unique2		int4,
@@ -131,3 +152,24 @@ CREATE TABLE tenk1 (
 
 \set filename :abs_srcdir '/data/tenk.data'
 COPY tenk1 FROM :'filename';
+
+CREATE TABLE tenk2 (
+	unique1		int4,
+	unique2		int4,
+	two			int4,
+	four		int4,
+	ten			int4,
+	twenty		int4,
+	hundred		int4,
+	thousand	int4,
+	twothousand	int4,
+	fivethous	int4,
+	tenthous	int4,
+	odd			int4,
+	even		int4,
+	stringu1	name,
+	stringu2	name,
+	string4		name
+);
+\set filename :abs_srcdir '/data/tenk.data'
+COPY tenk2 FROM :'filename';
