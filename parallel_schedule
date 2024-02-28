@@ -49,6 +49,7 @@ test: test_setup
 # Another group of parallel tests
 # ----------
 # test: create_aggregate create_function_sql create_cast constraints triggers select inherit typed_table vacuum drop_if_exists updatable_views roleattributes create_am hash_func errors infinite_recurse
+test: select
 
 # ----------
 # sanity_check does a vacuum, affecting the sort order of SELECT *
