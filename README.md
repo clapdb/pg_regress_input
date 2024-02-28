@@ -16,6 +16,30 @@ make check
 
 ```
 
+## build `clapdb` and start
+```
+cd stdb/build.debug
+
+cmake .. -GNinja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+
+ninja clap_node parse_ddl clap_riemann_fst_builder
+
+// init the admin user by building schema fst from `tenant.json`
+
+cp ../tenant.json SCHEMA_ROOT/tenant.json
+./riemann/cli/clap_riemann_fst_builder --target=segment --type=file
+./riemann/cli/clap_riemann_fst_builder --target=schema --type=file
+
+// start clapdb
+
+./clap_node/clap_node --config ../stdb.toml --address 127.0.0.1 -c 4 --watch=true
+
+// stdb.toml need enable "hardy" server for clap_node
+[clap_node]
+servers = ["hardy", "prometheus"]
+
+```
+
 ## run `pg_regress` on local `clapdb`
 
 ```
