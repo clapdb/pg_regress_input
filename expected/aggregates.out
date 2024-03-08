@@ -1183,9 +1183,9 @@ select max(100) from tenk1;
 
 -- try it on an inheritance tree
 create table minmaxtest(f1 int);
-create table minmaxtest1() inherits (minmaxtest);
-create table minmaxtest2() inherits (minmaxtest);
-create table minmaxtest3() inherits (minmaxtest);
+create table minmaxtest1(f1 int);
+create table minmaxtest2(f1 int);
+create table minmaxtest3(f1 int);
 create index minmaxtesti on minmaxtest(f1);
 create index minmaxtest1i on minmaxtest1(f1);
 create index minmaxtest2i on minmaxtest2(f1 desc);

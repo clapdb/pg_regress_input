@@ -15,6 +15,7 @@ test: test_setup
 # The first group of parallel tests
 # ----------
 # test: boolean char name varchar text int2 int4 int8 oid float4 float8 bit numeric txid uuid enum money rangetypes pg_lsn regproc
+test: boolean int2 int4 int8 float4 float8
 
 # ----------
 # The second group of parallel tests
@@ -22,6 +23,7 @@ test: test_setup
 # multirangetypes shouldn't run concurrently with type_sanity
 # ----------
 # test: strings md5 numerology point lseg line box path polygon circle date time timetz timestamp timestamptz interval inet macaddr macaddr8 multirangetypes
+test: date time
 
 # ----------
 # Another group of parallel tests
@@ -63,6 +65,7 @@ test: select
 # join depends on create_misc
 # ----------
 # test: select_into select_distinct select_distinct_on select_implicit select_having subselect union case join aggregates transactions random portals arrays btree_index hash_index update delete namespace prepared_xacts
+test: select_distinct aggregates
 
 # ----------
 # Another group of parallel tests
