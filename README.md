@@ -16,7 +16,7 @@ make check
 
 ```
 
-## build `clapdb` and start
+## switch to stdb repo, build `clapdb` and start
 ```
 cd stdb/build.debug
 
