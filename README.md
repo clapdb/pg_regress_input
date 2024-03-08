@@ -50,6 +50,10 @@ servers = ["hardy", "prometheus"]
 
 `parallel_schedule`, `sql/`, `data/`, `expected/` are copied from `postgres/src/test/regress/` .
 
+parallel_schedule 里面每个 test 对应一个sql文件和预期结果: sql/xxx.sql 和 expected/xxx.out.
+
+pg_regress 执行 sql/xxx.sql 拿到结果后和预期结果进行 diff，把diff结果输出到 regression.diffs.
+
 ```
 $ ll postgres/src/test/regress
 total 180K
