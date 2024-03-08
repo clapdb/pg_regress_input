@@ -44,8 +44,6 @@ SELECT bool 'true' AS true;
 
 SELECT bool 'test' AS error;
 ERROR:  invalid input syntax for type boolean: "test"
-LINE 1: SELECT bool 'test' AS error;
-                    ^
 SELECT bool 'false' AS false;
  false 
 -------
@@ -54,8 +52,6 @@ SELECT bool 'false' AS false;
 
 SELECT bool 'foo' AS error;
 ERROR:  invalid input syntax for type boolean: "foo"
-LINE 1: SELECT bool 'foo' AS error;
-                    ^
 SELECT bool 'y' AS true;
  true 
 ------
@@ -70,8 +66,6 @@ SELECT bool 'yes' AS true;
 
 SELECT bool 'yeah' AS error;
 ERROR:  invalid input syntax for type boolean: "yeah"
-LINE 1: SELECT bool 'yeah' AS error;
-                    ^
 SELECT bool 'n' AS false;
  false 
 -------
@@ -86,8 +80,6 @@ SELECT bool 'no' AS false;
 
 SELECT bool 'nay' AS error;
 ERROR:  invalid input syntax for type boolean: "nay"
-LINE 1: SELECT bool 'nay' AS error;
-                    ^
 SELECT bool 'on' AS true;
  true 
 ------
@@ -108,16 +100,10 @@ SELECT bool 'of' AS false;
 
 SELECT bool 'o' AS error;
 ERROR:  invalid input syntax for type boolean: "o"
-LINE 1: SELECT bool 'o' AS error;
-                    ^
 SELECT bool 'on_' AS error;
 ERROR:  invalid input syntax for type boolean: "on_"
-LINE 1: SELECT bool 'on_' AS error;
-                    ^
 SELECT bool 'off_' AS error;
 ERROR:  invalid input syntax for type boolean: "off_"
-LINE 1: SELECT bool 'off_' AS error;
-                    ^
 SELECT bool '1' AS true;
  true 
 ------
@@ -126,8 +112,6 @@ SELECT bool '1' AS true;
 
 SELECT bool '11' AS error;
 ERROR:  invalid input syntax for type boolean: "11"
-LINE 1: SELECT bool '11' AS error;
-                    ^
 SELECT bool '0' AS false;
  false 
 -------
@@ -136,12 +120,8 @@ SELECT bool '0' AS false;
 
 SELECT bool '000' AS error;
 ERROR:  invalid input syntax for type boolean: "000"
-LINE 1: SELECT bool '000' AS error;
-                    ^
 SELECT bool '' AS error;
 ERROR:  invalid input syntax for type boolean: ""
-LINE 1: SELECT bool '' AS error;
-                    ^
 -- Also try it with non-error-throwing API
 SELECT pg_input_is_valid('true', 'bool');
  pg_input_is_valid 
