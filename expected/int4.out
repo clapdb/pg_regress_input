@@ -5,36 +5,20 @@
 -- Here we just try to insert bad values.
 INSERT INTO INT4_TBL(f1) VALUES ('34.5');
 ERROR:  invalid input syntax for type integer: "34.5"
-LINE 1: INSERT INTO INT4_TBL(f1) VALUES ('34.5');
-                                         ^
 INSERT INTO INT4_TBL(f1) VALUES ('1000000000000');
 ERROR:  value "1000000000000" is out of range for type integer
-LINE 1: INSERT INTO INT4_TBL(f1) VALUES ('1000000000000');
-                                         ^
 INSERT INTO INT4_TBL(f1) VALUES ('asdf');
 ERROR:  invalid input syntax for type integer: "asdf"
-LINE 1: INSERT INTO INT4_TBL(f1) VALUES ('asdf');
-                                         ^
 INSERT INTO INT4_TBL(f1) VALUES ('     ');
 ERROR:  invalid input syntax for type integer: "     "
-LINE 1: INSERT INTO INT4_TBL(f1) VALUES ('     ');
-                                         ^
 INSERT INTO INT4_TBL(f1) VALUES ('   asdf   ');
 ERROR:  invalid input syntax for type integer: "   asdf   "
-LINE 1: INSERT INTO INT4_TBL(f1) VALUES ('   asdf   ');
-                                         ^
 INSERT INTO INT4_TBL(f1) VALUES ('- 1234');
 ERROR:  invalid input syntax for type integer: "- 1234"
-LINE 1: INSERT INTO INT4_TBL(f1) VALUES ('- 1234');
-                                         ^
 INSERT INTO INT4_TBL(f1) VALUES ('123       5');
 ERROR:  invalid input syntax for type integer: "123       5"
-LINE 1: INSERT INTO INT4_TBL(f1) VALUES ('123       5');
-                                         ^
 INSERT INTO INT4_TBL(f1) VALUES ('');
 ERROR:  invalid input syntax for type integer: ""
-LINE 1: INSERT INTO INT4_TBL(f1) VALUES ('');
-                                         ^
 SELECT * FROM INT4_TBL;
      f1      
 -------------
@@ -477,16 +461,10 @@ SELECT int4 '0x42F';
 
 SELECT int4 '0b';
 ERROR:  invalid input syntax for type integer: "0b"
-LINE 1: SELECT int4 '0b';
-                    ^
 SELECT int4 '0o';
 ERROR:  invalid input syntax for type integer: "0o"
-LINE 1: SELECT int4 '0o';
-                    ^
 SELECT int4 '0x';
 ERROR:  invalid input syntax for type integer: "0x"
-LINE 1: SELECT int4 '0x';
-                    ^
 -- cases near overflow
 SELECT int4 '0b1111111111111111111111111111111';
     int4    
@@ -496,8 +474,6 @@ SELECT int4 '0b1111111111111111111111111111111';
 
 SELECT int4 '0b10000000000000000000000000000000';
 ERROR:  value "0b10000000000000000000000000000000" is out of range for type integer
-LINE 1: SELECT int4 '0b10000000000000000000000000000000';
-                    ^
 SELECT int4 '0o17777777777';
     int4    
 ------------
@@ -506,8 +482,6 @@ SELECT int4 '0o17777777777';
 
 SELECT int4 '0o20000000000';
 ERROR:  value "0o20000000000" is out of range for type integer
-LINE 1: SELECT int4 '0o20000000000';
-                    ^
 SELECT int4 '0x7FFFFFFF';
     int4    
 ------------
@@ -516,8 +490,6 @@ SELECT int4 '0x7FFFFFFF';
 
 SELECT int4 '0x80000000';
 ERROR:  value "0x80000000" is out of range for type integer
-LINE 1: SELECT int4 '0x80000000';
-                    ^
 SELECT int4 '-0b10000000000000000000000000000000';
     int4     
 -------------
@@ -526,8 +498,6 @@ SELECT int4 '-0b10000000000000000000000000000000';
 
 SELECT int4 '-0b10000000000000000000000000000001';
 ERROR:  value "-0b10000000000000000000000000000001" is out of range for type integer
-LINE 1: SELECT int4 '-0b10000000000000000000000000000001';
-                    ^
 SELECT int4 '-0o20000000000';
     int4     
 -------------
@@ -536,8 +506,6 @@ SELECT int4 '-0o20000000000';
 
 SELECT int4 '-0o20000000001';
 ERROR:  value "-0o20000000001" is out of range for type integer
-LINE 1: SELECT int4 '-0o20000000001';
-                    ^
 SELECT int4 '-0x80000000';
     int4     
 -------------
@@ -546,8 +514,6 @@ SELECT int4 '-0x80000000';
 
 SELECT int4 '-0x80000001';
 ERROR:  value "-0x80000001" is out of range for type integer
-LINE 1: SELECT int4 '-0x80000001';
-                    ^
 -- underscores
 SELECT int4 '1_000_000';
   int4   
@@ -582,13 +548,7 @@ SELECT int4 '0b_10_0101';
 -- error cases
 SELECT int4 '_100';
 ERROR:  invalid input syntax for type integer: "_100"
-LINE 1: SELECT int4 '_100';
-                    ^
 SELECT int4 '100_';
 ERROR:  invalid input syntax for type integer: "100_"
-LINE 1: SELECT int4 '100_';
-                    ^
 SELECT int4 '100__000';
 ERROR:  invalid input syntax for type integer: "100__000"
-LINE 1: SELECT int4 '100__000';
-                    ^

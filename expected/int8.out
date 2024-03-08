@@ -6,32 +6,18 @@
 -- Here we just try to insert bad values.
 INSERT INTO INT8_TBL(q1) VALUES ('      ');
 ERROR:  invalid input syntax for type bigint: "      "
-LINE 1: INSERT INTO INT8_TBL(q1) VALUES ('      ');
-                                         ^
 INSERT INTO INT8_TBL(q1) VALUES ('xxx');
 ERROR:  invalid input syntax for type bigint: "xxx"
-LINE 1: INSERT INTO INT8_TBL(q1) VALUES ('xxx');
-                                         ^
 INSERT INTO INT8_TBL(q1) VALUES ('3908203590239580293850293850329485');
 ERROR:  value "3908203590239580293850293850329485" is out of range for type bigint
-LINE 1: INSERT INTO INT8_TBL(q1) VALUES ('39082035902395802938502938...
-                                         ^
 INSERT INTO INT8_TBL(q1) VALUES ('-1204982019841029840928340329840934');
 ERROR:  value "-1204982019841029840928340329840934" is out of range for type bigint
-LINE 1: INSERT INTO INT8_TBL(q1) VALUES ('-1204982019841029840928340...
-                                         ^
 INSERT INTO INT8_TBL(q1) VALUES ('- 123');
 ERROR:  invalid input syntax for type bigint: "- 123"
-LINE 1: INSERT INTO INT8_TBL(q1) VALUES ('- 123');
-                                         ^
 INSERT INTO INT8_TBL(q1) VALUES ('  345     5');
 ERROR:  invalid input syntax for type bigint: "  345     5"
-LINE 1: INSERT INTO INT8_TBL(q1) VALUES ('  345     5');
-                                         ^
 INSERT INTO INT8_TBL(q1) VALUES ('');
 ERROR:  invalid input syntax for type bigint: ""
-LINE 1: INSERT INTO INT8_TBL(q1) VALUES ('');
-                                         ^
 SELECT * FROM INT8_TBL;
         q1        |        q2         
 ------------------+-------------------
@@ -659,8 +645,6 @@ select '-9223372036854775808'::int8;
 
 select '-9223372036854775809'::int8;
 ERROR:  value "-9223372036854775809" is out of range for type bigint
-LINE 1: select '-9223372036854775809'::int8;
-               ^
 select '9223372036854775807'::int8;
         int8         
 ---------------------
@@ -669,8 +653,6 @@ select '9223372036854775807'::int8;
 
 select '9223372036854775808'::int8;
 ERROR:  value "9223372036854775808" is out of range for type bigint
-LINE 1: select '9223372036854775808'::int8;
-               ^
 select -('-9223372036854775807'::int8);
       ?column?       
 ---------------------
@@ -975,16 +957,10 @@ SELECT int8 '0x42F';
 
 SELECT int8 '0b';
 ERROR:  invalid input syntax for type bigint: "0b"
-LINE 1: SELECT int8 '0b';
-                    ^
 SELECT int8 '0o';
 ERROR:  invalid input syntax for type bigint: "0o"
-LINE 1: SELECT int8 '0o';
-                    ^
 SELECT int8 '0x';
 ERROR:  invalid input syntax for type bigint: "0x"
-LINE 1: SELECT int8 '0x';
-                    ^
 -- cases near overflow
 SELECT int8 '0b111111111111111111111111111111111111111111111111111111111111111';
         int8         
@@ -994,8 +970,6 @@ SELECT int8 '0b111111111111111111111111111111111111111111111111111111111111111';
 
 SELECT int8 '0b1000000000000000000000000000000000000000000000000000000000000000';
 ERROR:  value "0b1000000000000000000000000000000000000000000000000000000000000000" is out of range for type bigint
-LINE 1: SELECT int8 '0b100000000000000000000000000000000000000000000...
-                    ^
 SELECT int8 '0o777777777777777777777';
         int8         
 ---------------------
@@ -1004,8 +978,6 @@ SELECT int8 '0o777777777777777777777';
 
 SELECT int8 '0o1000000000000000000000';
 ERROR:  value "0o1000000000000000000000" is out of range for type bigint
-LINE 1: SELECT int8 '0o1000000000000000000000';
-                    ^
 SELECT int8 '0x7FFFFFFFFFFFFFFF';
         int8         
 ---------------------
@@ -1014,8 +986,6 @@ SELECT int8 '0x7FFFFFFFFFFFFFFF';
 
 SELECT int8 '0x8000000000000000';
 ERROR:  value "0x8000000000000000" is out of range for type bigint
-LINE 1: SELECT int8 '0x8000000000000000';
-                    ^
 SELECT int8 '-0b1000000000000000000000000000000000000000000000000000000000000000';
          int8         
 ----------------------
@@ -1024,8 +994,6 @@ SELECT int8 '-0b1000000000000000000000000000000000000000000000000000000000000000
 
 SELECT int8 '-0b1000000000000000000000000000000000000000000000000000000000000001';
 ERROR:  value "-0b1000000000000000000000000000000000000000000000000000000000000001" is out of range for type bigint
-LINE 1: SELECT int8 '-0b10000000000000000000000000000000000000000000...
-                    ^
 SELECT int8 '-0o1000000000000000000000';
          int8         
 ----------------------
@@ -1034,8 +1002,6 @@ SELECT int8 '-0o1000000000000000000000';
 
 SELECT int8 '-0o1000000000000000000001';
 ERROR:  value "-0o1000000000000000000001" is out of range for type bigint
-LINE 1: SELECT int8 '-0o1000000000000000000001';
-                    ^
 SELECT int8 '-0x8000000000000000';
          int8         
 ----------------------
@@ -1044,8 +1010,6 @@ SELECT int8 '-0x8000000000000000';
 
 SELECT int8 '-0x8000000000000001';
 ERROR:  value "-0x8000000000000001" is out of range for type bigint
-LINE 1: SELECT int8 '-0x8000000000000001';
-                    ^
 -- underscores
 SELECT int8 '1_000_000';
   int8   
@@ -1080,13 +1044,7 @@ SELECT int8 '0b_10_0101';
 -- error cases
 SELECT int8 '_100';
 ERROR:  invalid input syntax for type bigint: "_100"
-LINE 1: SELECT int8 '_100';
-                    ^
 SELECT int8 '100_';
 ERROR:  invalid input syntax for type bigint: "100_"
-LINE 1: SELECT int8 '100_';
-                    ^
 SELECT int8 '100__000';
 ERROR:  invalid input syntax for type bigint: "100__000"
-LINE 1: SELECT int8 '100__000';
-                    ^

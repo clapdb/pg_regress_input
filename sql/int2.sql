@@ -15,7 +15,7 @@ INSERT INTO INT2_TBL(f1) VALUES ('123 dt');
 INSERT INTO INT2_TBL(f1) VALUES ('');
 
 
-SELECT * FROM INT2_TBL;
+SELECT * FROM INT2_TBL order by 1;
 
 -- Also try it with non-error-throwing API
 SELECT pg_input_is_valid('34', 'int2');
@@ -32,60 +32,60 @@ SELECT * FROM INT2_TBL AS f(a, b);
 
 SELECT * FROM (TABLE int2_tbl) AS s (a, b);
 
-SELECT i.* FROM INT2_TBL i WHERE i.f1 <> int2 '0';
+SELECT i.* FROM INT2_TBL i WHERE i.f1 <> int2 '0' order by 1;
 
-SELECT i.* FROM INT2_TBL i WHERE i.f1 <> int4 '0';
+SELECT i.* FROM INT2_TBL i WHERE i.f1 <> int4 '0' order by 1;
 
-SELECT i.* FROM INT2_TBL i WHERE i.f1 = int2 '0';
+SELECT i.* FROM INT2_TBL i WHERE i.f1 = int2 '0' order by 1;
 
-SELECT i.* FROM INT2_TBL i WHERE i.f1 = int4 '0';
+SELECT i.* FROM INT2_TBL i WHERE i.f1 = int4 '0' order by 1;
 
-SELECT i.* FROM INT2_TBL i WHERE i.f1 < int2 '0';
+SELECT i.* FROM INT2_TBL i WHERE i.f1 < int2 '0' order by 1;
 
-SELECT i.* FROM INT2_TBL i WHERE i.f1 < int4 '0';
+SELECT i.* FROM INT2_TBL i WHERE i.f1 < int4 '0' order by 1;
 
-SELECT i.* FROM INT2_TBL i WHERE i.f1 <= int2 '0';
+SELECT i.* FROM INT2_TBL i WHERE i.f1 <= int2 '0' order by 1;
 
-SELECT i.* FROM INT2_TBL i WHERE i.f1 <= int4 '0';
+SELECT i.* FROM INT2_TBL i WHERE i.f1 <= int4 '0' order by 1;
 
-SELECT i.* FROM INT2_TBL i WHERE i.f1 > int2 '0';
+SELECT i.* FROM INT2_TBL i WHERE i.f1 > int2 '0' order by 1;
 
-SELECT i.* FROM INT2_TBL i WHERE i.f1 > int4 '0';
+SELECT i.* FROM INT2_TBL i WHERE i.f1 > int4 '0' order by 1;
 
-SELECT i.* FROM INT2_TBL i WHERE i.f1 >= int2 '0';
+SELECT i.* FROM INT2_TBL i WHERE i.f1 >= int2 '0' order by 1;
 
-SELECT i.* FROM INT2_TBL i WHERE i.f1 >= int4 '0';
+SELECT i.* FROM INT2_TBL i WHERE i.f1 >= int4 '0' order by 1;
 
 -- positive odds
-SELECT i.* FROM INT2_TBL i WHERE (i.f1 % int2 '2') = int2 '1';
+SELECT i.* FROM INT2_TBL i WHERE (i.f1 % int2 '2') = int2 '1' order by 1;
 
 -- any evens
-SELECT i.* FROM INT2_TBL i WHERE (i.f1 % int4 '2') = int2 '0';
+SELECT i.* FROM INT2_TBL i WHERE (i.f1 % int4 '2') = int2 '0' order by 1;
 
-SELECT i.f1, i.f1 * int2 '2' AS x FROM INT2_TBL i;
+SELECT i.f1, i.f1 * int2 '2' AS x FROM INT2_TBL i order by 1;
 
 SELECT i.f1, i.f1 * int2 '2' AS x FROM INT2_TBL i
-WHERE abs(f1) < 16384;
+WHERE abs(f1) < 16384 order by 1;
 
-SELECT i.f1, i.f1 * int4 '2' AS x FROM INT2_TBL i;
+SELECT i.f1, i.f1 * int4 '2' AS x FROM INT2_TBL i order by 1;
 
-SELECT i.f1, i.f1 + int2 '2' AS x FROM INT2_TBL i;
+SELECT i.f1, i.f1 + int2 '2' AS x FROM INT2_TBL i order by 1;
 
 SELECT i.f1, i.f1 + int2 '2' AS x FROM INT2_TBL i
-WHERE f1 < 32766;
+WHERE f1 < 32766 order by 1;
 
-SELECT i.f1, i.f1 + int4 '2' AS x FROM INT2_TBL i;
+SELECT i.f1, i.f1 + int4 '2' AS x FROM INT2_TBL i order by 1;
 
-SELECT i.f1, i.f1 - int2 '2' AS x FROM INT2_TBL i;
+SELECT i.f1, i.f1 - int2 '2' AS x FROM INT2_TBL i order by 1;
 
 SELECT i.f1, i.f1 - int2 '2' AS x FROM INT2_TBL i
-WHERE f1 > -32767;
+WHERE f1 > -32767 order by 1;
 
-SELECT i.f1, i.f1 - int4 '2' AS x FROM INT2_TBL i;
+SELECT i.f1, i.f1 - int4 '2' AS x FROM INT2_TBL i order by 1;
 
-SELECT i.f1, i.f1 / int2 '2' AS x FROM INT2_TBL i;
+SELECT i.f1, i.f1 / int2 '2' AS x FROM INT2_TBL i order by 1;
 
-SELECT i.f1, i.f1 / int4 '2' AS x FROM INT2_TBL i;
+SELECT i.f1, i.f1 / int4 '2' AS x FROM INT2_TBL i order by 1;
 
 -- corner cases
 SELECT (-1::int2<<15)::text;

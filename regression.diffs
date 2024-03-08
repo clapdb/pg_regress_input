@@ -1,93 +1,9 @@
 diff -U3 /home/longqimin/pg_regress_input/expected/boolean.out /home/longqimin/pg_regress_input/results/boolean.out
---- /home/longqimin/pg_regress_input/expected/boolean.out	2024-03-08 10:39:42.632805177 +0800
-+++ /home/longqimin/pg_regress_input/results/boolean.out	2024-03-08 13:58:42.114482662 +0800
-@@ -44,8 +44,6 @@
+--- /home/longqimin/pg_regress_input/expected/boolean.out	2024-03-08 17:44:16.527332100 +0800
++++ /home/longqimin/pg_regress_input/results/boolean.out	2024-03-08 17:45:16.092324696 +0800
+@@ -136,11 +136,7 @@
+ (1 row)
  
- SELECT bool 'test' AS error;
- ERROR:  invalid input syntax for type boolean: "test"
--LINE 1: SELECT bool 'test' AS error;
--                    ^
- SELECT bool 'false' AS false;
-  false 
- -------
-@@ -54,8 +52,6 @@
- 
- SELECT bool 'foo' AS error;
- ERROR:  invalid input syntax for type boolean: "foo"
--LINE 1: SELECT bool 'foo' AS error;
--                    ^
- SELECT bool 'y' AS true;
-  true 
- ------
-@@ -70,8 +66,6 @@
- 
- SELECT bool 'yeah' AS error;
- ERROR:  invalid input syntax for type boolean: "yeah"
--LINE 1: SELECT bool 'yeah' AS error;
--                    ^
- SELECT bool 'n' AS false;
-  false 
- -------
-@@ -86,8 +80,6 @@
- 
- SELECT bool 'nay' AS error;
- ERROR:  invalid input syntax for type boolean: "nay"
--LINE 1: SELECT bool 'nay' AS error;
--                    ^
- SELECT bool 'on' AS true;
-  true 
- ------
-@@ -108,16 +100,10 @@
- 
- SELECT bool 'o' AS error;
- ERROR:  invalid input syntax for type boolean: "o"
--LINE 1: SELECT bool 'o' AS error;
--                    ^
- SELECT bool 'on_' AS error;
- ERROR:  invalid input syntax for type boolean: "on_"
--LINE 1: SELECT bool 'on_' AS error;
--                    ^
- SELECT bool 'off_' AS error;
- ERROR:  invalid input syntax for type boolean: "off_"
--LINE 1: SELECT bool 'off_' AS error;
--                    ^
- SELECT bool '1' AS true;
-  true 
- ------
-@@ -126,8 +112,6 @@
- 
- SELECT bool '11' AS error;
- ERROR:  invalid input syntax for type boolean: "11"
--LINE 1: SELECT bool '11' AS error;
--                    ^
- SELECT bool '0' AS false;
-  false 
- -------
-@@ -136,31 +120,15 @@
- 
- SELECT bool '000' AS error;
- ERROR:  invalid input syntax for type boolean: "000"
--LINE 1: SELECT bool '000' AS error;
--                    ^
- SELECT bool '' AS error;
- ERROR:  invalid input syntax for type boolean: ""
--LINE 1: SELECT bool '' AS error;
--                    ^
- -- Also try it with non-error-throwing API
- SELECT pg_input_is_valid('true', 'bool');
-- pg_input_is_valid 
---------------------
-- t
--(1 row)
--
-+ERROR:  function pg_input_is_valid does not exist
- SELECT pg_input_is_valid('asdf', 'bool');
-- pg_input_is_valid 
---------------------
-- f
--(1 row)
--
-+ERROR:  function pg_input_is_valid does not exist
  SELECT * FROM pg_input_error_info('junk', 'bool');
 -                    message                    | detail | hint | sql_error_code 
 ------------------------------------------------+--------+------+----------------
@@ -98,7 +14,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/boolean.out /home/longqimin/p
  -- and, or, not in qualifications
  SELECT bool 't' or bool 'f' AS true;
   true 
-@@ -276,10 +244,7 @@
+@@ -256,10 +252,7 @@
  SELECT BOOLTBL1.*
     FROM BOOLTBL1
     WHERE booleq(bool 'false', f1);
@@ -110,7 +26,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/boolean.out /home/longqimin/p
  INSERT INTO BOOLTBL1 (f1) VALUES (bool 'f');
  SELECT BOOLTBL1.*
     FROM BOOLTBL1
-@@ -299,8 +264,6 @@
+@@ -279,8 +272,6 @@
  INSERT INTO BOOLTBL2 (f1)
     VALUES (bool 'XXX');
  ERROR:  invalid input syntax for type boolean: "XXX"
@@ -119,7 +35,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/boolean.out /home/longqimin/p
  -- BOOLTBL2 should be full of false's at this point
  SELECT BOOLTBL2.* FROM BOOLTBL2;
   f1 
-@@ -314,76 +277,20 @@
+@@ -294,76 +285,20 @@
  SELECT BOOLTBL1.*, BOOLTBL2.*
     FROM BOOLTBL1, BOOLTBL2
     WHERE BOOLTBL2.f1 <> BOOLTBL1.f1;
@@ -200,7 +116,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/boolean.out /home/longqimin/p
  --
  -- SQL syntax
  -- Try all combinations to ensure that we get nothing when we expect nothing
-@@ -568,20 +475,20 @@
+@@ -548,20 +483,20 @@
  
  -- Casts
  SELECT 0::boolean;
@@ -227,7 +143,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/boolean.out /home/longqimin/p
   t
  (1 row)
  
-@@ -592,6 +499,10 @@
+@@ -572,6 +507,10 @@
  --  - thomas 1997-11-30
  --
  DROP TABLE  BOOLTBL1;
@@ -239,78 +155,41 @@ diff -U3 /home/longqimin/pg_regress_input/expected/boolean.out /home/longqimin/p
  DROP TABLE  BOOLTBL4;
 +ERROR:  only support select and create table statement
 diff -U3 /home/longqimin/pg_regress_input/expected/int2.out /home/longqimin/pg_regress_input/results/int2.out
---- /home/longqimin/pg_regress_input/expected/int2.out	2024-02-27 09:30:35.087460301 +0800
-+++ /home/longqimin/pg_regress_input/results/int2.out	2024-03-08 13:58:42.494482625 +0800
-@@ -4,37 +4,21 @@
+--- /home/longqimin/pg_regress_input/expected/int2.out	2024-03-08 17:38:36.609374346 +0800
++++ /home/longqimin/pg_regress_input/results/int2.out	2024-03-08 17:45:16.497324646 +0800
+@@ -4,21 +4,21 @@
  -- int2_tbl was already created and filled in test_setup.sql.
  -- Here we just try to insert bad values.
  INSERT INTO INT2_TBL(f1) VALUES ('34.5');
 -ERROR:  invalid input syntax for type smallint: "34.5"
--LINE 1: INSERT INTO INT2_TBL(f1) VALUES ('34.5');
--                                         ^
 +ERROR:  invalid input syntax for type integer: "34.5"
  INSERT INTO INT2_TBL(f1) VALUES ('100000');
 -ERROR:  value "100000" is out of range for type smallint
--LINE 1: INSERT INTO INT2_TBL(f1) VALUES ('100000');
--                                         ^
 +ERROR:  value "100000" is out of range for type integer
  INSERT INTO INT2_TBL(f1) VALUES ('asdf');
 -ERROR:  invalid input syntax for type smallint: "asdf"
--LINE 1: INSERT INTO INT2_TBL(f1) VALUES ('asdf');
--                                         ^
 +ERROR:  invalid input syntax for type integer: "asdf"
  INSERT INTO INT2_TBL(f1) VALUES ('    ');
 -ERROR:  invalid input syntax for type smallint: "    "
--LINE 1: INSERT INTO INT2_TBL(f1) VALUES ('    ');
--                                         ^
 +ERROR:  invalid input syntax for type integer: "    "
  INSERT INTO INT2_TBL(f1) VALUES ('- 1234');
 -ERROR:  invalid input syntax for type smallint: "- 1234"
--LINE 1: INSERT INTO INT2_TBL(f1) VALUES ('- 1234');
--                                         ^
 +ERROR:  invalid input syntax for type integer: "- 1234"
  INSERT INTO INT2_TBL(f1) VALUES ('4 444');
 -ERROR:  invalid input syntax for type smallint: "4 444"
--LINE 1: INSERT INTO INT2_TBL(f1) VALUES ('4 444');
--                                         ^
 +ERROR:  invalid input syntax for type integer: "4 444"
  INSERT INTO INT2_TBL(f1) VALUES ('123 dt');
 -ERROR:  invalid input syntax for type smallint: "123 dt"
--LINE 1: INSERT INTO INT2_TBL(f1) VALUES ('123 dt');
--                                         ^
 +ERROR:  invalid input syntax for type integer: "123 dt"
  INSERT INTO INT2_TBL(f1) VALUES ('');
 -ERROR:  invalid input syntax for type smallint: ""
--LINE 1: INSERT INTO INT2_TBL(f1) VALUES ('');
--                                         ^
 +ERROR:  invalid input syntax for type integer: ""
- SELECT * FROM INT2_TBL;
+ SELECT * FROM INT2_TBL order by 1;
     f1   
  --------
-@@ -47,52 +31,40 @@
+@@ -49,34 +49,38 @@
+ (1 row)
  
- -- Also try it with non-error-throwing API
- SELECT pg_input_is_valid('34', 'int2');
-- pg_input_is_valid 
---------------------
-- t
--(1 row)
--
-+ERROR:  function pg_input_is_valid does not exist
- SELECT pg_input_is_valid('asdf', 'int2');
-- pg_input_is_valid 
---------------------
-- f
--(1 row)
--
-+ERROR:  function pg_input_is_valid does not exist
- SELECT pg_input_is_valid('50000', 'int2');
-- pg_input_is_valid 
---------------------
-- f
--(1 row)
--
-+ERROR:  function pg_input_is_valid does not exist
  SELECT * FROM pg_input_error_info('50000', 'int2');
 -                     message                     | detail | hint | sql_error_code 
 --------------------------------------------------+--------+------+----------------
@@ -320,12 +199,12 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int2.out /home/longqimin/pg_r
 +ERROR:  function pg_input_error_info does not exist
  -- While we're here, check int2vector as well
  SELECT pg_input_is_valid(' 1 3  5 ', 'int2vector');
-- pg_input_is_valid 
---------------------
+  pg_input_is_valid 
+ -------------------
 - t
--(1 row)
--
-+ERROR:  function pg_input_is_valid does not exist
++ f
+ (1 row)
+ 
  SELECT * FROM pg_input_error_info('1 asdf', 'int2vector');
 -                    message                     | detail | hint | sql_error_code 
 -------------------------------------------------+--------+------+----------------
@@ -362,117 +241,117 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int2.out /home/longqimin/pg_r
 + -32767
 +(5 rows)
 +
- SELECT i.* FROM INT2_TBL i WHERE i.f1 <> int2 '0';
+ SELECT i.* FROM INT2_TBL i WHERE i.f1 <> int2 '0' order by 1;
     f1   
  --------
-@@ -200,7 +172,15 @@
+@@ -184,7 +188,15 @@
  (3 rows)
  
- SELECT i.f1, i.f1 * int2 '2' AS x FROM INT2_TBL i;
+ SELECT i.f1, i.f1 * int2 '2' AS x FROM INT2_TBL i order by 1;
 -ERROR:  smallint out of range
 +   f1   |   x    
 +--------+--------
++ -32767 | -65534
++  -1234 |  -2468
 +      0 |      0
 +   1234 |   2468
-+  -1234 |  -2468
 +  32767 |  65534
-+ -32767 | -65534
 +(5 rows)
 +
  SELECT i.f1, i.f1 * int2 '2' AS x FROM INT2_TBL i
- WHERE abs(f1) < 16384;
+ WHERE abs(f1) < 16384 order by 1;
    f1   |   x   
-@@ -211,28 +191,8 @@
+@@ -195,28 +207,8 @@
  (3 rows)
  
- SELECT i.f1, i.f1 * int4 '2' AS x FROM INT2_TBL i;
+ SELECT i.f1, i.f1 * int4 '2' AS x FROM INT2_TBL i order by 1;
 -   f1   |   x    
 ---------+--------
+- -32767 | -65534
+-  -1234 |  -2468
 -      0 |      0
 -   1234 |   2468
--  -1234 |  -2468
 -  32767 |  65534
-- -32767 | -65534
 -(5 rows)
 -
 +ERROR:  build PhysicalColumnarBinaryExpr failed: the data type of lhs and rhs must be the same [result_name=output_datum_0] [lhs=int32] [rhs=int16]
- SELECT i.f1, i.f1 + int2 '2' AS x FROM INT2_TBL i;
+ SELECT i.f1, i.f1 + int2 '2' AS x FROM INT2_TBL i order by 1;
 -ERROR:  smallint out of range
 -SELECT i.f1, i.f1 + int2 '2' AS x FROM INT2_TBL i
--WHERE f1 < 32766;
+-WHERE f1 < 32766 order by 1;
 -   f1   |   x    
 ---------+--------
+- -32767 | -32765
+-  -1234 |  -1232
 -      0 |      2
 -   1234 |   1236
--  -1234 |  -1232
-- -32767 | -32765
 -(4 rows)
 -
--SELECT i.f1, i.f1 + int4 '2' AS x FROM INT2_TBL i;
+-SELECT i.f1, i.f1 + int4 '2' AS x FROM INT2_TBL i order by 1;
     f1   |   x    
  --------+--------
-       0 |      2
-@@ -242,19 +202,19 @@
   -32767 | -32765
+@@ -226,19 +218,19 @@
+   32767 |  32769
  (5 rows)
  
--SELECT i.f1, i.f1 - int2 '2' AS x FROM INT2_TBL i;
+-SELECT i.f1, i.f1 - int2 '2' AS x FROM INT2_TBL i order by 1;
 -ERROR:  smallint out of range
 -SELECT i.f1, i.f1 - int2 '2' AS x FROM INT2_TBL i
--WHERE f1 > -32767;
+-WHERE f1 > -32767 order by 1;
 -  f1   |   x   
 --------+-------
+- -1234 | -1236
 -     0 |    -2
 -  1234 |  1232
-- -1234 | -1236
 - 32767 | 32765
 +SELECT i.f1, i.f1 + int2 '2' AS x FROM INT2_TBL i
-+WHERE f1 < 32766;
++WHERE f1 < 32766 order by 1;
 +   f1   
 +--------
++ -32767
++  -1234
 +      0
 +   1234
-+  -1234
-+ -32767
  (4 rows)
  
--SELECT i.f1, i.f1 - int4 '2' AS x FROM INT2_TBL i;
-+SELECT i.f1, i.f1 + int4 '2' AS x FROM INT2_TBL i;
+-SELECT i.f1, i.f1 - int4 '2' AS x FROM INT2_TBL i order by 1;
++SELECT i.f1, i.f1 + int4 '2' AS x FROM INT2_TBL i order by 1;
 +ERROR:  build PhysicalColumnarBinaryExpr failed: the data type of lhs and rhs must be the same [result_name=output_datum_0] [lhs=int32] [rhs=int16]
-+SELECT i.f1, i.f1 - int2 '2' AS x FROM INT2_TBL i;
++SELECT i.f1, i.f1 - int2 '2' AS x FROM INT2_TBL i order by 1;
     f1   |   x    
  --------+--------
-       0 |     -2
-@@ -264,6 +224,18 @@
   -32767 | -32769
+@@ -248,6 +240,18 @@
+   32767 |  32765
  (5 rows)
  
 +SELECT i.f1, i.f1 - int2 '2' AS x FROM INT2_TBL i
-+WHERE f1 > -32767;
++WHERE f1 > -32767 order by 1;
 +  f1   
 +-------
++ -1234
 +     0
 +  1234
-+ -1234
 + 32767
 +(4 rows)
 +
-+SELECT i.f1, i.f1 - int4 '2' AS x FROM INT2_TBL i;
++SELECT i.f1, i.f1 - int4 '2' AS x FROM INT2_TBL i order by 1;
 +ERROR:  build PhysicalColumnarBinaryExpr failed: the data type of lhs and rhs must be the same [result_name=output_datum_0] [lhs=int32] [rhs=int16]
- SELECT i.f1, i.f1 / int2 '2' AS x FROM INT2_TBL i;
+ SELECT i.f1, i.f1 / int2 '2' AS x FROM INT2_TBL i order by 1;
     f1   |   x    
  --------+--------
-@@ -275,33 +247,25 @@
+@@ -259,33 +263,25 @@
  (5 rows)
  
- SELECT i.f1, i.f1 / int4 '2' AS x FROM INT2_TBL i;
+ SELECT i.f1, i.f1 / int4 '2' AS x FROM INT2_TBL i order by 1;
 -   f1   |   x    
 ---------+--------
+- -32767 | -16383
+-  -1234 |   -617
 -      0 |      0
 -   1234 |    617
--  -1234 |   -617
 -  32767 |  16383
-- -32767 | -16383
 -(5 rows)
 -
 +ERROR:  build PhysicalColumnarBinaryExpr failed: the data type of lhs and rhs must be the same [result_name=output_datum_0] [lhs=int32] [rhs=int16]
@@ -509,7 +388,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int2.out /home/longqimin/pg_r
  SELECT (-32768)::int2 % (-1)::int2;
   ?column? 
  ----------
-@@ -317,17 +281,7 @@
+@@ -301,17 +297,7 @@
               (0.5::float8),
               (1.5::float8),
               (2.5::float8)) t(x);
@@ -528,7 +407,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int2.out /home/longqimin/pg_r
  -- check rounding when casting from numeric
  SELECT x, x::int2 AS int2_value
  FROM (VALUES (-2.5::numeric),
-@@ -337,17 +291,7 @@
+@@ -321,17 +307,7 @@
               (0.5::numeric),
               (1.5::numeric),
               (2.5::numeric)) t(x);
@@ -547,89 +426,71 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int2.out /home/longqimin/pg_r
  -- non-decimal literals
  SELECT int2 '0b100101';
   int2 
-@@ -368,17 +312,11 @@
+@@ -352,11 +328,11 @@
  (1 row)
  
  SELECT int2 '0b';
 -ERROR:  invalid input syntax for type smallint: "0b"
--LINE 1: SELECT int2 '0b';
--                    ^
 +ERROR:  invalid input syntax for type integer: "0b"
  SELECT int2 '0o';
 -ERROR:  invalid input syntax for type smallint: "0o"
--LINE 1: SELECT int2 '0o';
--                    ^
 +ERROR:  invalid input syntax for type integer: "0o"
  SELECT int2 '0x';
 -ERROR:  invalid input syntax for type smallint: "0x"
--LINE 1: SELECT int2 '0x';
--                    ^
 +ERROR:  invalid input syntax for type integer: "0x"
  -- cases near overflow
  SELECT int2 '0b111111111111111';
   int2  
-@@ -387,9 +325,7 @@
+@@ -365,7 +341,7 @@
  (1 row)
  
  SELECT int2 '0b1000000000000000';
 -ERROR:  value "0b1000000000000000" is out of range for type smallint
--LINE 1: SELECT int2 '0b1000000000000000';
--                    ^
 +ERROR:  value "0b1000000000000000" is out of range for type integer
  SELECT int2 '0o77777';
   int2  
  -------
-@@ -397,9 +333,7 @@
+@@ -373,7 +349,7 @@
  (1 row)
  
  SELECT int2 '0o100000';
 -ERROR:  value "0o100000" is out of range for type smallint
--LINE 1: SELECT int2 '0o100000';
--                    ^
 +ERROR:  value "0o100000" is out of range for type integer
  SELECT int2 '0x7FFF';
   int2  
  -------
-@@ -407,9 +341,7 @@
+@@ -381,7 +357,7 @@
  (1 row)
  
  SELECT int2 '0x8000';
 -ERROR:  value "0x8000" is out of range for type smallint
--LINE 1: SELECT int2 '0x8000';
--                    ^
 +ERROR:  value "0x8000" is out of range for type integer
  SELECT int2 '-0b1000000000000000';
    int2  
  --------
-@@ -417,9 +349,7 @@
+@@ -389,7 +365,7 @@
  (1 row)
  
  SELECT int2 '-0b1000000000000001';
 -ERROR:  value "-0b1000000000000001" is out of range for type smallint
--LINE 1: SELECT int2 '-0b1000000000000001';
--                    ^
 +ERROR:  invalid input syntax for type integer: "-0b1000000000000001"
  SELECT int2 '-0o100000';
    int2  
  --------
-@@ -427,9 +357,7 @@
+@@ -397,7 +373,7 @@
  (1 row)
  
  SELECT int2 '-0o100001';
 -ERROR:  value "-0o100001" is out of range for type smallint
--LINE 1: SELECT int2 '-0o100001';
--                    ^
 +ERROR:  invalid input syntax for type integer: "-0o100001"
  SELECT int2 '-0x8000';
    int2  
  --------
-@@ -437,50 +365,22 @@
+@@ -405,42 +381,22 @@
  (1 row)
  
  SELECT int2 '-0x8001';
 -ERROR:  value "-0x8001" is out of range for type smallint
--LINE 1: SELECT int2 '-0x8001';
--                    ^
 +ERROR:  invalid input syntax for type integer: "-0x8001"
  -- underscores
  SELECT int2 '1_000';
@@ -670,83 +531,19 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int2.out /home/longqimin/pg_r
  -- error cases
  SELECT int2 '_100';
 -ERROR:  invalid input syntax for type smallint: "_100"
--LINE 1: SELECT int2 '_100';
--                    ^
 +ERROR:  invalid input syntax for type integer: "_100"
  SELECT int2 '100_';
 -ERROR:  invalid input syntax for type smallint: "100_"
--LINE 1: SELECT int2 '100_';
--                    ^
 +ERROR:  invalid input syntax for type integer: "100_"
  SELECT int2 '10__000';
 -ERROR:  invalid input syntax for type smallint: "10__000"
--LINE 1: SELECT int2 '10__000';
--                    ^
 +ERROR:  invalid input syntax for type integer: "10__000"
 diff -U3 /home/longqimin/pg_regress_input/expected/int4.out /home/longqimin/pg_regress_input/results/int4.out
---- /home/longqimin/pg_regress_input/expected/int4.out	2024-03-08 10:37:26.410799760 +0800
-+++ /home/longqimin/pg_regress_input/results/int4.out	2024-03-08 13:58:43.061482569 +0800
-@@ -5,36 +5,20 @@
- -- Here we just try to insert bad values.
- INSERT INTO INT4_TBL(f1) VALUES ('34.5');
- ERROR:  invalid input syntax for type integer: "34.5"
--LINE 1: INSERT INTO INT4_TBL(f1) VALUES ('34.5');
--                                         ^
- INSERT INTO INT4_TBL(f1) VALUES ('1000000000000');
- ERROR:  value "1000000000000" is out of range for type integer
--LINE 1: INSERT INTO INT4_TBL(f1) VALUES ('1000000000000');
--                                         ^
- INSERT INTO INT4_TBL(f1) VALUES ('asdf');
- ERROR:  invalid input syntax for type integer: "asdf"
--LINE 1: INSERT INTO INT4_TBL(f1) VALUES ('asdf');
--                                         ^
- INSERT INTO INT4_TBL(f1) VALUES ('     ');
- ERROR:  invalid input syntax for type integer: "     "
--LINE 1: INSERT INTO INT4_TBL(f1) VALUES ('     ');
--                                         ^
- INSERT INTO INT4_TBL(f1) VALUES ('   asdf   ');
- ERROR:  invalid input syntax for type integer: "   asdf   "
--LINE 1: INSERT INTO INT4_TBL(f1) VALUES ('   asdf   ');
--                                         ^
- INSERT INTO INT4_TBL(f1) VALUES ('- 1234');
- ERROR:  invalid input syntax for type integer: "- 1234"
--LINE 1: INSERT INTO INT4_TBL(f1) VALUES ('- 1234');
--                                         ^
- INSERT INTO INT4_TBL(f1) VALUES ('123       5');
- ERROR:  invalid input syntax for type integer: "123       5"
--LINE 1: INSERT INTO INT4_TBL(f1) VALUES ('123       5');
--                                         ^
- INSERT INTO INT4_TBL(f1) VALUES ('');
- ERROR:  invalid input syntax for type integer: ""
--LINE 1: INSERT INTO INT4_TBL(f1) VALUES ('');
--                                         ^
- SELECT * FROM INT4_TBL;
-      f1      
- -------------
-@@ -47,29 +31,13 @@
+--- /home/longqimin/pg_regress_input/expected/int4.out	2024-03-08 17:39:58.983364117 +0800
++++ /home/longqimin/pg_regress_input/results/int4.out	2024-03-08 17:45:17.061324576 +0800
+@@ -49,11 +49,7 @@
+ (1 row)
  
- -- Also try it with non-error-throwing API
- SELECT pg_input_is_valid('34', 'int4');
-- pg_input_is_valid 
---------------------
-- t
--(1 row)
--
-+ERROR:  function pg_input_is_valid does not exist
- SELECT pg_input_is_valid('asdf', 'int4');
-- pg_input_is_valid 
---------------------
-- f
--(1 row)
--
-+ERROR:  function pg_input_is_valid does not exist
- SELECT pg_input_is_valid('1000000000000', 'int4');
-- pg_input_is_valid 
---------------------
-- f
--(1 row)
--
-+ERROR:  function pg_input_is_valid does not exist
  SELECT * FROM pg_input_error_info('1000000000000', 'int4');
 -                        message                         | detail | hint | sql_error_code 
 ---------------------------------------------------------+--------+------+----------------
@@ -757,7 +554,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int4.out /home/longqimin/pg_r
  SELECT i.* FROM INT4_TBL i WHERE i.f1 <> int2 '0';
       f1      
  -------------
-@@ -177,7 +145,15 @@
+@@ -161,7 +157,15 @@
  (3 rows)
  
  SELECT i.f1, i.f1 * int2 '2' AS x FROM INT4_TBL i;
@@ -774,7 +571,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int4.out /home/longqimin/pg_r
  SELECT i.f1, i.f1 * int2 '2' AS x FROM INT4_TBL i
  WHERE abs(f1) < 1073741824;
     f1    |    x    
-@@ -188,7 +164,15 @@
+@@ -172,7 +176,15 @@
  (3 rows)
  
  SELECT i.f1, i.f1 * int4 '2' AS x FROM INT4_TBL i;
@@ -791,7 +588,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int4.out /home/longqimin/pg_r
  SELECT i.f1, i.f1 * int4 '2' AS x FROM INT4_TBL i
  WHERE abs(f1) < 1073741824;
     f1    |    x    
-@@ -199,51 +183,83 @@
+@@ -183,51 +195,83 @@
  (3 rows)
  
  SELECT i.f1, i.f1 + int2 '2' AS x FROM INT4_TBL i;
@@ -895,7 +692,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int4.out /home/longqimin/pg_r
  (4 rows)
  
  SELECT i.f1, i.f1 / int2 '2' AS x FROM INT4_TBL i;
-@@ -338,22 +354,22 @@
+@@ -322,22 +366,22 @@
  
  -- corner case
  SELECT (-1::int4<<31)::text;
@@ -930,7 +727,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int4.out /home/longqimin/pg_r
  SELECT (-2147483648)::int4 % (-1)::int4;
   ?column? 
  ----------
-@@ -361,9 +377,17 @@
+@@ -345,9 +389,17 @@
  (1 row)
  
  SELECT (-2147483648)::int4 * (-1)::int2;
@@ -950,7 +747,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int4.out /home/longqimin/pg_r
  SELECT (-2147483648)::int4 % (-1)::int2;
   ?column? 
  ----------
-@@ -379,17 +403,7 @@
+@@ -363,17 +415,7 @@
               (0.5::float8),
               (1.5::float8),
               (2.5::float8)) t(x);
@@ -969,7 +766,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int4.out /home/longqimin/pg_r
  -- check rounding when casting from numeric
  SELECT x, x::int4 AS int4_value
  FROM (VALUES (-2.5::numeric),
-@@ -399,17 +413,7 @@
+@@ -383,17 +425,7 @@
               (0.5::numeric),
               (1.5::numeric),
               (2.5::numeric)) t(x);
@@ -988,7 +785,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int4.out /home/longqimin/pg_r
  -- test gcd()
  SELECT a, b, gcd(a, b), gcd(a, -b), gcd(b, a), gcd(-b, a)
  FROM (VALUES (0::int4, 0::int4),
-@@ -419,21 +423,11 @@
+@@ -403,21 +435,11 @@
               ((-2147483648)::int4, 1::int4),
               ((-2147483648)::int4, 2147483647::int4),
               ((-2147483648)::int4, 1073741824::int4)) AS v(a, b);
@@ -1013,7 +810,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int4.out /home/longqimin/pg_r
  -- test lcm()
  SELECT a, b, lcm(a, b), lcm(a, -b), lcm(b, a), lcm(-b, a)
  FROM (VALUES (0::int4, 0::int4),
-@@ -442,20 +436,11 @@
+@@ -426,20 +448,11 @@
               (330::int4, 462::int4),
               (-330::int4, 462::int4),
               ((-2147483648)::int4, 0::int4)) AS v(a, b);
@@ -1037,79 +834,29 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int4.out /home/longqimin/pg_r
  -- non-decimal literals
  SELECT int4 '0b100101';
   int4 
-@@ -477,16 +462,10 @@
- 
- SELECT int4 '0b';
- ERROR:  invalid input syntax for type integer: "0b"
--LINE 1: SELECT int4 '0b';
--                    ^
- SELECT int4 '0o';
- ERROR:  invalid input syntax for type integer: "0o"
--LINE 1: SELECT int4 '0o';
--                    ^
- SELECT int4 '0x';
- ERROR:  invalid input syntax for type integer: "0x"
--LINE 1: SELECT int4 '0x';
--                    ^
- -- cases near overflow
- SELECT int4 '0b1111111111111111111111111111111';
-     int4    
-@@ -496,8 +475,6 @@
- 
- SELECT int4 '0b10000000000000000000000000000000';
- ERROR:  value "0b10000000000000000000000000000000" is out of range for type integer
--LINE 1: SELECT int4 '0b10000000000000000000000000000000';
--                    ^
- SELECT int4 '0o17777777777';
-     int4    
- ------------
-@@ -506,8 +483,6 @@
- 
- SELECT int4 '0o20000000000';
- ERROR:  value "0o20000000000" is out of range for type integer
--LINE 1: SELECT int4 '0o20000000000';
--                    ^
- SELECT int4 '0x7FFFFFFF';
-     int4    
- ------------
-@@ -516,8 +491,6 @@
- 
- SELECT int4 '0x80000000';
- ERROR:  value "0x80000000" is out of range for type integer
--LINE 1: SELECT int4 '0x80000000';
--                    ^
- SELECT int4 '-0b10000000000000000000000000000000';
-     int4     
- -------------
-@@ -525,9 +498,7 @@
+@@ -497,7 +510,7 @@
  (1 row)
  
  SELECT int4 '-0b10000000000000000000000000000001';
 -ERROR:  value "-0b10000000000000000000000000000001" is out of range for type integer
--LINE 1: SELECT int4 '-0b10000000000000000000000000000001';
--                    ^
 +ERROR:  invalid input syntax for type integer: "-0b10000000000000000000000000000001"
  SELECT int4 '-0o20000000000';
      int4     
  -------------
-@@ -535,9 +506,7 @@
+@@ -505,7 +518,7 @@
  (1 row)
  
  SELECT int4 '-0o20000000001';
 -ERROR:  value "-0o20000000001" is out of range for type integer
--LINE 1: SELECT int4 '-0o20000000001';
--                    ^
 +ERROR:  invalid input syntax for type integer: "-0o20000000001"
  SELECT int4 '-0x80000000';
      int4     
  -------------
-@@ -545,50 +514,22 @@
+@@ -513,38 +526,18 @@
  (1 row)
  
  SELECT int4 '-0x80000001';
 -ERROR:  value "-0x80000001" is out of range for type integer
--LINE 1: SELECT int4 '-0x80000001';
--                    ^
 +ERROR:  invalid input syntax for type integer: "-0x80000001"
  -- underscores
  SELECT int4 '1_000_000';
@@ -1150,84 +897,39 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int4.out /home/longqimin/pg_r
  -- error cases
  SELECT int4 '_100';
  ERROR:  invalid input syntax for type integer: "_100"
--LINE 1: SELECT int4 '_100';
--                    ^
- SELECT int4 '100_';
- ERROR:  invalid input syntax for type integer: "100_"
--LINE 1: SELECT int4 '100_';
--                    ^
- SELECT int4 '100__000';
- ERROR:  invalid input syntax for type integer: "100__000"
--LINE 1: SELECT int4 '100__000';
--                    ^
 diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_regress_input/results/int8.out
---- /home/longqimin/pg_regress_input/expected/int8.out	2024-03-08 10:37:51.242801636 +0800
-+++ /home/longqimin/pg_regress_input/results/int8.out	2024-03-08 13:58:44.294482448 +0800
-@@ -5,33 +5,19 @@
+--- /home/longqimin/pg_regress_input/expected/int8.out	2024-03-08 17:40:16.414361950 +0800
++++ /home/longqimin/pg_regress_input/results/int8.out	2024-03-08 17:45:18.193324435 +0800
+@@ -5,19 +5,19 @@
  -- int8_tbl was already created and filled in test_setup.sql.
  -- Here we just try to insert bad values.
  INSERT INTO INT8_TBL(q1) VALUES ('      ');
 -ERROR:  invalid input syntax for type bigint: "      "
--LINE 1: INSERT INTO INT8_TBL(q1) VALUES ('      ');
--                                         ^
 +ERROR:  invalid input syntax for type integer: "      "
  INSERT INTO INT8_TBL(q1) VALUES ('xxx');
 -ERROR:  invalid input syntax for type bigint: "xxx"
--LINE 1: INSERT INTO INT8_TBL(q1) VALUES ('xxx');
--                                         ^
 +ERROR:  invalid input syntax for type integer: "xxx"
  INSERT INTO INT8_TBL(q1) VALUES ('3908203590239580293850293850329485');
 -ERROR:  value "3908203590239580293850293850329485" is out of range for type bigint
--LINE 1: INSERT INTO INT8_TBL(q1) VALUES ('39082035902395802938502938...
--                                         ^
 +ERROR:  value "3908203590239580293850293850329485" is out of range for type integer
  INSERT INTO INT8_TBL(q1) VALUES ('-1204982019841029840928340329840934');
 -ERROR:  value "-1204982019841029840928340329840934" is out of range for type bigint
--LINE 1: INSERT INTO INT8_TBL(q1) VALUES ('-1204982019841029840928340...
--                                         ^
 +ERROR:  value "-1204982019841029840928340329840934" is out of range for type integer
  INSERT INTO INT8_TBL(q1) VALUES ('- 123');
 -ERROR:  invalid input syntax for type bigint: "- 123"
--LINE 1: INSERT INTO INT8_TBL(q1) VALUES ('- 123');
--                                         ^
 +ERROR:  invalid input syntax for type integer: "- 123"
  INSERT INTO INT8_TBL(q1) VALUES ('  345     5');
 -ERROR:  invalid input syntax for type bigint: "  345     5"
--LINE 1: INSERT INTO INT8_TBL(q1) VALUES ('  345     5');
--                                         ^
 +ERROR:  invalid input syntax for type integer: "  345     5"
  INSERT INTO INT8_TBL(q1) VALUES ('');
 -ERROR:  invalid input syntax for type bigint: ""
--LINE 1: INSERT INTO INT8_TBL(q1) VALUES ('');
--                                         ^
 +ERROR:  invalid input syntax for type integer: ""
  SELECT * FROM INT8_TBL;
          q1        |        q2         
  ------------------+-------------------
-@@ -44,29 +30,13 @@
+@@ -48,11 +48,7 @@
+ (1 row)
  
- -- Also try it with non-error-throwing API
- SELECT pg_input_is_valid('34', 'int8');
-- pg_input_is_valid 
---------------------
-- t
--(1 row)
--
-+ERROR:  function pg_input_is_valid does not exist
- SELECT pg_input_is_valid('asdf', 'int8');
-- pg_input_is_valid 
---------------------
-- f
--(1 row)
--
-+ERROR:  function pg_input_is_valid does not exist
- SELECT pg_input_is_valid('10000000000000000000', 'int8');
-- pg_input_is_valid 
---------------------
-- f
--(1 row)
--
-+ERROR:  function pg_input_is_valid does not exist
  SELECT * FROM pg_input_error_info('10000000000000000000', 'int8');
 -                           message                            | detail | hint | sql_error_code 
 ---------------------------------------------------------------+--------+------+----------------
@@ -1238,7 +940,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
  -- int8/int8 cmp
  SELECT * FROM INT8_TBL WHERE q2 = 4567890123456789;
          q1        |        q2        
-@@ -328,7 +298,15 @@
+@@ -314,7 +310,15 @@
  (5 rows)
  
  SELECT q1, q2, q1 * q2 AS multiply FROM INT8_TBL;
@@ -1255,7 +957,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
  SELECT q1, q2, q1 * q2 AS multiply FROM INT8_TBL
   WHERE q1 < 1000 or (q2 > 0 and q2 < 1000);
          q1        |        q2        |      multiply      
-@@ -349,25 +327,9 @@
+@@ -335,25 +339,9 @@
  (5 rows)
  
  SELECT q1, float8(q1) FROM INT8_TBL;
@@ -1283,7 +985,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
  SELECT 37 + q1 AS plus4 FROM INT8_TBL;
        plus4       
  ------------------
-@@ -478,253 +440,101 @@
+@@ -464,249 +452,101 @@
  --
  SELECT to_char(q1, '9G999G999G999G999G999'), to_char(q2, '9,999,999,999,999,999')
  	FROM INT8_TBL;
@@ -1486,8 +1188,6 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
 +ERROR:  value "-9223372036854775808" is out of range for type integer
  select '-9223372036854775809'::int8;
 -ERROR:  value "-9223372036854775809" is out of range for type bigint
--LINE 1: select '-9223372036854775809'::int8;
--               ^
 +ERROR:  value "-9223372036854775809" is out of range for type integer
  select '9223372036854775807'::int8;
 -        int8         
@@ -1498,8 +1198,6 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
 +ERROR:  value "9223372036854775807" is out of range for type integer
  select '9223372036854775808'::int8;
 -ERROR:  value "9223372036854775808" is out of range for type bigint
--LINE 1: select '9223372036854775808'::int8;
--               ^
 +ERROR:  value "9223372036854775808" is out of range for type integer
  select -('-9223372036854775807'::int8);
 -      ?column?       
@@ -1583,7 +1281,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
  SELECT CAST(q1 AS int4) FROM int8_tbl WHERE q2 = 456;
   q1  
  -----
-@@ -732,7 +542,14 @@
+@@ -714,7 +554,14 @@
  (1 row)
  
  SELECT CAST(q1 AS int4) FROM int8_tbl WHERE q2 <> 456;
@@ -1599,7 +1297,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
  SELECT CAST(q1 AS int2) FROM int8_tbl WHERE q2 = 456;
   q1  
  -----
-@@ -740,134 +557,74 @@
+@@ -722,134 +569,74 @@
  (1 row)
  
  SELECT CAST(q1 AS int2) FROM int8_tbl WHERE q2 <> 456;
@@ -1770,7 +1468,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
  -- check rounding when casting from float
  SELECT x, x::int8 AS int8_value
  FROM (VALUES (-2.5::float8),
-@@ -877,17 +634,7 @@
+@@ -859,17 +646,7 @@
               (0.5::float8),
               (1.5::float8),
               (2.5::float8)) t(x);
@@ -1789,7 +1487,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
  -- check rounding when casting from numeric
  SELECT x, x::int8 AS int8_value
  FROM (VALUES (-2.5::numeric),
-@@ -897,17 +644,7 @@
+@@ -879,17 +656,7 @@
               (0.5::numeric),
               (1.5::numeric),
               (2.5::numeric)) t(x);
@@ -1808,7 +1506,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
  -- test gcd()
  SELECT a, b, gcd(a, b), gcd(a, -b), gcd(b, a), gcd(-b, a)
  FROM (VALUES (0::int8, 0::int8),
-@@ -917,21 +654,11 @@
+@@ -899,21 +666,11 @@
               ((-9223372036854775808)::int8, 1::int8),
               ((-9223372036854775808)::int8, 9223372036854775807::int8),
               ((-9223372036854775808)::int8, 4611686018427387904::int8)) AS v(a, b);
@@ -1833,7 +1531,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
  -- test lcm()
  SELECT a, b, lcm(a, b), lcm(a, -b), lcm(b, a), lcm(-b, a)
  FROM (VALUES (0::int8, 0::int8),
-@@ -940,153 +667,68 @@
+@@ -922,129 +679,68 @@
               (288484263558::int8, 29893644334::int8),
               (-288484263558::int8, 29893644334::int8),
               ((-9223372036854775808)::int8, 0::int8)) AS v(a, b);
@@ -1878,18 +1576,12 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
 +ERROR:  value "0x42F" is out of range for type integer
  SELECT int8 '0b';
 -ERROR:  invalid input syntax for type bigint: "0b"
--LINE 1: SELECT int8 '0b';
--                    ^
 +ERROR:  invalid input syntax for type integer: "0b"
  SELECT int8 '0o';
 -ERROR:  invalid input syntax for type bigint: "0o"
--LINE 1: SELECT int8 '0o';
--                    ^
 +ERROR:  invalid input syntax for type integer: "0o"
  SELECT int8 '0x';
 -ERROR:  invalid input syntax for type bigint: "0x"
--LINE 1: SELECT int8 '0x';
--                    ^
 +ERROR:  invalid input syntax for type integer: "0x"
  -- cases near overflow
  SELECT int8 '0b111111111111111111111111111111111111111111111111111111111111111';
@@ -1901,8 +1593,6 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
 +ERROR:  value "0b111111111111111111111111111111111111111111111111111111111111111" is out of range for type integer
  SELECT int8 '0b1000000000000000000000000000000000000000000000000000000000000000';
 -ERROR:  value "0b1000000000000000000000000000000000000000000000000000000000000000" is out of range for type bigint
--LINE 1: SELECT int8 '0b100000000000000000000000000000000000000000000...
--                    ^
 +ERROR:  value "0b1000000000000000000000000000000000000000000000000000000000000000" is out of range for type integer
  SELECT int8 '0o777777777777777777777';
 -        int8         
@@ -1913,8 +1603,6 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
 +ERROR:  value "0o777777777777777777777" is out of range for type integer
  SELECT int8 '0o1000000000000000000000';
 -ERROR:  value "0o1000000000000000000000" is out of range for type bigint
--LINE 1: SELECT int8 '0o1000000000000000000000';
--                    ^
 +ERROR:  value "0o1000000000000000000000" is out of range for type integer
  SELECT int8 '0x7FFFFFFFFFFFFFFF';
 -        int8         
@@ -1925,8 +1613,6 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
 +ERROR:  value "0x7FFFFFFFFFFFFFFF" is out of range for type integer
  SELECT int8 '0x8000000000000000';
 -ERROR:  value "0x8000000000000000" is out of range for type bigint
--LINE 1: SELECT int8 '0x8000000000000000';
--                    ^
 +ERROR:  value "0x8000000000000000" is out of range for type integer
  SELECT int8 '-0b1000000000000000000000000000000000000000000000000000000000000000';
 -         int8         
@@ -1937,8 +1623,6 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
 +ERROR:  invalid input syntax for type integer: "-0b1000000000000000000000000000000000000000000000000000000000000000"
  SELECT int8 '-0b1000000000000000000000000000000000000000000000000000000000000001';
 -ERROR:  value "-0b1000000000000000000000000000000000000000000000000000000000000001" is out of range for type bigint
--LINE 1: SELECT int8 '-0b10000000000000000000000000000000000000000000...
--                    ^
 +ERROR:  invalid input syntax for type integer: "-0b1000000000000000000000000000000000000000000000000000000000000001"
  SELECT int8 '-0o1000000000000000000000';
 -         int8         
@@ -1949,8 +1633,6 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
 +ERROR:  invalid input syntax for type integer: "-0o1000000000000000000000"
  SELECT int8 '-0o1000000000000000000001';
 -ERROR:  value "-0o1000000000000000000001" is out of range for type bigint
--LINE 1: SELECT int8 '-0o1000000000000000000001';
--                    ^
 +ERROR:  invalid input syntax for type integer: "-0o1000000000000000000001"
  SELECT int8 '-0x8000000000000000';
 -         int8         
@@ -1961,8 +1643,6 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
 +ERROR:  invalid input syntax for type integer: "-0x8000000000000000"
  SELECT int8 '-0x8000000000000001';
 -ERROR:  value "-0x8000000000000001" is out of range for type bigint
--LINE 1: SELECT int8 '-0x8000000000000001';
--                    ^
 +ERROR:  invalid input syntax for type integer: "-0x8000000000000001"
  -- underscores
  SELECT int8 '1_000_000';
@@ -2003,23 +1683,17 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
  -- error cases
  SELECT int8 '_100';
 -ERROR:  invalid input syntax for type bigint: "_100"
--LINE 1: SELECT int8 '_100';
--                    ^
 +ERROR:  invalid input syntax for type integer: "_100"
  SELECT int8 '100_';
 -ERROR:  invalid input syntax for type bigint: "100_"
--LINE 1: SELECT int8 '100_';
--                    ^
 +ERROR:  invalid input syntax for type integer: "100_"
  SELECT int8 '100__000';
 -ERROR:  invalid input syntax for type bigint: "100__000"
--LINE 1: SELECT int8 '100__000';
--                    ^
 +ERROR:  invalid input syntax for type integer: "100__000"
 diff -U3 /home/longqimin/pg_regress_input/expected/float4.out /home/longqimin/pg_regress_input/results/float4.out
 --- /home/longqimin/pg_regress_input/expected/float4.out	2024-03-08 10:38:24.699802699 +0800
-+++ /home/longqimin/pg_regress_input/results/float4.out	2024-03-08 13:58:51.752481718 +0800
-@@ -9,157 +9,101 @@
++++ /home/longqimin/pg_regress_input/results/float4.out	2024-03-08 17:45:25.628323511 +0800
+@@ -9,78 +9,44 @@
  INSERT INTO FLOAT4_TBL(f1) VALUES ('1.2345678901234e-20');
  -- test for over and under flow
  INSERT INTO FLOAT4_TBL(f1) VALUES ('10e70');
@@ -2115,26 +1789,10 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float4.out /home/longqimin/pg
 +ERROR:  invalid input syntax for type floating: "123            5"
  -- Also try it with non-error-throwing API
  SELECT pg_input_is_valid('34.5', 'float4');
-- pg_input_is_valid 
---------------------
-- t
--(1 row)
--
-+ERROR:  function pg_input_is_valid does not exist
- SELECT pg_input_is_valid('xyz', 'float4');
-- pg_input_is_valid 
---------------------
-- f
--(1 row)
--
-+ERROR:  function pg_input_is_valid does not exist
- SELECT pg_input_is_valid('1e400', 'float4');
-- pg_input_is_valid 
---------------------
-- f
--(1 row)
--
-+ERROR:  function pg_input_is_valid does not exist
+  pg_input_is_valid 
+@@ -101,65 +67,55 @@
+ (1 row)
+ 
  SELECT * FROM pg_input_error_info('1e400', 'float4');
 -                message                | detail | hint | sql_error_code 
 ----------------------------------------+--------+------+----------------
@@ -2213,7 +1871,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float4.out /home/longqimin/pg
  (1 row)
  
  SELECT '42'::float4 / 'Infinity'::float4;
-@@ -171,39 +115,39 @@
+@@ -171,39 +127,39 @@
  SELECT 'nan'::float4 / 'nan'::float4;
   ?column? 
  ----------
@@ -2246,8 +1904,8 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float4.out /home/longqimin/pg
 +             0
   1.2345679e-20
 -(5 rows)
-+ 1.2345679e+20
 +             0
++ 1.2345679e+20
 +        1004.3
 +(7 rows)
  
@@ -2266,7 +1924,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float4.out /home/longqimin/pg
  
  SELECT f.* FROM FLOAT4_TBL f WHERE f.f1 = '1004.3';
     f1   
-@@ -214,109 +158,114 @@
+@@ -214,109 +170,114 @@
  SELECT f.* FROM FLOAT4_TBL f WHERE '1004.3' > f.f1;
        f1       
  ---------------
@@ -2282,85 +1940,78 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float4.out /home/longqimin/pg
  SELECT f.* FROM FLOAT4_TBL f WHERE  f.f1 < '1004.3';
        f1       
  ---------------
--             0
+              0
          -34.84
 +             0
 +             0
   1.2345679e-20
 -(3 rows)
-+             0
 +(5 rows)
  
  SELECT f.* FROM FLOAT4_TBL f WHERE '1004.3' >= f.f1;
        f1       
  ---------------
--             0
--        1004.3
-         -34.84
++        -34.84
 +             0
-+             0
+              0
+         1004.3
+-        -34.84
   1.2345679e-20
 -(4 rows)
 +             0
-+        1004.3
 +(6 rows)
  
  SELECT f.* FROM FLOAT4_TBL f WHERE  f.f1 <= '1004.3';
        f1       
  ---------------
--             0
--        1004.3
-         -34.84
++        -34.84
+              0
+         1004.3
+-        -34.84
 +             0
 +             0
   1.2345679e-20
 -(4 rows)
-+             0
-+        1004.3
 +(6 rows)
  
  SELECT f.f1, f.f1 * '-10' AS x FROM FLOAT4_TBL f
     WHERE f.f1 > '0.0';
        f1       |       x        
  ---------------+----------------
--        1004.3 |         -10043
-- 1.2345679e+20 | -1.2345678e+21
-  1.2345679e-20 | -1.2345678e-19
-+ 1.2345679e+20 | -1.2345678e+21
-+        1004.3 |         -10043
++ 1.2345679e-20 | -1.2345678e-19
+         1004.3 |         -10043
+  1.2345679e+20 | -1.2345678e+21
+- 1.2345679e-20 | -1.2345678e-19
  (3 rows)
  
  SELECT f.f1, f.f1 + '-10' AS x FROM FLOAT4_TBL f
     WHERE f.f1 > '0.0';
        f1       |       x       
  ---------------+---------------
--        1004.3 |         994.3
-- 1.2345679e+20 | 1.2345679e+20
-  1.2345679e-20 |           -10
-+ 1.2345679e+20 | 1.2345679e+20
-+        1004.3 |         994.3
++ 1.2345679e-20 |           -10
+         1004.3 |         994.3
+  1.2345679e+20 | 1.2345679e+20
+- 1.2345679e-20 |           -10
  (3 rows)
  
  SELECT f.f1, f.f1 / '-10' AS x FROM FLOAT4_TBL f
     WHERE f.f1 > '0.0';
        f1       |       x        
  ---------------+----------------
--        1004.3 |        -100.43
-- 1.2345679e+20 | -1.2345679e+19
-  1.2345679e-20 | -1.2345679e-21
-+ 1.2345679e+20 | -1.2345679e+19
-+        1004.3 |        -100.43
++ 1.2345679e-20 | -1.2345679e-21
+         1004.3 |        -100.43
+  1.2345679e+20 | -1.2345679e+19
+- 1.2345679e-20 | -1.2345679e-21
  (3 rows)
  
  SELECT f.f1, f.f1 - '-10' AS x FROM FLOAT4_TBL f
     WHERE f.f1 > '0.0';
        f1       |       x       
  ---------------+---------------
--        1004.3 |        1014.3
-- 1.2345679e+20 | 1.2345679e+20
-  1.2345679e-20 |            10
-+ 1.2345679e+20 | 1.2345679e+20
-+        1004.3 |        1014.3
++ 1.2345679e-20 |            10
+         1004.3 |        1014.3
+  1.2345679e+20 | 1.2345679e+20
+- 1.2345679e-20 |            10
  (3 rows)
  
  -- test divide by zero
@@ -2370,16 +2021,15 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float4.out /home/longqimin/pg
  SELECT * FROM FLOAT4_TBL;
        f1       
  ---------------
--             0
--        1004.3
-         -34.84
-+             0
++        -34.84
+              0
+         1004.3
+-        -34.84
 +             0
   1.2345679e+20
-+        1004.3
++             0
   1.2345679e-20
 -(5 rows)
-+             0
 +(7 rows)
  
  -- test the unary float4abs operator
@@ -2413,14 +2063,14 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float4.out /home/longqimin/pg
 +             0
 +             0
 + 1.2345679e-20
++        1004.3
 +             0
 + 1.2345679e+20
-+        1004.3
 +(7 rows)
  
  -- test edge-case coercions to integer
  SELECT '32767.4'::float4::int2;
-@@ -326,7 +275,11 @@
+@@ -326,7 +287,11 @@
  (1 row)
  
  SELECT '32767.6'::float4::int2;
@@ -2433,7 +2083,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float4.out /home/longqimin/pg
  SELECT '-32768.4'::float4::int2;
    int2  
  --------
-@@ -334,7 +287,11 @@
+@@ -334,7 +299,11 @@
  (1 row)
  
  SELECT '-32768.6'::float4::int2;
@@ -2446,7 +2096,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float4.out /home/longqimin/pg
  SELECT '2147483520'::float4::int4;
      int4    
  ------------
-@@ -342,124 +299,52 @@
+@@ -342,124 +311,52 @@
  (1 row)
  
  SELECT '2147483647'::float4::int4;
@@ -2593,7 +2243,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float4.out /home/longqimin/pg
  -- Test that the smallest possible normalized input value inputs
  -- correctly, either in 9-significant-digit or shortest-decimal
  -- format.
-@@ -468,33 +353,31 @@
+@@ -468,33 +365,31 @@
  -- shortest val is          1.1754944000
  -- midpoint to next val is  1.1754944208...
  SELECT float4send('1.17549435e-38'::float4);
@@ -2637,7 +2287,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float4.out /home/longqimin/pg
  -- float4: seeeeeee emmmmmmm mmmmmmmm mmmmmmmm
  -- we don't care to assume the platform's strtod() handles subnormals
  -- correctly; those are "use at your own risk". However we do test
-@@ -520,31 +403,7 @@
+@@ -520,31 +415,7 @@
    from (select bits::integer::xfloat4::float4 as flt
            from testdata
  	offset 0) s;
@@ -2670,7 +2320,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float4.out /home/longqimin/pg
  with testdata(bits) as (values
    (x'00000000'),
    -- smallest normal values
-@@ -710,277 +569,7 @@
+@@ -710,277 +581,7 @@
    from (select bits::integer::xfloat4::float4 as flt
            from testdata
  	offset 0) s;
@@ -2951,8 +2601,8 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float4.out /home/longqimin/pg
 -drop cascades to cast from integer to xfloat4
 +ERROR:  only support select and create table statement
 diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg_regress_input/results/float8.out
---- /home/longqimin/pg_regress_input/expected/float8.out	2024-03-08 10:38:56.359803705 +0800
-+++ /home/longqimin/pg_regress_input/results/float8.out	2024-03-08 13:58:57.261481177 +0800
+--- /home/longqimin/pg_regress_input/expected/float8.out	2024-03-08 17:40:42.097358758 +0800
++++ /home/longqimin/pg_regress_input/results/float8.out	2024-03-08 17:45:31.151322826 +0800
 @@ -6,6 +6,7 @@
  -- (This temporarily hides the table created in test_setup.sql)
  --
@@ -2961,28 +2611,20 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
  INSERT INTO FLOAT8_TBL(f1) VALUES ('    0.0   ');
  INSERT INTO FLOAT8_TBL(f1) VALUES ('1004.30  ');
  INSERT INTO FLOAT8_TBL(f1) VALUES ('   -34.84');
-@@ -13,140 +14,90 @@
+@@ -13,37 +14,33 @@
  INSERT INTO FLOAT8_TBL(f1) VALUES ('1.2345678901234e-200');
  -- test for underflow and overflow handling
  SELECT '10e400'::float8;
 -ERROR:  "10e400" is out of range for type double precision
--LINE 1: SELECT '10e400'::float8;
--               ^
 +ERROR:  value "10e400" is out of range for type floating
  SELECT '-10e400'::float8;
 -ERROR:  "-10e400" is out of range for type double precision
--LINE 1: SELECT '-10e400'::float8;
--               ^
 +ERROR:  value "-10e400" is out of range for type floating
  SELECT '10e-400'::float8;
 -ERROR:  "10e-400" is out of range for type double precision
--LINE 1: SELECT '10e-400'::float8;
--               ^
 +ERROR:  value "10e-400" is out of range for type floating
  SELECT '-10e-400'::float8;
 -ERROR:  "-10e-400" is out of range for type double precision
--LINE 1: SELECT '-10e-400'::float8;
--               ^
 +ERROR:  value "-10e-400" is out of range for type floating
  -- test smallest normalized input
  SELECT float8send('2.2250738585072014E-308'::float8);
@@ -2995,66 +2637,34 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
  -- bad input
  INSERT INTO FLOAT8_TBL(f1) VALUES ('');
 -ERROR:  invalid input syntax for type double precision: ""
--LINE 1: INSERT INTO FLOAT8_TBL(f1) VALUES ('');
--                                           ^
 +ERROR:  invalid input syntax for type floating: ""
  INSERT INTO FLOAT8_TBL(f1) VALUES ('     ');
 -ERROR:  invalid input syntax for type double precision: "     "
--LINE 1: INSERT INTO FLOAT8_TBL(f1) VALUES ('     ');
--                                           ^
 +ERROR:  invalid input syntax for type floating: "     "
  INSERT INTO FLOAT8_TBL(f1) VALUES ('xyz');
 -ERROR:  invalid input syntax for type double precision: "xyz"
--LINE 1: INSERT INTO FLOAT8_TBL(f1) VALUES ('xyz');
--                                           ^
 +ERROR:  invalid input syntax for type floating: "xyz"
  INSERT INTO FLOAT8_TBL(f1) VALUES ('5.0.0');
 -ERROR:  invalid input syntax for type double precision: "5.0.0"
--LINE 1: INSERT INTO FLOAT8_TBL(f1) VALUES ('5.0.0');
--                                           ^
 +ERROR:  invalid input syntax for type floating: "5.0.0"
  INSERT INTO FLOAT8_TBL(f1) VALUES ('5 . 0');
 -ERROR:  invalid input syntax for type double precision: "5 . 0"
--LINE 1: INSERT INTO FLOAT8_TBL(f1) VALUES ('5 . 0');
--                                           ^
 +ERROR:  invalid input syntax for type floating: "5 . 0"
  INSERT INTO FLOAT8_TBL(f1) VALUES ('5.   0');
 -ERROR:  invalid input syntax for type double precision: "5.   0"
--LINE 1: INSERT INTO FLOAT8_TBL(f1) VALUES ('5.   0');
--                                           ^
 +ERROR:  invalid input syntax for type floating: "5.   0"
  INSERT INTO FLOAT8_TBL(f1) VALUES ('    - 3');
 -ERROR:  invalid input syntax for type double precision: "    - 3"
--LINE 1: INSERT INTO FLOAT8_TBL(f1) VALUES ('    - 3');
--                                           ^
 +ERROR:  invalid input syntax for type floating: "- 3"
  INSERT INTO FLOAT8_TBL(f1) VALUES ('123           5');
 -ERROR:  invalid input syntax for type double precision: "123           5"
--LINE 1: INSERT INTO FLOAT8_TBL(f1) VALUES ('123           5');
--                                           ^
 +ERROR:  invalid input syntax for type floating: "123           5"
  -- Also try it with non-error-throwing API
  SELECT pg_input_is_valid('34.5', 'float8');
-- pg_input_is_valid 
---------------------
-- t
--(1 row)
--
-+ERROR:  function pg_input_is_valid does not exist
- SELECT pg_input_is_valid('xyz', 'float8');
-- pg_input_is_valid 
---------------------
-- f
--(1 row)
--
-+ERROR:  function pg_input_is_valid does not exist
- SELECT pg_input_is_valid('1e4000', 'float8');
-- pg_input_is_valid 
---------------------
-- f
--(1 row)
--
-+ERROR:  function pg_input_is_valid does not exist
+  pg_input_is_valid 
+@@ -64,59 +61,55 @@
+ (1 row)
+ 
  SELECT * FROM pg_input_error_info('1e4000', 'float8');
 -                      message                       | detail | hint | sql_error_code 
 -----------------------------------------------------+--------+------+----------------
@@ -3105,18 +2715,12 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
  -- bad special inputs
  SELECT 'N A N'::float8;
 -ERROR:  invalid input syntax for type double precision: "N A N"
--LINE 1: SELECT 'N A N'::float8;
--               ^
 +ERROR:  invalid input syntax for type floating: "N A N"
  SELECT 'NaN x'::float8;
 -ERROR:  invalid input syntax for type double precision: "NaN x"
--LINE 1: SELECT 'NaN x'::float8;
--               ^
 +ERROR:  invalid input syntax for type floating: "NaN x"
  SELECT ' INFINITY    x'::float8;
 -ERROR:  invalid input syntax for type double precision: " INFINITY    x"
--LINE 1: SELECT ' INFINITY    x'::float8;
--               ^
 +ERROR:  invalid input syntax for type floating: "INFINITY    x"
  SELECT 'Infinity'::float8 + 100.0;
   ?column? 
@@ -3133,7 +2737,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
  (1 row)
  
  SELECT '42'::float8 / 'Infinity'::float8;
-@@ -158,39 +109,45 @@
+@@ -128,39 +121,45 @@
  SELECT 'nan'::float8 / 'nan'::float8;
   ?column? 
  ----------
@@ -3167,8 +2771,8 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
 +          f1           
 +-----------------------
 +                     0
-+  1.2345678901234e-200
 +  1.2345678901234e+200
++  1.2345678901234e-200
 +                1004.3
 +                -34.84
 +                     0
@@ -3188,20 +2792,20 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
 -(4 rows)
 +          f1           
 +-----------------------
-+                     0
-+  1.2345678901234e-200
-+  1.2345678901234e+200
++                -34.84
 +                     0
 +                -34.84
 +               -1004.3
 + -1.2345678901234e+200
 + -1.2345678901234e-200
-+                -34.84
++                     0
++  1.2345678901234e-200
++  1.2345678901234e+200
 +(9 rows)
  
  SELECT f.* FROM FLOAT8_TBL f WHERE f.f1 = '1004.3';
     f1   
-@@ -199,38 +156,58 @@
+@@ -169,38 +168,58 @@
  (1 row)
  
  SELECT f.* FROM FLOAT8_TBL f WHERE '1004.3' > f.f1;
@@ -3213,14 +2817,14 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
 -(3 rows)
 +          f1           
 +-----------------------
-+  1.2345678901234e-200
 +                     0
++  1.2345678901234e-200
++                -34.84
 +                     0
 +                -34.84
 +               -1004.3
 + -1.2345678901234e+200
 + -1.2345678901234e-200
-+                -34.84
 +(8 rows)
  
  SELECT f.* FROM FLOAT8_TBL f WHERE  f.f1 < '1004.3';
@@ -3232,14 +2836,14 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
 -(3 rows)
 +          f1           
 +-----------------------
-+                     0
 +  1.2345678901234e-200
++                     0
++                -34.84
 +                     0
 +                -34.84
 +               -1004.3
 + -1.2345678901234e+200
 + -1.2345678901234e-200
-+                -34.84
 +(8 rows)
  
  SELECT f.* FROM FLOAT8_TBL f WHERE '1004.3' >= f.f1;
@@ -3254,13 +2858,13 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
 +-----------------------
 +  1.2345678901234e-200
 +                     0
++                1004.3
++                -34.84
 +                     0
 +                -34.84
 +               -1004.3
 + -1.2345678901234e+200
 + -1.2345678901234e-200
-+                1004.3
-+                -34.84
 +(9 rows)
  
  SELECT f.* FROM FLOAT8_TBL f WHERE  f.f1 <= '1004.3';
@@ -3273,8 +2877,8 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
 -(4 rows)
 +          f1           
 +-----------------------
-+                     0
 +  1.2345678901234e-200
++                     0
 +                1004.3
 +                -34.84
 +                     0
@@ -3286,7 +2890,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
  
  SELECT f.f1, f.f1 * '-10' AS x
     FROM FLOAT8_TBL f
-@@ -238,8 +215,8 @@
+@@ -208,8 +227,8 @@
            f1          |           x           
  ----------------------+-----------------------
                 1004.3 |                -10043
@@ -3296,7 +2900,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
  (3 rows)
  
  SELECT f.f1, f.f1 + '-10' AS x
-@@ -248,8 +225,8 @@
+@@ -218,8 +237,8 @@
            f1          |          x           
  ----------------------+----------------------
                 1004.3 |                994.3
@@ -3306,7 +2910,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
  (3 rows)
  
  SELECT f.f1, f.f1 / '-10' AS x
-@@ -258,8 +235,8 @@
+@@ -228,8 +247,8 @@
            f1          |           x           
  ----------------------+-----------------------
                 1004.3 |   -100.42999999999999
@@ -3316,7 +2920,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
  (3 rows)
  
  SELECT f.f1, f.f1 - '-10' AS x
-@@ -268,532 +245,250 @@
+@@ -238,532 +257,250 @@
            f1          |          x           
  ----------------------+----------------------
                 1004.3 |               1014.3
@@ -3751,11 +3355,11 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
 -ERROR:  value out of range: overflow
 +         ?column?         
 +--------------------------
-+  1.0042999999999999e+203
-+              -3.484e+201
 +                        0
 +          1.2345678901234
 +                      inf
++  1.0042999999999999e+203
++              -3.484e+201
 +                        0
 +              -3.484e+201
 + -1.0042999999999999e+203
@@ -3790,9 +3394,9 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
  -----------------------
                       0
 +                1004.3
-+                -34.84
 +  1.2345678901234e-200
 +  1.2345678901234e+200
++                -34.84
 +                     0
                  -34.84
                 -1004.3
@@ -3964,7 +3568,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
  SELECT x,
         erf(x),
         erfc(x)
-@@ -803,61 +498,35 @@
+@@ -773,53 +510,35 @@
        (1.2e-17), (2.3e-13), (1.2e-9),
        (0.45), (1.1), (2.1), (3.4), (6), (28),
        (float8 'infinity'), (float8 'nan')) AS t(x);
@@ -4000,23 +3604,15 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
  -- test for over- and underflow
  INSERT INTO FLOAT8_TBL(f1) VALUES ('10e400');
 -ERROR:  "10e400" is out of range for type double precision
--LINE 1: INSERT INTO FLOAT8_TBL(f1) VALUES ('10e400');
--                                           ^
 +ERROR:  value "10e400" is out of range for type floating
  INSERT INTO FLOAT8_TBL(f1) VALUES ('-10e400');
 -ERROR:  "-10e400" is out of range for type double precision
--LINE 1: INSERT INTO FLOAT8_TBL(f1) VALUES ('-10e400');
--                                           ^
 +ERROR:  value "-10e400" is out of range for type floating
  INSERT INTO FLOAT8_TBL(f1) VALUES ('10e-400');
 -ERROR:  "10e-400" is out of range for type double precision
--LINE 1: INSERT INTO FLOAT8_TBL(f1) VALUES ('10e-400');
--                                           ^
 +ERROR:  value "10e-400" is out of range for type floating
  INSERT INTO FLOAT8_TBL(f1) VALUES ('-10e-400');
 -ERROR:  "-10e-400" is out of range for type double precision
--LINE 1: INSERT INTO FLOAT8_TBL(f1) VALUES ('-10e-400');
--                                           ^
 +ERROR:  value "-10e-400" is out of range for type floating
  DROP TABLE FLOAT8_TBL;
 +ERROR:  only support select and create table statement
@@ -4026,9 +3622,9 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
  -----------------------
                       0
 +                1004.3
-+                -34.84
 +  1.2345678901234e-200
 +  1.2345678901234e+200
++                -34.84
 +                     0
                  -34.84
                 -1004.3
@@ -4039,7 +3635,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
  
  -- test edge-case coercions to integer
  SELECT '32767.4'::float8::int2;
-@@ -867,7 +536,11 @@
+@@ -829,7 +548,11 @@
  (1 row)
  
  SELECT '32767.6'::float8::int2;
@@ -4052,7 +3648,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
  SELECT '-32768.4'::float8::int2;
    int2  
  --------
-@@ -875,7 +548,11 @@
+@@ -837,7 +560,11 @@
  (1 row)
  
  SELECT '-32768.6'::float8::int2;
@@ -4065,7 +3661,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
  SELECT '2147483647.4'::float8::int4;
      int4    
  ------------
-@@ -883,7 +560,11 @@
+@@ -845,7 +572,11 @@
  (1 row)
  
  SELECT '2147483647.6'::float8::int4;
@@ -4078,7 +3674,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
  SELECT '-2147483648.4'::float8::int4;
      int4     
  -------------
-@@ -891,60 +572,32 @@
+@@ -853,60 +584,32 @@
  (1 row)
  
  SELECT '-2147483648.6'::float8::int4;
@@ -4149,7 +3745,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
  SELECT x,
         tand(x),
         tand(x) IN ('-Infinity'::float8,-1,0,
-@@ -954,79 +607,49 @@
+@@ -916,79 +619,49 @@
                     1,'Infinity'::float8) AS cotd_exact
  FROM (VALUES (0), (45), (90), (135), (180),
        (225), (270), (315), (360)) AS t(x);
@@ -4241,7 +3837,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
  -- float8: seeeeeee eeeeeeee eeeeeeee mmmmmmmm mmmmmmmm(x4)
  -- we don't care to assume the platform's strtod() handles subnormals
  -- correctly; those are "use at your own risk". However we do test
-@@ -1051,28 +674,7 @@
+@@ -1013,28 +686,7 @@
    from (select bits::bigint::xfloat8::float8 as flt
            from testdata
  	offset 0) s;
@@ -4271,7 +3867,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
  -- round-trip tests
  with testdata(bits) as (values
    (x'0000000000000000'),
-@@ -1220,225 +822,7 @@
+@@ -1182,225 +834,7 @@
    from (select bits::bigint::xfloat8::float8 as flt
            from testdata
  	offset 0) s;
@@ -4501,7 +4097,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
 +ERROR:  only support select and create table statement
 diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_regress_input/results/date.out
 --- /home/longqimin/pg_regress_input/expected/date.out	2024-02-27 09:30:35.079460297 +0800
-+++ /home/longqimin/pg_regress_input/results/date.out	2024-03-08 13:59:14.810479455 +0800
++++ /home/longqimin/pg_regress_input/results/date.out	2024-03-08 17:45:48.723320644 +0800
 @@ -10,9 +10,6 @@
  INSERT INTO DATE_TBL VALUES ('1996-03-02');
  INSERT INTO DATE_TBL VALUES ('1997-02-28');
@@ -4540,20 +4136,20 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 + 2000-04-03
 + 2038-04-08
 + 1997-03-01
-+ 1996-03-01
 + 1996-03-02
-+ 1997-02-28
-+ -2039-04-10
-+ 1997-03-02
++ 1996-03-01
 + 1996-02-29
 + 2000-04-01
-+ 1997-03-01
-+ 2040-04-10
-+ 1957-06-13
-+ 1996-02-28
-+ 1957-04-09
-+ 2039-04-09
++ -2039-04-10
++ 1997-02-28
++ 1997-03-02
 + 2000-04-02
++ 1996-02-28
++ 1997-03-01
++ 2039-04-09
++ 1957-06-13
++ 1957-04-09
++ 2040-04-10
 +(17 rows)
  
  SELECT f1 FROM DATE_TBL WHERE f1 < '2000-01-01';
@@ -4572,17 +4168,17 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 -(10 rows)
 +     f1      
 +-------------
-+ 1996-03-02
 + 1996-03-01
 + 1997-03-01
++ 1996-03-02
++ 1996-02-28
++ 1957-04-09
++ 1957-06-13
++ 1997-03-01
++ 1997-03-02
++ 1997-02-28
 + 1996-02-29
 + -2039-04-10
-+ 1997-02-28
-+ 1997-03-02
-+ 1997-03-01
-+ 1996-02-28
-+ 1957-06-13
-+ 1957-04-09
 +(11 rows)
  
  SELECT f1 FROM DATE_TBL
@@ -5382,7 +4978,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
  SELECT date '1999-08-01';
      date    
  ------------
-@@ -774,186 +470,71 @@
+@@ -774,77 +470,43 @@
  (1 row)
  
  SELECT date '99 01 08';
@@ -5471,26 +5067,16 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 +ERROR:  invalid date literal: "5874898-01-01"
  -- Test non-error-throwing API
  SELECT pg_input_is_valid('now', 'date');
-- pg_input_is_valid 
---------------------
+  pg_input_is_valid 
+ -------------------
 - t
--(1 row)
--
-+ERROR:  function pg_input_is_valid does not exist
++ f
+ (1 row)
+ 
  SELECT pg_input_is_valid('garbage', 'date');
-- pg_input_is_valid 
---------------------
-- f
--(1 row)
--
-+ERROR:  function pg_input_is_valid does not exist
- SELECT pg_input_is_valid('6874898-01-01', 'date');
-- pg_input_is_valid 
---------------------
-- f
--(1 row)
--
-+ERROR:  function pg_input_is_valid does not exist
+@@ -860,100 +522,31 @@
+ (1 row)
+ 
  SELECT * FROM pg_input_error_info('garbage', 'date');
 -                    message                    | detail | hint | sql_error_code 
 ------------------------------------------------+--------+------+----------------
@@ -5600,7 +5186,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
  --
  -- test extract!
  --
-@@ -973,562 +554,227 @@
+@@ -973,562 +566,227 @@
      date_part('julian', f1) AS julian,
      date_part('epoch', f1) AS epoch
      FROM date_tbl;
@@ -6260,7 +5846,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 +ERROR:  function make_time does not exist
 diff -U3 /home/longqimin/pg_regress_input/expected/time.out /home/longqimin/pg_regress_input/results/time.out
 --- /home/longqimin/pg_regress_input/expected/time.out	2024-02-27 09:30:35.103460309 +0800
-+++ /home/longqimin/pg_regress_input/results/time.out	2024-03-08 13:59:19.999478946 +0800
++++ /home/longqimin/pg_regress_input/results/time.out	2024-03-08 17:45:53.928319997 +0800
 @@ -6,52 +6,45 @@
  INSERT INTO TIME_TBL VALUES ('01:00');
  -- as of 7.4, timezone spec should be accepted and ignored
@@ -6301,9 +5887,9 @@ diff -U3 /home/longqimin/pg_regress_input/expected/time.out /home/longqimin/pg_r
 +-----------------
 + 00:00:00.000000
 + 01:00:00.000000
++ 23:59:00.000000
 + 12:01:00.000000
 + 12:00:00.000000
-+ 23:59:00.000000
 +(5 rows)
  
  SELECT f1 AS "Three" FROM TIME_TBL WHERE f1 < '05:06:07';
@@ -6332,14 +5918,14 @@ diff -U3 /home/longqimin/pg_regress_input/expected/time.out /home/longqimin/pg_r
 -(7 rows)
 +      Five       
 +-----------------
-+ 12:00:00.000000
 + 23:59:00.000000
 + 12:01:00.000000
++ 12:00:00.000000
 +(3 rows)
  
  SELECT f1 AS "None" FROM TIME_TBL WHERE f1 < '00:00';
   None 
-@@ -59,92 +52,43 @@
+@@ -59,66 +52,37 @@
  (0 rows)
  
  SELECT f1 AS "Eight" FROM TIME_TBL WHERE f1 >= '00:00';
@@ -6416,26 +6002,16 @@ diff -U3 /home/longqimin/pg_regress_input/expected/time.out /home/longqimin/pg_r
 +ERROR:  not processed pg_catalog type [pg_catalog_type=time]
  -- Test non-error-throwing API
  SELECT pg_input_is_valid('12:00:00', 'time');
-- pg_input_is_valid 
---------------------
+  pg_input_is_valid 
+ -------------------
 - t
--(1 row)
--
-+ERROR:  function pg_input_is_valid does not exist
++ f
+ (1 row)
+ 
  SELECT pg_input_is_valid('25:00:00', 'time');
-- pg_input_is_valid 
---------------------
-- f
--(1 row)
--
-+ERROR:  function pg_input_is_valid does not exist
- SELECT pg_input_is_valid('15:36:39 America/New_York', 'time');
-- pg_input_is_valid 
---------------------
-- f
--(1 row)
--
-+ERROR:  function pg_input_is_valid does not exist
+@@ -134,17 +98,9 @@
+ (1 row)
+ 
  SELECT * FROM pg_input_error_info('25:00:00', 'time');
 -                    message                     | detail | hint | sql_error_code 
 -------------------------------------------------+--------+------+----------------
@@ -6453,7 +6029,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/time.out /home/longqimin/pg_r
  --
  -- TIME simple math
  --
-@@ -154,78 +98,35 @@
+@@ -154,78 +110,35 @@
  -- and do the rest of the testing in horology.sql
  -- where we do mixed-type arithmetic. - thomas 2000-12-02
  SELECT f1 + time '00:01' AS "Illegal" FROM TIME_TBL;
@@ -6548,7 +6124,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/time.out /home/longqimin/pg_r
 +ERROR:  function date_part does not exist
 diff -U3 /home/longqimin/pg_regress_input/expected/select.out /home/longqimin/pg_regress_input/results/select.out
 --- /home/longqimin/pg_regress_input/expected/select.out	2024-03-08 12:19:19.529430515 +0800
-+++ /home/longqimin/pg_regress_input/results/select.out	2024-03-08 13:59:21.561478792 +0800
++++ /home/longqimin/pg_regress_input/results/select.out	2024-03-08 17:45:55.537319797 +0800
 @@ -219,16 +219,16 @@
  SELECT onek2.* FROM onek2 WHERE onek2.unique1 < 10;
   unique1 | unique2 | two | four | ten | twenty | hundred | thousand | twothousand | fivethous | tenthous | odd | even | stringu1 | stringu2 | string4 
@@ -6942,7 +6518,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select.out /home/longqimin/pg
 +ERROR:  only support select and create table statement
 diff -U3 /home/longqimin/pg_regress_input/expected/select_distinct.out /home/longqimin/pg_regress_input/results/select_distinct.out
 --- /home/longqimin/pg_regress_input/expected/select_distinct.out	2024-02-27 09:30:35.100460308 +0800
-+++ /home/longqimin/pg_regress_input/results/select_distinct.out	2024-03-08 13:59:25.796478378 +0800
++++ /home/longqimin/pg_regress_input/results/select_distinct.out	2024-03-08 17:45:59.788319270 +0800
 @@ -48,50 +48,7 @@
  SELECT DISTINCT two, string4, ten
     FROM onek
@@ -7100,7 +6676,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select_distinct.out /home/lon
 -(5 rows)
 +                                                        QUERY PLAN                                                        | TIME/ms 
 +--------------------------------------------------------------------------------------------------------------------------+---------
-+ tuple(table_0) = parallel: [tuple(table_0) = IndexScan([column(hundred), column(two)]) + unique), return tuple(table_0)] |      18
++ tuple(table_0) = parallel: [tuple(table_0) = IndexScan([column(hundred), column(two)]) + unique), return tuple(table_0)] |      21
 + tuple(table_0) = Unique(tuple(table_0))                                                                                  |       0
 + return tuple(table_0)                                                                                                    |       0
 +(3 rows)
@@ -7186,7 +6762,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select_distinct.out /home/lon
 -(8 rows)
 +                                                 QUERY PLAN                                                  | TIME/ms 
 +-------------------------------------------------------------------------------------------------------------+---------
-+ tuple(table_0) = parallel: [tuple(var_5_1) = IndexTopN([columns(four ASC)], unique), return tuple(var_5_1)] |       2
++ tuple(table_0) = parallel: [tuple(var_5_1) = IndexTopN([columns(four ASC)], unique), return tuple(var_5_1)] |       3
 + tuple(table_0) = Unique(tuple(table_0))                                                                     |       0
 + tuple(table_0) = Sort(tuple(table_0), [columns(0 ASC)])                                                     |       0
 + return tuple(table_0)                                                                                       |       0
@@ -7280,7 +6856,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select_distinct.out /home/lon
 + tid(var_5_1) = parallel: [tid(var_5_2) = IndexFilter(column(four) == 0), return tid(var_5_2)]                                                   |       0
 + tid(var_5_3) = parallel: [tid(var_5_4) = IndexFilter(column(two) != 0), return tid(var_5_4)]                                                    |       1
 + tid(where) = [tid(var_5_3) and tid(var_5_1)]                                                                                                    |       0
-+ tuple(table_0) = broadcast: [tid(where)] parallel: [tuple(var_6_1) = IndexTopN([columns(four ASC)], tid(where), unique), return tuple(var_6_1)] |       1
++ tuple(table_0) = broadcast: [tid(where)] parallel: [tuple(var_6_1) = IndexTopN([columns(four ASC)], tid(where), unique), return tuple(var_6_1)] |       0
 + tuple(table_0) = Unique(tuple(table_0))                                                                                                         |       0
 + tuple(table_0) = Sort(tuple(table_0), [columns(0 ASC)])                                                                                         |       0
 + return tuple(table_0)                                                                                                                           |       0
@@ -7333,7 +6909,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select_distinct.out /home/lon
 -(6 rows)
 +                                                                   QUERY PLAN                                                                    | TIME/ms 
 +-------------------------------------------------------------------------------------------------------------------------------------------------+---------
-+ tid(where) = parallel: [tid(var_5_1) = IndexFilter(column(four) == 10), return tid(var_5_1)]                                                    |       0
++ tid(where) = parallel: [tid(var_5_1) = IndexFilter(column(four) == 10), return tid(var_5_1)]                                                    |       1
 + tuple(table_0) = broadcast: [tid(where)] parallel: [tuple(var_6_1) = IndexTopN([columns(four ASC)], tid(where), unique), return tuple(var_6_1)] |       0
 + tuple(table_0) = Unique(tuple(table_0))                                                                                                         |       0
 + tuple(table_0) = Sort(tuple(table_0), [columns(0 ASC)])                                                                                         |       0
@@ -7452,7 +7028,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select_distinct.out /home/lon
 +ERROR:  a_expr only support op and between [kind=5]
 diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimin/pg_regress_input/results/aggregates.out
 --- /home/longqimin/pg_regress_input/expected/aggregates.out	2024-03-08 12:19:19.528430515 +0800
-+++ /home/longqimin/pg_regress_input/results/aggregates.out	2024-03-08 13:59:38.300477148 +0800
++++ /home/longqimin/pg_regress_input/results/aggregates.out	2024-03-08 17:46:12.265317718 +0800
 @@ -5,6 +5,7 @@
  \getenv abs_srcdir PG_ABS_SRCDIR
  -- avoid bit-exact output here because operations may not be bit-exact.
@@ -8406,7 +7982,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -(5 rows)
 +                                 QUERY PLAN                                 | TIME/ms 
 +----------------------------------------------------------------------------+---------
-+ datum(col_0_unique1) = IndexAggregateForMultiSegment(MAX, column(unique1)) |       0
++ datum(col_0_unique1) = IndexAggregateForMultiSegment(MAX, column(unique1)) |       1
 + tuple(table_0) = [datum(col_0_unique1)]                                    |       0
 + return tuple(table_0)                                                      |       0
 +(3 rows)
@@ -8449,8 +8025,8 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -(5 rows)
 +                                           QUERY PLAN                                           | TIME/ms 
 +------------------------------------------------------------------------------------------------+---------
-+ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(unique1) > 42), return tid(var_4_1)] |       0
-+ datum(col_0_unique1) = IndexAggregateForMultiSegment(MAX, column(unique1), tid(where))         |       1
++ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(unique1) > 42), return tid(var_4_1)] |       1
++ datum(col_0_unique1) = IndexAggregateForMultiSegment(MAX, column(unique1), tid(where))         |       0
 + tuple(table_0) = [datum(col_0_unique1)]                                                        |       0
 + return tuple(table_0)                                                                          |       0
 +(4 rows)
@@ -8505,7 +8081,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 +                                            QUERY PLAN                                            | TIME/ms 
 +--------------------------------------------------------------------------------------------------+---------
 + tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(thousand) == 33), return tid(var_4_1)] |       5
-+ datum(col_0_tenthous) = IndexAggregateForMultiSegment(MAX, column(tenthous), tid(where))         |       5
++ datum(col_0_tenthous) = IndexAggregateForMultiSegment(MAX, column(tenthous), tid(where))         |       6
 + tuple(table_0) = [datum(col_0_tenthous)]                                                         |       0
 + return tuple(table_0)                                                                            |       0
 +(4 rows)
@@ -8527,7 +8103,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 +                                            QUERY PLAN                                            | TIME/ms 
 +--------------------------------------------------------------------------------------------------+---------
 + tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(thousand) == 33), return tid(var_4_1)] |       1
-+ datum(col_0_tenthous) = IndexAggregateForMultiSegment(MIN, column(tenthous), tid(where))         |       0
++ datum(col_0_tenthous) = IndexAggregateForMultiSegment(MIN, column(tenthous), tid(where))         |       1
 + tuple(table_0) = [datum(col_0_tenthous)]                                                         |       0
 + return tuple(table_0)                                                                            |       0
 +(4 rows)
@@ -8577,7 +8153,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -(7 rows)
 +                                            QUERY PLAN                                             | TIME/ms 
 +---------------------------------------------------------------------------------------------------+---------
-+ tuple(table_0) = parallel: [tuple(table_0) = IndexScan([column(unique2)]), return tuple(table_0)] |      11
++ tuple(table_0) = parallel: [tuple(table_0) = IndexScan([column(unique2)]), return tuple(table_0)] |      10
 + hash_tuple(var_6_1) = TupleHash(tuple(table_0), groupby([]))                                      |       0
 + tuple(table_0) = HashTupleAggregate(hash_tuple(var_6_1) [MAX(0)])                                 |       0
 + return tuple(table_0)                                                                             |       0
@@ -8601,10 +8177,10 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -(7 rows)
 +                                 QUERY PLAN                                 | TIME/ms 
 +----------------------------------------------------------------------------+---------
-+ datum(col_0_unique2) = IndexAggregateForMultiSegment(MAX, column(unique2)) |       0
++ datum(col_0_unique2) = IndexAggregateForMultiSegment(MAX, column(unique2)) |       1
 + tuple(table_0) = [datum(col_0_unique2)]                                    |       0
 + tuple(table_0) = Sort(tuple(table_0), [columns(0 ASC)])                    |       0
-+ return tuple(table_0)                                                      |       1
++ return tuple(table_0)                                                      |       0
 +(4 rows)
  
  select max(unique2) from tenk1 order by 1;
@@ -8755,7 +8331,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 +                            QUERY PLAN                            | TIME/ms 
 +------------------------------------------------------------------+---------
 + datum(col_0_f1) = IndexAggregateForMultiSegment(MIN, column(f1)) |       3
-+ datum(col_1_f1) = IndexAggregateForMultiSegment(MAX, column(f1)) |       0
++ datum(col_1_f1) = IndexAggregateForMultiSegment(MAX, column(f1)) |       1
 + tuple(table_0) = [datum(col_0_f1), datum(col_1_f1)]              |       0
 + return tuple(table_0)                                            |       0
 +(4 rows)
@@ -9050,8 +8626,8 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -(4 rows)
 +                                         QUERY PLAN                                          | TIME/ms 
 +---------------------------------------------------------------------------------------------+---------
-+ datum(col_0_two) = IndexAggregateForMultiSegment(SUM, column(two))                          |       0
-+ datum(col_1_four) = IndexAggregateForMultiSegment(MAX, column(four))                        |       1
++ datum(col_0_two) = IndexAggregateForMultiSegment(SUM, column(two))                          |       1
++ datum(col_1_four) = IndexAggregateForMultiSegment(MAX, column(four))                        |       0
 + datum(col_2_four) = IndexAggregateForMultiSegment(MIN, column(four))                        |       0
 + datum(col_3_two) = IndexAggregateForMultiSegment(MAX, column(two))                          |       0
 + tuple(table_0) = [datum(col_0_two), datum(col_1_four), datum(col_2_four), datum(col_3_two)] |       0
@@ -9096,13 +8672,13 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -(4 rows)
 +                                                                    QUERY PLAN                                                                     | TIME/ms 
 +---------------------------------------------------------------------------------------------------------------------------------------------------+---------
-+ datum(col_0_four) = IndexAggregateForMultiSegment(MAX, column(four))                                                                              |       1
++ datum(col_0_four) = IndexAggregateForMultiSegment(MAX, column(four))                                                                              |       0
 + datum(col_1_two) = IndexAggregateForMultiSegment(SUM, column(two))                                                                                |       0
 + datum(col_2_four) = IndexAggregateForMultiSegment(MIN, column(four))                                                                              |       0
-+ datum(col_3_two) = IndexAggregateForMultiSegment(MAX, column(two))                                                                                |       0
++ datum(col_3_two) = IndexAggregateForMultiSegment(MAX, column(two))                                                                                |       1
 + datum(col_4_ten) = IndexAggregateForMultiSegment(SUM, column(ten))                                                                                |       2
 + datum(col_5_ten) = IndexAggregateForMultiSegment(MIN, column(ten))                                                                                |       0
-+ datum(col_6_ten) = IndexAggregateForMultiSegment(MAX, column(ten))                                                                                |       1
++ datum(col_6_ten) = IndexAggregateForMultiSegment(MAX, column(ten))                                                                                |       0
 + tuple(table_0) = [datum(col_0_four), datum(col_1_two), datum(col_2_four), datum(col_3_two), datum(col_4_ten), datum(col_5_ten), datum(col_6_ten)] |       0
 + return tuple(table_0)                                                                                                                             |       0
 +(9 rows)
@@ -9125,8 +8701,8 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------
 + FilterHistogram(histogram_tenk1_0) = parallel: [FilterHistogram(var_5_1) = IndexTopNGroup([Get(ten)], 10000, [ASC_AND_NULLS_LAST]), return FilterHistogram(var_5_1)] |       2
 + tuple(tuple_0_tenk1) = to_tuple(FilterHistogram(histogram_tenk1_0))                                                                                                  |       0
-+ tuple(tuple_0_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))                                            |       2
-+ tuple(tuple_1_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))                                            |       1
++ tuple(tuple_0_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))                                            |       1
++ tuple(tuple_1_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))                                            |       2
 + tuple(tuple_2_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))                                            |       1
 + tuple(table_0) = TupleExpand(tuple(tuple_0_tenk1), tuple(tuple_0_unique1))                                                                                           |       0
 + tuple(table_0) = TupleExpand(tuple(table_0), tuple(tuple_1_unique1))                                                                                                 |       0
@@ -9154,9 +8730,9 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------
 + FilterHistogram(histogram_tenk1_0) = parallel: [FilterHistogram(var_5_1) = IndexTopNGroup([Get(ten)], 10000, [ASC_AND_NULLS_LAST]), return FilterHistogram(var_5_1)] |       1
 + tuple(tuple_0_tenk1) = to_tuple(FilterHistogram(histogram_tenk1_0))                                                                                                  |       0
-+ tuple(tuple_0_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))                                            |       1
++ tuple(tuple_0_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))                                            |       2
 + tuple(tuple_1_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))                                            |       1
-+ tuple(tuple_2_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))                                            |       2
++ tuple(tuple_2_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))                                            |       1
 + tuple(tuple_3_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))                                            |       1
 + tuple(tuple_4_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))                                            |       1
 + tuple(table_0) = TupleExpand(tuple(tuple_0_tenk1), tuple(tuple_0_unique1))                                                                                           |       0
