@@ -58,60 +58,60 @@ SELECT 'nan'::float8 / 'nan'::float8;
 SELECT 'nan'::float8 / '0'::float8;
 SELECT 'nan'::numeric::float8;
 
-SELECT * FROM FLOAT8_TBL;
+SELECT * FROM FLOAT8_TBL order by 1;
 
-SELECT f.* FROM FLOAT8_TBL f WHERE f.f1 <> '1004.3';
+SELECT f.* FROM FLOAT8_TBL f WHERE f.f1 <> '1004.3' order by 1;
 
-SELECT f.* FROM FLOAT8_TBL f WHERE f.f1 = '1004.3';
+SELECT f.* FROM FLOAT8_TBL f WHERE f.f1 = '1004.3' order by 1;
 
-SELECT f.* FROM FLOAT8_TBL f WHERE '1004.3' > f.f1;
+SELECT f.* FROM FLOAT8_TBL f WHERE '1004.3' > f.f1 order by 1;
 
-SELECT f.* FROM FLOAT8_TBL f WHERE  f.f1 < '1004.3';
+SELECT f.* FROM FLOAT8_TBL f WHERE  f.f1 < '1004.3' order by 1;
 
-SELECT f.* FROM FLOAT8_TBL f WHERE '1004.3' >= f.f1;
+SELECT f.* FROM FLOAT8_TBL f WHERE '1004.3' >= f.f1 order by 1;
 
-SELECT f.* FROM FLOAT8_TBL f WHERE  f.f1 <= '1004.3';
+SELECT f.* FROM FLOAT8_TBL f WHERE  f.f1 <= '1004.3' order by 1;
 
 SELECT f.f1, f.f1 * '-10' AS x
    FROM FLOAT8_TBL f
-   WHERE f.f1 > '0.0';
+   WHERE f.f1 > '0.0' order by 1;
 
 SELECT f.f1, f.f1 + '-10' AS x
    FROM FLOAT8_TBL f
-   WHERE f.f1 > '0.0';
+   WHERE f.f1 > '0.0' order by 1;
 
 SELECT f.f1, f.f1 / '-10' AS x
    FROM FLOAT8_TBL f
-   WHERE f.f1 > '0.0';
+   WHERE f.f1 > '0.0' order by 1;
 
 SELECT f.f1, f.f1 - '-10' AS x
    FROM FLOAT8_TBL f
-   WHERE f.f1 > '0.0';
+   WHERE f.f1 > '0.0' order by 1;
 
 SELECT f.f1 ^ '2.0' AS square_f1
-   FROM FLOAT8_TBL f where f.f1 = '1004.3';
+   FROM FLOAT8_TBL f where f.f1 = '1004.3' order by 1;
 
 -- absolute value
 SELECT f.f1, @f.f1 AS abs_f1
-   FROM FLOAT8_TBL f;
+   FROM FLOAT8_TBL f order by 1;
 
 -- truncate
 SELECT f.f1, trunc(f.f1) AS trunc_f1
-   FROM FLOAT8_TBL f;
+   FROM FLOAT8_TBL f order by 1;
 
 -- round
 SELECT f.f1, round(f.f1) AS round_f1
-   FROM FLOAT8_TBL f;
+   FROM FLOAT8_TBL f order by 1;
 
 -- ceil / ceiling
-select ceil(f1) as ceil_f1 from float8_tbl f;
-select ceiling(f1) as ceiling_f1 from float8_tbl f;
+select ceil(f1) as ceil_f1 from float8_tbl f order by 1;
+select ceiling(f1) as ceiling_f1 from float8_tbl f order by 1;
 
 -- floor
-select floor(f1) as floor_f1 from float8_tbl f;
+select floor(f1) as floor_f1 from float8_tbl f order by 1;
 
 -- sign
-select sign(f1) as sign_f1 from float8_tbl f;
+select sign(f1) as sign_f1 from float8_tbl f order by 1;
 
 -- avoid bit-exact output here because operations may not be bit-exact.
 SET extra_float_digits = 0;
@@ -123,7 +123,7 @@ SELECT |/ float8 '64' AS eight;
 
 SELECT f.f1, |/f.f1 AS sqrt_f1
    FROM FLOAT8_TBL f
-   WHERE f.f1 > '0.0';
+   WHERE f.f1 > '0.0' order by 1;
 
 -- power
 SELECT power(float8 '144', float8 '0.5');
@@ -166,7 +166,7 @@ SELECT power(float8 '-inf', float8 '-inf');
 -- take exp of ln(f.f1)
 SELECT f.f1, exp(ln(f.f1)) AS exp_ln_f1
    FROM FLOAT8_TBL f
-   WHERE f.f1 > '0.0';
+   WHERE f.f1 > '0.0' order by 1;
 
 -- check edge cases for exp
 SELECT exp('inf'::float8), exp('-inf'::float8), exp('nan'::float8);
@@ -174,30 +174,30 @@ SELECT exp('inf'::float8), exp('-inf'::float8), exp('nan'::float8);
 -- cube root
 SELECT ||/ float8 '27' AS three;
 
-SELECT f.f1, ||/f.f1 AS cbrt_f1 FROM FLOAT8_TBL f;
+SELECT f.f1, ||/f.f1 AS cbrt_f1 FROM FLOAT8_TBL f order by 1;
 
 
-SELECT * FROM FLOAT8_TBL;
+SELECT * FROM FLOAT8_TBL order by 1;
 
 UPDATE FLOAT8_TBL
    SET f1 = FLOAT8_TBL.f1 * '-1'
    WHERE FLOAT8_TBL.f1 > '0.0';
 
-SELECT f.f1 * '1e200' from FLOAT8_TBL f;
+SELECT f.f1 * '1e200' from FLOAT8_TBL f order by 1;
 
-SELECT f.f1 ^ '1e200' from FLOAT8_TBL f;
+SELECT f.f1 ^ '1e200' from FLOAT8_TBL f order by 1;
 
 SELECT 0 ^ 0 + 0 ^ 1 + 0 ^ 0.0 + 0 ^ 0.5;
 
-SELECT ln(f.f1) from FLOAT8_TBL f where f.f1 = '0.0' ;
+SELECT ln(f.f1) from FLOAT8_TBL f where f.f1 = '0.0'  order by 1;
 
-SELECT ln(f.f1) from FLOAT8_TBL f where f.f1 < '0.0' ;
+SELECT ln(f.f1) from FLOAT8_TBL f where f.f1 < '0.0'  order by 1;
 
-SELECT exp(f.f1) from FLOAT8_TBL f;
+SELECT exp(f.f1) from FLOAT8_TBL f order by 1;
 
-SELECT f.f1 / '0.0' from FLOAT8_TBL f;
+SELECT f.f1 / '0.0' from FLOAT8_TBL f order by 1;
 
-SELECT * FROM FLOAT8_TBL;
+SELECT * FROM FLOAT8_TBL order by 1;
 
 -- hyperbolic functions
 -- we run these with extra_float_digits = 0 too, since different platforms
@@ -258,7 +258,7 @@ DROP TABLE FLOAT8_TBL;
 
 -- Check the float8 values exported for use by other tests
 
-SELECT * FROM FLOAT8_TBL;
+SELECT * FROM FLOAT8_TBL order by 1;
 
 -- test edge-case coercions to integer
 SELECT '32767.4'::float8::int2;
