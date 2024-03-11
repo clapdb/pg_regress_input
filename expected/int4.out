@@ -19,14 +19,14 @@ INSERT INTO INT4_TBL(f1) VALUES ('123       5');
 ERROR:  invalid input syntax for type integer: "123       5"
 INSERT INTO INT4_TBL(f1) VALUES ('');
 ERROR:  invalid input syntax for type integer: ""
-SELECT * FROM INT4_TBL;
+SELECT * FROM INT4_TBL order by 1;
      f1      
 -------------
+ -2147483647
+     -123456
            0
       123456
-     -123456
   2147483647
- -2147483647
 (5 rows)
 
 -- Also try it with non-error-throwing API
@@ -54,81 +54,81 @@ SELECT * FROM pg_input_error_info('1000000000000', 'int4');
  value "1000000000000" is out of range for type integer |        |      | 22003
 (1 row)
 
-SELECT i.* FROM INT4_TBL i WHERE i.f1 <> int2 '0';
+SELECT i.* FROM INT4_TBL i WHERE i.f1 <> int2 '0' order by 1;
      f1      
 -------------
-      123456
-     -123456
-  2147483647
  -2147483647
+     -123456
+      123456
+  2147483647
 (4 rows)
 
-SELECT i.* FROM INT4_TBL i WHERE i.f1 <> int4 '0';
+SELECT i.* FROM INT4_TBL i WHERE i.f1 <> int4 '0' order by 1;
      f1      
 -------------
-      123456
-     -123456
-  2147483647
  -2147483647
+     -123456
+      123456
+  2147483647
 (4 rows)
 
-SELECT i.* FROM INT4_TBL i WHERE i.f1 = int2 '0';
+SELECT i.* FROM INT4_TBL i WHERE i.f1 = int2 '0' order by 1;
  f1 
 ----
   0
 (1 row)
 
-SELECT i.* FROM INT4_TBL i WHERE i.f1 = int4 '0';
+SELECT i.* FROM INT4_TBL i WHERE i.f1 = int4 '0' order by 1;
  f1 
 ----
   0
 (1 row)
 
-SELECT i.* FROM INT4_TBL i WHERE i.f1 < int2 '0';
+SELECT i.* FROM INT4_TBL i WHERE i.f1 < int2 '0' order by 1;
      f1      
 -------------
-     -123456
  -2147483647
+     -123456
 (2 rows)
 
-SELECT i.* FROM INT4_TBL i WHERE i.f1 < int4 '0';
+SELECT i.* FROM INT4_TBL i WHERE i.f1 < int4 '0' order by 1;
      f1      
 -------------
-     -123456
  -2147483647
+     -123456
 (2 rows)
 
-SELECT i.* FROM INT4_TBL i WHERE i.f1 <= int2 '0';
+SELECT i.* FROM INT4_TBL i WHERE i.f1 <= int2 '0' order by 1;
      f1      
 -------------
-           0
-     -123456
  -2147483647
+     -123456
+           0
 (3 rows)
 
-SELECT i.* FROM INT4_TBL i WHERE i.f1 <= int4 '0';
+SELECT i.* FROM INT4_TBL i WHERE i.f1 <= int4 '0' order by 1;
      f1      
 -------------
-           0
-     -123456
  -2147483647
+     -123456
+           0
 (3 rows)
 
-SELECT i.* FROM INT4_TBL i WHERE i.f1 > int2 '0';
+SELECT i.* FROM INT4_TBL i WHERE i.f1 > int2 '0' order by 1;
      f1     
 ------------
      123456
  2147483647
 (2 rows)
 
-SELECT i.* FROM INT4_TBL i WHERE i.f1 > int4 '0';
+SELECT i.* FROM INT4_TBL i WHERE i.f1 > int4 '0' order by 1;
      f1     
 ------------
      123456
  2147483647
 (2 rows)
 
-SELECT i.* FROM INT4_TBL i WHERE i.f1 >= int2 '0';
+SELECT i.* FROM INT4_TBL i WHERE i.f1 >= int2 '0' order by 1;
      f1     
 ------------
           0
@@ -136,7 +136,7 @@ SELECT i.* FROM INT4_TBL i WHERE i.f1 >= int2 '0';
  2147483647
 (3 rows)
 
-SELECT i.* FROM INT4_TBL i WHERE i.f1 >= int4 '0';
+SELECT i.* FROM INT4_TBL i WHERE i.f1 >= int4 '0' order by 1;
      f1     
 ------------
           0
@@ -145,88 +145,88 @@ SELECT i.* FROM INT4_TBL i WHERE i.f1 >= int4 '0';
 (3 rows)
 
 -- positive odds
-SELECT i.* FROM INT4_TBL i WHERE (i.f1 % int2 '2') = int2 '1';
+SELECT i.* FROM INT4_TBL i WHERE (i.f1 % int2 '2') = int2 '1' order by 1;
      f1     
 ------------
  2147483647
 (1 row)
 
 -- any evens
-SELECT i.* FROM INT4_TBL i WHERE (i.f1 % int4 '2') = int2 '0';
+SELECT i.* FROM INT4_TBL i WHERE (i.f1 % int4 '2') = int2 '0' order by 1;
    f1    
 ---------
+ -123456
        0
   123456
- -123456
 (3 rows)
 
 SELECT i.f1, i.f1 * int2 '2' AS x FROM INT4_TBL i;
 ERROR:  integer out of range
 SELECT i.f1, i.f1 * int2 '2' AS x FROM INT4_TBL i
-WHERE abs(f1) < 1073741824;
+WHERE abs(f1) < 1073741824 order by 1;
    f1    |    x    
 ---------+---------
+ -123456 | -246912
        0 |       0
   123456 |  246912
- -123456 | -246912
 (3 rows)
 
 SELECT i.f1, i.f1 * int4 '2' AS x FROM INT4_TBL i;
 ERROR:  integer out of range
 SELECT i.f1, i.f1 * int4 '2' AS x FROM INT4_TBL i
-WHERE abs(f1) < 1073741824;
+WHERE abs(f1) < 1073741824 order by 1;
    f1    |    x    
 ---------+---------
+ -123456 | -246912
        0 |       0
   123456 |  246912
- -123456 | -246912
 (3 rows)
 
 SELECT i.f1, i.f1 + int2 '2' AS x FROM INT4_TBL i;
 ERROR:  integer out of range
 SELECT i.f1, i.f1 + int2 '2' AS x FROM INT4_TBL i
-WHERE f1 < 2147483646;
+WHERE f1 < 2147483646 order by 1;
      f1      |      x      
 -------------+-------------
+ -2147483647 | -2147483645
+     -123456 |     -123454
            0 |           2
       123456 |      123458
-     -123456 |     -123454
- -2147483647 | -2147483645
 (4 rows)
 
 SELECT i.f1, i.f1 + int4 '2' AS x FROM INT4_TBL i;
 ERROR:  integer out of range
 SELECT i.f1, i.f1 + int4 '2' AS x FROM INT4_TBL i
-WHERE f1 < 2147483646;
+WHERE f1 < 2147483646 order by 1;
      f1      |      x      
 -------------+-------------
+ -2147483647 | -2147483645
+     -123456 |     -123454
            0 |           2
       123456 |      123458
-     -123456 |     -123454
- -2147483647 | -2147483645
 (4 rows)
 
 SELECT i.f1, i.f1 - int2 '2' AS x FROM INT4_TBL i;
 ERROR:  integer out of range
 SELECT i.f1, i.f1 - int2 '2' AS x FROM INT4_TBL i
-WHERE f1 > -2147483647;
+WHERE f1 > -2147483647 order by 1;
      f1     |     x      
 ------------+------------
+    -123456 |    -123458
           0 |         -2
      123456 |     123454
-    -123456 |    -123458
  2147483647 | 2147483645
 (4 rows)
 
 SELECT i.f1, i.f1 - int4 '2' AS x FROM INT4_TBL i;
 ERROR:  integer out of range
 SELECT i.f1, i.f1 - int4 '2' AS x FROM INT4_TBL i
-WHERE f1 > -2147483647;
+WHERE f1 > -2147483647 order by 1;
      f1     |     x      
 ------------+------------
+    -123456 |    -123458
           0 |         -2
      123456 |     123454
-    -123456 |    -123458
  2147483647 | 2147483645
 (4 rows)
 

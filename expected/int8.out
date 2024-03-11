@@ -18,7 +18,7 @@ INSERT INTO INT8_TBL(q1) VALUES ('  345     5');
 ERROR:  invalid input syntax for type bigint: "  345     5"
 INSERT INTO INT8_TBL(q1) VALUES ('');
 ERROR:  invalid input syntax for type bigint: ""
-SELECT * FROM INT8_TBL;
+SELECT * FROM INT8_TBL order by 1;
         q1        |        q2         
 ------------------+-------------------
               123 |               456
@@ -54,14 +54,14 @@ SELECT * FROM pg_input_error_info('10000000000000000000', 'int8');
 (1 row)
 
 -- int8/int8 cmp
-SELECT * FROM INT8_TBL WHERE q2 = 4567890123456789;
+SELECT * FROM INT8_TBL WHERE q2 = 4567890123456789 order by 1;
         q1        |        q2        
 ------------------+------------------
               123 | 4567890123456789
  4567890123456789 | 4567890123456789
 (2 rows)
 
-SELECT * FROM INT8_TBL WHERE q2 <> 4567890123456789;
+SELECT * FROM INT8_TBL WHERE q2 <> 4567890123456789 order by 1;
         q1        |        q2         
 ------------------+-------------------
               123 |               456
@@ -69,7 +69,7 @@ SELECT * FROM INT8_TBL WHERE q2 <> 4567890123456789;
  4567890123456789 | -4567890123456789
 (3 rows)
 
-SELECT * FROM INT8_TBL WHERE q2 < 4567890123456789;
+SELECT * FROM INT8_TBL WHERE q2 < 4567890123456789 order by 1;
         q1        |        q2         
 ------------------+-------------------
               123 |               456
@@ -77,12 +77,12 @@ SELECT * FROM INT8_TBL WHERE q2 < 4567890123456789;
  4567890123456789 | -4567890123456789
 (3 rows)
 
-SELECT * FROM INT8_TBL WHERE q2 > 4567890123456789;
+SELECT * FROM INT8_TBL WHERE q2 > 4567890123456789 order by 1;
  q1 | q2 
 ----+----
 (0 rows)
 
-SELECT * FROM INT8_TBL WHERE q2 <= 4567890123456789;
+SELECT * FROM INT8_TBL WHERE q2 <= 4567890123456789 order by 1;
         q1        |        q2         
 ------------------+-------------------
               123 |               456
@@ -92,7 +92,7 @@ SELECT * FROM INT8_TBL WHERE q2 <= 4567890123456789;
  4567890123456789 | -4567890123456789
 (5 rows)
 
-SELECT * FROM INT8_TBL WHERE q2 >= 4567890123456789;
+SELECT * FROM INT8_TBL WHERE q2 >= 4567890123456789 order by 1;
         q1        |        q2        
 ------------------+------------------
               123 | 4567890123456789
@@ -100,13 +100,13 @@ SELECT * FROM INT8_TBL WHERE q2 >= 4567890123456789;
 (2 rows)
 
 -- int8/int4 cmp
-SELECT * FROM INT8_TBL WHERE q2 = 456;
+SELECT * FROM INT8_TBL WHERE q2 = 456 order by 1;
  q1  | q2  
 -----+-----
  123 | 456
 (1 row)
 
-SELECT * FROM INT8_TBL WHERE q2 <> 456;
+SELECT * FROM INT8_TBL WHERE q2 <> 456 order by 1;
         q1        |        q2         
 ------------------+-------------------
               123 |  4567890123456789
@@ -115,21 +115,21 @@ SELECT * FROM INT8_TBL WHERE q2 <> 456;
  4567890123456789 | -4567890123456789
 (4 rows)
 
-SELECT * FROM INT8_TBL WHERE q2 < 456;
+SELECT * FROM INT8_TBL WHERE q2 < 456 order by 1;
         q1        |        q2         
 ------------------+-------------------
  4567890123456789 |               123
  4567890123456789 | -4567890123456789
 (2 rows)
 
-SELECT * FROM INT8_TBL WHERE q2 > 456;
+SELECT * FROM INT8_TBL WHERE q2 > 456 order by 1;
         q1        |        q2        
 ------------------+------------------
               123 | 4567890123456789
  4567890123456789 | 4567890123456789
 (2 rows)
 
-SELECT * FROM INT8_TBL WHERE q2 <= 456;
+SELECT * FROM INT8_TBL WHERE q2 <= 456 order by 1;
         q1        |        q2         
 ------------------+-------------------
               123 |               456
@@ -137,7 +137,7 @@ SELECT * FROM INT8_TBL WHERE q2 <= 456;
  4567890123456789 | -4567890123456789
 (3 rows)
 
-SELECT * FROM INT8_TBL WHERE q2 >= 456;
+SELECT * FROM INT8_TBL WHERE q2 >= 456 order by 1;
         q1        |        q2        
 ------------------+------------------
               123 |              456
@@ -146,14 +146,14 @@ SELECT * FROM INT8_TBL WHERE q2 >= 456;
 (3 rows)
 
 -- int4/int8 cmp
-SELECT * FROM INT8_TBL WHERE 123 = q1;
+SELECT * FROM INT8_TBL WHERE 123 = q1 order by 1;
  q1  |        q2        
 -----+------------------
  123 |              456
  123 | 4567890123456789
 (2 rows)
 
-SELECT * FROM INT8_TBL WHERE 123 <> q1;
+SELECT * FROM INT8_TBL WHERE 123 <> q1 order by 1;
         q1        |        q2         
 ------------------+-------------------
  4567890123456789 |               123
@@ -161,7 +161,7 @@ SELECT * FROM INT8_TBL WHERE 123 <> q1;
  4567890123456789 | -4567890123456789
 (3 rows)
 
-SELECT * FROM INT8_TBL WHERE 123 < q1;
+SELECT * FROM INT8_TBL WHERE 123 < q1 order by 1;
         q1        |        q2         
 ------------------+-------------------
  4567890123456789 |               123
@@ -169,12 +169,12 @@ SELECT * FROM INT8_TBL WHERE 123 < q1;
  4567890123456789 | -4567890123456789
 (3 rows)
 
-SELECT * FROM INT8_TBL WHERE 123 > q1;
+SELECT * FROM INT8_TBL WHERE 123 > q1 order by 1;
  q1 | q2 
 ----+----
 (0 rows)
 
-SELECT * FROM INT8_TBL WHERE 123 <= q1;
+SELECT * FROM INT8_TBL WHERE 123 <= q1 order by 1;
         q1        |        q2         
 ------------------+-------------------
               123 |               456
@@ -184,7 +184,7 @@ SELECT * FROM INT8_TBL WHERE 123 <= q1;
  4567890123456789 | -4567890123456789
 (5 rows)
 
-SELECT * FROM INT8_TBL WHERE 123 >= q1;
+SELECT * FROM INT8_TBL WHERE 123 >= q1 order by 1;
  q1  |        q2        
 -----+------------------
  123 |              456
@@ -192,13 +192,13 @@ SELECT * FROM INT8_TBL WHERE 123 >= q1;
 (2 rows)
 
 -- int8/int2 cmp
-SELECT * FROM INT8_TBL WHERE q2 = '456'::int2;
+SELECT * FROM INT8_TBL WHERE q2 = '456'::int2 order by 1;
  q1  | q2  
 -----+-----
  123 | 456
 (1 row)
 
-SELECT * FROM INT8_TBL WHERE q2 <> '456'::int2;
+SELECT * FROM INT8_TBL WHERE q2 <> '456'::int2 order by 1;
         q1        |        q2         
 ------------------+-------------------
               123 |  4567890123456789
@@ -207,21 +207,21 @@ SELECT * FROM INT8_TBL WHERE q2 <> '456'::int2;
  4567890123456789 | -4567890123456789
 (4 rows)
 
-SELECT * FROM INT8_TBL WHERE q2 < '456'::int2;
+SELECT * FROM INT8_TBL WHERE q2 < '456'::int2 order by 1;
         q1        |        q2         
 ------------------+-------------------
  4567890123456789 |               123
  4567890123456789 | -4567890123456789
 (2 rows)
 
-SELECT * FROM INT8_TBL WHERE q2 > '456'::int2;
+SELECT * FROM INT8_TBL WHERE q2 > '456'::int2 order by 1;
         q1        |        q2        
 ------------------+------------------
               123 | 4567890123456789
  4567890123456789 | 4567890123456789
 (2 rows)
 
-SELECT * FROM INT8_TBL WHERE q2 <= '456'::int2;
+SELECT * FROM INT8_TBL WHERE q2 <= '456'::int2 order by 1;
         q1        |        q2         
 ------------------+-------------------
               123 |               456
@@ -229,7 +229,7 @@ SELECT * FROM INT8_TBL WHERE q2 <= '456'::int2;
  4567890123456789 | -4567890123456789
 (3 rows)
 
-SELECT * FROM INT8_TBL WHERE q2 >= '456'::int2;
+SELECT * FROM INT8_TBL WHERE q2 >= '456'::int2 order by 1;
         q1        |        q2        
 ------------------+------------------
               123 |              456
@@ -238,14 +238,14 @@ SELECT * FROM INT8_TBL WHERE q2 >= '456'::int2;
 (3 rows)
 
 -- int2/int8 cmp
-SELECT * FROM INT8_TBL WHERE '123'::int2 = q1;
+SELECT * FROM INT8_TBL WHERE '123'::int2 = q1 order by 1;
  q1  |        q2        
 -----+------------------
  123 |              456
  123 | 4567890123456789
 (2 rows)
 
-SELECT * FROM INT8_TBL WHERE '123'::int2 <> q1;
+SELECT * FROM INT8_TBL WHERE '123'::int2 <> q1 order by 1;
         q1        |        q2         
 ------------------+-------------------
  4567890123456789 |               123
@@ -253,7 +253,7 @@ SELECT * FROM INT8_TBL WHERE '123'::int2 <> q1;
  4567890123456789 | -4567890123456789
 (3 rows)
 
-SELECT * FROM INT8_TBL WHERE '123'::int2 < q1;
+SELECT * FROM INT8_TBL WHERE '123'::int2 < q1 order by 1;
         q1        |        q2         
 ------------------+-------------------
  4567890123456789 |               123
@@ -261,12 +261,12 @@ SELECT * FROM INT8_TBL WHERE '123'::int2 < q1;
  4567890123456789 | -4567890123456789
 (3 rows)
 
-SELECT * FROM INT8_TBL WHERE '123'::int2 > q1;
+SELECT * FROM INT8_TBL WHERE '123'::int2 > q1 order by 1;
  q1 | q2 
 ----+----
 (0 rows)
 
-SELECT * FROM INT8_TBL WHERE '123'::int2 <= q1;
+SELECT * FROM INT8_TBL WHERE '123'::int2 <= q1 order by 1;
         q1        |        q2         
 ------------------+-------------------
               123 |               456
@@ -276,14 +276,14 @@ SELECT * FROM INT8_TBL WHERE '123'::int2 <= q1;
  4567890123456789 | -4567890123456789
 (5 rows)
 
-SELECT * FROM INT8_TBL WHERE '123'::int2 >= q1;
+SELECT * FROM INT8_TBL WHERE '123'::int2 >= q1 order by 1;
  q1  |        q2        
 -----+------------------
  123 |              456
  123 | 4567890123456789
 (2 rows)
 
-SELECT q1 AS plus, -q1 AS minus FROM INT8_TBL;
+SELECT q1 AS plus, -q1 AS minus FROM INT8_TBL order by 1;
        plus       |       minus       
 ------------------+-------------------
               123 |              -123
@@ -293,7 +293,7 @@ SELECT q1 AS plus, -q1 AS minus FROM INT8_TBL;
  4567890123456789 | -4567890123456789
 (5 rows)
 
-SELECT q1, q2, q1 + q2 AS plus FROM INT8_TBL;
+SELECT q1, q2, q1 + q2 AS plus FROM INT8_TBL order by 1;
         q1        |        q2         |       plus       
 ------------------+-------------------+------------------
               123 |               456 |              579
@@ -303,7 +303,7 @@ SELECT q1, q2, q1 + q2 AS plus FROM INT8_TBL;
  4567890123456789 | -4567890123456789 |                0
 (5 rows)
 
-SELECT q1, q2, q1 - q2 AS minus FROM INT8_TBL;
+SELECT q1, q2, q1 - q2 AS minus FROM INT8_TBL order by 1;
         q1        |        q2         |       minus       
 ------------------+-------------------+-------------------
               123 |               456 |              -333
@@ -313,7 +313,7 @@ SELECT q1, q2, q1 - q2 AS minus FROM INT8_TBL;
  4567890123456789 | -4567890123456789 |  9135780246913578
 (5 rows)
 
-SELECT q1, q2, q1 * q2 AS multiply FROM INT8_TBL;
+SELECT q1, q2, q1 * q2 AS multiply FROM INT8_TBL order by 1;
 ERROR:  bigint out of range
 SELECT q1, q2, q1 * q2 AS multiply FROM INT8_TBL
  WHERE q1 < 1000 or (q2 > 0 and q2 < 1000);
@@ -324,7 +324,7 @@ SELECT q1, q2, q1 * q2 AS multiply FROM INT8_TBL
  4567890123456789 |              123 | 561850485185185047
 (3 rows)
 
-SELECT q1, q2, q1 / q2 AS divide, q1 % q2 AS mod FROM INT8_TBL;
+SELECT q1, q2, q1 / q2 AS divide, q1 % q2 AS mod FROM INT8_TBL order by 1;
         q1        |        q2         |     divide     | mod 
 ------------------+-------------------+----------------+-----
               123 |               456 |              0 | 123
@@ -334,7 +334,7 @@ SELECT q1, q2, q1 / q2 AS divide, q1 % q2 AS mod FROM INT8_TBL;
  4567890123456789 | -4567890123456789 |             -1 |   0
 (5 rows)
 
-SELECT q1, float8(q1) FROM INT8_TBL;
+SELECT q1, float8(q1) FROM INT8_TBL order by 1;
         q1        |        float8         
 ------------------+-----------------------
               123 |                   123
@@ -344,17 +344,17 @@ SELECT q1, float8(q1) FROM INT8_TBL;
  4567890123456789 | 4.567890123456789e+15
 (5 rows)
 
-SELECT q2, float8(q2) FROM INT8_TBL;
+SELECT q2, float8(q2) FROM INT8_TBL order by 1;
         q2         |         float8         
 -------------------+------------------------
+ -4567890123456789 | -4.567890123456789e+15
+               123 |                    123
                456 |                    456
   4567890123456789 |  4.567890123456789e+15
-               123 |                    123
   4567890123456789 |  4.567890123456789e+15
- -4567890123456789 | -4.567890123456789e+15
 (5 rows)
 
-SELECT 37 + q1 AS plus4 FROM INT8_TBL;
+SELECT 37 + q1 AS plus4 FROM INT8_TBL order by 1;
       plus4       
 ------------------
               160
@@ -364,17 +364,17 @@ SELECT 37 + q1 AS plus4 FROM INT8_TBL;
  4567890123456826
 (5 rows)
 
-SELECT 37 - q1 AS minus4 FROM INT8_TBL;
+SELECT 37 - q1 AS minus4 FROM INT8_TBL order by 1;
       minus4       
 -------------------
+ -4567890123456752
+ -4567890123456752
+ -4567890123456752
                -86
                -86
- -4567890123456752
- -4567890123456752
- -4567890123456752
 (5 rows)
 
-SELECT 2 * q1 AS "twice int4" FROM INT8_TBL;
+SELECT 2 * q1 AS "twice int4" FROM INT8_TBL order by 1;
     twice int4    
 ------------------
               246
@@ -384,7 +384,7 @@ SELECT 2 * q1 AS "twice int4" FROM INT8_TBL;
  9135780246913578
 (5 rows)
 
-SELECT q1 * 2 AS "twice int4" FROM INT8_TBL;
+SELECT q1 * 2 AS "twice int4" FROM INT8_TBL order by 1;
     twice int4    
 ------------------
               246
@@ -395,7 +395,7 @@ SELECT q1 * 2 AS "twice int4" FROM INT8_TBL;
 (5 rows)
 
 -- int8 op int4
-SELECT q1 + 42::int4 AS "8plus4", q1 - 42::int4 AS "8minus4", q1 * 42::int4 AS "8mul4", q1 / 42::int4 AS "8div4" FROM INT8_TBL;
+SELECT q1 + 42::int4 AS "8plus4", q1 - 42::int4 AS "8minus4", q1 * 42::int4 AS "8mul4", q1 / 42::int4 AS "8div4" FROM INT8_TBL order by 1;
       8plus4      |     8minus4      |       8mul4        |      8div4      
 ------------------+------------------+--------------------+-----------------
               165 |               81 |               5166 |               2
@@ -406,7 +406,7 @@ SELECT q1 + 42::int4 AS "8plus4", q1 - 42::int4 AS "8minus4", q1 * 42::int4 AS "
 (5 rows)
 
 -- int4 op int8
-SELECT 246::int4 + q1 AS "4plus8", 246::int4 - q1 AS "4minus8", 246::int4 * q1 AS "4mul8", 246::int4 / q1 AS "4div8" FROM INT8_TBL;
+SELECT 246::int4 + q1 AS "4plus8", 246::int4 - q1 AS "4minus8", 246::int4 * q1 AS "4mul8", 246::int4 / q1 AS "4div8" FROM INT8_TBL order by 1;
       4plus8      |      4minus8      |        4mul8        | 4div8 
 ------------------+-------------------+---------------------+-------
               369 |               123 |               30258 |     2
@@ -417,7 +417,7 @@ SELECT 246::int4 + q1 AS "4plus8", 246::int4 - q1 AS "4minus8", 246::int4 * q1 A
 (5 rows)
 
 -- int8 op int2
-SELECT q1 + 42::int2 AS "8plus2", q1 - 42::int2 AS "8minus2", q1 * 42::int2 AS "8mul2", q1 / 42::int2 AS "8div2" FROM INT8_TBL;
+SELECT q1 + 42::int2 AS "8plus2", q1 - 42::int2 AS "8minus2", q1 * 42::int2 AS "8mul2", q1 / 42::int2 AS "8div2" FROM INT8_TBL order by 1;
       8plus2      |     8minus2      |       8mul2        |      8div2      
 ------------------+------------------+--------------------+-----------------
               165 |               81 |               5166 |               2
@@ -428,7 +428,7 @@ SELECT q1 + 42::int2 AS "8plus2", q1 - 42::int2 AS "8minus2", q1 * 42::int2 AS "
 (5 rows)
 
 -- int2 op int8
-SELECT 246::int2 + q1 AS "2plus8", 246::int2 - q1 AS "2minus8", 246::int2 * q1 AS "2mul8", 246::int2 / q1 AS "2div8" FROM INT8_TBL;
+SELECT 246::int2 + q1 AS "2plus8", 246::int2 - q1 AS "2minus8", 246::int2 * q1 AS "2mul8", 246::int2 / q1 AS "2div8" FROM INT8_TBL order by 1;
       2plus8      |      2minus8      |        2mul8        | 2div8 
 ------------------+-------------------+---------------------+-------
               369 |               123 |               30258 |     2
@@ -438,23 +438,23 @@ SELECT 246::int2 + q1 AS "2plus8", 246::int2 - q1 AS "2minus8", 246::int2 * q1 A
  4567890123457035 | -4567890123456543 | 1123700970370370094 |     0
 (5 rows)
 
-SELECT q2, abs(q2) FROM INT8_TBL;
+SELECT q2, abs(q2) FROM INT8_TBL order by 1;
         q2         |       abs        
 -------------------+------------------
+ -4567890123456789 | 4567890123456789
+               123 |              123
                456 |              456
   4567890123456789 | 4567890123456789
-               123 |              123
   4567890123456789 | 4567890123456789
- -4567890123456789 | 4567890123456789
 (5 rows)
 
-SELECT min(q1), min(q2) FROM INT8_TBL;
+SELECT min(q1), min(q2) FROM INT8_TBL order by 1;
  min |        min        
 -----+-------------------
  123 | -4567890123456789
 (1 row)
 
-SELECT max(q1), max(q2) FROM INT8_TBL;
+SELECT max(q1), max(q2) FROM INT8_TBL order by 1;
        max        |       max        
 ------------------+------------------
  4567890123456789 | 4567890123456789
@@ -463,7 +463,7 @@ SELECT max(q1), max(q2) FROM INT8_TBL;
 -- TO_CHAR()
 --
 SELECT to_char(q1, '9G999G999G999G999G999'), to_char(q2, '9,999,999,999,999,999')
-	FROM INT8_TBL;
+	FROM INT8_TBL order by 1;
         to_char         |        to_char         
 ------------------------+------------------------
                     123 |                    456
@@ -474,7 +474,7 @@ SELECT to_char(q1, '9G999G999G999G999G999'), to_char(q2, '9,999,999,999,999,999'
 (5 rows)
 
 SELECT to_char(q1, '9G999G999G999G999G999D999G999'), to_char(q2, '9,999,999,999,999,999.999,999')
-	FROM INT8_TBL;
+	FROM INT8_TBL order by 1;
             to_char             |            to_char             
 --------------------------------+--------------------------------
                     123.000,000 |                    456.000,000
@@ -485,7 +485,7 @@ SELECT to_char(q1, '9G999G999G999G999G999D999G999'), to_char(q2, '9,999,999,999,
 (5 rows)
 
 SELECT to_char( (q1 * -1), '9999999999999999PR'), to_char( (q2 * -1), '9999999999999999.999PR')
-	FROM INT8_TBL;
+	FROM INT8_TBL order by 1;
       to_char       |        to_char         
 --------------------+------------------------
               <123> |              <456.000>
@@ -496,7 +496,7 @@ SELECT to_char( (q1 * -1), '9999999999999999PR'), to_char( (q2 * -1), '999999999
 (5 rows)
 
 SELECT to_char( (q1 * -1), '9999999999999999S'), to_char( (q2 * -1), 'S9999999999999999')
-	FROM INT8_TBL;
+	FROM INT8_TBL order by 1;
       to_char      |      to_char      
 -------------------+-------------------
               123- |              -456
@@ -506,132 +506,132 @@ SELECT to_char( (q1 * -1), '9999999999999999S'), to_char( (q2 * -1), 'S999999999
  4567890123456789- | +4567890123456789
 (5 rows)
 
-SELECT to_char(q2, 'MI9999999999999999')     FROM INT8_TBL;
+SELECT to_char(q2, 'MI9999999999999999')     FROM INT8_TBL order by 1;
       to_char      
 -------------------
+               123
                456
   4567890123456789
-               123
   4567890123456789
  -4567890123456789
 (5 rows)
 
-SELECT to_char(q2, 'FMS9999999999999999')    FROM INT8_TBL;
+SELECT to_char(q2, 'FMS9999999999999999')    FROM INT8_TBL order by 1;
       to_char      
 -------------------
+ +123
  +456
  +4567890123456789
- +123
  +4567890123456789
  -4567890123456789
 (5 rows)
 
-SELECT to_char(q2, 'FM9999999999999999THPR') FROM INT8_TBL;
+SELECT to_char(q2, 'FM9999999999999999THPR') FROM INT8_TBL order by 1;
       to_char       
 --------------------
- 456TH
- 4567890123456789TH
  123RD
- 4567890123456789TH
  <4567890123456789>
+ 4567890123456789TH
+ 4567890123456789TH
+ 456TH
 (5 rows)
 
-SELECT to_char(q2, 'SG9999999999999999th')   FROM INT8_TBL;
+SELECT to_char(q2, 'SG9999999999999999th')   FROM INT8_TBL order by 1;
        to_char       
 ---------------------
- +             456th
- +4567890123456789th
  +             123rd
- +4567890123456789th
  -4567890123456789
+ +4567890123456789th
+ +4567890123456789th
+ +             456th
 (5 rows)
 
-SELECT to_char(q2, '0999999999999999')       FROM INT8_TBL;
+SELECT to_char(q2, '0999999999999999')       FROM INT8_TBL order by 1;
       to_char      
 -------------------
+  0000000000000123
   0000000000000456
   4567890123456789
-  0000000000000123
   4567890123456789
  -4567890123456789
 (5 rows)
 
-SELECT to_char(q2, 'S0999999999999999')      FROM INT8_TBL;
+SELECT to_char(q2, 'S0999999999999999')      FROM INT8_TBL order by 1;
       to_char      
 -------------------
+ +0000000000000123
  +0000000000000456
  +4567890123456789
- +0000000000000123
  +4567890123456789
  -4567890123456789
 (5 rows)
 
-SELECT to_char(q2, 'FM0999999999999999')     FROM INT8_TBL;
+SELECT to_char(q2, 'FM0999999999999999')     FROM INT8_TBL order by 1;
       to_char      
 -------------------
- 0000000000000456
- 4567890123456789
  0000000000000123
- 4567890123456789
+ 0000000000000456
  -4567890123456789
+ 4567890123456789
+ 4567890123456789
 (5 rows)
 
-SELECT to_char(q2, 'FM9999999999999999.000') FROM INT8_TBL;
+SELECT to_char(q2, 'FM9999999999999999.000') FROM INT8_TBL order by 1;
         to_char        
 -----------------------
- 456.000
- 4567890123456789.000
  123.000
- 4567890123456789.000
+ 456.000
  -4567890123456789.000
+ 4567890123456789.000
+ 4567890123456789.000
 (5 rows)
 
-SELECT to_char(q2, 'L9999999999999999.000')  FROM INT8_TBL;
+SELECT to_char(q2, 'L9999999999999999.000')  FROM INT8_TBL order by 1;
         to_char         
 ------------------------
+                123.000
                 456.000
    4567890123456789.000
-                123.000
    4567890123456789.000
   -4567890123456789.000
 (5 rows)
 
-SELECT to_char(q2, 'FM9999999999999999.999') FROM INT8_TBL;
+SELECT to_char(q2, 'FM9999999999999999.999') FROM INT8_TBL order by 1;
       to_char       
 --------------------
- 456.
- 4567890123456789.
  123.
- 4567890123456789.
+ 456.
  -4567890123456789.
+ 4567890123456789.
+ 4567890123456789.
 (5 rows)
 
-SELECT to_char(q2, 'S 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 . 9 9 9') FROM INT8_TBL;
+SELECT to_char(q2, 'S 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 . 9 9 9') FROM INT8_TBL order by 1;
                   to_char                  
 -------------------------------------------
+                            +1 2 3 . 0 0 0
                             +4 5 6 . 0 0 0
   +4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 . 0 0 0
-                            +1 2 3 . 0 0 0
   +4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 . 0 0 0
   -4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 . 0 0 0
 (5 rows)
 
-SELECT to_char(q2, E'99999 "text" 9999 "9999" 999 "\\"text between quote marks\\"" 9999') FROM INT8_TBL;
+SELECT to_char(q2, E'99999 "text" 9999 "9999" 999 "\\"text between quote marks\\"" 9999') FROM INT8_TBL order by 1;
                           to_char                          
 -----------------------------------------------------------
-       text      9999     "text between quote marks"   456
   45678 text 9012 9999 345 "text between quote marks" 6789
-       text      9999     "text between quote marks"   123
   45678 text 9012 9999 345 "text between quote marks" 6789
  -45678 text 9012 9999 345 "text between quote marks" 6789
+       text      9999     "text between quote marks"   123
+       text      9999     "text between quote marks"   456
 (5 rows)
 
-SELECT to_char(q2, '999999SG9999999999')     FROM INT8_TBL;
+SELECT to_char(q2, '999999SG9999999999')     FROM INT8_TBL order by 1;
       to_char      
 -------------------
+       +       123
        +       456
  456789+0123456789
-       +       123
  456789+0123456789
  456789-0123456789
 (5 rows)
@@ -729,7 +729,7 @@ SELECT CAST('42'::int2 AS int8), CAST('-37'::int2 AS int8);
    42 |  -37
 (1 row)
 
-SELECT CAST(q1 AS float4), CAST(q2 AS float8) FROM INT8_TBL;
+SELECT CAST(q1 AS float4), CAST(q2 AS float8) FROM INT8_TBL order by 1;
      q1      |           q2           
 -------------+------------------------
          123 |                    456
@@ -747,7 +747,7 @@ SELECT CAST('36854775807.0'::float4 AS int8);
 
 SELECT CAST('922337203685477580700.0'::float8 AS int8);
 ERROR:  bigint out of range
-SELECT CAST(q1 AS oid) FROM INT8_TBL;
+SELECT CAST(q1 AS oid) FROM INT8_TBL order by 1;
 ERROR:  OID out of range
 SELECT oid::int8 FROM pg_class WHERE relname = 'pg_class';
  oid  
@@ -756,7 +756,7 @@ SELECT oid::int8 FROM pg_class WHERE relname = 'pg_class';
 (1 row)
 
 -- bit operations
-SELECT q1, q2, q1 & q2 AS "and", q1 | q2 AS "or", q1 # q2 AS "xor", ~q1 AS "not" FROM INT8_TBL;
+SELECT q1, q2, q1 & q2 AS "and", q1 | q2 AS "or", q1 # q2 AS "xor", ~q1 AS "not" FROM INT8_TBL order by 1;
         q1        |        q2         |       and        |        or        |       xor        |        not        
 ------------------+-------------------+------------------+------------------+------------------+-------------------
               123 |               456 |               72 |              507 |              435 |              -124
@@ -766,7 +766,7 @@ SELECT q1, q2, q1 & q2 AS "and", q1 | q2 AS "or", q1 # q2 AS "xor", ~q1 AS "not"
  4567890123456789 | -4567890123456789 |                1 |               -1 |               -2 | -4567890123456790
 (5 rows)
 
-SELECT q1, q1 << 2 AS "shl", q1 >> 3 AS "shr" FROM INT8_TBL;
+SELECT q1, q1 << 2 AS "shl", q1 >> 3 AS "shr" FROM INT8_TBL order by 1;
         q1        |        shl        |       shr       
 ------------------+-------------------+-----------------
               123 |               492 |              15
