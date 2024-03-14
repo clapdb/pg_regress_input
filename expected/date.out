@@ -11,8 +11,6 @@ INSERT INTO DATE_TBL VALUES ('1996-03-02');
 INSERT INTO DATE_TBL VALUES ('1997-02-28');
 INSERT INTO DATE_TBL VALUES ('1997-02-29');
 ERROR:  date/time field value out of range: "1997-02-29"
-LINE 1: INSERT INTO DATE_TBL VALUES ('1997-02-29');
-                                     ^
 INSERT INTO DATE_TBL VALUES ('1997-03-01');
 INSERT INTO DATE_TBL VALUES ('1997-03-02');
 INSERT INTO DATE_TBL VALUES ('2000-04-01');
@@ -22,49 +20,50 @@ INSERT INTO DATE_TBL VALUES ('2038-04-08');
 INSERT INTO DATE_TBL VALUES ('2039-04-09');
 INSERT INTO DATE_TBL VALUES ('2040-04-10');
 INSERT INTO DATE_TBL VALUES ('2040-04-10 BC');
-SELECT f1 FROM DATE_TBL;
+SET datestyle TO iso;  -- display results in ISO
+SELECT f1 FROM DATE_TBL order by 1;
       f1       
 ---------------
- 04-09-1957
- 06-13-1957
- 02-28-1996
- 02-29-1996
- 03-01-1996
- 03-02-1996
- 02-28-1997
- 03-01-1997
- 03-02-1997
- 04-01-2000
- 04-02-2000
- 04-03-2000
- 04-08-2038
- 04-09-2039
- 04-10-2040
- 04-10-2040 BC
+ 2040-04-10 BC
+ 1957-04-09
+ 1957-06-13
+ 1996-02-28
+ 1996-02-29
+ 1996-03-01
+ 1996-03-02
+ 1997-02-28
+ 1997-03-01
+ 1997-03-02
+ 2000-04-01
+ 2000-04-02
+ 2000-04-03
+ 2038-04-08
+ 2039-04-09
+ 2040-04-10
 (16 rows)
 
-SELECT f1 FROM DATE_TBL WHERE f1 < '2000-01-01';
+SELECT f1 FROM DATE_TBL WHERE f1 < '2000-01-01' order by 1;
       f1       
 ---------------
- 04-09-1957
- 06-13-1957
- 02-28-1996
- 02-29-1996
- 03-01-1996
- 03-02-1996
- 02-28-1997
- 03-01-1997
- 03-02-1997
- 04-10-2040 BC
+ 2040-04-10 BC
+ 1957-04-09
+ 1957-06-13
+ 1996-02-28
+ 1996-02-29
+ 1996-03-01
+ 1996-03-02
+ 1997-02-28
+ 1997-03-01
+ 1997-03-02
 (10 rows)
 
 SELECT f1 FROM DATE_TBL
-  WHERE f1 BETWEEN '2000-01-01' AND '2001-01-01';
+  WHERE f1 BETWEEN '2000-01-01' AND '2001-01-01' order by 1;
      f1     
 ------------
- 04-01-2000
- 04-02-2000
- 04-03-2000
+ 2000-04-01
+ 2000-04-02
+ 2000-04-03
 (3 rows)
 
 --
@@ -92,18 +91,12 @@ SELECT date '1999-01-18';
 
 SELECT date '1/8/1999';
 ERROR:  date/time field value out of range: "1/8/1999"
-LINE 1: SELECT date '1/8/1999';
-                    ^
 HINT:  Perhaps you need a different "datestyle" setting.
 SELECT date '1/18/1999';
 ERROR:  date/time field value out of range: "1/18/1999"
-LINE 1: SELECT date '1/18/1999';
-                    ^
 HINT:  Perhaps you need a different "datestyle" setting.
 SELECT date '18/1/1999';
 ERROR:  date/time field value out of range: "18/1/1999"
-LINE 1: SELECT date '18/1/1999';
-                    ^
 HINT:  Perhaps you need a different "datestyle" setting.
 SELECT date '01/02/03';
     date    
@@ -137,8 +130,6 @@ SELECT date 'J2451187';
 
 SELECT date 'January 8, 99 BC';
 ERROR:  date/time field value out of range: "January 8, 99 BC"
-LINE 1: SELECT date 'January 8, 99 BC';
-                    ^
 HINT:  Perhaps you need a different "datestyle" setting.
 SELECT date '99-Jan-08';
     date    
@@ -154,8 +145,6 @@ SELECT date '1999-Jan-08';
 
 SELECT date '08-Jan-99';
 ERROR:  date/time field value out of range: "08-Jan-99"
-LINE 1: SELECT date '08-Jan-99';
-                    ^
 HINT:  Perhaps you need a different "datestyle" setting.
 SELECT date '08-Jan-1999';
     date    
@@ -165,8 +154,6 @@ SELECT date '08-Jan-1999';
 
 SELECT date 'Jan-08-99';
 ERROR:  date/time field value out of range: "Jan-08-99"
-LINE 1: SELECT date 'Jan-08-99';
-                    ^
 HINT:  Perhaps you need a different "datestyle" setting.
 SELECT date 'Jan-08-1999';
     date    
@@ -176,12 +163,8 @@ SELECT date 'Jan-08-1999';
 
 SELECT date '99-08-Jan';
 ERROR:  invalid input syntax for type date: "99-08-Jan"
-LINE 1: SELECT date '99-08-Jan';
-                    ^
 SELECT date '1999-08-Jan';
 ERROR:  invalid input syntax for type date: "1999-08-Jan"
-LINE 1: SELECT date '1999-08-Jan';
-                    ^
 SELECT date '99 Jan 08';
     date    
 ------------
@@ -196,8 +179,6 @@ SELECT date '1999 Jan 08';
 
 SELECT date '08 Jan 99';
 ERROR:  date/time field value out of range: "08 Jan 99"
-LINE 1: SELECT date '08 Jan 99';
-                    ^
 HINT:  Perhaps you need a different "datestyle" setting.
 SELECT date '08 Jan 1999';
     date    
@@ -207,8 +188,6 @@ SELECT date '08 Jan 1999';
 
 SELECT date 'Jan 08 99';
 ERROR:  date/time field value out of range: "Jan 08 99"
-LINE 1: SELECT date 'Jan 08 99';
-                    ^
 HINT:  Perhaps you need a different "datestyle" setting.
 SELECT date 'Jan 08 1999';
     date    
@@ -242,23 +221,15 @@ SELECT date '1999-01-08';
 
 SELECT date '08-01-99';
 ERROR:  date/time field value out of range: "08-01-99"
-LINE 1: SELECT date '08-01-99';
-                    ^
 HINT:  Perhaps you need a different "datestyle" setting.
 SELECT date '08-01-1999';
 ERROR:  date/time field value out of range: "08-01-1999"
-LINE 1: SELECT date '08-01-1999';
-                    ^
 HINT:  Perhaps you need a different "datestyle" setting.
 SELECT date '01-08-99';
 ERROR:  date/time field value out of range: "01-08-99"
-LINE 1: SELECT date '01-08-99';
-                    ^
 HINT:  Perhaps you need a different "datestyle" setting.
 SELECT date '01-08-1999';
 ERROR:  date/time field value out of range: "01-08-1999"
-LINE 1: SELECT date '01-08-1999';
-                    ^
 HINT:  Perhaps you need a different "datestyle" setting.
 SELECT date '99-08-01';
     date    
@@ -286,23 +257,15 @@ SELECT date '1999 01 08';
 
 SELECT date '08 01 99';
 ERROR:  date/time field value out of range: "08 01 99"
-LINE 1: SELECT date '08 01 99';
-                    ^
 HINT:  Perhaps you need a different "datestyle" setting.
 SELECT date '08 01 1999';
 ERROR:  date/time field value out of range: "08 01 1999"
-LINE 1: SELECT date '08 01 1999';
-                    ^
 HINT:  Perhaps you need a different "datestyle" setting.
 SELECT date '01 08 99';
 ERROR:  date/time field value out of range: "01 08 99"
-LINE 1: SELECT date '01 08 99';
-                    ^
 HINT:  Perhaps you need a different "datestyle" setting.
 SELECT date '01 08 1999';
 ERROR:  date/time field value out of range: "01 08 1999"
-LINE 1: SELECT date '01 08 1999';
-                    ^
 HINT:  Perhaps you need a different "datestyle" setting.
 SELECT date '99 08 01';
     date    
@@ -343,8 +306,6 @@ SELECT date '1/8/1999';
 
 SELECT date '1/18/1999';
 ERROR:  date/time field value out of range: "1/18/1999"
-LINE 1: SELECT date '1/18/1999';
-                    ^
 HINT:  Perhaps you need a different "datestyle" setting.
 SELECT date '18/1/1999';
     date    
@@ -390,8 +351,6 @@ SELECT date 'January 8, 99 BC';
 
 SELECT date '99-Jan-08';
 ERROR:  date/time field value out of range: "99-Jan-08"
-LINE 1: SELECT date '99-Jan-08';
-                    ^
 HINT:  Perhaps you need a different "datestyle" setting.
 SELECT date '1999-Jan-08';
     date    
@@ -425,16 +384,10 @@ SELECT date 'Jan-08-1999';
 
 SELECT date '99-08-Jan';
 ERROR:  invalid input syntax for type date: "99-08-Jan"
-LINE 1: SELECT date '99-08-Jan';
-                    ^
 SELECT date '1999-08-Jan';
 ERROR:  invalid input syntax for type date: "1999-08-Jan"
-LINE 1: SELECT date '1999-08-Jan';
-                    ^
 SELECT date '99 Jan 08';
 ERROR:  date/time field value out of range: "99 Jan 08"
-LINE 1: SELECT date '99 Jan 08';
-                    ^
 HINT:  Perhaps you need a different "datestyle" setting.
 SELECT date '1999 Jan 08';
     date    
@@ -468,8 +421,6 @@ SELECT date 'Jan 08 1999';
 
 SELECT date '99 08 Jan';
 ERROR:  invalid input syntax for type date: "99 08 Jan"
-LINE 1: SELECT date '99 08 Jan';
-                    ^
 SELECT date '1999 08 Jan';
     date    
 ------------
@@ -478,8 +429,6 @@ SELECT date '1999 08 Jan';
 
 SELECT date '99-01-08';
 ERROR:  date/time field value out of range: "99-01-08"
-LINE 1: SELECT date '99-01-08';
-                    ^
 HINT:  Perhaps you need a different "datestyle" setting.
 SELECT date '1999-01-08';
     date    
@@ -513,8 +462,6 @@ SELECT date '01-08-1999';
 
 SELECT date '99-08-01';
 ERROR:  date/time field value out of range: "99-08-01"
-LINE 1: SELECT date '99-08-01';
-                    ^
 HINT:  Perhaps you need a different "datestyle" setting.
 SELECT date '1999-08-01';
     date    
@@ -524,8 +471,6 @@ SELECT date '1999-08-01';
 
 SELECT date '99 01 08';
 ERROR:  date/time field value out of range: "99 01 08"
-LINE 1: SELECT date '99 01 08';
-                    ^
 HINT:  Perhaps you need a different "datestyle" setting.
 SELECT date '1999 01 08';
     date    
@@ -559,8 +504,6 @@ SELECT date '01 08 1999';
 
 SELECT date '99 08 01';
 ERROR:  date/time field value out of range: "99 08 01"
-LINE 1: SELECT date '99 08 01';
-                    ^
 HINT:  Perhaps you need a different "datestyle" setting.
 SELECT date '1999 08 01';
     date    
@@ -601,8 +544,6 @@ SELECT date '1/18/1999';
 
 SELECT date '18/1/1999';
 ERROR:  date/time field value out of range: "18/1/1999"
-LINE 1: SELECT date '18/1/1999';
-                    ^
 HINT:  Perhaps you need a different "datestyle" setting.
 SELECT date '01/02/03';
     date    
@@ -642,8 +583,6 @@ SELECT date 'January 8, 99 BC';
 
 SELECT date '99-Jan-08';
 ERROR:  date/time field value out of range: "99-Jan-08"
-LINE 1: SELECT date '99-Jan-08';
-                    ^
 HINT:  Perhaps you need a different "datestyle" setting.
 SELECT date '1999-Jan-08';
     date    
@@ -677,16 +616,10 @@ SELECT date 'Jan-08-1999';
 
 SELECT date '99-08-Jan';
 ERROR:  invalid input syntax for type date: "99-08-Jan"
-LINE 1: SELECT date '99-08-Jan';
-                    ^
 SELECT date '1999-08-Jan';
 ERROR:  invalid input syntax for type date: "1999-08-Jan"
-LINE 1: SELECT date '1999-08-Jan';
-                    ^
 SELECT date '99 Jan 08';
 ERROR:  invalid input syntax for type date: "99 Jan 08"
-LINE 1: SELECT date '99 Jan 08';
-                    ^
 SELECT date '1999 Jan 08';
     date    
 ------------
@@ -719,8 +652,6 @@ SELECT date 'Jan 08 1999';
 
 SELECT date '99 08 Jan';
 ERROR:  invalid input syntax for type date: "99 08 Jan"
-LINE 1: SELECT date '99 08 Jan';
-                    ^
 SELECT date '1999 08 Jan';
     date    
 ------------
@@ -729,8 +660,6 @@ SELECT date '1999 08 Jan';
 
 SELECT date '99-01-08';
 ERROR:  date/time field value out of range: "99-01-08"
-LINE 1: SELECT date '99-01-08';
-                    ^
 HINT:  Perhaps you need a different "datestyle" setting.
 SELECT date '1999-01-08';
     date    
@@ -764,8 +693,6 @@ SELECT date '01-08-1999';
 
 SELECT date '99-08-01';
 ERROR:  date/time field value out of range: "99-08-01"
-LINE 1: SELECT date '99-08-01';
-                    ^
 HINT:  Perhaps you need a different "datestyle" setting.
 SELECT date '1999-08-01';
     date    
@@ -775,8 +702,6 @@ SELECT date '1999-08-01';
 
 SELECT date '99 01 08';
 ERROR:  date/time field value out of range: "99 01 08"
-LINE 1: SELECT date '99 01 08';
-                    ^
 HINT:  Perhaps you need a different "datestyle" setting.
 SELECT date '1999 01 08';
     date    
@@ -810,8 +735,6 @@ SELECT date '01 08 1999';
 
 SELECT date '99 08 01';
 ERROR:  date/time field value out of range: "99 08 01"
-LINE 1: SELECT date '99 08 01';
-                    ^
 HINT:  Perhaps you need a different "datestyle" setting.
 SELECT date '1999 08 01';
     date    
@@ -828,8 +751,6 @@ SELECT date '4714-11-24 BC';
 
 SELECT date '4714-11-23 BC';  -- out of range
 ERROR:  date out of range: "4714-11-23 BC"
-LINE 1: SELECT date '4714-11-23 BC';
-                    ^
 SELECT date '5874897-12-31';
      date      
 ---------------
@@ -838,8 +759,6 @@ SELECT date '5874897-12-31';
 
 SELECT date '5874898-01-01';  -- out of range
 ERROR:  date out of range: "5874898-01-01"
-LINE 1: SELECT date '5874898-01-01';
-                    ^
 -- Test non-error-throwing API
 SELECT pg_input_is_valid('now', 'date');
  pg_input_is_valid 
@@ -871,14 +790,15 @@ SELECT * FROM pg_input_error_info('6874898-01-01', 'date');
  date out of range: "6874898-01-01" |        |      | 22008
 (1 row)
 
-RESET datestyle;
+SET datestyle TO iso;  -- display results in ISO
 --
 -- Simple math
 -- Leave most of it for the horology tests
 --
-SELECT f1 - date '2000-01-01' AS "Days From 2K" FROM DATE_TBL;
+SELECT f1 - date '2000-01-01' AS "Days From 2K" FROM DATE_TBL order by 1;
  Days From 2K 
 --------------
+     -1475115
        -15607
        -15542
         -1403
@@ -894,12 +814,12 @@ SELECT f1 - date '2000-01-01' AS "Days From 2K" FROM DATE_TBL;
         13977
         14343
         14710
-     -1475115
 (16 rows)
 
-SELECT f1 - date 'epoch' AS "Days From Epoch" FROM DATE_TBL;
+SELECT f1 - date 'epoch' AS "Days From Epoch" FROM DATE_TBL order by 1;
  Days From Epoch 
 -----------------
+        -1464158
            -4650
            -4585
             9554
@@ -915,7 +835,6 @@ SELECT f1 - date 'epoch' AS "Days From Epoch" FROM DATE_TBL;
            24934
            25300
            25667
-        -1464158
 (16 rows)
 
 SELECT date 'yesterday' - date 'today' AS "One day";
@@ -972,25 +891,25 @@ SELECT f1 as "date",
     date_part('doy', f1) AS doy,
     date_part('julian', f1) AS julian,
     date_part('epoch', f1) AS epoch
-    FROM date_tbl;
+    FROM date_tbl order by 1;
      date      | year  | month | day | quarter | decade | century | millennium | isoyear | week | dow | isodow | doy | julian  |     epoch     
 ---------------+-------+-------+-----+---------+--------+---------+------------+---------+------+-----+--------+-----+---------+---------------
- 04-09-1957    |  1957 |     4 |   9 |       2 |    195 |      20 |          2 |    1957 |   15 |   2 |      2 |  99 | 2435938 |    -401760000
- 06-13-1957    |  1957 |     6 |  13 |       2 |    195 |      20 |          2 |    1957 |   24 |   4 |      4 | 164 | 2436003 |    -396144000
- 02-28-1996    |  1996 |     2 |  28 |       1 |    199 |      20 |          2 |    1996 |    9 |   3 |      3 |  59 | 2450142 |     825465600
- 02-29-1996    |  1996 |     2 |  29 |       1 |    199 |      20 |          2 |    1996 |    9 |   4 |      4 |  60 | 2450143 |     825552000
- 03-01-1996    |  1996 |     3 |   1 |       1 |    199 |      20 |          2 |    1996 |    9 |   5 |      5 |  61 | 2450144 |     825638400
- 03-02-1996    |  1996 |     3 |   2 |       1 |    199 |      20 |          2 |    1996 |    9 |   6 |      6 |  62 | 2450145 |     825724800
- 02-28-1997    |  1997 |     2 |  28 |       1 |    199 |      20 |          2 |    1997 |    9 |   5 |      5 |  59 | 2450508 |     857088000
- 03-01-1997    |  1997 |     3 |   1 |       1 |    199 |      20 |          2 |    1997 |    9 |   6 |      6 |  60 | 2450509 |     857174400
- 03-02-1997    |  1997 |     3 |   2 |       1 |    199 |      20 |          2 |    1997 |    9 |   0 |      7 |  61 | 2450510 |     857260800
- 04-01-2000    |  2000 |     4 |   1 |       2 |    200 |      20 |          2 |    2000 |   13 |   6 |      6 |  92 | 2451636 |     954547200
- 04-02-2000    |  2000 |     4 |   2 |       2 |    200 |      20 |          2 |    2000 |   13 |   0 |      7 |  93 | 2451637 |     954633600
- 04-03-2000    |  2000 |     4 |   3 |       2 |    200 |      20 |          2 |    2000 |   14 |   1 |      1 |  94 | 2451638 |     954720000
- 04-08-2038    |  2038 |     4 |   8 |       2 |    203 |      21 |          3 |    2038 |   14 |   4 |      4 |  98 | 2465522 |    2154297600
- 04-09-2039    |  2039 |     4 |   9 |       2 |    203 |      21 |          3 |    2039 |   14 |   6 |      6 |  99 | 2465888 |    2185920000
- 04-10-2040    |  2040 |     4 |  10 |       2 |    204 |      21 |          3 |    2040 |   15 |   2 |      2 | 101 | 2466255 |    2217628800
- 04-10-2040 BC | -2040 |     4 |  10 |       2 |   -204 |     -21 |         -3 |   -2040 |   15 |   1 |      1 | 100 |  976430 | -126503251200
+ 2040-04-10 BC | -2040 |     4 |  10 |       2 |   -204 |     -21 |         -3 |   -2040 |   15 |   1 |      1 | 100 |  976430 | -126503251200
+ 1957-04-09    |  1957 |     4 |   9 |       2 |    195 |      20 |          2 |    1957 |   15 |   2 |      2 |  99 | 2435938 |    -401760000
+ 1957-06-13    |  1957 |     6 |  13 |       2 |    195 |      20 |          2 |    1957 |   24 |   4 |      4 | 164 | 2436003 |    -396144000
+ 1996-02-28    |  1996 |     2 |  28 |       1 |    199 |      20 |          2 |    1996 |    9 |   3 |      3 |  59 | 2450142 |     825465600
+ 1996-02-29    |  1996 |     2 |  29 |       1 |    199 |      20 |          2 |    1996 |    9 |   4 |      4 |  60 | 2450143 |     825552000
+ 1996-03-01    |  1996 |     3 |   1 |       1 |    199 |      20 |          2 |    1996 |    9 |   5 |      5 |  61 | 2450144 |     825638400
+ 1996-03-02    |  1996 |     3 |   2 |       1 |    199 |      20 |          2 |    1996 |    9 |   6 |      6 |  62 | 2450145 |     825724800
+ 1997-02-28    |  1997 |     2 |  28 |       1 |    199 |      20 |          2 |    1997 |    9 |   5 |      5 |  59 | 2450508 |     857088000
+ 1997-03-01    |  1997 |     3 |   1 |       1 |    199 |      20 |          2 |    1997 |    9 |   6 |      6 |  60 | 2450509 |     857174400
+ 1997-03-02    |  1997 |     3 |   2 |       1 |    199 |      20 |          2 |    1997 |    9 |   0 |      7 |  61 | 2450510 |     857260800
+ 2000-04-01    |  2000 |     4 |   1 |       2 |    200 |      20 |          2 |    2000 |   13 |   6 |      6 |  92 | 2451636 |     954547200
+ 2000-04-02    |  2000 |     4 |   2 |       2 |    200 |      20 |          2 |    2000 |   13 |   0 |      7 |  93 | 2451637 |     954633600
+ 2000-04-03    |  2000 |     4 |   3 |       2 |    200 |      20 |          2 |    2000 |   14 |   1 |      1 |  94 | 2451638 |     954720000
+ 2038-04-08    |  2038 |     4 |   8 |       2 |    203 |      21 |          3 |    2038 |   14 |   4 |      4 |  98 | 2465522 |    2154297600
+ 2039-04-09    |  2039 |     4 |   9 |       2 |    203 |      21 |          3 |    2039 |   14 |   6 |      6 |  99 | 2465888 |    2185920000
+ 2040-04-10    |  2040 |     4 |  10 |       2 |    204 |      21 |          3 |    2040 |   15 |   2 |      2 | 101 | 2466255 |    2217628800
 (16 rows)
 
 --
@@ -1287,63 +1206,63 @@ SELECT EXTRACT(JULIAN        FROM DATE '2020-08-11');
 -- test trunc function!
 --
 SELECT DATE_TRUNC('MILLENNIUM', TIMESTAMP '1970-03-20 04:30:00.00000'); -- 1001
-        date_trunc        
---------------------------
- Thu Jan 01 00:00:00 1001
+     date_trunc      
+---------------------
+ 1001-01-01 00:00:00
 (1 row)
 
 SELECT DATE_TRUNC('MILLENNIUM', DATE '1970-03-20'); -- 1001-01-01
-          date_trunc          
-------------------------------
- Thu Jan 01 00:00:00 1001 PST
+       date_trunc       
+------------------------
+ 1001-01-01 00:00:00-08
 (1 row)
 
 SELECT DATE_TRUNC('CENTURY', TIMESTAMP '1970-03-20 04:30:00.00000'); -- 1901
-        date_trunc        
---------------------------
- Tue Jan 01 00:00:00 1901
+     date_trunc      
+---------------------
+ 1901-01-01 00:00:00
 (1 row)
 
 SELECT DATE_TRUNC('CENTURY', DATE '1970-03-20'); -- 1901
-          date_trunc          
-------------------------------
- Tue Jan 01 00:00:00 1901 PST
+       date_trunc       
+------------------------
+ 1901-01-01 00:00:00-08
 (1 row)
 
 SELECT DATE_TRUNC('CENTURY', DATE '2004-08-10'); -- 2001-01-01
-          date_trunc          
-------------------------------
- Mon Jan 01 00:00:00 2001 PST
+       date_trunc       
+------------------------
+ 2001-01-01 00:00:00-08
 (1 row)
 
 SELECT DATE_TRUNC('CENTURY', DATE '0002-02-04'); -- 0001-01-01
-          date_trunc          
-------------------------------
- Mon Jan 01 00:00:00 0001 PST
+       date_trunc       
+------------------------
+ 0001-01-01 00:00:00-08
 (1 row)
 
 SELECT DATE_TRUNC('CENTURY', DATE '0055-08-10 BC'); -- 0100-01-01 BC
-           date_trunc            
----------------------------------
- Tue Jan 01 00:00:00 0100 PST BC
+        date_trunc         
+---------------------------
+ 0100-01-01 00:00:00-08 BC
 (1 row)
 
 SELECT DATE_TRUNC('DECADE', DATE '1993-12-25'); -- 1990-01-01
-          date_trunc          
-------------------------------
- Mon Jan 01 00:00:00 1990 PST
+       date_trunc       
+------------------------
+ 1990-01-01 00:00:00-08
 (1 row)
 
 SELECT DATE_TRUNC('DECADE', DATE '0004-12-25'); -- 0001-01-01 BC
-           date_trunc            
----------------------------------
- Sat Jan 01 00:00:00 0001 PST BC
+        date_trunc         
+---------------------------
+ 0001-01-01 00:00:00-08 BC
 (1 row)
 
 SELECT DATE_TRUNC('DECADE', DATE '0002-12-31 BC'); -- 0011-01-01 BC
-           date_trunc            
----------------------------------
- Mon Jan 01 00:00:00 0011 PST BC
+        date_trunc         
+---------------------------
+ 0011-01-01 00:00:00-08 BC
 (1 row)
 
 --
@@ -1504,13 +1423,13 @@ ERROR:  unit "microsec" not recognized for type date
 select make_date(2013, 7, 15);
  make_date  
 ------------
- 07-15-2013
+ 2013-07-15
 (1 row)
 
 select make_date(-44, 3, 15);
    make_date   
 ---------------
- 03-15-0044 BC
+ 0044-03-15 BC
 (1 row)
 
 select make_time(8, 20, 0.0);
