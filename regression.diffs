@@ -1,6 +1,6 @@
 diff -U3 /home/longqimin/pg_regress_input/expected/boolean.out /home/longqimin/pg_regress_input/results/boolean.out
 --- /home/longqimin/pg_regress_input/expected/boolean.out	2024-03-08 18:23:43.232001070 +0800
-+++ /home/longqimin/pg_regress_input/results/boolean.out	2024-03-11 10:36:28.483691027 +0800
++++ /home/longqimin/pg_regress_input/results/boolean.out	2024-03-14 12:03:53.141875844 +0800
 @@ -136,11 +136,7 @@
  (1 row)
  
@@ -156,7 +156,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/boolean.out /home/longqimin/p
 +ERROR:  only support select and create table statement
 diff -U3 /home/longqimin/pg_regress_input/expected/int2.out /home/longqimin/pg_regress_input/results/int2.out
 --- /home/longqimin/pg_regress_input/expected/int2.out	2024-03-11 09:59:20.512914692 +0800
-+++ /home/longqimin/pg_regress_input/results/int2.out	2024-03-11 10:36:28.893691331 +0800
++++ /home/longqimin/pg_regress_input/results/int2.out	2024-03-14 12:03:53.560876140 +0800
 @@ -4,21 +4,21 @@
  -- int2_tbl was already created and filled in test_setup.sql.
  -- Here we just try to insert bad values.
@@ -481,8 +481,8 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int2.out /home/longqimin/pg_r
 -ERROR:  invalid input syntax for type smallint: "10__000"
 +ERROR:  invalid input syntax for type integer: "10__000"
 diff -U3 /home/longqimin/pg_regress_input/expected/int4.out /home/longqimin/pg_regress_input/results/int4.out
---- /home/longqimin/pg_regress_input/expected/int4.out	2024-03-11 10:23:25.344116417 +0800
-+++ /home/longqimin/pg_regress_input/results/int4.out	2024-03-11 10:36:29.481691767 +0800
+--- /home/longqimin/pg_regress_input/expected/int4.out	2024-03-11 11:46:21.656870844 +0800
++++ /home/longqimin/pg_regress_input/results/int4.out	2024-03-14 12:03:54.150876556 +0800
 @@ -49,11 +49,7 @@
  (1 row)
  
@@ -804,8 +804,8 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int4.out /home/longqimin/pg_r
  SELECT int4 '_100';
  ERROR:  invalid input syntax for type integer: "_100"
 diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_regress_input/results/int8.out
---- /home/longqimin/pg_regress_input/expected/int8.out	2024-03-11 10:23:25.344116417 +0800
-+++ /home/longqimin/pg_regress_input/results/int8.out	2024-03-11 10:36:30.772692724 +0800
+--- /home/longqimin/pg_regress_input/expected/int8.out	2024-03-11 11:46:21.657870845 +0800
++++ /home/longqimin/pg_regress_input/results/int8.out	2024-03-14 12:03:55.437877464 +0800
 @@ -5,19 +5,19 @@
  -- int8_tbl was already created and filled in test_setup.sql.
  -- Here we just try to insert bad values.
@@ -1597,8 +1597,8 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
 -ERROR:  invalid input syntax for type bigint: "100__000"
 +ERROR:  invalid input syntax for type integer: "100__000"
 diff -U3 /home/longqimin/pg_regress_input/expected/float4.out /home/longqimin/pg_regress_input/results/float4.out
---- /home/longqimin/pg_regress_input/expected/float4.out	2024-03-11 10:35:49.526662137 +0800
-+++ /home/longqimin/pg_regress_input/results/float4.out	2024-03-11 10:36:36.219696762 +0800
+--- /home/longqimin/pg_regress_input/expected/float4.out	2024-03-11 11:46:21.655870843 +0800
++++ /home/longqimin/pg_regress_input/results/float4.out	2024-03-14 12:04:00.898881316 +0800
 @@ -9,44 +9,44 @@
  INSERT INTO FLOAT4_TBL(f1) VALUES ('1.2345678901234e-20');
  -- test for over and under flow
@@ -2338,8 +2338,8 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float4.out /home/longqimin/pg
 -drop cascades to cast from integer to xfloat4
 +ERROR:  only support select and create table statement
 diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg_regress_input/results/float8.out
---- /home/longqimin/pg_regress_input/expected/float8.out	2024-03-11 10:28:43.947346998 +0800
-+++ /home/longqimin/pg_regress_input/results/float8.out	2024-03-11 10:36:41.731700848 +0800
+--- /home/longqimin/pg_regress_input/expected/float8.out	2024-03-11 11:46:21.656870844 +0800
++++ /home/longqimin/pg_regress_input/results/float8.out	2024-03-14 12:04:06.431885220 +0800
 @@ -6,6 +6,7 @@
  -- (This temporarily hides the table created in test_setup.sql)
  --
@@ -3796,104 +3796,26 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
 -drop cascades to cast from bigint to xfloat8
 +ERROR:  only support select and create table statement
 diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_regress_input/results/date.out
---- /home/longqimin/pg_regress_input/expected/date.out	2024-02-27 09:30:35.079460297 +0800
-+++ /home/longqimin/pg_regress_input/results/date.out	2024-03-11 10:36:59.294713870 +0800
-@@ -10,9 +10,6 @@
+--- /home/longqimin/pg_regress_input/expected/date.out	2024-03-14 10:57:23.067573786 +0800
++++ /home/longqimin/pg_regress_input/results/date.out	2024-03-14 12:04:23.294897116 +0800
+@@ -10,7 +10,7 @@
  INSERT INTO DATE_TBL VALUES ('1996-03-02');
  INSERT INTO DATE_TBL VALUES ('1997-02-28');
  INSERT INTO DATE_TBL VALUES ('1997-02-29');
 -ERROR:  date/time field value out of range: "1997-02-29"
--LINE 1: INSERT INTO DATE_TBL VALUES ('1997-02-29');
--                                     ^
++ERROR:  invalid input syntax for type date: "1997-02-29"
  INSERT INTO DATE_TBL VALUES ('1997-03-01');
  INSERT INTO DATE_TBL VALUES ('1997-03-02');
  INSERT INTO DATE_TBL VALUES ('2000-04-01');
-@@ -23,61 +20,61 @@
+@@ -21,6 +21,7 @@
  INSERT INTO DATE_TBL VALUES ('2040-04-10');
  INSERT INTO DATE_TBL VALUES ('2040-04-10 BC');
- SELECT f1 FROM DATE_TBL;
--      f1       
-----------------
-- 04-09-1957
-- 06-13-1957
-- 02-28-1996
-- 02-29-1996
-- 03-01-1996
-- 03-02-1996
-- 02-28-1997
-- 03-01-1997
-- 03-02-1997
-- 04-01-2000
-- 04-02-2000
-- 04-03-2000
-- 04-08-2038
-- 04-09-2039
-- 04-10-2040
-- 04-10-2040 BC
--(16 rows)
-+     f1      
-+-------------
-+ 2000-04-03
-+ 2038-04-08
-+ 1997-03-01
-+ 1996-03-02
-+ 1996-03-01
-+ 1996-02-29
-+ 1997-02-28
-+ -2039-04-10
-+ 1997-03-02
-+ 2000-04-01
-+ 2039-04-09
-+ 2000-04-02
-+ 1997-03-01
-+ 2040-04-10
-+ 1996-02-28
-+ 1957-06-13
-+ 1957-04-09
-+(17 rows)
- 
- SELECT f1 FROM DATE_TBL WHERE f1 < '2000-01-01';
--      f1       
-----------------
-- 04-09-1957
-- 06-13-1957
-- 02-28-1996
-- 02-29-1996
-- 03-01-1996
-- 03-02-1996
-- 02-28-1997
-- 03-01-1997
-- 03-02-1997
-- 04-10-2040 BC
--(10 rows)
-+     f1      
-+-------------
-+ 1957-06-13
-+ 1957-04-09
-+ 1996-03-01
-+ 1997-02-28
-+ -2039-04-10
-+ 1997-03-02
-+ 1996-02-29
-+ 1996-02-28
-+ 1997-03-01
-+ 1997-03-01
-+ 1996-03-02
-+(11 rows)
- 
- SELECT f1 FROM DATE_TBL
-   WHERE f1 BETWEEN '2000-01-01' AND '2001-01-01';
-      f1     
- ------------
-- 04-01-2000
-- 04-02-2000
-- 04-03-2000
-+ 2000-04-03
-+ 2000-04-02
-+ 2000-04-01
- (3 rows)
- 
- --
+ SET datestyle TO iso;  -- display results in ISO
++ERROR:  only support select and create table statement
+ SELECT f1 FROM DATE_TBL order by 1;
+       f1       
+ ---------------
+@@ -70,13 +71,11 @@
  -- Check all the documented input formats
  --
  SET datestyle TO iso;  -- display results in ISO
@@ -3906,27 +3828,21 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "January 8, 1999"
++ERROR:  invalid input syntax for type date: "January 8, 1999"
  SELECT date '1999-01-08';
      date    
  ------------
-@@ -91,61 +88,37 @@
+@@ -90,53 +89,37 @@
  (1 row)
  
  SELECT date '1/8/1999';
 -ERROR:  date/time field value out of range: "1/8/1999"
--LINE 1: SELECT date '1/8/1999';
--                    ^
 -HINT:  Perhaps you need a different "datestyle" setting.
 -SELECT date '1/18/1999';
 -ERROR:  date/time field value out of range: "1/18/1999"
--LINE 1: SELECT date '1/18/1999';
--                    ^
 -HINT:  Perhaps you need a different "datestyle" setting.
 -SELECT date '18/1/1999';
 -ERROR:  date/time field value out of range: "18/1/1999"
--LINE 1: SELECT date '18/1/1999';
--                    ^
 -HINT:  Perhaps you need a different "datestyle" setting.
 -SELECT date '01/02/03';
 -    date    
@@ -3957,129 +3873,109 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
  (1 row)
  
 +SELECT date '01/02/03';
-+ERROR:  invalid date literal: "01/02/03"
++ERROR:  invalid input syntax for type date: "01/02/03"
 +SELECT date '19990108';
-+ERROR:  invalid date literal: "19990108"
++ERROR:  invalid input syntax for type date: "19990108"
 +SELECT date '990108';
-+ERROR:  invalid date literal: "990108"
++ERROR:  invalid input syntax for type date: "990108"
 +SELECT date '1999.008';
-+ERROR:  invalid date literal: "1999.008"
++ERROR:  invalid input syntax for type date: "1999.008"
  SELECT date 'J2451187';
 -    date    
 -------------
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "J2451187"
++ERROR:  invalid input syntax for type date: "J2451187"
  SELECT date 'January 8, 99 BC';
 -ERROR:  date/time field value out of range: "January 8, 99 BC"
--LINE 1: SELECT date 'January 8, 99 BC';
--                    ^
 -HINT:  Perhaps you need a different "datestyle" setting.
-+ERROR:  invalid date literal: "January 8, 99 BC"
++ERROR:  invalid input syntax for type date: "January 8, 99 BC"
  SELECT date '99-Jan-08';
 -    date    
 -------------
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "99-Jan-08"
++ERROR:  invalid input syntax for type date: "99-Jan-08"
  SELECT date '1999-Jan-08';
      date    
  ------------
-@@ -153,10 +126,7 @@
+@@ -144,8 +127,7 @@
  (1 row)
  
  SELECT date '08-Jan-99';
 -ERROR:  date/time field value out of range: "08-Jan-99"
--LINE 1: SELECT date '08-Jan-99';
--                    ^
 -HINT:  Perhaps you need a different "datestyle" setting.
-+ERROR:  invalid date literal: "08-Jan-99"
++ERROR:  invalid input syntax for type date: "08-Jan-99"
  SELECT date '08-Jan-1999';
      date    
  ------------
-@@ -164,10 +134,7 @@
+@@ -153,8 +135,7 @@
  (1 row)
  
  SELECT date 'Jan-08-99';
 -ERROR:  date/time field value out of range: "Jan-08-99"
--LINE 1: SELECT date 'Jan-08-99';
--                    ^
 -HINT:  Perhaps you need a different "datestyle" setting.
-+ERROR:  invalid date literal: "Jan-08-99"
++ERROR:  invalid input syntax for type date: "Jan-08-99"
  SELECT date 'Jan-08-1999';
      date    
  ------------
-@@ -175,97 +142,51 @@
- (1 row)
- 
- SELECT date '99-08-Jan';
--ERROR:  invalid input syntax for type date: "99-08-Jan"
--LINE 1: SELECT date '99-08-Jan';
--                    ^
-+ERROR:  invalid date literal: "99-08-Jan"
+@@ -166,77 +147,47 @@
  SELECT date '1999-08-Jan';
--ERROR:  invalid input syntax for type date: "1999-08-Jan"
--LINE 1: SELECT date '1999-08-Jan';
--                    ^
-+ERROR:  invalid date literal: "1999-08-Jan"
+ ERROR:  invalid input syntax for type date: "1999-08-Jan"
  SELECT date '99 Jan 08';
 -    date    
 -------------
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "99 Jan 08"
++ERROR:  invalid input syntax for type date: "99 Jan 08"
  SELECT date '1999 Jan 08';
 -    date    
 -------------
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "1999 Jan 08"
++ERROR:  invalid input syntax for type date: "1999 Jan 08"
  SELECT date '08 Jan 99';
 -ERROR:  date/time field value out of range: "08 Jan 99"
--LINE 1: SELECT date '08 Jan 99';
--                    ^
 -HINT:  Perhaps you need a different "datestyle" setting.
-+ERROR:  invalid date literal: "08 Jan 99"
++ERROR:  invalid input syntax for type date: "08 Jan 99"
  SELECT date '08 Jan 1999';
 -    date    
 -------------
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "08 Jan 1999"
++ERROR:  invalid input syntax for type date: "08 Jan 1999"
  SELECT date 'Jan 08 99';
 -ERROR:  date/time field value out of range: "Jan 08 99"
--LINE 1: SELECT date 'Jan 08 99';
--                    ^
 -HINT:  Perhaps you need a different "datestyle" setting.
-+ERROR:  invalid date literal: "Jan 08 99"
++ERROR:  invalid input syntax for type date: "Jan 08 99"
  SELECT date 'Jan 08 1999';
 -    date    
 -------------
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "Jan 08 1999"
++ERROR:  invalid input syntax for type date: "Jan 08 1999"
  SELECT date '99 08 Jan';
 -    date    
 -------------
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "99 08 Jan"
++ERROR:  invalid input syntax for type date: "99 08 Jan"
  SELECT date '1999 08 Jan';
 -    date    
 -------------
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "1999 08 Jan"
++ERROR:  invalid input syntax for type date: "1999 08 Jan"
  SELECT date '99-01-08';
-+ERROR:  invalid date literal: "99-01-08"
++ERROR:  invalid input syntax for type date: "99-01-08"
 +SELECT date '1999-01-08';
      date    
  ------------
@@ -4088,7 +3984,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
  
 -SELECT date '1999-01-08';
 +SELECT date '08-01-99';
-+ERROR:  invalid date literal: "08-01-99"
++ERROR:  invalid input syntax for type date: "08-01-99"
 +SELECT date '08-01-1999';
      date    
  ------------
@@ -4098,24 +3994,16 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
  
 -SELECT date '08-01-99';
 -ERROR:  date/time field value out of range: "08-01-99"
--LINE 1: SELECT date '08-01-99';
--                    ^
 -HINT:  Perhaps you need a different "datestyle" setting.
 -SELECT date '08-01-1999';
 -ERROR:  date/time field value out of range: "08-01-1999"
--LINE 1: SELECT date '08-01-1999';
--                    ^
 -HINT:  Perhaps you need a different "datestyle" setting.
  SELECT date '01-08-99';
 -ERROR:  date/time field value out of range: "01-08-99"
--LINE 1: SELECT date '01-08-99';
--                    ^
 -HINT:  Perhaps you need a different "datestyle" setting.
-+ERROR:  invalid date literal: "01-08-99"
++ERROR:  invalid input syntax for type date: "01-08-99"
  SELECT date '01-08-1999';
 -ERROR:  date/time field value out of range: "01-08-1999"
--LINE 1: SELECT date '01-08-1999';
--                    ^
 -HINT:  Perhaps you need a different "datestyle" setting.
 -SELECT date '99-08-01';
      date    
@@ -4125,11 +4013,11 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
  (1 row)
  
 +SELECT date '99-08-01';
-+ERROR:  invalid date literal: "99-08-01"
++ERROR:  invalid input syntax for type date: "99-08-01"
  SELECT date '1999-08-01';
      date    
  ------------
-@@ -273,56 +194,25 @@
+@@ -244,48 +195,25 @@
  (1 row)
  
  SELECT date '99 01 08';
@@ -4138,52 +4026,44 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "99 01 08"
++ERROR:  invalid input syntax for type date: "99 01 08"
  SELECT date '1999 01 08';
 -    date    
 -------------
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "1999 01 08"
++ERROR:  invalid input syntax for type date: "1999 01 08"
  SELECT date '08 01 99';
 -ERROR:  date/time field value out of range: "08 01 99"
--LINE 1: SELECT date '08 01 99';
--                    ^
 -HINT:  Perhaps you need a different "datestyle" setting.
-+ERROR:  invalid date literal: "08 01 99"
++ERROR:  invalid input syntax for type date: "08 01 99"
  SELECT date '08 01 1999';
 -ERROR:  date/time field value out of range: "08 01 1999"
--LINE 1: SELECT date '08 01 1999';
--                    ^
 -HINT:  Perhaps you need a different "datestyle" setting.
-+ERROR:  invalid date literal: "08 01 1999"
++ERROR:  invalid input syntax for type date: "08 01 1999"
  SELECT date '01 08 99';
 -ERROR:  date/time field value out of range: "01 08 99"
--LINE 1: SELECT date '01 08 99';
--                    ^
 -HINT:  Perhaps you need a different "datestyle" setting.
-+ERROR:  invalid date literal: "01 08 99"
++ERROR:  invalid input syntax for type date: "01 08 99"
  SELECT date '01 08 1999';
 -ERROR:  date/time field value out of range: "01 08 1999"
--LINE 1: SELECT date '01 08 1999';
--                    ^
 -HINT:  Perhaps you need a different "datestyle" setting.
-+ERROR:  invalid date literal: "01 08 1999"
++ERROR:  invalid input syntax for type date: "01 08 1999"
  SELECT date '99 08 01';
 -    date    
 -------------
 - 1999-08-01
 -(1 row)
 -
-+ERROR:  invalid date literal: "99 08 01"
++ERROR:  invalid input syntax for type date: "99 08 01"
  SELECT date '1999 08 01';
 -    date    
 -------------
 - 1999-08-01
 -(1 row)
 -
-+ERROR:  invalid date literal: "1999 08 01"
++ERROR:  invalid input syntax for type date: "1999 08 01"
  SET datestyle TO dmy;
 +ERROR:  only support select and create table statement
  SELECT date 'January 8, 1999';
@@ -4192,11 +4072,11 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "January 8, 1999"
++ERROR:  invalid input syntax for type date: "January 8, 1999"
  SELECT date '1999-01-08';
      date    
  ------------
-@@ -338,61 +228,35 @@
+@@ -301,57 +229,35 @@
  SELECT date '1/8/1999';
      date    
  ------------
@@ -4206,8 +4086,6 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
  
  SELECT date '1/18/1999';
 -ERROR:  date/time field value out of range: "1/18/1999"
--LINE 1: SELECT date '1/18/1999';
--                    ^
 -HINT:  Perhaps you need a different "datestyle" setting.
 -SELECT date '18/1/1999';
      date    
@@ -4224,52 +4102,50 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
  (1 row)
  
 +SELECT date '01/02/03';
-+ERROR:  invalid date literal: "01/02/03"
++ERROR:  invalid input syntax for type date: "01/02/03"
  SELECT date '19990108';
 -    date    
 -------------
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "19990108"
++ERROR:  invalid input syntax for type date: "19990108"
  SELECT date '990108';
 -    date    
 -------------
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "990108"
++ERROR:  invalid input syntax for type date: "990108"
  SELECT date '1999.008';
 -    date    
 -------------
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "1999.008"
++ERROR:  invalid input syntax for type date: "1999.008"
  SELECT date 'J2451187';
 -    date    
 -------------
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "J2451187"
++ERROR:  invalid input syntax for type date: "J2451187"
  SELECT date 'January 8, 99 BC';
 -     date      
 ----------------
 - 0099-01-08 BC
 -(1 row)
 -
-+ERROR:  invalid date literal: "January 8, 99 BC"
++ERROR:  invalid input syntax for type date: "January 8, 99 BC"
  SELECT date '99-Jan-08';
 -ERROR:  date/time field value out of range: "99-Jan-08"
--LINE 1: SELECT date '99-Jan-08';
--                    ^
 -HINT:  Perhaps you need a different "datestyle" setting.
-+ERROR:  invalid date literal: "99-Jan-08"
++ERROR:  invalid input syntax for type date: "99-Jan-08"
  SELECT date '1999-Jan-08';
      date    
  ------------
-@@ -400,11 +264,7 @@
+@@ -359,11 +265,7 @@
  (1 row)
  
  SELECT date '08-Jan-99';
@@ -4278,11 +4154,11 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "08-Jan-99"
++ERROR:  invalid input syntax for type date: "08-Jan-99"
  SELECT date '08-Jan-1999';
      date    
  ------------
-@@ -412,11 +272,7 @@
+@@ -371,11 +273,7 @@
  (1 row)
  
  SELECT date 'Jan-08-99';
@@ -4291,86 +4167,69 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "Jan-08-99"
++ERROR:  invalid input syntax for type date: "Jan-08-99"
  SELECT date 'Jan-08-1999';
      date    
  ------------
-@@ -424,63 +280,27 @@
- (1 row)
- 
- SELECT date '99-08-Jan';
--ERROR:  invalid input syntax for type date: "99-08-Jan"
--LINE 1: SELECT date '99-08-Jan';
--                    ^
-+ERROR:  invalid date literal: "99-08-Jan"
+@@ -387,49 +285,23 @@
  SELECT date '1999-08-Jan';
--ERROR:  invalid input syntax for type date: "1999-08-Jan"
--LINE 1: SELECT date '1999-08-Jan';
--                    ^
-+ERROR:  invalid date literal: "1999-08-Jan"
+ ERROR:  invalid input syntax for type date: "1999-08-Jan"
  SELECT date '99 Jan 08';
 -ERROR:  date/time field value out of range: "99 Jan 08"
--LINE 1: SELECT date '99 Jan 08';
--                    ^
 -HINT:  Perhaps you need a different "datestyle" setting.
-+ERROR:  invalid date literal: "99 Jan 08"
++ERROR:  invalid input syntax for type date: "99 Jan 08"
  SELECT date '1999 Jan 08';
 -    date    
 -------------
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "1999 Jan 08"
++ERROR:  invalid input syntax for type date: "1999 Jan 08"
  SELECT date '08 Jan 99';
 -    date    
 -------------
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "08 Jan 99"
++ERROR:  invalid input syntax for type date: "08 Jan 99"
  SELECT date '08 Jan 1999';
 -    date    
 -------------
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "08 Jan 1999"
++ERROR:  invalid input syntax for type date: "08 Jan 1999"
  SELECT date 'Jan 08 99';
 -    date    
 -------------
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "Jan 08 99"
++ERROR:  invalid input syntax for type date: "Jan 08 99"
  SELECT date 'Jan 08 1999';
 -    date    
 -------------
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "Jan 08 1999"
++ERROR:  invalid input syntax for type date: "Jan 08 1999"
  SELECT date '99 08 Jan';
--ERROR:  invalid input syntax for type date: "99 08 Jan"
--LINE 1: SELECT date '99 08 Jan';
--                    ^
-+ERROR:  invalid date literal: "99 08 Jan"
+ ERROR:  invalid input syntax for type date: "99 08 Jan"
  SELECT date '1999 08 Jan';
 -    date    
 -------------
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "1999 08 Jan"
++ERROR:  invalid input syntax for type date: "1999 08 Jan"
  SELECT date '99-01-08';
 -ERROR:  date/time field value out of range: "99-01-08"
--LINE 1: SELECT date '99-01-08';
--                    ^
 -HINT:  Perhaps you need a different "datestyle" setting.
-+ERROR:  invalid date literal: "99-01-08"
++ERROR:  invalid input syntax for type date: "99-01-08"
  SELECT date '1999-01-08';
      date    
  ------------
-@@ -488,34 +308,23 @@
+@@ -437,32 +309,23 @@
  (1 row)
  
  SELECT date '08-01-99';
@@ -4379,7 +4238,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "08-01-99"
++ERROR:  invalid input syntax for type date: "08-01-99"
  SELECT date '08-01-1999';
      date    
  ------------
@@ -4393,7 +4252,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
  (1 row)
  
 +SELECT date '01-08-99';
-+ERROR:  invalid date literal: "01-08-99"
++ERROR:  invalid input syntax for type date: "01-08-99"
  SELECT date '01-08-1999';
      date    
  ------------
@@ -4403,70 +4262,64 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
  
  SELECT date '99-08-01';
 -ERROR:  date/time field value out of range: "99-08-01"
--LINE 1: SELECT date '99-08-01';
--                    ^
 -HINT:  Perhaps you need a different "datestyle" setting.
-+ERROR:  invalid date literal: "99-08-01"
++ERROR:  invalid input syntax for type date: "99-08-01"
  SELECT date '1999-08-01';
      date    
  ------------
-@@ -523,58 +332,25 @@
+@@ -470,54 +333,25 @@
  (1 row)
  
  SELECT date '99 01 08';
 -ERROR:  date/time field value out of range: "99 01 08"
--LINE 1: SELECT date '99 01 08';
--                    ^
 -HINT:  Perhaps you need a different "datestyle" setting.
-+ERROR:  invalid date literal: "99 01 08"
++ERROR:  invalid input syntax for type date: "99 01 08"
  SELECT date '1999 01 08';
 -    date    
 -------------
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "1999 01 08"
++ERROR:  invalid input syntax for type date: "1999 01 08"
  SELECT date '08 01 99';
 -    date    
 -------------
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "08 01 99"
++ERROR:  invalid input syntax for type date: "08 01 99"
  SELECT date '08 01 1999';
 -    date    
 -------------
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "08 01 1999"
++ERROR:  invalid input syntax for type date: "08 01 1999"
  SELECT date '01 08 99';
 -    date    
 -------------
 - 1999-08-01
 -(1 row)
 -
-+ERROR:  invalid date literal: "01 08 99"
++ERROR:  invalid input syntax for type date: "01 08 99"
  SELECT date '01 08 1999';
 -    date    
 -------------
 - 1999-08-01
 -(1 row)
 -
-+ERROR:  invalid date literal: "01 08 1999"
++ERROR:  invalid input syntax for type date: "01 08 1999"
  SELECT date '99 08 01';
 -ERROR:  date/time field value out of range: "99 08 01"
--LINE 1: SELECT date '99 08 01';
--                    ^
 -HINT:  Perhaps you need a different "datestyle" setting.
-+ERROR:  invalid date literal: "99 08 01"
++ERROR:  invalid input syntax for type date: "99 08 01"
  SELECT date '1999 08 01';
 -    date    
 -------------
 - 1999-08-01
 -(1 row)
 -
-+ERROR:  invalid date literal: "1999 08 01"
++ERROR:  invalid input syntax for type date: "1999 08 01"
  SET datestyle TO mdy;
 +ERROR:  only support select and create table statement
  SELECT date 'January 8, 1999';
@@ -4475,17 +4328,15 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "January 8, 1999"
++ERROR:  invalid input syntax for type date: "January 8, 1999"
  SELECT date '1999-01-08';
      date    
  ------------
-@@ -600,51 +376,25 @@
+@@ -543,47 +377,25 @@
  (1 row)
  
  SELECT date '18/1/1999';
 -ERROR:  date/time field value out of range: "18/1/1999"
--LINE 1: SELECT date '18/1/1999';
--                    ^
 -HINT:  Perhaps you need a different "datestyle" setting.
 -SELECT date '01/02/03';
      date    
@@ -4495,52 +4346,50 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
  (1 row)
  
 +SELECT date '01/02/03';
-+ERROR:  invalid date literal: "01/02/03"
++ERROR:  invalid input syntax for type date: "01/02/03"
  SELECT date '19990108';
 -    date    
 -------------
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "19990108"
++ERROR:  invalid input syntax for type date: "19990108"
  SELECT date '990108';
 -    date    
 -------------
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "990108"
++ERROR:  invalid input syntax for type date: "990108"
  SELECT date '1999.008';
 -    date    
 -------------
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "1999.008"
++ERROR:  invalid input syntax for type date: "1999.008"
  SELECT date 'J2451187';
 -    date    
 -------------
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "J2451187"
++ERROR:  invalid input syntax for type date: "J2451187"
  SELECT date 'January 8, 99 BC';
 -     date      
 ----------------
 - 0099-01-08 BC
 -(1 row)
 -
-+ERROR:  invalid date literal: "January 8, 99 BC"
++ERROR:  invalid input syntax for type date: "January 8, 99 BC"
  SELECT date '99-Jan-08';
 -ERROR:  date/time field value out of range: "99-Jan-08"
--LINE 1: SELECT date '99-Jan-08';
--                    ^
 -HINT:  Perhaps you need a different "datestyle" setting.
-+ERROR:  invalid date literal: "99-Jan-08"
++ERROR:  invalid input syntax for type date: "99-Jan-08"
  SELECT date '1999-Jan-08';
      date    
  ------------
-@@ -652,11 +402,7 @@
+@@ -591,11 +403,7 @@
  (1 row)
  
  SELECT date '08-Jan-99';
@@ -4549,11 +4398,11 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "08-Jan-99"
++ERROR:  invalid input syntax for type date: "08-Jan-99"
  SELECT date '08-Jan-1999';
      date    
  ------------
-@@ -664,11 +410,7 @@
+@@ -603,11 +411,7 @@
  (1 row)
  
  SELECT date 'Jan-08-99';
@@ -4562,85 +4411,65 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "Jan-08-99"
++ERROR:  invalid input syntax for type date: "Jan-08-99"
  SELECT date 'Jan-08-1999';
      date    
  ------------
-@@ -676,62 +418,27 @@
- (1 row)
- 
- SELECT date '99-08-Jan';
--ERROR:  invalid input syntax for type date: "99-08-Jan"
--LINE 1: SELECT date '99-08-Jan';
--                    ^
-+ERROR:  invalid date literal: "99-08-Jan"
- SELECT date '1999-08-Jan';
--ERROR:  invalid input syntax for type date: "1999-08-Jan"
--LINE 1: SELECT date '1999-08-Jan';
--                    ^
-+ERROR:  invalid date literal: "1999-08-Jan"
+@@ -621,46 +425,21 @@
  SELECT date '99 Jan 08';
--ERROR:  invalid input syntax for type date: "99 Jan 08"
--LINE 1: SELECT date '99 Jan 08';
--                    ^
-+ERROR:  invalid date literal: "99 Jan 08"
+ ERROR:  invalid input syntax for type date: "99 Jan 08"
  SELECT date '1999 Jan 08';
 -    date    
 -------------
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "1999 Jan 08"
++ERROR:  invalid input syntax for type date: "1999 Jan 08"
  SELECT date '08 Jan 99';
 -    date    
 -------------
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "08 Jan 99"
++ERROR:  invalid input syntax for type date: "08 Jan 99"
  SELECT date '08 Jan 1999';
 -    date    
 -------------
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "08 Jan 1999"
++ERROR:  invalid input syntax for type date: "08 Jan 1999"
  SELECT date 'Jan 08 99';
 -    date    
 -------------
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "Jan 08 99"
++ERROR:  invalid input syntax for type date: "Jan 08 99"
  SELECT date 'Jan 08 1999';
 -    date    
 -------------
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "Jan 08 1999"
++ERROR:  invalid input syntax for type date: "Jan 08 1999"
  SELECT date '99 08 Jan';
--ERROR:  invalid input syntax for type date: "99 08 Jan"
--LINE 1: SELECT date '99 08 Jan';
--                    ^
-+ERROR:  invalid date literal: "99 08 Jan"
+ ERROR:  invalid input syntax for type date: "99 08 Jan"
  SELECT date '1999 08 Jan';
 -    date    
 -------------
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "1999 08 Jan"
++ERROR:  invalid input syntax for type date: "1999 08 Jan"
  SELECT date '99-01-08';
 -ERROR:  date/time field value out of range: "99-01-08"
--LINE 1: SELECT date '99-01-08';
--                    ^
 -HINT:  Perhaps you need a different "datestyle" setting.
-+ERROR:  invalid date literal: "99-01-08"
++ERROR:  invalid input syntax for type date: "99-01-08"
  SELECT date '1999-01-08';
      date    
  ------------
-@@ -739,11 +446,7 @@
+@@ -668,11 +447,7 @@
  (1 row)
  
  SELECT date '08-01-99';
@@ -4649,11 +4478,11 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 - 1999-08-01
 -(1 row)
 -
-+ERROR:  invalid date literal: "08-01-99"
++ERROR:  invalid input syntax for type date: "08-01-99"
  SELECT date '08-01-1999';
      date    
  ------------
-@@ -751,11 +454,7 @@
+@@ -680,11 +455,7 @@
  (1 row)
  
  SELECT date '01-08-99';
@@ -4662,109 +4491,93 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "01-08-99"
++ERROR:  invalid input syntax for type date: "01-08-99"
  SELECT date '01-08-1999';
      date    
  ------------
-@@ -763,10 +462,7 @@
+@@ -692,8 +463,7 @@
  (1 row)
  
  SELECT date '99-08-01';
 -ERROR:  date/time field value out of range: "99-08-01"
--LINE 1: SELECT date '99-08-01';
--                    ^
 -HINT:  Perhaps you need a different "datestyle" setting.
-+ERROR:  invalid date literal: "99-08-01"
++ERROR:  invalid input syntax for type date: "99-08-01"
  SELECT date '1999-08-01';
      date    
  ------------
-@@ -774,77 +470,43 @@
+@@ -701,47 +471,21 @@
  (1 row)
  
  SELECT date '99 01 08';
 -ERROR:  date/time field value out of range: "99 01 08"
--LINE 1: SELECT date '99 01 08';
--                    ^
 -HINT:  Perhaps you need a different "datestyle" setting.
-+ERROR:  invalid date literal: "99 01 08"
++ERROR:  invalid input syntax for type date: "99 01 08"
  SELECT date '1999 01 08';
 -    date    
 -------------
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "1999 01 08"
++ERROR:  invalid input syntax for type date: "1999 01 08"
  SELECT date '08 01 99';
 -    date    
 -------------
 - 1999-08-01
 -(1 row)
 -
-+ERROR:  invalid date literal: "08 01 99"
++ERROR:  invalid input syntax for type date: "08 01 99"
  SELECT date '08 01 1999';
 -    date    
 -------------
 - 1999-08-01
 -(1 row)
 -
-+ERROR:  invalid date literal: "08 01 1999"
++ERROR:  invalid input syntax for type date: "08 01 1999"
  SELECT date '01 08 99';
 -    date    
 -------------
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "01 08 99"
++ERROR:  invalid input syntax for type date: "01 08 99"
  SELECT date '01 08 1999';
 -    date    
 -------------
 - 1999-01-08
 -(1 row)
 -
-+ERROR:  invalid date literal: "01 08 1999"
++ERROR:  invalid input syntax for type date: "01 08 1999"
  SELECT date '99 08 01';
 -ERROR:  date/time field value out of range: "99 08 01"
--LINE 1: SELECT date '99 08 01';
--                    ^
 -HINT:  Perhaps you need a different "datestyle" setting.
-+ERROR:  invalid date literal: "99 08 01"
++ERROR:  invalid input syntax for type date: "99 08 01"
  SELECT date '1999 08 01';
 -    date    
 -------------
 - 1999-08-01
 -(1 row)
 -
-+ERROR:  invalid date literal: "1999 08 01"
++ERROR:  invalid input syntax for type date: "1999 08 01"
  -- Check upper and lower limits of date range
  SELECT date '4714-11-24 BC';
--     date      
-----------------
-- 4714-11-24 BC
-+    date     
-+-------------
-+ -4713-11-24
+      date      
+@@ -750,20 +494,20 @@
  (1 row)
  
  SELECT date '4714-11-23 BC';  -- out of range
 -ERROR:  date out of range: "4714-11-23 BC"
--LINE 1: SELECT date '4714-11-23 BC';
--                    ^
 -SELECT date '5874897-12-31';
--     date      
-----------------
+      date      
+ ---------------
 - 5874897-12-31
-+    date     
-+-------------
-+ -4713-11-23
++ 4714-11-23 BC
  (1 row)
  
 +SELECT date '5874897-12-31';
-+ERROR:  invalid date literal: "5874897-12-31"
++ERROR:  invalid input syntax for type date: "5874897-12-31"
  SELECT date '5874898-01-01';  -- out of range
 -ERROR:  date out of range: "5874898-01-01"
--LINE 1: SELECT date '5874898-01-01';
--                    ^
-+ERROR:  invalid date literal: "5874898-01-01"
++ERROR:  invalid input syntax for type date: "5874898-01-01"
  -- Test non-error-throwing API
  SELECT pg_input_is_valid('now', 'date');
   pg_input_is_valid 
@@ -4774,7 +4587,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
  (1 row)
  
  SELECT pg_input_is_valid('garbage', 'date');
-@@ -860,100 +522,31 @@
+@@ -779,18 +523,11 @@
  (1 row)
  
  SELECT * FROM pg_input_error_info('garbage', 'date');
@@ -4791,15 +4604,16 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 -(1 row)
 -
 +ERROR:  function pg_input_error_info does not exist
- RESET datestyle;
+ SET datestyle TO iso;  -- display results in ISO
 +ERROR:  only support select and create table statement
  --
  -- Simple math
  -- Leave most of it for the horology tests
- --
- SELECT f1 - date '2000-01-01' AS "Days From 2K" FROM DATE_TBL;
-- Days From 2K 
----------------
+@@ -798,81 +535,38 @@
+ SELECT f1 - date '2000-01-01' AS "Days From 2K" FROM DATE_TBL order by 1;
+  Days From 2K 
+ --------------
+-     -1475115
 -       -15607
 -       -15542
 -        -1403
@@ -4815,13 +4629,28 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 -        13977
 -        14343
 -        14710
--     -1475115
--(16 rows)
--
-+ERROR:  operator does not exist: Date SUB Date
- SELECT f1 - date 'epoch' AS "Days From Epoch" FROM DATE_TBL;
++ -1475115 day
++ -15607 day
++ -15542 day
++ -1403 day
++ -1402 day
++ -1401 day
++ -1400 day
++ -1037 day
++ -1036 day
++ -1035 day
++ 91 day
++ 92 day
++ 93 day
++ 13977 day
++ 14343 day
++ 14710 day
+ (16 rows)
+ 
+ SELECT f1 - date 'epoch' AS "Days From Epoch" FROM DATE_TBL order by 1;
 - Days From Epoch 
 ------------------
+-        -1464158
 -           -4650
 -           -4585
 -            9554
@@ -4837,80 +4666,79 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 -           24934
 -           25300
 -           25667
--        -1464158
 -(16 rows)
 -
-+ERROR:  invalid date literal: "epoch"
++ERROR:  invalid input syntax for type date: "epoch"
  SELECT date 'yesterday' - date 'today' AS "One day";
 - One day 
 ----------
 -      -1
 -(1 row)
 -
-+ERROR:  invalid date literal: "yesterday"
++ERROR:  invalid input syntax for type date: "yesterday"
  SELECT date 'today' - date 'tomorrow' AS "One day";
 - One day 
 ----------
 -      -1
 -(1 row)
 -
-+ERROR:  invalid date literal: "today"
++ERROR:  invalid input syntax for type date: "today"
  SELECT date 'yesterday' - date 'tomorrow' AS "Two days";
 - Two days 
 -----------
 -       -2
 -(1 row)
 -
-+ERROR:  invalid date literal: "yesterday"
++ERROR:  invalid input syntax for type date: "yesterday"
  SELECT date 'tomorrow' - date 'today' AS "One day";
 - One day 
 ----------
 -       1
 -(1 row)
 -
-+ERROR:  invalid date literal: "tomorrow"
++ERROR:  invalid input syntax for type date: "tomorrow"
  SELECT date 'today' - date 'yesterday' AS "One day";
 - One day 
 ----------
 -       1
 -(1 row)
 -
-+ERROR:  invalid date literal: "today"
++ERROR:  invalid input syntax for type date: "today"
  SELECT date 'tomorrow' - date 'yesterday' AS "Two days";
 - Two days 
 -----------
 -        2
 -(1 row)
 -
-+ERROR:  invalid date literal: "tomorrow"
++ERROR:  invalid input syntax for type date: "tomorrow"
  --
  -- test extract!
  --
-@@ -973,562 +566,227 @@
+@@ -892,35 +586,12 @@
      date_part('julian', f1) AS julian,
      date_part('epoch', f1) AS epoch
-     FROM date_tbl;
+     FROM date_tbl order by 1;
 -     date      | year  | month | day | quarter | decade | century | millennium | isoyear | week | dow | isodow | doy | julian  |     epoch     
 ----------------+-------+-------+-----+---------+--------+---------+------------+---------+------+-----+--------+-----+---------+---------------
-- 04-09-1957    |  1957 |     4 |   9 |       2 |    195 |      20 |          2 |    1957 |   15 |   2 |      2 |  99 | 2435938 |    -401760000
-- 06-13-1957    |  1957 |     6 |  13 |       2 |    195 |      20 |          2 |    1957 |   24 |   4 |      4 | 164 | 2436003 |    -396144000
-- 02-28-1996    |  1996 |     2 |  28 |       1 |    199 |      20 |          2 |    1996 |    9 |   3 |      3 |  59 | 2450142 |     825465600
-- 02-29-1996    |  1996 |     2 |  29 |       1 |    199 |      20 |          2 |    1996 |    9 |   4 |      4 |  60 | 2450143 |     825552000
-- 03-01-1996    |  1996 |     3 |   1 |       1 |    199 |      20 |          2 |    1996 |    9 |   5 |      5 |  61 | 2450144 |     825638400
-- 03-02-1996    |  1996 |     3 |   2 |       1 |    199 |      20 |          2 |    1996 |    9 |   6 |      6 |  62 | 2450145 |     825724800
-- 02-28-1997    |  1997 |     2 |  28 |       1 |    199 |      20 |          2 |    1997 |    9 |   5 |      5 |  59 | 2450508 |     857088000
-- 03-01-1997    |  1997 |     3 |   1 |       1 |    199 |      20 |          2 |    1997 |    9 |   6 |      6 |  60 | 2450509 |     857174400
-- 03-02-1997    |  1997 |     3 |   2 |       1 |    199 |      20 |          2 |    1997 |    9 |   0 |      7 |  61 | 2450510 |     857260800
-- 04-01-2000    |  2000 |     4 |   1 |       2 |    200 |      20 |          2 |    2000 |   13 |   6 |      6 |  92 | 2451636 |     954547200
-- 04-02-2000    |  2000 |     4 |   2 |       2 |    200 |      20 |          2 |    2000 |   13 |   0 |      7 |  93 | 2451637 |     954633600
-- 04-03-2000    |  2000 |     4 |   3 |       2 |    200 |      20 |          2 |    2000 |   14 |   1 |      1 |  94 | 2451638 |     954720000
-- 04-08-2038    |  2038 |     4 |   8 |       2 |    203 |      21 |          3 |    2038 |   14 |   4 |      4 |  98 | 2465522 |    2154297600
-- 04-09-2039    |  2039 |     4 |   9 |       2 |    203 |      21 |          3 |    2039 |   14 |   6 |      6 |  99 | 2465888 |    2185920000
-- 04-10-2040    |  2040 |     4 |  10 |       2 |    204 |      21 |          3 |    2040 |   15 |   2 |      2 | 101 | 2466255 |    2217628800
-- 04-10-2040 BC | -2040 |     4 |  10 |       2 |   -204 |     -21 |         -3 |   -2040 |   15 |   1 |      1 | 100 |  976430 | -126503251200
+- 2040-04-10 BC | -2040 |     4 |  10 |       2 |   -204 |     -21 |         -3 |   -2040 |   15 |   1 |      1 | 100 |  976430 | -126503251200
+- 1957-04-09    |  1957 |     4 |   9 |       2 |    195 |      20 |          2 |    1957 |   15 |   2 |      2 |  99 | 2435938 |    -401760000
+- 1957-06-13    |  1957 |     6 |  13 |       2 |    195 |      20 |          2 |    1957 |   24 |   4 |      4 | 164 | 2436003 |    -396144000
+- 1996-02-28    |  1996 |     2 |  28 |       1 |    199 |      20 |          2 |    1996 |    9 |   3 |      3 |  59 | 2450142 |     825465600
+- 1996-02-29    |  1996 |     2 |  29 |       1 |    199 |      20 |          2 |    1996 |    9 |   4 |      4 |  60 | 2450143 |     825552000
+- 1996-03-01    |  1996 |     3 |   1 |       1 |    199 |      20 |          2 |    1996 |    9 |   5 |      5 |  61 | 2450144 |     825638400
+- 1996-03-02    |  1996 |     3 |   2 |       1 |    199 |      20 |          2 |    1996 |    9 |   6 |      6 |  62 | 2450145 |     825724800
+- 1997-02-28    |  1997 |     2 |  28 |       1 |    199 |      20 |          2 |    1997 |    9 |   5 |      5 |  59 | 2450508 |     857088000
+- 1997-03-01    |  1997 |     3 |   1 |       1 |    199 |      20 |          2 |    1997 |    9 |   6 |      6 |  60 | 2450509 |     857174400
+- 1997-03-02    |  1997 |     3 |   2 |       1 |    199 |      20 |          2 |    1997 |    9 |   0 |      7 |  61 | 2450510 |     857260800
+- 2000-04-01    |  2000 |     4 |   1 |       2 |    200 |      20 |          2 |    2000 |   13 |   6 |      6 |  92 | 2451636 |     954547200
+- 2000-04-02    |  2000 |     4 |   2 |       2 |    200 |      20 |          2 |    2000 |   13 |   0 |      7 |  93 | 2451637 |     954633600
+- 2000-04-03    |  2000 |     4 |   3 |       2 |    200 |      20 |          2 |    2000 |   14 |   1 |      1 |  94 | 2451638 |     954720000
+- 2038-04-08    |  2038 |     4 |   8 |       2 |    203 |      21 |          3 |    2038 |   14 |   4 |      4 |  98 | 2465522 |    2154297600
+- 2039-04-09    |  2039 |     4 |   9 |       2 |    203 |      21 |          3 |    2039 |   14 |   6 |      6 |  99 | 2465888 |    2185920000
+- 2040-04-10    |  2040 |     4 |  10 |       2 |    204 |      21 |          3 |    2040 |   15 |   2 |      2 | 101 | 2466255 |    2217628800
 -(16 rows)
 -
-+ERROR:  function date_part does not exist
++ERROR:  timestamp units "quarter" not recognized
  --
  -- epoch
  --
@@ -4920,411 +4748,222 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 -       0
 -(1 row)
 -
-+ERROR:  function extract does not exist
++ERROR:  timestamp units "epoch" not recognized
  --
  -- century
  --
- SELECT EXTRACT(CENTURY FROM DATE '0101-12-31 BC'); -- -2
-- extract 
-----------
--      -2
--(1 row)
--
-+ERROR:  function extract does not exist
- SELECT EXTRACT(CENTURY FROM DATE '0100-12-31 BC'); -- -1
-- extract 
-----------
--      -1
--(1 row)
--
-+ERROR:  function extract does not exist
- SELECT EXTRACT(CENTURY FROM DATE '0001-12-31 BC'); -- -1
-- extract 
-----------
--      -1
--(1 row)
--
-+ERROR:  function extract does not exist
- SELECT EXTRACT(CENTURY FROM DATE '0001-01-01');    --  1
-- extract 
-----------
--       1
--(1 row)
--
-+ERROR:  function extract does not exist
- SELECT EXTRACT(CENTURY FROM DATE '0001-01-01 AD'); --  1
-- extract 
-----------
--       1
--(1 row)
--
-+ERROR:  function extract does not exist
- SELECT EXTRACT(CENTURY FROM DATE '1900-12-31');    -- 19
-- extract 
-----------
--      19
--(1 row)
--
-+ERROR:  function extract does not exist
- SELECT EXTRACT(CENTURY FROM DATE '1901-01-01');    -- 20
-- extract 
-----------
--      20
--(1 row)
--
-+ERROR:  function extract does not exist
- SELECT EXTRACT(CENTURY FROM DATE '2000-12-31');    -- 20
-- extract 
-----------
--      20
--(1 row)
--
-+ERROR:  function extract does not exist
- SELECT EXTRACT(CENTURY FROM DATE '2001-01-01');    -- 21
-- extract 
-----------
--      21
--(1 row)
--
-+ERROR:  function extract does not exist
- SELECT EXTRACT(CENTURY FROM CURRENT_DATE)>=21 AS True;     -- true
-- true 
--------
-- t
--(1 row)
--
-+ERROR:  function extract does not exist
- --
- -- millennium
- --
- SELECT EXTRACT(MILLENNIUM FROM DATE '0001-12-31 BC'); -- -1
-- extract 
-----------
--      -1
--(1 row)
--
-+ERROR:  function extract does not exist
- SELECT EXTRACT(MILLENNIUM FROM DATE '0001-01-01 AD'); --  1
-- extract 
-----------
--       1
--(1 row)
--
-+ERROR:  function extract does not exist
- SELECT EXTRACT(MILLENNIUM FROM DATE '1000-12-31');    --  1
-- extract 
-----------
--       1
--(1 row)
--
-+ERROR:  function extract does not exist
- SELECT EXTRACT(MILLENNIUM FROM DATE '1001-01-01');    --  2
-- extract 
-----------
--       2
--(1 row)
--
-+ERROR:  function extract does not exist
- SELECT EXTRACT(MILLENNIUM FROM DATE '2000-12-31');    --  2
-- extract 
-----------
--       2
--(1 row)
--
-+ERROR:  function extract does not exist
- SELECT EXTRACT(MILLENNIUM FROM DATE '2001-01-01');    --  3
-- extract 
-----------
--       3
--(1 row)
--
-+ERROR:  function extract does not exist
- -- next test to be fixed on the turn of the next millennium;-)
- SELECT EXTRACT(MILLENNIUM FROM CURRENT_DATE);         --  3
-- extract 
-----------
--       3
--(1 row)
--
-+ERROR:  function extract does not exist
- --
- -- decade
- --
- SELECT EXTRACT(DECADE FROM DATE '1994-12-25');    -- 199
-- extract 
-----------
--     199
--(1 row)
--
-+ERROR:  function extract does not exist
- SELECT EXTRACT(DECADE FROM DATE '0010-01-01');    --   1
-- extract 
-----------
--       1
--(1 row)
--
-+ERROR:  function extract does not exist
- SELECT EXTRACT(DECADE FROM DATE '0009-12-31');    --   0
-- extract 
-----------
--       0
--(1 row)
--
-+ERROR:  function extract does not exist
- SELECT EXTRACT(DECADE FROM DATE '0001-01-01 BC'); --   0
-- extract 
-----------
--       0
--(1 row)
--
-+ERROR:  function extract does not exist
- SELECT EXTRACT(DECADE FROM DATE '0002-12-31 BC'); --  -1
-- extract 
-----------
--      -1
--(1 row)
--
-+ERROR:  function extract does not exist
- SELECT EXTRACT(DECADE FROM DATE '0011-01-01 BC'); --  -1
-- extract 
-----------
--      -1
--(1 row)
--
-+ERROR:  function extract does not exist
- SELECT EXTRACT(DECADE FROM DATE '0012-12-31 BC'); --  -2
-- extract 
-----------
--      -2
--(1 row)
--
-+ERROR:  function extract does not exist
- --
+@@ -1079,15 +750,35 @@
  -- all possible fields
  --
  SELECT EXTRACT(MICROSECONDS  FROM DATE '2020-08-11');
 -ERROR:  unit "microseconds" not supported for type date
-+ERROR:  function extract does not exist
++ extract 
++---------
++       0
++(1 row)
++
  SELECT EXTRACT(MILLISECONDS  FROM DATE '2020-08-11');
 -ERROR:  unit "milliseconds" not supported for type date
-+ERROR:  function extract does not exist
++ extract 
++---------
++       0
++(1 row)
++
  SELECT EXTRACT(SECOND        FROM DATE '2020-08-11');
 -ERROR:  unit "second" not supported for type date
-+ERROR:  function extract does not exist
++ extract 
++---------
++       0
++(1 row)
++
  SELECT EXTRACT(MINUTE        FROM DATE '2020-08-11');
 -ERROR:  unit "minute" not supported for type date
-+ERROR:  function extract does not exist
++ extract 
++---------
++       0
++(1 row)
++
  SELECT EXTRACT(HOUR          FROM DATE '2020-08-11');
 -ERROR:  unit "hour" not supported for type date
-+ERROR:  function extract does not exist
++ extract 
++---------
++       0
++(1 row)
++
  SELECT EXTRACT(DAY           FROM DATE '2020-08-11');
-- extract 
-----------
--      11
--(1 row)
--
-+ERROR:  function extract does not exist
- SELECT EXTRACT(MONTH         FROM DATE '2020-08-11');
-- extract 
-----------
--       8
--(1 row)
--
-+ERROR:  function extract does not exist
- SELECT EXTRACT(YEAR          FROM DATE '2020-08-11');
-- extract 
-----------
--    2020
--(1 row)
--
-+ERROR:  function extract does not exist
- SELECT EXTRACT(YEAR          FROM DATE '2020-08-11 BC');
-- extract 
-----------
--   -2020
--(1 row)
--
-+ERROR:  function extract does not exist
- SELECT EXTRACT(DECADE        FROM DATE '2020-08-11');
-- extract 
-----------
--     202
--(1 row)
--
-+ERROR:  function extract does not exist
- SELECT EXTRACT(CENTURY       FROM DATE '2020-08-11');
-- extract 
-----------
--      21
--(1 row)
--
-+ERROR:  function extract does not exist
- SELECT EXTRACT(MILLENNIUM    FROM DATE '2020-08-11');
-- extract 
-----------
--       3
--(1 row)
--
-+ERROR:  function extract does not exist
+  extract 
+ ---------
+@@ -1131,77 +822,33 @@
+ (1 row)
+ 
  SELECT EXTRACT(ISOYEAR       FROM DATE '2020-08-11');
 - extract 
 ----------
 -    2020
 -(1 row)
 -
-+ERROR:  function extract does not exist
++ERROR:  timestamp units "isoyear" not recognized
  SELECT EXTRACT(ISOYEAR       FROM DATE '2020-08-11 BC');
 - extract 
 ----------
 -   -2020
 -(1 row)
 -
-+ERROR:  function extract does not exist
++ERROR:  timestamp units "isoyear" not recognized
  SELECT EXTRACT(QUARTER       FROM DATE '2020-08-11');
 - extract 
 ----------
 -       3
 -(1 row)
 -
-+ERROR:  function extract does not exist
++ERROR:  timestamp units "quarter" not recognized
  SELECT EXTRACT(WEEK          FROM DATE '2020-08-11');
 - extract 
 ----------
 -      33
 -(1 row)
 -
-+ERROR:  function extract does not exist
++ERROR:  timestamp units "week" not recognized
  SELECT EXTRACT(DOW           FROM DATE '2020-08-11');
 - extract 
 ----------
 -       2
 -(1 row)
 -
-+ERROR:  function extract does not exist
++ERROR:  timestamp units "dow" not recognized
  SELECT EXTRACT(DOW           FROM DATE '2020-08-16');
 - extract 
 ----------
 -       0
 -(1 row)
 -
-+ERROR:  function extract does not exist
++ERROR:  timestamp units "dow" not recognized
  SELECT EXTRACT(ISODOW        FROM DATE '2020-08-11');
 - extract 
 ----------
 -       2
 -(1 row)
 -
-+ERROR:  function extract does not exist
++ERROR:  timestamp units "isodow" not recognized
  SELECT EXTRACT(ISODOW        FROM DATE '2020-08-16');
 - extract 
 ----------
 -       7
 -(1 row)
 -
-+ERROR:  function extract does not exist
++ERROR:  timestamp units "isodow" not recognized
  SELECT EXTRACT(DOY           FROM DATE '2020-08-11');
 - extract 
 ----------
 -     224
 -(1 row)
 -
-+ERROR:  function extract does not exist
++ERROR:  timestamp units "doy" not recognized
  SELECT EXTRACT(TIMEZONE      FROM DATE '2020-08-11');
 -ERROR:  unit "timezone" not supported for type date
-+ERROR:  function extract does not exist
++ERROR:  timestamp units "timezone" not recognized
  SELECT EXTRACT(TIMEZONE_M    FROM DATE '2020-08-11');
 -ERROR:  unit "timezone_m" not supported for type date
-+ERROR:  function extract does not exist
++ERROR:  timestamp units "timezone_m" not recognized
  SELECT EXTRACT(TIMEZONE_H    FROM DATE '2020-08-11');
 -ERROR:  unit "timezone_h" not supported for type date
-+ERROR:  function extract does not exist
++ERROR:  timestamp units "timezone_h" not recognized
  SELECT EXTRACT(EPOCH         FROM DATE '2020-08-11');
 -  extract   
 -------------
 - 1597104000
 -(1 row)
 -
-+ERROR:  function extract does not exist
++ERROR:  timestamp units "epoch" not recognized
  SELECT EXTRACT(JULIAN        FROM DATE '2020-08-11');
 - extract 
 ----------
 - 2459073
 -(1 row)
 -
-+ERROR:  function extract does not exist
++ERROR:  timestamp units "julian" not recognized
  --
  -- test trunc function!
  --
- SELECT DATE_TRUNC('MILLENNIUM', TIMESTAMP '1970-03-20 04:30:00.00000'); -- 1001
--        date_trunc        
----------------------------
-- Thu Jan 01 00:00:00 1001
--(1 row)
--
-+ERROR:  unit "MILLENNIUM" not recognized for type timestamp without time zone
+@@ -1212,9 +859,9 @@
+ (1 row)
+ 
  SELECT DATE_TRUNC('MILLENNIUM', DATE '1970-03-20'); -- 1001-01-01
--          date_trunc          
--------------------------------
-- Thu Jan 01 00:00:00 1001 PST
--(1 row)
--
-+ERROR:  unit "MILLENNIUM" not recognized for type timestamp without time zone
+-       date_trunc       
+-------------------------
+- 1001-01-01 00:00:00-08
++     date_trunc      
++---------------------
++ 1001-01-01 00:00:00
+ (1 row)
+ 
  SELECT DATE_TRUNC('CENTURY', TIMESTAMP '1970-03-20 04:30:00.00000'); -- 1901
--        date_trunc        
----------------------------
-- Tue Jan 01 00:00:00 1901
--(1 row)
--
-+ERROR:  unit "CENTURY" not recognized for type timestamp without time zone
+@@ -1224,230 +871,126 @@
+ (1 row)
+ 
  SELECT DATE_TRUNC('CENTURY', DATE '1970-03-20'); -- 1901
--          date_trunc          
--------------------------------
-- Tue Jan 01 00:00:00 1901 PST
--(1 row)
--
-+ERROR:  unit "CENTURY" not recognized for type timestamp without time zone
+-       date_trunc       
+-------------------------
+- 1901-01-01 00:00:00-08
++     date_trunc      
++---------------------
++ 1901-01-01 00:00:00
+ (1 row)
+ 
  SELECT DATE_TRUNC('CENTURY', DATE '2004-08-10'); -- 2001-01-01
--          date_trunc          
--------------------------------
-- Mon Jan 01 00:00:00 2001 PST
--(1 row)
--
-+ERROR:  unit "CENTURY" not recognized for type timestamp without time zone
+-       date_trunc       
+-------------------------
+- 2001-01-01 00:00:00-08
++     date_trunc      
++---------------------
++ 2001-01-01 00:00:00
+ (1 row)
+ 
  SELECT DATE_TRUNC('CENTURY', DATE '0002-02-04'); -- 0001-01-01
--          date_trunc          
--------------------------------
-- Mon Jan 01 00:00:00 0001 PST
--(1 row)
--
-+ERROR:  unit "CENTURY" not recognized for type timestamp without time zone
+-       date_trunc       
+-------------------------
+- 0001-01-01 00:00:00-08
++     date_trunc      
++---------------------
++ 0001-01-01 00:00:00
+ (1 row)
+ 
  SELECT DATE_TRUNC('CENTURY', DATE '0055-08-10 BC'); -- 0100-01-01 BC
--           date_trunc            
-----------------------------------
-- Tue Jan 01 00:00:00 0100 PST BC
--(1 row)
--
-+ERROR:  unit "CENTURY" not recognized for type timestamp without time zone
+-        date_trunc         
+----------------------------
+- 0100-01-01 00:00:00-08 BC
++       date_trunc       
++------------------------
++ 0100-01-01 00:00:00 BC
+ (1 row)
+ 
  SELECT DATE_TRUNC('DECADE', DATE '1993-12-25'); -- 1990-01-01
--          date_trunc          
--------------------------------
-- Mon Jan 01 00:00:00 1990 PST
--(1 row)
--
-+ERROR:  unit "DECADE" not recognized for type timestamp without time zone
+-       date_trunc       
+-------------------------
+- 1990-01-01 00:00:00-08
++     date_trunc      
++---------------------
++ 1990-01-01 00:00:00
+ (1 row)
+ 
  SELECT DATE_TRUNC('DECADE', DATE '0004-12-25'); -- 0001-01-01 BC
--           date_trunc            
-----------------------------------
-- Sat Jan 01 00:00:00 0001 PST BC
--(1 row)
--
-+ERROR:  unit "DECADE" not recognized for type timestamp without time zone
+-        date_trunc         
+----------------------------
+- 0001-01-01 00:00:00-08 BC
++       date_trunc       
++------------------------
++ 0001-01-01 00:00:00 BC
+ (1 row)
+ 
  SELECT DATE_TRUNC('DECADE', DATE '0002-12-31 BC'); -- 0011-01-01 BC
--           date_trunc            
-----------------------------------
-- Mon Jan 01 00:00:00 0011 PST BC
--(1 row)
--
-+ERROR:  unit "DECADE" not recognized for type timestamp without time zone
+-        date_trunc         
+----------------------------
+- 0011-01-01 00:00:00-08 BC
++       date_trunc       
++------------------------
++ 0011-01-01 00:00:00 BC
+ (1 row)
+ 
  --
  -- test infinity
  --
@@ -5334,21 +4973,21 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 - infinity | -infinity
 -(1 row)
 -
-+ERROR:  invalid date literal: "infinity"
++ERROR:  invalid input syntax for type date: "infinity"
  select 'infinity'::date > 'today'::date as t;
 - t 
 ----
 - t
 -(1 row)
 -
-+ERROR:  invalid date literal: "infinity"
++ERROR:  invalid input syntax for type date: "infinity"
  select '-infinity'::date < 'today'::date as t;
 - t 
 ----
 - t
 -(1 row)
 -
-+ERROR:  invalid date literal: "-infinity"
++ERROR:  invalid input syntax for type date: "-infinity"
  select isfinite('infinity'::date), isfinite('-infinity'::date), isfinite('today'::date);
 - isfinite | isfinite | isfinite 
 -----------+----------+----------
@@ -5362,7 +5001,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 - t
 -(1 row)
 -
-+ERROR:  invalid date literal: "infinity"
++ERROR:  invalid input syntax for type date: "infinity"
  --
  -- oscillating fields from non-finite date:
  --
@@ -5372,14 +5011,14 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 -        
 -(1 row)
 -
-+ERROR:  function extract does not exist
++ERROR:  invalid input syntax for type date: "infinity"
  SELECT EXTRACT(DAY FROM DATE '-infinity');     -- NULL
 - extract 
 ----------
 -        
 -(1 row)
 -
-+ERROR:  function extract does not exist
++ERROR:  invalid input syntax for type date: "-infinity"
  -- all supported fields
  SELECT EXTRACT(DAY           FROM DATE 'infinity');    -- NULL
 - extract 
@@ -5387,49 +5026,49 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 -        
 -(1 row)
 -
-+ERROR:  function extract does not exist
++ERROR:  invalid input syntax for type date: "infinity"
  SELECT EXTRACT(MONTH         FROM DATE 'infinity');    -- NULL
 - extract 
 ----------
 -        
 -(1 row)
 -
-+ERROR:  function extract does not exist
++ERROR:  invalid input syntax for type date: "infinity"
  SELECT EXTRACT(QUARTER       FROM DATE 'infinity');    -- NULL
 - extract 
 ----------
 -        
 -(1 row)
 -
-+ERROR:  function extract does not exist
++ERROR:  invalid input syntax for type date: "infinity"
  SELECT EXTRACT(WEEK          FROM DATE 'infinity');    -- NULL
 - extract 
 ----------
 -        
 -(1 row)
 -
-+ERROR:  function extract does not exist
++ERROR:  invalid input syntax for type date: "infinity"
  SELECT EXTRACT(DOW           FROM DATE 'infinity');    -- NULL
 - extract 
 ----------
 -        
 -(1 row)
 -
-+ERROR:  function extract does not exist
++ERROR:  invalid input syntax for type date: "infinity"
  SELECT EXTRACT(ISODOW        FROM DATE 'infinity');    -- NULL
 - extract 
 ----------
 -        
 -(1 row)
 -
-+ERROR:  function extract does not exist
++ERROR:  invalid input syntax for type date: "infinity"
  SELECT EXTRACT(DOY           FROM DATE 'infinity');    -- NULL
 - extract 
 ----------
 -        
 -(1 row)
 -
-+ERROR:  function extract does not exist
++ERROR:  invalid input syntax for type date: "infinity"
  --
  -- monotonic fields from non-finite date:
  --
@@ -5439,14 +5078,14 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 - Infinity
 -(1 row)
 -
-+ERROR:  function extract does not exist
++ERROR:  invalid input syntax for type date: "infinity"
  SELECT EXTRACT(EPOCH FROM DATE '-infinity');        -- -Infinity
 -  extract  
 ------------
 - -Infinity
 -(1 row)
 -
-+ERROR:  function extract does not exist
++ERROR:  invalid input syntax for type date: "-infinity"
  -- all supported fields
  SELECT EXTRACT(YEAR       FROM DATE 'infinity');    --  Infinity
 - extract  
@@ -5454,67 +5093,67 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 - Infinity
 -(1 row)
 -
-+ERROR:  function extract does not exist
++ERROR:  invalid input syntax for type date: "infinity"
  SELECT EXTRACT(DECADE     FROM DATE 'infinity');    --  Infinity
 - extract  
 -----------
 - Infinity
 -(1 row)
 -
-+ERROR:  function extract does not exist
++ERROR:  invalid input syntax for type date: "infinity"
  SELECT EXTRACT(CENTURY    FROM DATE 'infinity');    --  Infinity
 - extract  
 -----------
 - Infinity
 -(1 row)
 -
-+ERROR:  function extract does not exist
++ERROR:  invalid input syntax for type date: "infinity"
  SELECT EXTRACT(MILLENNIUM FROM DATE 'infinity');    --  Infinity
 - extract  
 -----------
 - Infinity
 -(1 row)
 -
-+ERROR:  function extract does not exist
++ERROR:  invalid input syntax for type date: "infinity"
  SELECT EXTRACT(JULIAN     FROM DATE 'infinity');    --  Infinity
 - extract  
 -----------
 - Infinity
 -(1 row)
 -
-+ERROR:  function extract does not exist
++ERROR:  invalid input syntax for type date: "infinity"
  SELECT EXTRACT(ISOYEAR    FROM DATE 'infinity');    --  Infinity
 - extract  
 -----------
 - Infinity
 -(1 row)
 -
-+ERROR:  function extract does not exist
++ERROR:  invalid input syntax for type date: "infinity"
  SELECT EXTRACT(EPOCH      FROM DATE 'infinity');    --  Infinity
 - extract  
 -----------
 - Infinity
 -(1 row)
 -
-+ERROR:  function extract does not exist
++ERROR:  invalid input syntax for type date: "infinity"
  --
  -- wrong fields from non-finite date:
  --
  SELECT EXTRACT(MICROSEC  FROM DATE 'infinity');     -- error
 -ERROR:  unit "microsec" not recognized for type date
-+ERROR:  function extract does not exist
++ERROR:  invalid input syntax for type date: "infinity"
  -- test constructors
  select make_date(2013, 7, 15);
 - make_date  
 -------------
-- 07-15-2013
+- 2013-07-15
 -(1 row)
 -
 +ERROR:  function make_date does not exist
  select make_date(-44, 3, 15);
 -   make_date   
 ----------------
-- 03-15-0044 BC
+- 0044-03-15 BC
 -(1 row)
 -
 +ERROR:  function make_date does not exist
@@ -5545,171 +5184,50 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 -ERROR:  time field value out of range: 24:00:2.1
 +ERROR:  function make_time does not exist
 diff -U3 /home/longqimin/pg_regress_input/expected/time.out /home/longqimin/pg_regress_input/results/time.out
---- /home/longqimin/pg_regress_input/expected/time.out	2024-02-27 09:30:35.103460309 +0800
-+++ /home/longqimin/pg_regress_input/results/time.out	2024-03-11 10:37:04.493717723 +0800
-@@ -6,52 +6,45 @@
- INSERT INTO TIME_TBL VALUES ('01:00');
- -- as of 7.4, timezone spec should be accepted and ignored
- INSERT INTO TIME_TBL VALUES ('02:03 PST');
-+ERROR:  invalid time literal: "02:03 PST"
- INSERT INTO TIME_TBL VALUES ('11:59 EDT');
-+ERROR:  invalid time literal: "11:59 EDT"
- INSERT INTO TIME_TBL VALUES ('12:00');
- INSERT INTO TIME_TBL VALUES ('12:01');
- INSERT INTO TIME_TBL VALUES ('23:59');
- INSERT INTO TIME_TBL VALUES ('11:59:59.99 PM');
-+ERROR:  invalid time literal: "11:59:59.99 PM"
- INSERT INTO TIME_TBL VALUES ('2003-03-07 15:36:39 America/New_York');
-+ERROR:  invalid time literal: "2003-03-07 15:36:39 America/New_York"
- INSERT INTO TIME_TBL VALUES ('2003-07-07 15:36:39 America/New_York');
-+ERROR:  invalid time literal: "2003-07-07 15:36:39 America/New_York"
- -- this should fail (the timezone offset is not known)
- INSERT INTO TIME_TBL VALUES ('15:36:39 America/New_York');
--ERROR:  invalid input syntax for type time: "15:36:39 America/New_York"
--LINE 1: INSERT INTO TIME_TBL VALUES ('15:36:39 America/New_York');
--                                     ^
-+ERROR:  invalid time literal: "15:36:39 America/New_York"
- SELECT f1 AS "Time" FROM TIME_TBL;
--    Time     
---------------
-- 00:00:00
-- 01:00:00
-- 02:03:00
-- 11:59:00
-- 12:00:00
-- 12:01:00
-- 23:59:00
-- 23:59:59.99
-- 15:36:39
-- 15:36:39
--(10 rows)
-+      Time       
-+-----------------
-+ 01:00:00.000000
-+ 00:00:00.000000
-+ 23:59:00.000000
-+ 12:00:00.000000
-+ 12:01:00.000000
-+(5 rows)
+--- /home/longqimin/pg_regress_input/expected/time.out	2024-03-13 14:02:08.630100256 +0800
++++ /home/longqimin/pg_regress_input/results/time.out	2024-03-14 12:04:37.032906808 +0800
+@@ -79,31 +79,23 @@
+ (1 row)
  
- SELECT f1 AS "Three" FROM TIME_TBL WHERE f1 < '05:06:07';
--  Three   
------------
-- 00:00:00
-- 01:00:00
-- 02:03:00
--(3 rows)
-+      Three      
-+-----------------
-+ 00:00:00.000000
-+ 01:00:00.000000
-+(2 rows)
- 
- SELECT f1 AS "Five" FROM TIME_TBL WHERE f1 > '05:06:07';
--    Five     
---------------
-- 11:59:00
-- 12:00:00
-- 12:01:00
-- 23:59:00
-- 23:59:59.99
-- 15:36:39
-- 15:36:39
--(7 rows)
-+      Five       
-+-----------------
-+ 12:00:00.000000
-+ 12:01:00.000000
-+ 23:59:00.000000
-+(3 rows)
- 
- SELECT f1 AS "None" FROM TIME_TBL WHERE f1 < '00:00';
-  None 
-@@ -59,66 +52,37 @@
- (0 rows)
- 
- SELECT f1 AS "Eight" FROM TIME_TBL WHERE f1 >= '00:00';
--    Eight    
---------------
-- 00:00:00
-- 01:00:00
-- 02:03:00
-- 11:59:00
-- 12:00:00
-- 12:01:00
-- 23:59:00
-- 23:59:59.99
-- 15:36:39
-- 15:36:39
--(10 rows)
-+      Eight      
-+-----------------
-+ 00:00:00.000000
-+ 01:00:00.000000
-+ 12:00:00.000000
-+ 12:01:00.000000
-+ 23:59:00.000000
-+(5 rows)
- 
- -- Check edge cases
- SELECT '23:59:59.999999'::time;
--      time       
-------------------
-- 23:59:59.999999
--(1 row)
--
-+ERROR:  not processed pg_catalog type [pg_catalog_type=time]
  SELECT '23:59:59.9999999'::time;  -- rounds up
 -   time   
 -----------
 - 24:00:00
--(1 row)
--
-+ERROR:  not processed pg_catalog type [pg_catalog_type=time]
++      time       
++-----------------
++ 23:59:59.999999
+ (1 row)
+ 
  SELECT '23:59:60'::time;  -- rounds up
 -   time   
 -----------
 - 24:00:00
 -(1 row)
 -
-+ERROR:  not processed pg_catalog type [pg_catalog_type=time]
++ERROR:  invalid input syntax for type time: "23:59:60"
  SELECT '24:00:00'::time;  -- allowed
 -   time   
 -----------
 - 24:00:00
 -(1 row)
 -
-+ERROR:  not processed pg_catalog type [pg_catalog_type=time]
++ERROR:  invalid input syntax for type time: "24:00:00"
  SELECT '24:00:00.01'::time;  -- not allowed
 -ERROR:  date/time field value out of range: "24:00:00.01"
--LINE 1: SELECT '24:00:00.01'::time;
--               ^
-+ERROR:  not processed pg_catalog type [pg_catalog_type=time]
++ERROR:  invalid input syntax for type time: "24:00:00.01"
  SELECT '23:59:60.01'::time;  -- not allowed
 -ERROR:  date/time field value out of range: "23:59:60.01"
--LINE 1: SELECT '23:59:60.01'::time;
--               ^
-+ERROR:  not processed pg_catalog type [pg_catalog_type=time]
++ERROR:  invalid input syntax for type time: "23:59:60.01"
  SELECT '24:01:00'::time;  -- not allowed
 -ERROR:  date/time field value out of range: "24:01:00"
--LINE 1: SELECT '24:01:00'::time;
--               ^
-+ERROR:  not processed pg_catalog type [pg_catalog_type=time]
++ERROR:  invalid input syntax for type time: "24:01:00"
  SELECT '25:00:00'::time;  -- not allowed
 -ERROR:  date/time field value out of range: "25:00:00"
--LINE 1: SELECT '25:00:00'::time;
--               ^
-+ERROR:  not processed pg_catalog type [pg_catalog_type=time]
++ERROR:  invalid input syntax for type time: "25:00:00"
  -- Test non-error-throwing API
  SELECT pg_input_is_valid('12:00:00', 'time');
   pg_input_is_valid 
- -------------------
-- t
-+ f
- (1 row)
- 
- SELECT pg_input_is_valid('25:00:00', 'time');
-@@ -134,17 +98,9 @@
+@@ -124,17 +116,9 @@
  (1 row)
  
  SELECT * FROM pg_input_error_info('25:00:00', 'time');
@@ -5729,102 +5247,55 @@ diff -U3 /home/longqimin/pg_regress_input/expected/time.out /home/longqimin/pg_r
  --
  -- TIME simple math
  --
-@@ -154,78 +110,35 @@
+@@ -144,8 +128,7 @@
  -- and do the rest of the testing in horology.sql
  -- where we do mixed-type arithmetic. - thomas 2000-12-02
- SELECT f1 + time '00:01' AS "Illegal" FROM TIME_TBL;
+ SELECT f1 + time '00:01' AS "Illegal" FROM TIME_TBL order by 1;
 -ERROR:  operator is not unique: time without time zone + time without time zone
--LINE 1: SELECT f1 + time '00:01' AS "Illegal" FROM TIME_TBL;
--                  ^
 -HINT:  Could not choose a best candidate operator. You might need to add explicit type casts.
-+ERROR:  not processed pg_catalog type [pg_catalog_type=time]
++ERROR:  IRGenerator:lookup failed, native function not found: [cast_time_datetime]
  --
  -- test EXTRACT
  --
- SELECT EXTRACT(MICROSECOND FROM TIME '2020-05-26 13:30:25.575401');
-- extract  
------------
-- 25575401
--(1 row)
--
-+ERROR:  function extract does not exist
- SELECT EXTRACT(MILLISECOND FROM TIME '2020-05-26 13:30:25.575401');
--  extract  
-------------
-- 25575.401
--(1 row)
--
-+ERROR:  function extract does not exist
- SELECT EXTRACT(SECOND      FROM TIME '2020-05-26 13:30:25.575401');
--  extract  
-------------
-- 25.575401
--(1 row)
--
-+ERROR:  function extract does not exist
- SELECT EXTRACT(MINUTE      FROM TIME '2020-05-26 13:30:25.575401');
-- extract 
-----------
--      30
--(1 row)
--
-+ERROR:  function extract does not exist
- SELECT EXTRACT(HOUR        FROM TIME '2020-05-26 13:30:25.575401');
-- extract 
-----------
--      13
--(1 row)
--
-+ERROR:  function extract does not exist
+@@ -180,17 +163,17 @@
+ (1 row)
+ 
  SELECT EXTRACT(DAY         FROM TIME '2020-05-26 13:30:25.575401');  -- error
 -ERROR:  unit "day" not supported for type time without time zone
-+ERROR:  function extract does not exist
++ extract 
++---------
++       0
++(1 row)
++
  SELECT EXTRACT(FORTNIGHT   FROM TIME '2020-05-26 13:30:25.575401');  -- error
 -ERROR:  unit "fortnight" not recognized for type time without time zone
-+ERROR:  function extract does not exist
++ERROR:  timestamp units "fortnight" not recognized
  SELECT EXTRACT(TIMEZONE    FROM TIME '2020-05-26 13:30:25.575401');  -- error
 -ERROR:  unit "timezone" not supported for type time without time zone
-+ERROR:  function extract does not exist
++ERROR:  timestamp units "timezone" not recognized
  SELECT EXTRACT(EPOCH       FROM TIME '2020-05-26 13:30:25.575401');
 -   extract    
 ---------------
 - 48625.575401
 -(1 row)
 -
-+ERROR:  function extract does not exist
++ERROR:  timestamp units "epoch" not recognized
  -- date_part implementation is mostly the same as extract, so only
  -- test a few cases for additional coverage.
  SELECT date_part('microsecond', TIME '2020-05-26 13:30:25.575401');
-- date_part 
-------------
--  25575401
--(1 row)
--
-+ERROR:  function date_part does not exist
- SELECT date_part('millisecond', TIME '2020-05-26 13:30:25.575401');
-- date_part 
-------------
-- 25575.401
--(1 row)
--
-+ERROR:  function date_part does not exist
- SELECT date_part('second',      TIME '2020-05-26 13:30:25.575401');
-- date_part 
-------------
-- 25.575401
--(1 row)
--
-+ERROR:  function date_part does not exist
+@@ -212,8 +195,4 @@
+ (1 row)
+ 
  SELECT date_part('epoch',       TIME '2020-05-26 13:30:25.575401');
 -  date_part   
 ---------------
 - 48625.575401
 -(1 row)
 -
-+ERROR:  function date_part does not exist
++ERROR:  timestamp units "epoch" not recognized
 diff -U3 /home/longqimin/pg_regress_input/expected/select.out /home/longqimin/pg_regress_input/results/select.out
 --- /home/longqimin/pg_regress_input/expected/select.out	2024-03-08 12:19:19.529430515 +0800
-+++ /home/longqimin/pg_regress_input/results/select.out	2024-03-11 10:37:06.102718916 +0800
++++ /home/longqimin/pg_regress_input/results/select.out	2024-03-14 12:04:38.608907920 +0800
 @@ -219,16 +219,16 @@
  SELECT onek2.* FROM onek2 WHERE onek2.unique1 < 10;
   unique1 | unique2 | two | four | ten | twenty | hundred | thousand | twothousand | fivethous | tenthous | odd | even | stringu1 | stringu2 | string4 
@@ -6218,7 +5689,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select.out /home/longqimin/pg
 +ERROR:  only support select and create table statement
 diff -U3 /home/longqimin/pg_regress_input/expected/select_distinct.out /home/longqimin/pg_regress_input/results/select_distinct.out
 --- /home/longqimin/pg_regress_input/expected/select_distinct.out	2024-02-27 09:30:35.100460308 +0800
-+++ /home/longqimin/pg_regress_input/results/select_distinct.out	2024-03-11 10:37:10.337722058 +0800
++++ /home/longqimin/pg_regress_input/results/select_distinct.out	2024-03-14 12:04:42.840910906 +0800
 @@ -48,50 +48,7 @@
  SELECT DISTINCT two, string4, ten
     FROM onek
@@ -6318,7 +5789,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select_distinct.out /home/lon
 -(7 rows)
 +                         QUERY PLAN                         | TIME/ms 
 +------------------------------------------------------------+---------
-+ datum(col_0_literal) = LiteralAggregate(COUNT_NOT_NULL(0)) |       1
++ datum(col_0_literal) = LiteralAggregate(COUNT_NOT_NULL(0)) |       0
 + tuple(table_0) = [datum(col_0_literal)]                    |       0
 + return tuple(table_0)                                      |       0
 +(3 rows)
@@ -6462,7 +5933,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select_distinct.out /home/lon
 -(8 rows)
 +                                                 QUERY PLAN                                                  | TIME/ms 
 +-------------------------------------------------------------------------------------------------------------+---------
-+ tuple(table_0) = parallel: [tuple(var_5_1) = IndexTopN([columns(four ASC)], unique), return tuple(var_5_1)] |       2
++ tuple(table_0) = parallel: [tuple(var_5_1) = IndexTopN([columns(four ASC)], unique), return tuple(var_5_1)] |       1
 + tuple(table_0) = Unique(tuple(table_0))                                                                     |       0
 + tuple(table_0) = Sort(tuple(table_0), [columns(0 ASC)])                                                     |       0
 + return tuple(table_0)                                                                                       |       0
@@ -6533,7 +6004,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select_distinct.out /home/lon
 +                                                                   QUERY PLAN                                                                    | TIME/ms 
 +-------------------------------------------------------------------------------------------------------------------------------------------------+---------
 + tid(where) = parallel: [tid(var_5_1) = IndexFilter(column(four) == 0), return tid(var_5_1)]                                                     |       0
-+ tuple(table_0) = broadcast: [tid(where)] parallel: [tuple(var_6_1) = IndexTopN([columns(four ASC)], tid(where), unique), return tuple(var_6_1)] |       0
++ tuple(table_0) = broadcast: [tid(where)] parallel: [tuple(var_6_1) = IndexTopN([columns(four ASC)], tid(where), unique), return tuple(var_6_1)] |       1
 + tuple(table_0) = Unique(tuple(table_0))                                                                                                         |       0
 + tuple(table_0) = Sort(tuple(table_0), [columns(0 ASC)])                                                                                         |       0
 + return tuple(table_0)                                                                                                                           |       0
@@ -6553,7 +6024,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select_distinct.out /home/lon
 -(3 rows)
 +                                                                   QUERY PLAN                                                                    | TIME/ms 
 +-------------------------------------------------------------------------------------------------------------------------------------------------+---------
-+ tid(var_5_1) = parallel: [tid(var_5_2) = IndexFilter(column(four) == 0), return tid(var_5_2)]                                                   |       1
++ tid(var_5_1) = parallel: [tid(var_5_2) = IndexFilter(column(four) == 0), return tid(var_5_2)]                                                   |       0
 + tid(var_5_3) = parallel: [tid(var_5_4) = IndexFilter(column(two) != 0), return tid(var_5_4)]                                                    |       0
 + tid(where) = [tid(var_5_3) and tid(var_5_1)]                                                                                                    |       0
 + tuple(table_0) = broadcast: [tid(where)] parallel: [tuple(var_6_1) = IndexTopN([columns(four ASC)], tid(where), unique), return tuple(var_6_1)] |       1
@@ -6580,7 +6051,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select_distinct.out /home/lon
 -(3 rows)
 +                                                                                    QUERY PLAN                                                                                    | TIME/ms 
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------
-+ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(four) == 0), return tid(var_4_1)]                                                                                      |       1
++ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(four) == 0), return tid(var_4_1)]                                                                                      |       0
 + tuple_with_tid(table_0_index) = broadcast: [tid(where)] parallel: [tuple_with_tid(table_0_index) = IndexScan([column(four)] + tid(where)), return tuple_with_tid(table_0_index)] |       1
 + tuple(table_0_literal) = ConstExprTuple([1, 2, 3], tid(where))                                                                                                                   |       0
 + tuple_with_tid(table_0_index) = SortByTID(tuple_with_tid(table_0_index))                                                                                                         |       0
@@ -6616,7 +6087,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select_distinct.out /home/lon
 +                                                                   QUERY PLAN                                                                    | TIME/ms 
 +-------------------------------------------------------------------------------------------------------------------------------------------------+---------
 + tid(where) = parallel: [tid(var_5_1) = IndexFilter(column(four) == 10), return tid(var_5_1)]                                                    |       0
-+ tuple(table_0) = broadcast: [tid(where)] parallel: [tuple(var_6_1) = IndexTopN([columns(four ASC)], tid(where), unique), return tuple(var_6_1)] |       0
++ tuple(table_0) = broadcast: [tid(where)] parallel: [tuple(var_6_1) = IndexTopN([columns(four ASC)], tid(where), unique), return tuple(var_6_1)] |       1
 + tuple(table_0) = Unique(tuple(table_0))                                                                                                         |       0
 + tuple(table_0) = Sort(tuple(table_0), [columns(0 ASC)])                                                                                         |       0
 + return tuple(table_0)                                                                                                                           |       0
@@ -6734,7 +6205,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select_distinct.out /home/lon
 +ERROR:  a_expr only support op and between [kind=5]
 diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimin/pg_regress_input/results/aggregates.out
 --- /home/longqimin/pg_regress_input/expected/aggregates.out	2024-03-08 12:19:19.528430515 +0800
-+++ /home/longqimin/pg_regress_input/results/aggregates.out	2024-03-11 10:37:22.822731316 +0800
++++ /home/longqimin/pg_regress_input/results/aggregates.out	2024-03-14 12:04:55.298919694 +0800
 @@ -5,6 +5,7 @@
  \getenv abs_srcdir PG_ABS_SRCDIR
  -- avoid bit-exact output here because operations may not be bit-exact.
@@ -7710,7 +7181,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 +                                           QUERY PLAN                                           | TIME/ms 
 +------------------------------------------------------------------------------------------------+---------
 + tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(unique1) < 42), return tid(var_4_1)] |       1
-+ datum(col_0_unique1) = IndexAggregateForMultiSegment(MAX, column(unique1), tid(where))         |       1
++ datum(col_0_unique1) = IndexAggregateForMultiSegment(MAX, column(unique1), tid(where))         |       0
 + tuple(table_0) = [datum(col_0_unique1)]                                                        |       0
 + return tuple(table_0)                                                                          |       0
 +(4 rows)
@@ -7787,7 +7258,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 +                                            QUERY PLAN                                            | TIME/ms 
 +--------------------------------------------------------------------------------------------------+---------
 + tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(thousand) == 33), return tid(var_4_1)] |       5
-+ datum(col_0_tenthous) = IndexAggregateForMultiSegment(MAX, column(tenthous), tid(where))         |       6
++ datum(col_0_tenthous) = IndexAggregateForMultiSegment(MAX, column(tenthous), tid(where))         |       5
 + tuple(table_0) = [datum(col_0_tenthous)]                                                         |       0
 + return tuple(table_0)                                                                            |       0
 +(4 rows)
@@ -7883,7 +7354,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -(7 rows)
 +                                 QUERY PLAN                                 | TIME/ms 
 +----------------------------------------------------------------------------+---------
-+ datum(col_0_unique2) = IndexAggregateForMultiSegment(MAX, column(unique2)) |       0
++ datum(col_0_unique2) = IndexAggregateForMultiSegment(MAX, column(unique2)) |       1
 + tuple(table_0) = [datum(col_0_unique2)]                                    |       0
 + tuple(table_0) = Sort(tuple(table_0), [columns(0 ASC)])                    |       0
 + return tuple(table_0)                                                      |       0
@@ -8036,10 +7507,10 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -(23 rows)
 +                            QUERY PLAN                            | TIME/ms 
 +------------------------------------------------------------------+---------
-+ datum(col_0_f1) = IndexAggregateForMultiSegment(MIN, column(f1)) |       3
++ datum(col_0_f1) = IndexAggregateForMultiSegment(MIN, column(f1)) |       5
 + datum(col_1_f1) = IndexAggregateForMultiSegment(MAX, column(f1)) |       0
 + tuple(table_0) = [datum(col_0_f1), datum(col_1_f1)]              |       0
-+ return tuple(table_0)                                            |       1
++ return tuple(table_0)                                            |       0
 +(4 rows)
  
  select min(f1), max(f1) from minmaxtest;
@@ -8083,7 +7554,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -(26 rows)
 +                            QUERY PLAN                            | TIME/ms 
 +------------------------------------------------------------------+---------
-+ datum(col_0_f1) = IndexAggregateForMultiSegment(MIN, column(f1)) |       0
++ datum(col_0_f1) = IndexAggregateForMultiSegment(MIN, column(f1)) |       1
 + datum(col_1_f1) = IndexAggregateForMultiSegment(MAX, column(f1)) |       0
 + tuple(table_0) = [datum(col_0_f1), datum(col_1_f1)]              |       0
 + return tuple(table_0)                                            |       0
@@ -8310,9 +7781,9 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -(4 rows)
 +                                QUERY PLAN                                 | TIME/ms 
 +---------------------------------------------------------------------------+---------
-+ datum(col_0_two) = IndexAggregateForMultiSegment(SUM, column(two))        |       0
++ datum(col_0_two) = IndexAggregateForMultiSegment(SUM, column(two))        |       1
 + datum(col_1_four) = IndexAggregateForMultiSegment(MAX, column(four))      |       0
-+ datum(col_2_four) = IndexAggregateForMultiSegment(MIN, column(four))      |       1
++ datum(col_2_four) = IndexAggregateForMultiSegment(MIN, column(four))      |       0
 + tuple(table_0) = [datum(col_0_two), datum(col_1_four), datum(col_2_four)] |       0
 + return tuple(table_0)                                                     |       0
 +(5 rows)
@@ -8335,7 +7806,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 + datum(col_0_two) = IndexAggregateForMultiSegment(SUM, column(two))                          |       1
 + datum(col_1_four) = IndexAggregateForMultiSegment(MAX, column(four))                        |       0
 + datum(col_2_four) = IndexAggregateForMultiSegment(MIN, column(four))                        |       0
-+ datum(col_3_two) = IndexAggregateForMultiSegment(MAX, column(two))                          |       0
++ datum(col_3_two) = IndexAggregateForMultiSegment(MAX, column(two))                          |       1
 + tuple(table_0) = [datum(col_0_two), datum(col_1_four), datum(col_2_four), datum(col_3_two)] |       0
 + return tuple(table_0)                                                                       |       0
 +(6 rows)
@@ -8358,7 +7829,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 + datum(col_0_four) = IndexAggregateForMultiSegment(MAX, column(four))                        |       0
 + datum(col_1_two) = IndexAggregateForMultiSegment(SUM, column(two))                          |       0
 + datum(col_2_four) = IndexAggregateForMultiSegment(MIN, column(four))                        |       0
-+ datum(col_3_two) = IndexAggregateForMultiSegment(MAX, column(two))                          |       1
++ datum(col_3_two) = IndexAggregateForMultiSegment(MAX, column(two))                          |       0
 + tuple(table_0) = [datum(col_0_four), datum(col_1_two), datum(col_2_four), datum(col_3_two)] |       0
 + return tuple(table_0)                                                                       |       0
 +(6 rows)
@@ -8378,12 +7849,12 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -(4 rows)
 +                                                                    QUERY PLAN                                                                     | TIME/ms 
 +---------------------------------------------------------------------------------------------------------------------------------------------------+---------
-+ datum(col_0_four) = IndexAggregateForMultiSegment(MAX, column(four))                                                                              |       0
++ datum(col_0_four) = IndexAggregateForMultiSegment(MAX, column(four))                                                                              |       1
 + datum(col_1_two) = IndexAggregateForMultiSegment(SUM, column(two))                                                                                |       0
-+ datum(col_2_four) = IndexAggregateForMultiSegment(MIN, column(four))                                                                              |       1
++ datum(col_2_four) = IndexAggregateForMultiSegment(MIN, column(four))                                                                              |       0
 + datum(col_3_two) = IndexAggregateForMultiSegment(MAX, column(two))                                                                                |       0
-+ datum(col_4_ten) = IndexAggregateForMultiSegment(SUM, column(ten))                                                                                |       2
-+ datum(col_5_ten) = IndexAggregateForMultiSegment(MIN, column(ten))                                                                                |       0
++ datum(col_4_ten) = IndexAggregateForMultiSegment(SUM, column(ten))                                                                                |       3
++ datum(col_5_ten) = IndexAggregateForMultiSegment(MIN, column(ten))                                                                                |       1
 + datum(col_6_ten) = IndexAggregateForMultiSegment(MAX, column(ten))                                                                                |       0
 + tuple(table_0) = [datum(col_0_four), datum(col_1_two), datum(col_2_four), datum(col_3_two), datum(col_4_ten), datum(col_5_ten), datum(col_6_ten)] |       0
 + return tuple(table_0)                                                                                                                             |       0
@@ -8405,7 +7876,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -(5 rows)
 +                                                                              QUERY PLAN                                                                              | TIME/ms 
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------
-+ FilterHistogram(histogram_tenk1_0) = parallel: [FilterHistogram(var_5_1) = IndexTopNGroup([Get(ten)], 10000, [ASC_AND_NULLS_LAST]), return FilterHistogram(var_5_1)] |       1
++ FilterHistogram(histogram_tenk1_0) = parallel: [FilterHistogram(var_5_1) = IndexTopNGroup([Get(ten)], 10000, [ASC_AND_NULLS_LAST]), return FilterHistogram(var_5_1)] |       2
 + tuple(tuple_0_tenk1) = to_tuple(FilterHistogram(histogram_tenk1_0))                                                                                                  |       0
 + tuple(tuple_0_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))                                            |       2
 + tuple(tuple_1_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))                                            |       1
@@ -8434,9 +7905,9 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -(5 rows)
 +                                                                              QUERY PLAN                                                                              | TIME/ms 
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------
-+ FilterHistogram(histogram_tenk1_0) = parallel: [FilterHistogram(var_5_1) = IndexTopNGroup([Get(ten)], 10000, [ASC_AND_NULLS_LAST]), return FilterHistogram(var_5_1)] |       0
++ FilterHistogram(histogram_tenk1_0) = parallel: [FilterHistogram(var_5_1) = IndexTopNGroup([Get(ten)], 10000, [ASC_AND_NULLS_LAST]), return FilterHistogram(var_5_1)] |       1
 + tuple(tuple_0_tenk1) = to_tuple(FilterHistogram(histogram_tenk1_0))                                                                                                  |       0
-+ tuple(tuple_0_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))                                            |       3
++ tuple(tuple_0_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))                                            |       2
 + tuple(tuple_1_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))                                            |       1
 + tuple(tuple_2_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))                                            |       1
 + tuple(tuple_3_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))                                            |       1
@@ -8472,7 +7943,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -(2 rows)
 +                             QUERY PLAN                             | TIME/ms 
 +--------------------------------------------------------------------+---------
-+ datum(col_0_two) = IndexAggregateForMultiSegment(SUM, column(two)) |       0
++ datum(col_0_two) = IndexAggregateForMultiSegment(SUM, column(two)) |       1
 + tuple(table_0) = [datum(col_0_two)]                                |       0
 + return tuple(table_0)                                              |       0
 +(3 rows)

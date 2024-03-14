@@ -22,12 +22,14 @@ INSERT INTO DATE_TBL VALUES ('2039-04-09');
 INSERT INTO DATE_TBL VALUES ('2040-04-10');
 INSERT INTO DATE_TBL VALUES ('2040-04-10 BC');
 
-SELECT f1 FROM DATE_TBL;
+SET datestyle TO iso;  -- display results in ISO
 
-SELECT f1 FROM DATE_TBL WHERE f1 < '2000-01-01';
+SELECT f1 FROM DATE_TBL order by 1;
+
+SELECT f1 FROM DATE_TBL WHERE f1 < '2000-01-01' order by 1;
 
 SELECT f1 FROM DATE_TBL
-  WHERE f1 BETWEEN '2000-01-01' AND '2001-01-01';
+  WHERE f1 BETWEEN '2000-01-01' AND '2001-01-01' order by 1;
 
 --
 -- Check all the documented input formats
@@ -200,16 +202,16 @@ SELECT pg_input_is_valid('6874898-01-01', 'date');
 SELECT * FROM pg_input_error_info('garbage', 'date');
 SELECT * FROM pg_input_error_info('6874898-01-01', 'date');
 
-RESET datestyle;
+SET datestyle TO iso;  -- display results in ISO
 
 --
 -- Simple math
 -- Leave most of it for the horology tests
 --
 
-SELECT f1 - date '2000-01-01' AS "Days From 2K" FROM DATE_TBL;
+SELECT f1 - date '2000-01-01' AS "Days From 2K" FROM DATE_TBL order by 1;
 
-SELECT f1 - date 'epoch' AS "Days From Epoch" FROM DATE_TBL;
+SELECT f1 - date 'epoch' AS "Days From Epoch" FROM DATE_TBL order by 1;
 
 SELECT date 'yesterday' - date 'today' AS "One day";
 
@@ -241,7 +243,7 @@ SELECT f1 as "date",
     date_part('doy', f1) AS doy,
     date_part('julian', f1) AS julian,
     date_part('epoch', f1) AS epoch
-    FROM date_tbl;
+    FROM date_tbl order by 1;
 --
 -- epoch
 --
