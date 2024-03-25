@@ -1,6 +1,6 @@
 diff -U3 /home/longqimin/pg_regress_input/expected/boolean.out /home/longqimin/pg_regress_input/results/boolean.out
---- /home/longqimin/pg_regress_input/expected/boolean.out	2024-03-08 18:23:43.232001070 +0800
-+++ /home/longqimin/pg_regress_input/results/boolean.out	2024-03-14 12:03:53.141875844 +0800
+--- /home/longqimin/pg_regress_input/expected/boolean.out	2024-03-25 09:21:06.160601856 +0800
++++ /home/longqimin/pg_regress_input/results/boolean.out	2024-03-25 16:05:06.601270307 +0800
 @@ -136,11 +136,7 @@
  (1 row)
  
@@ -55,7 +55,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/boolean.out /home/longqimin/p
 - t  | f
 -(12 rows)
 -
-+ERROR:  column reference "f1" is ambiguous
++ERROR:  clapdb doesn't support join currently
  SELECT BOOLTBL1.*, BOOLTBL2.*
     FROM BOOLTBL1, BOOLTBL2
     WHERE boolne(BOOLTBL2.f1,BOOLTBL1.f1);
@@ -87,7 +87,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/boolean.out /home/longqimin/p
 - f  | f
 -(4 rows)
 -
-+ERROR:  column reference "f1" is ambiguous
++ERROR:  clapdb doesn't support join currently
  SELECT BOOLTBL1.*, BOOLTBL2.*
     FROM BOOLTBL1, BOOLTBL2
     WHERE BOOLTBL2.f1 = BOOLTBL1.f1 or BOOLTBL1.f1 = bool 'true'
@@ -112,7 +112,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/boolean.out /home/longqimin/p
 - t  | f
 -(16 rows)
 -
-+ERROR:  column reference "f1" is ambiguous
++ERROR:  clapdb doesn't support join currently
  --
  -- SQL syntax
  -- Try all combinations to ensure that we get nothing when we expect nothing
@@ -122,24 +122,24 @@ diff -U3 /home/longqimin/pg_regress_input/expected/boolean.out /home/longqimin/p
  SELECT 0::boolean;
 - bool 
 -------
-+ boolean 
-+---------
++ ?column? 
++----------
   f
  (1 row)
  
  SELECT 1::boolean;
 - bool 
 -------
-+ boolean 
-+---------
++ ?column? 
++----------
   t
  (1 row)
  
  SELECT 2::boolean;
 - bool 
 -------
-+ boolean 
-+---------
++ ?column? 
++----------
   t
  (1 row)
  
@@ -155,8 +155,8 @@ diff -U3 /home/longqimin/pg_regress_input/expected/boolean.out /home/longqimin/p
  DROP TABLE  BOOLTBL4;
 +ERROR:  only support select and create table statement
 diff -U3 /home/longqimin/pg_regress_input/expected/int2.out /home/longqimin/pg_regress_input/results/int2.out
---- /home/longqimin/pg_regress_input/expected/int2.out	2024-03-11 09:59:20.512914692 +0800
-+++ /home/longqimin/pg_regress_input/results/int2.out	2024-03-14 12:03:53.560876140 +0800
+--- /home/longqimin/pg_regress_input/expected/int2.out	2024-03-22 14:23:59.097610627 +0800
++++ /home/longqimin/pg_regress_input/results/int2.out	2024-03-25 16:05:09.975272668 +0800
 @@ -4,21 +4,21 @@
  -- int2_tbl was already created and filled in test_setup.sql.
  -- Here we just try to insert bad values.
@@ -345,11 +345,11 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int2.out /home/longqimin/pg_r
 -  2.5 |          2
 -(7 rows)
 -
-+ERROR:  column "x" not exist
++ERROR:  clapdb doesn't support select ValueLists
  -- check rounding when casting from numeric
  SELECT x, x::int2 AS int2_value
  FROM (VALUES (-2.5::numeric),
-@@ -321,17 +339,7 @@
+@@ -321,126 +339,96 @@
               (0.5::numeric),
               (1.5::numeric),
               (2.5::numeric)) t(x);
@@ -364,11 +364,33 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int2.out /home/longqimin/pg_r
 -  2.5 |          3
 -(7 rows)
 -
-+ERROR:  column "x" not exist
++ERROR:  clapdb doesn't support select ValueLists
  -- non-decimal literals
  SELECT int2 '0b100101';
-  int2 
-@@ -352,11 +360,11 @@
+- int2 
+-------
+-   37
++ ?column? 
++----------
++       37
+ (1 row)
+ 
+ SELECT int2 '0o273';
+- int2 
+-------
+-  187
++ ?column? 
++----------
++      187
+ (1 row)
+ 
+ SELECT int2 '0x42F';
+- int2 
+-------
+- 1071
++ ?column? 
++----------
++     1071
  (1 row)
  
  SELECT int2 '0b';
@@ -382,53 +404,72 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int2.out /home/longqimin/pg_r
 +ERROR:  invalid input syntax for type integer: "0x"
  -- cases near overflow
  SELECT int2 '0b111111111111111';
-  int2  
-@@ -365,7 +373,7 @@
+- int2  
+--------
+- 32767
++ ?column? 
++----------
++    32767
  (1 row)
  
  SELECT int2 '0b1000000000000000';
 -ERROR:  value "0b1000000000000000" is out of range for type smallint
 +ERROR:  value "0b1000000000000000" is out of range for type integer
  SELECT int2 '0o77777';
-  int2  
- -------
-@@ -373,7 +381,7 @@
+- int2  
+--------
+- 32767
++ ?column? 
++----------
++    32767
  (1 row)
  
  SELECT int2 '0o100000';
 -ERROR:  value "0o100000" is out of range for type smallint
 +ERROR:  value "0o100000" is out of range for type integer
  SELECT int2 '0x7FFF';
-  int2  
- -------
-@@ -381,7 +389,7 @@
+- int2  
+--------
+- 32767
++ ?column? 
++----------
++    32767
  (1 row)
  
  SELECT int2 '0x8000';
 -ERROR:  value "0x8000" is out of range for type smallint
 +ERROR:  value "0x8000" is out of range for type integer
  SELECT int2 '-0b1000000000000000';
-   int2  
- --------
-@@ -389,7 +397,7 @@
+-  int2  
+---------
+- -32768
++ ?column? 
++----------
++   -32768
  (1 row)
  
  SELECT int2 '-0b1000000000000001';
 -ERROR:  value "-0b1000000000000001" is out of range for type smallint
 +ERROR:  invalid input syntax for type integer: "-0b1000000000000001"
  SELECT int2 '-0o100000';
-   int2  
- --------
-@@ -397,7 +405,7 @@
+-  int2  
+---------
+- -32768
++ ?column? 
++----------
++   -32768
  (1 row)
  
  SELECT int2 '-0o100001';
 -ERROR:  value "-0o100001" is out of range for type smallint
 +ERROR:  invalid input syntax for type integer: "-0o100001"
  SELECT int2 '-0x8000';
-   int2  
- --------
-@@ -405,42 +413,22 @@
+-  int2  
+---------
+- -32768
++ ?column? 
++----------
++   -32768
  (1 row)
  
  SELECT int2 '-0x8001';
@@ -482,7 +523,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int2.out /home/longqimin/pg_r
 +ERROR:  invalid input syntax for type integer: "10__000"
 diff -U3 /home/longqimin/pg_regress_input/expected/int4.out /home/longqimin/pg_regress_input/results/int4.out
 --- /home/longqimin/pg_regress_input/expected/int4.out	2024-03-11 11:46:21.656870844 +0800
-+++ /home/longqimin/pg_regress_input/results/int4.out	2024-03-14 12:03:54.150876556 +0800
++++ /home/longqimin/pg_regress_input/results/int4.out	2024-03-25 16:05:13.716275286 +0800
 @@ -49,11 +49,7 @@
  (1 row)
  
@@ -668,7 +709,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int4.out /home/longqimin/pg_r
 -  2.5 |          2
 -(7 rows)
 -
-+ERROR:  column "x" not exist
++ERROR:  clapdb doesn't support select ValueLists
  -- check rounding when casting from numeric
  SELECT x, x::int4 AS int4_value
  FROM (VALUES (-2.5::numeric),
@@ -687,7 +728,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int4.out /home/longqimin/pg_r
 -  2.5 |          3
 -(7 rows)
 -
-+ERROR:  column "x" not exist
++ERROR:  clapdb doesn't support select ValueLists
  -- test gcd()
  SELECT a, b, gcd(a, b), gcd(a, -b), gcd(b, a), gcd(-b, a)
  FROM (VALUES (0::int4, 0::int4),
@@ -706,7 +747,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int4.out /home/longqimin/pg_r
 - -2147483648 | 1073741824 | 1073741824 | 1073741824 | 1073741824 | 1073741824
 -(7 rows)
 -
-+ERROR:  function gcd does not exist
++ERROR:  clapdb doesn't support select ValueLists
  SELECT gcd((-2147483648)::int4, 0::int4); -- overflow
 -ERROR:  integer out of range
 +ERROR:  function gcd does not exist
@@ -716,7 +757,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int4.out /home/longqimin/pg_r
  -- test lcm()
  SELECT a, b, lcm(a, b), lcm(a, -b), lcm(b, a), lcm(-b, a)
  FROM (VALUES (0::int4, 0::int4),
-@@ -426,20 +448,11 @@
+@@ -426,37 +448,28 @@
               (330::int4, 462::int4),
               (-330::int4, 462::int4),
               ((-2147483648)::int4, 0::int4)) AS v(a, b);
@@ -730,7 +771,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int4.out /home/longqimin/pg_r
 - -2147483648 |   0 |    0 |    0 |    0 |    0
 -(6 rows)
 -
-+ERROR:  function lcm does not exist
++ERROR:  clapdb doesn't support select ValueLists
  SELECT lcm((-2147483648)::int4, 1::int4); -- overflow
 -ERROR:  integer out of range
 +ERROR:  function lcm does not exist
@@ -739,26 +780,88 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int4.out /home/longqimin/pg_r
 +ERROR:  function lcm does not exist
  -- non-decimal literals
  SELECT int4 '0b100101';
-  int4 
-@@ -497,7 +510,7 @@
+- int4 
+-------
+-   37
++ ?column? 
++----------
++       37
+ (1 row)
+ 
+ SELECT int4 '0o273';
+- int4 
+-------
+-  187
++ ?column? 
++----------
++      187
+ (1 row)
+ 
+ SELECT int4 '0x42F';
+- int4 
+-------
+- 1071
++ ?column? 
++----------
++     1071
+ (1 row)
+ 
+ SELECT int4 '0b';
+@@ -467,7 +480,7 @@
+ ERROR:  invalid input syntax for type integer: "0x"
+ -- cases near overflow
+ SELECT int4 '0b1111111111111111111111111111111';
+-    int4    
++  ?column?  
+ ------------
+  2147483647
+ (1 row)
+@@ -475,7 +488,7 @@
+ SELECT int4 '0b10000000000000000000000000000000';
+ ERROR:  value "0b10000000000000000000000000000000" is out of range for type integer
+ SELECT int4 '0o17777777777';
+-    int4    
++  ?column?  
+ ------------
+  2147483647
+ (1 row)
+@@ -483,7 +496,7 @@
+ SELECT int4 '0o20000000000';
+ ERROR:  value "0o20000000000" is out of range for type integer
+ SELECT int4 '0x7FFFFFFF';
+-    int4    
++  ?column?  
+ ------------
+  2147483647
+ (1 row)
+@@ -491,60 +504,40 @@
+ SELECT int4 '0x80000000';
+ ERROR:  value "0x80000000" is out of range for type integer
+ SELECT int4 '-0b10000000000000000000000000000000';
+-    int4     
++  ?column?   
+ -------------
+  -2147483648
  (1 row)
  
  SELECT int4 '-0b10000000000000000000000000000001';
 -ERROR:  value "-0b10000000000000000000000000000001" is out of range for type integer
 +ERROR:  invalid input syntax for type integer: "-0b10000000000000000000000000000001"
  SELECT int4 '-0o20000000000';
-     int4     
+-    int4     
++  ?column?   
  -------------
-@@ -505,7 +518,7 @@
+  -2147483648
  (1 row)
  
  SELECT int4 '-0o20000000001';
 -ERROR:  value "-0o20000000001" is out of range for type integer
 +ERROR:  invalid input syntax for type integer: "-0o20000000001"
  SELECT int4 '-0x80000000';
-     int4     
+-    int4     
++  ?column?   
  -------------
-@@ -513,38 +526,18 @@
+  -2147483648
  (1 row)
  
  SELECT int4 '-0x80000001';
@@ -805,7 +908,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int4.out /home/longqimin/pg_r
  ERROR:  invalid input syntax for type integer: "_100"
 diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_regress_input/results/int8.out
 --- /home/longqimin/pg_regress_input/expected/int8.out	2024-03-11 11:46:21.657870845 +0800
-+++ /home/longqimin/pg_regress_input/results/int8.out	2024-03-14 12:03:55.437877464 +0800
++++ /home/longqimin/pg_regress_input/results/int8.out	2024-03-25 16:05:24.312282701 +0800
 @@ -5,19 +5,19 @@
  -- int8_tbl was already created and filled in test_setup.sql.
  -- Here we just try to insert bad values.
@@ -891,7 +994,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
  SELECT 37 + q1 AS plus4 FROM INT8_TBL order by 1;
        plus4       
  ------------------
-@@ -464,249 +452,101 @@
+@@ -464,195 +452,59 @@
  --
  SELECT to_char(q1, '9G999G999G999G999G999'), to_char(q2, '9,999,999,999,999,999')
  	FROM INT8_TBL order by 1;
@@ -1087,107 +1190,182 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
  -- check min/max values and overflow behavior
  select '-9223372036854775808'::int8;
 -         int8         
------------------------
-- -9223372036854775808
--(1 row)
--
-+ERROR:  value "-9223372036854775808" is out of range for type integer
++       ?column?       
+ ----------------------
+  -9223372036854775808
+ (1 row)
+ 
  select '-9223372036854775809'::int8;
 -ERROR:  value "-9223372036854775809" is out of range for type bigint
 +ERROR:  value "-9223372036854775809" is out of range for type integer
  select '9223372036854775807'::int8;
 -        int8         
-----------------------
-- 9223372036854775807
--(1 row)
--
-+ERROR:  value "9223372036854775807" is out of range for type integer
++      ?column?       
+ ---------------------
+  9223372036854775807
+ (1 row)
+ 
  select '9223372036854775808'::int8;
 -ERROR:  value "9223372036854775808" is out of range for type bigint
 +ERROR:  value "9223372036854775808" is out of range for type integer
  select -('-9223372036854775807'::int8);
--      ?column?       
-----------------------
-- 9223372036854775807
--(1 row)
--
-+ERROR:  value "-9223372036854775807" is out of range for type integer
+       ?column?       
+ ---------------------
+@@ -660,53 +512,129 @@
+ (1 row)
+ 
  select -('-9223372036854775808'::int8);
 -ERROR:  bigint out of range
-+ERROR:  value "-9223372036854775808" is out of range for type integer
++      ?column?       
++---------------------
++ 9223372036854775808
++(1 row)
++
  select 0::int8 - '-9223372036854775808'::int8;
 -ERROR:  bigint out of range
-+ERROR:  value "-9223372036854775808" is out of range for type integer
++      ?column?       
++---------------------
++ 9223372036854775808
++(1 row)
++
  select '9223372036854775800'::int8 + '9223372036854775800'::int8;
 -ERROR:  bigint out of range
-+ERROR:  value "9223372036854775800" is out of range for type integer
++       ?column?       
++----------------------
++ 18446744073709551600
++(1 row)
++
  select '-9223372036854775800'::int8 + '-9223372036854775800'::int8;
 -ERROR:  bigint out of range
-+ERROR:  value "-9223372036854775800" is out of range for type integer
++ ?column? 
++----------
++       16
++(1 row)
++
  select '9223372036854775800'::int8 - '-9223372036854775800'::int8;
 -ERROR:  bigint out of range
-+ERROR:  value "9223372036854775800" is out of range for type integer
++       ?column?       
++----------------------
++ 18446744073709551600
++(1 row)
++
  select '-9223372036854775800'::int8 - '9223372036854775800'::int8;
 -ERROR:  bigint out of range
-+ERROR:  value "-9223372036854775800" is out of range for type integer
++ ?column? 
++----------
++       16
++(1 row)
++
  select '9223372036854775800'::int8 * '9223372036854775800'::int8;
 -ERROR:  bigint out of range
-+ERROR:  value "9223372036854775800" is out of range for type integer
++ ?column? 
++----------
++       64
++(1 row)
++
  select '9223372036854775800'::int8 / '0'::int8;
 -ERROR:  division by zero
-+ERROR:  value "9223372036854775800" is out of range for type integer
++ERROR:  div zero [func=func_10863380729723559177]
  select '9223372036854775800'::int8 % '0'::int8;
 -ERROR:  division by zero
-+ERROR:  value "9223372036854775800" is out of range for type integer
++ERROR:  div zero [func=func_14579211216900041302]
  select abs('-9223372036854775808'::int8);
 -ERROR:  bigint out of range
-+ERROR:  value "-9223372036854775808" is out of range for type integer
++ERROR:  out of range
  select '9223372036854775800'::int8 + '100'::int4;
 -ERROR:  bigint out of range
-+ERROR:  value "9223372036854775800" is out of range for type integer
++      ?column?       
++---------------------
++ 9223372036854775900
++(1 row)
++
  select '-9223372036854775800'::int8 - '100'::int4;
 -ERROR:  bigint out of range
-+ERROR:  value "-9223372036854775800" is out of range for type integer
++      ?column?       
++---------------------
++ 9223372036854775716
++(1 row)
++
  select '9223372036854775800'::int8 * '100'::int4;
 -ERROR:  bigint out of range
-+ERROR:  value "9223372036854775800" is out of range for type integer
++ ?column? 
++----------
++     -800
++(1 row)
++
  select '100'::int4 + '9223372036854775800'::int8;
 -ERROR:  bigint out of range
-+ERROR:  value "9223372036854775800" is out of range for type integer
++      ?column?       
++---------------------
++ 9223372036854775900
++(1 row)
++
  select '-100'::int4 - '9223372036854775800'::int8;
 -ERROR:  bigint out of range
-+ERROR:  value "9223372036854775800" is out of range for type integer
++      ?column?       
++---------------------
++ 9223372036854775716
++(1 row)
++
  select '100'::int4 * '9223372036854775800'::int8;
 -ERROR:  bigint out of range
-+ERROR:  value "9223372036854775800" is out of range for type integer
++ ?column? 
++----------
++     -800
++(1 row)
++
  select '9223372036854775800'::int8 + '100'::int2;
 -ERROR:  bigint out of range
-+ERROR:  value "9223372036854775800" is out of range for type integer
++      ?column?       
++---------------------
++ 9223372036854775900
++(1 row)
++
  select '-9223372036854775800'::int8 - '100'::int2;
 -ERROR:  bigint out of range
-+ERROR:  value "-9223372036854775800" is out of range for type integer
++      ?column?       
++---------------------
++ 9223372036854775716
++(1 row)
++
  select '9223372036854775800'::int8 * '100'::int2;
 -ERROR:  bigint out of range
-+ERROR:  value "9223372036854775800" is out of range for type integer
++ ?column? 
++----------
++     -800
++(1 row)
++
  select '-9223372036854775808'::int8 / '0'::int2;
 -ERROR:  division by zero
-+ERROR:  value "-9223372036854775808" is out of range for type integer
++ERROR:  div zero [func=func_10863380729723559177]
  select '100'::int2 + '9223372036854775800'::int8;
 -ERROR:  bigint out of range
-+ERROR:  value "9223372036854775800" is out of range for type integer
++      ?column?       
++---------------------
++ 9223372036854775900
++(1 row)
++
  select '-100'::int2 - '9223372036854775800'::int8;
 -ERROR:  bigint out of range
-+ERROR:  value "9223372036854775800" is out of range for type integer
++      ?column?       
++---------------------
++ 9223372036854775716
++(1 row)
++
  select '100'::int2 * '9223372036854775800'::int8;
 -ERROR:  bigint out of range
-+ERROR:  value "9223372036854775800" is out of range for type integer
++ ?column? 
++----------
++     -800
++(1 row)
++
  select '100'::int2 / '0'::int8;
 -ERROR:  division by zero
 +ERROR:  div zero [func=func_9060753810053611181]
  SELECT CAST(q1 AS int4) FROM int8_tbl WHERE q2 = 456;
   q1  
  -----
-@@ -714,7 +554,14 @@
+@@ -714,7 +642,14 @@
  (1 row)
  
  SELECT CAST(q1 AS int4) FROM int8_tbl WHERE q2 <> 456;
@@ -1203,7 +1381,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
  SELECT CAST(q1 AS int2) FROM int8_tbl WHERE q2 = 456;
   q1  
  -----
-@@ -722,134 +569,74 @@
+@@ -722,108 +657,72 @@
  (1 row)
  
  SELECT CAST(q1 AS int2) FROM int8_tbl WHERE q2 <> 456;
@@ -1217,10 +1395,12 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
 +(4 rows)
 +
  SELECT CAST('42'::int2 AS int8), CAST('-37'::int2 AS int8);
-  int8 | int8 
- ------+------
+- int8 | int8 
+-------+------
 -   42 |  -37
-+ 42   | -37
++ ?column? | ?column? 
++----------+----------
++       42 |      -37
  (1 row)
  
  SELECT CAST(q1 AS float4), CAST(q2 AS float8) FROM INT8_TBL order by 1;
@@ -1242,14 +1422,14 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
  
  SELECT CAST('36854775807.0'::float4 AS int8);
 -    int8     
---------------
-- 36854775808
--(1 row)
--
-+ERROR:  signed char out of range
++  ?column?   
+ -------------
+  36854775808
+ (1 row)
+ 
  SELECT CAST('922337203685477580700.0'::float8 AS int8);
 -ERROR:  bigint out of range
-+ERROR:  signed char out of range
++ERROR:  long out of range
  SELECT CAST(q1 AS oid) FROM INT8_TBL order by 1;
 -ERROR:  OID out of range
 +ERROR:  not implemented type_cast case [to=oid]
@@ -1259,7 +1439,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
 - 1259
 -(1 row)
 -
-+ERROR:  can't find table : public.pg_class
++ERROR:  relation "public.pg_class" does not exist
  -- bit operations
  SELECT q1, q2, q1 & q2 AS "and", q1 | q2 AS "or", q1 # q2 AS "xor", ~q1 AS "not" FROM INT8_TBL order by 1;
 -        q1        |        q2         |       and        |        or        |       xor        |        not        
@@ -1334,47 +1514,62 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
  -- check sane handling of INT64_MIN overflow cases
  SELECT (-9223372036854775808)::int8 * (-1)::int8;
 -ERROR:  bigint out of range
-+ERROR:  value "-9223372036854775808" is out of range for type integer
++      ?column?       
++---------------------
++ 9223372036854775808
++(1 row)
++
  SELECT (-9223372036854775808)::int8 / (-1)::int8;
 -ERROR:  bigint out of range
-+ERROR:  value "-9223372036854775808" is out of range for type integer
++      ?column?       
++---------------------
++ 9223372036854775808
++(1 row)
++
  SELECT (-9223372036854775808)::int8 % (-1)::int8;
-- ?column? 
------------
--        0
--(1 row)
--
-+ERROR:  value "-9223372036854775808" is out of range for type integer
+  ?column? 
+ ----------
+@@ -831,9 +730,17 @@
+ (1 row)
+ 
  SELECT (-9223372036854775808)::int8 * (-1)::int4;
 -ERROR:  bigint out of range
-+ERROR:  value "-9223372036854775808" is out of range for type integer
++      ?column?       
++---------------------
++ 9223372036854775808
++(1 row)
++
  SELECT (-9223372036854775808)::int8 / (-1)::int4;
 -ERROR:  bigint out of range
-+ERROR:  value "-9223372036854775808" is out of range for type integer
++      ?column?       
++---------------------
++ 9223372036854775808
++(1 row)
++
  SELECT (-9223372036854775808)::int8 % (-1)::int4;
-- ?column? 
------------
--        0
--(1 row)
--
-+ERROR:  value "-9223372036854775808" is out of range for type integer
+  ?column? 
+ ----------
+@@ -841,9 +748,17 @@
+ (1 row)
+ 
  SELECT (-9223372036854775808)::int8 * (-1)::int2;
 -ERROR:  bigint out of range
-+ERROR:  value "-9223372036854775808" is out of range for type integer
++      ?column?       
++---------------------
++ 9223372036854775808
++(1 row)
++
  SELECT (-9223372036854775808)::int8 / (-1)::int2;
 -ERROR:  bigint out of range
-+ERROR:  value "-9223372036854775808" is out of range for type integer
++      ?column?       
++---------------------
++ 9223372036854775808
++(1 row)
++
  SELECT (-9223372036854775808)::int8 % (-1)::int2;
-- ?column? 
------------
--        0
--(1 row)
--
-+ERROR:  value "-9223372036854775808" is out of range for type integer
- -- check rounding when casting from float
- SELECT x, x::int8 AS int8_value
- FROM (VALUES (-2.5::float8),
-@@ -859,17 +646,7 @@
+  ?column? 
+ ----------
+@@ -859,17 +774,7 @@
               (0.5::float8),
               (1.5::float8),
               (2.5::float8)) t(x);
@@ -1389,11 +1584,11 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
 -  2.5 |          2
 -(7 rows)
 -
-+ERROR:  column "x" not exist
++ERROR:  clapdb doesn't support select ValueLists
  -- check rounding when casting from numeric
  SELECT x, x::int8 AS int8_value
  FROM (VALUES (-2.5::numeric),
-@@ -879,17 +656,7 @@
+@@ -879,17 +784,7 @@
               (0.5::numeric),
               (1.5::numeric),
               (2.5::numeric)) t(x);
@@ -1408,11 +1603,11 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
 -  2.5 |          3
 -(7 rows)
 -
-+ERROR:  column "x" not exist
++ERROR:  clapdb doesn't support select ValueLists
  -- test gcd()
  SELECT a, b, gcd(a, b), gcd(a, -b), gcd(b, a), gcd(-b, a)
  FROM (VALUES (0::int8, 0::int8),
-@@ -899,21 +666,11 @@
+@@ -899,21 +794,11 @@
               ((-9223372036854775808)::int8, 1::int8),
               ((-9223372036854775808)::int8, 9223372036854775807::int8),
               ((-9223372036854775808)::int8, 4611686018427387904::int8)) AS v(a, b);
@@ -1427,7 +1622,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
 - -9223372036854775808 | 4611686018427387904 | 4611686018427387904 | 4611686018427387904 | 4611686018427387904 | 4611686018427387904
 -(7 rows)
 -
-+ERROR:  function gcd does not exist
++ERROR:  clapdb doesn't support select ValueLists
  SELECT gcd((-9223372036854775808)::int8, 0::int8); -- overflow
 -ERROR:  bigint out of range
 +ERROR:  function gcd does not exist
@@ -1437,7 +1632,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
  -- test lcm()
  SELECT a, b, lcm(a, b), lcm(a, -b), lcm(b, a), lcm(-b, a)
  FROM (VALUES (0::int8, 0::int8),
-@@ -922,129 +679,68 @@
+@@ -922,129 +807,100 @@
               (288484263558::int8, 29893644334::int8),
               (-288484263558::int8, 29893644334::int8),
               ((-9223372036854775808)::int8, 0::int8)) AS v(a, b);
@@ -1451,7 +1646,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
 - -9223372036854775808 |           0 |                0 |                0 |                0 |                0
 -(6 rows)
 -
-+ERROR:  function lcm does not exist
++ERROR:  clapdb doesn't support select ValueLists
  SELECT lcm((-9223372036854775808)::int8, 1::int8); -- overflow
 -ERROR:  bigint out of range
 +ERROR:  function lcm does not exist
@@ -1460,26 +1655,32 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
 +ERROR:  function lcm does not exist
  -- non-decimal literals
  SELECT int8 '0b100101';
-  int8 
- ------
+- int8 
+-------
 -   37
-+ 37
++ ?column? 
++----------
++       37
  (1 row)
  
  SELECT int8 '0o273';
 - int8 
 -------
 -  187
--(1 row)
--
-+ERROR:  value "0o273" is out of range for type integer
++ ?column? 
++----------
++      187
+ (1 row)
+ 
  SELECT int8 '0x42F';
 - int8 
 -------
 - 1071
--(1 row)
--
-+ERROR:  value "0x42F" is out of range for type integer
++ ?column? 
++----------
++     1071
+ (1 row)
+ 
  SELECT int8 '0b';
 -ERROR:  invalid input syntax for type bigint: "0b"
 +ERROR:  invalid input syntax for type integer: "0b"
@@ -1492,61 +1693,61 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
  -- cases near overflow
  SELECT int8 '0b111111111111111111111111111111111111111111111111111111111111111';
 -        int8         
-----------------------
-- 9223372036854775807
--(1 row)
--
-+ERROR:  value "0b111111111111111111111111111111111111111111111111111111111111111" is out of range for type integer
++      ?column?       
+ ---------------------
+  9223372036854775807
+ (1 row)
+ 
  SELECT int8 '0b1000000000000000000000000000000000000000000000000000000000000000';
 -ERROR:  value "0b1000000000000000000000000000000000000000000000000000000000000000" is out of range for type bigint
 +ERROR:  value "0b1000000000000000000000000000000000000000000000000000000000000000" is out of range for type integer
  SELECT int8 '0o777777777777777777777';
 -        int8         
-----------------------
-- 9223372036854775807
--(1 row)
--
-+ERROR:  value "0o777777777777777777777" is out of range for type integer
++      ?column?       
+ ---------------------
+  9223372036854775807
+ (1 row)
+ 
  SELECT int8 '0o1000000000000000000000';
 -ERROR:  value "0o1000000000000000000000" is out of range for type bigint
 +ERROR:  value "0o1000000000000000000000" is out of range for type integer
  SELECT int8 '0x7FFFFFFFFFFFFFFF';
 -        int8         
-----------------------
-- 9223372036854775807
--(1 row)
--
-+ERROR:  value "0x7FFFFFFFFFFFFFFF" is out of range for type integer
++      ?column?       
+ ---------------------
+  9223372036854775807
+ (1 row)
+ 
  SELECT int8 '0x8000000000000000';
 -ERROR:  value "0x8000000000000000" is out of range for type bigint
 +ERROR:  value "0x8000000000000000" is out of range for type integer
  SELECT int8 '-0b1000000000000000000000000000000000000000000000000000000000000000';
 -         int8         
------------------------
-- -9223372036854775808
--(1 row)
--
-+ERROR:  invalid input syntax for type integer: "-0b1000000000000000000000000000000000000000000000000000000000000000"
++       ?column?       
+ ----------------------
+  -9223372036854775808
+ (1 row)
+ 
  SELECT int8 '-0b1000000000000000000000000000000000000000000000000000000000000001';
 -ERROR:  value "-0b1000000000000000000000000000000000000000000000000000000000000001" is out of range for type bigint
 +ERROR:  invalid input syntax for type integer: "-0b1000000000000000000000000000000000000000000000000000000000000001"
  SELECT int8 '-0o1000000000000000000000';
 -         int8         
------------------------
-- -9223372036854775808
--(1 row)
--
-+ERROR:  invalid input syntax for type integer: "-0o1000000000000000000000"
++       ?column?       
+ ----------------------
+  -9223372036854775808
+ (1 row)
+ 
  SELECT int8 '-0o1000000000000000000001';
 -ERROR:  value "-0o1000000000000000000001" is out of range for type bigint
 +ERROR:  invalid input syntax for type integer: "-0o1000000000000000000001"
  SELECT int8 '-0x8000000000000000';
 -         int8         
------------------------
-- -9223372036854775808
--(1 row)
--
-+ERROR:  invalid input syntax for type integer: "-0x8000000000000000"
++       ?column?       
+ ----------------------
+  -9223372036854775808
+ (1 row)
+ 
  SELECT int8 '-0x8000000000000001';
 -ERROR:  value "-0x8000000000000001" is out of range for type bigint
 +ERROR:  invalid input syntax for type integer: "-0x8000000000000001"
@@ -1598,7 +1799,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
 +ERROR:  invalid input syntax for type integer: "100__000"
 diff -U3 /home/longqimin/pg_regress_input/expected/float4.out /home/longqimin/pg_regress_input/results/float4.out
 --- /home/longqimin/pg_regress_input/expected/float4.out	2024-03-11 11:46:21.655870843 +0800
-+++ /home/longqimin/pg_regress_input/results/float4.out	2024-03-14 12:04:00.898881316 +0800
++++ /home/longqimin/pg_regress_input/results/float4.out	2024-03-25 16:05:31.496287728 +0800
 @@ -9,44 +9,44 @@
  INSERT INTO FLOAT4_TBL(f1) VALUES ('1.2345678901234e-20');
  -- test for over and under flow
@@ -1674,42 +1875,47 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float4.out /home/longqimin/pg
 +ERROR:  function pg_input_error_info does not exist
  -- special inputs
  SELECT 'NaN'::float4;
-  float4 
- --------
+- float4 
+---------
 -    NaN
-+    nan
++ ?column? 
++----------
++      nan
  (1 row)
  
  SELECT 'nan'::float4;
-  float4 
- --------
+- float4 
+---------
 -    NaN
-+    nan
++ ?column? 
++----------
++      nan
  (1 row)
  
  SELECT '   NAN  '::float4;
-  float4 
- --------
+- float4 
+---------
 -    NaN
-+    nan
++ ?column? 
++----------
++      nan
  (1 row)
  
  SELECT 'infinity'::float4;
 -  float4  
------------
++ ?column? 
+ ----------
 - Infinity
-+ float4 
-+--------
-+    inf
++      inf
  (1 row)
  
  SELECT '          -INFINiTY   '::float4;
 -  float4   
 ------------
 - -Infinity
-+ float4 
-+--------
-+   -inf
++ ?column? 
++----------
++     -inf
  (1 row)
  
  -- bad special inputs
@@ -1758,7 +1964,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float4.out /home/longqimin/pg
 -    NaN
 -(1 row)
 -
-+ERROR:  not processed pg_catalog type [pg_catalog_type=numeric]
++ERROR:  not implemented type_cast case [to=numeric]
  SELECT * FROM FLOAT4_TBL order by 1;
        f1       
  ---------------
@@ -1771,7 +1977,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float4.out /home/longqimin/pg
  SELECT * FROM FLOAT4_TBL order by 1;
        f1       
  ---------------
-@@ -256,26 +248,19 @@
+@@ -256,170 +248,103 @@
  
  -- test the unary float4abs operator
  SELECT f.f1, @f.f1 AS abs_f1 FROM FLOAT4_TBL f order by 1;
@@ -1807,33 +2013,43 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float4.out /home/longqimin/pg
  (5 rows)
  
  -- test edge-case coercions to integer
-@@ -286,7 +271,11 @@
+ SELECT '32767.4'::float4::int2;
+- int2  
+--------
+- 32767
++ ?column? 
++----------
++    32767
  (1 row)
  
  SELECT '32767.6'::float4::int2;
 -ERROR:  smallint out of range
-+ int2  
-+-------
-+ 32767
++ ?column? 
++----------
++    32767
 +(1 row)
 +
  SELECT '-32768.4'::float4::int2;
-   int2  
- --------
-@@ -294,7 +283,11 @@
+-  int2  
+---------
+- -32768
++ ?column? 
++----------
++   -32768
  (1 row)
  
  SELECT '-32768.6'::float4::int2;
 -ERROR:  smallint out of range
-+  int2  
-+--------
-+ -32768
++ ?column? 
++----------
++   -32768
 +(1 row)
 +
  SELECT '2147483520'::float4::int4;
-     int4    
+-    int4    
++  ?column?  
  ------------
-@@ -302,124 +295,52 @@
+  2147483520
  (1 row)
  
  SELECT '2147483647'::float4::int4;
@@ -1851,24 +2067,24 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float4.out /home/longqimin/pg
 +ERROR:  int out of range
  SELECT '9223369837831520256'::float4::int8;
 -        int8         
-----------------------
-- 9223369837831520256
--(1 row)
--
-+ERROR:  signed char out of range
++      ?column?       
+ ---------------------
+  9223369837831520256
+ (1 row)
+ 
  SELECT '9223372036854775807'::float4::int8;
 -ERROR:  bigint out of range
-+ERROR:  signed char out of range
++ERROR:  long out of range
  SELECT '-9223372036854775808.5'::float4::int8;
 -         int8         
 -----------------------
 - -9223372036854775808
 -(1 row)
 -
-+ERROR:  signed char out of range
++ERROR:  long out of range
  SELECT '-9223380000000000000'::float4::int8;
 -ERROR:  bigint out of range
-+ERROR:  signed char out of range
++ERROR:  long out of range
  -- Test for correct input rounding in edge cases.
  -- These lists are from Paxson 1991, excluding subnormals and
  -- inputs of over 9 sig. digits.
@@ -1980,7 +2196,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float4.out /home/longqimin/pg
  -- Test that the smallest possible normalized input value inputs
  -- correctly, either in 9-significant-digit or shortest-decimal
  -- format.
-@@ -428,33 +349,31 @@
+@@ -428,33 +353,31 @@
  -- shortest val is          1.1754944000
  -- midpoint to next val is  1.1754944208...
  SELECT float4send('1.17549435e-38'::float4);
@@ -2024,7 +2240,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float4.out /home/longqimin/pg
  -- float4: seeeeeee emmmmmmm mmmmmmmm mmmmmmmm
  -- we don't care to assume the platform's strtod() handles subnormals
  -- correctly; those are "use at your own risk". However we do test
-@@ -480,31 +399,7 @@
+@@ -480,31 +403,7 @@
    from (select bits::integer::xfloat4::float4 as flt
            from testdata
  	offset 0) s;
@@ -2053,11 +2269,11 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float4.out /home/longqimin/pg
 - \x007fffff | 1.1754942e-38
 -(21 rows)
 -
-+ERROR:  not implemented type_cast case [to=xfloat4]
++ERROR:  clapdb doesn't support CTE currently
  with testdata(bits) as (values
    (x'00000000'),
    -- smallest normal values
-@@ -670,277 +565,7 @@
+@@ -670,277 +569,7 @@
    from (select bits::integer::xfloat4::float4 as flt
            from testdata
  	offset 0) s;
@@ -2326,7 +2542,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float4.out /home/longqimin/pg
 - \x03d20cfe | 1.23456735e-36 | 1.23456735e-36 | \x03d20cfe | t
 -(261 rows)
 -
-+ERROR:  not implemented type_cast case [to=xfloat4]
++ERROR:  clapdb doesn't support CTE currently
  -- clean up, lest opr_sanity complain
  drop type xfloat4 cascade;
 -NOTICE:  drop cascades to 6 other objects
@@ -2338,8 +2554,8 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float4.out /home/longqimin/pg
 -drop cascades to cast from integer to xfloat4
 +ERROR:  only support select and create table statement
 diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg_regress_input/results/float8.out
---- /home/longqimin/pg_regress_input/expected/float8.out	2024-03-11 11:46:21.656870844 +0800
-+++ /home/longqimin/pg_regress_input/results/float8.out	2024-03-14 12:04:06.431885220 +0800
+--- /home/longqimin/pg_regress_input/expected/float8.out	2024-03-25 09:21:06.162601856 +0800
++++ /home/longqimin/pg_regress_input/results/float8.out	2024-03-25 16:05:40.541294057 +0800
 @@ -6,6 +6,7 @@
  -- (This temporarily hides the table created in test_setup.sql)
  --
@@ -2411,42 +2627,47 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
 +ERROR:  function pg_input_error_info does not exist
  -- special inputs
  SELECT 'NaN'::float8;
-  float8 
- --------
+- float8 
+---------
 -    NaN
-+    nan
++ ?column? 
++----------
++      nan
  (1 row)
  
  SELECT 'nan'::float8;
-  float8 
- --------
+- float8 
+---------
 -    NaN
-+    nan
++ ?column? 
++----------
++      nan
  (1 row)
  
  SELECT '   NAN  '::float8;
-  float8 
- --------
+- float8 
+---------
 -    NaN
-+    nan
++ ?column? 
++----------
++      nan
  (1 row)
  
  SELECT 'infinity'::float8;
 -  float8  
------------
++ ?column? 
+ ----------
 - Infinity
-+ float8 
-+--------
-+    inf
++      inf
  (1 row)
  
  SELECT '          -INFINiTY   '::float8;
 -  float8   
 ------------
 - -Infinity
-+ float8 
-+--------
-+   -inf
++ ?column? 
++----------
++     -inf
  (1 row)
  
  -- bad special inputs
@@ -2495,7 +2716,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
 -    NaN
 -(1 row)
 -
-+ERROR:  not processed pg_catalog type [pg_catalog_type=numeric]
++ERROR:  not implemented type_cast case [to=numeric]
  SELECT * FROM FLOAT8_TBL order by 1;
 -          f1          
 -----------------------
@@ -3298,7 +3519,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
 -       NaN |                  NaN |                 NaN
 -(22 rows)
 -
-+ERROR:  function erf does not exist
++ERROR:  clapdb doesn't support select ValueLists
  RESET extra_float_digits;
 +ERROR:  only support select and create table statement
  -- test for over- and underflow
@@ -3319,7 +3540,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
  -- Check the float8 values exported for use by other tests
  SELECT * FROM FLOAT8_TBL order by 1;
            f1           
-@@ -817,9 +531,14 @@
+@@ -817,96 +531,89 @@
   -1.2345678901234e+200
                 -1004.3
                  -34.84
@@ -3335,74 +3556,85 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
  
  -- test edge-case coercions to integer
  SELECT '32767.4'::float8::int2;
-@@ -829,7 +548,11 @@
+- int2  
+--------
+- 32767
++ ?column? 
++----------
++    32767
  (1 row)
  
  SELECT '32767.6'::float8::int2;
 -ERROR:  smallint out of range
-+ int2  
-+-------
-+ 32767
++ ?column? 
++----------
++    32767
 +(1 row)
 +
  SELECT '-32768.4'::float8::int2;
-   int2  
- --------
-@@ -837,7 +560,11 @@
+-  int2  
+---------
+- -32768
++ ?column? 
++----------
++   -32768
  (1 row)
  
  SELECT '-32768.6'::float8::int2;
 -ERROR:  smallint out of range
-+  int2  
-+--------
-+ -32768
++ ?column? 
++----------
++   -32768
 +(1 row)
 +
  SELECT '2147483647.4'::float8::int4;
-     int4    
+-    int4    
++  ?column?  
  ------------
-@@ -845,7 +572,11 @@
+  2147483647
  (1 row)
  
  SELECT '2147483647.6'::float8::int4;
 -ERROR:  integer out of range
-+    int4    
++  ?column?  
 +------------
 + 2147483647
 +(1 row)
 +
  SELECT '-2147483648.4'::float8::int4;
-     int4     
+-    int4     
++  ?column?   
  -------------
-@@ -853,60 +584,32 @@
+  -2147483648
  (1 row)
  
  SELECT '-2147483648.6'::float8::int4;
 -ERROR:  integer out of range
--SELECT '9223372036854773760'::float8::int8;
--        int8         
-----------------------
-- 9223372036854773760
-+    int4     
++  ?column?   
 +-------------
 + -2147483648
++(1 row)
++
+ SELECT '9223372036854773760'::float8::int8;
+-        int8         
++      ?column?       
+ ---------------------
+  9223372036854773760
  (1 row)
  
-+SELECT '9223372036854773760'::float8::int8;
-+ERROR:  signed char out of range
  SELECT '9223372036854775807'::float8::int8;
 -ERROR:  bigint out of range
-+ERROR:  signed char out of range
++ERROR:  long out of range
  SELECT '-9223372036854775808.5'::float8::int8;
 -         int8         
 -----------------------
 - -9223372036854775808
 -(1 row)
 -
-+ERROR:  signed char out of range
++ERROR:  long out of range
  SELECT '-9223372036854780000'::float8::int8;
 -ERROR:  bigint out of range
-+ERROR:  signed char out of range
++ERROR:  long out of range
  -- test exact cases for trigonometric functions in degrees
  SELECT x,
         sind(x),
@@ -3422,7 +3654,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
 - 360 |    0 | t
 -(9 rows)
 -
-+ERROR:  function sind does not exist
++ERROR:  clapdb doesn't support select ValueLists
  SELECT x,
         cosd(x),
         cosd(x) IN (-1,-0.5,0,0.5,1) AS cosd_exact
@@ -3441,11 +3673,11 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
 - 360 |    1 | t
 -(9 rows)
 -
-+ERROR:  function cosd does not exist
++ERROR:  clapdb doesn't support select ValueLists
  SELECT x,
         tand(x),
         tand(x) IN ('-Infinity'::float8,-1,0,
-@@ -916,79 +619,49 @@
+@@ -916,79 +623,49 @@
                     1,'Infinity'::float8) AS cotd_exact
  FROM (VALUES (0), (45), (90), (135), (180),
        (225), (270), (315), (360)) AS t(x);
@@ -3462,7 +3694,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
 - 360 |         0 | t          |  Infinity | t
 -(9 rows)
 -
-+ERROR:  function tand does not exist
++ERROR:  clapdb doesn't support select ValueLists
  SELECT x,
         asind(x),
         asind(x) IN (-90,-30,0,30,90) AS asind_exact,
@@ -3478,7 +3710,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
 -    1 |    90 | t           |     0 | t
 -(5 rows)
 -
-+ERROR:  function asind does not exist
++ERROR:  clapdb doesn't support select ValueLists
  SELECT x,
         atand(x),
         atand(x) IN (-90,-45,0,45,90) AS atand_exact
@@ -3493,7 +3725,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
 -  Infinity |    90 | t
 -(5 rows)
 -
-+ERROR:  function atand does not exist
++ERROR:  clapdb doesn't support select ValueLists
  SELECT x, y,
         atan2d(y, x),
         atan2d(y, x) IN (-90,0,90,180) AS atan2d_exact
@@ -3537,7 +3769,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
  -- float8: seeeeeee eeeeeeee eeeeeeee mmmmmmmm mmmmmmmm(x4)
  -- we don't care to assume the platform's strtod() handles subnormals
  -- correctly; those are "use at your own risk". However we do test
-@@ -1013,28 +686,7 @@
+@@ -1013,28 +690,7 @@
    from (select bits::bigint::xfloat8::float8 as flt
            from testdata
  	offset 0) s;
@@ -3563,11 +3795,11 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
 - \x000fffffffffffff |  2.225073858507201e-308
 -(18 rows)
 -
-+ERROR:  not implemented type_cast case [to=xfloat8]
++ERROR:  clapdb doesn't support CTE currently
  -- round-trip tests
  with testdata(bits) as (values
    (x'0000000000000000'),
-@@ -1182,225 +834,7 @@
+@@ -1182,225 +838,7 @@
    from (select bits::bigint::xfloat8::float8 as flt
            from testdata
  	offset 0) s;
@@ -3784,7 +4016,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
 - \x3a6fa7161a4d6e0c |   3.196104012172126e-27 |   3.196104012172126e-27 | \x3a6fa7161a4d6e0c | t
 -(209 rows)
 -
-+ERROR:  not implemented type_cast case [to=xfloat8]
++ERROR:  clapdb doesn't support CTE currently
  -- clean up, lest opr_sanity complain
  drop type xfloat8 cascade;
 -NOTICE:  drop cascades to 6 other objects
@@ -3796,8 +4028,8 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
 -drop cascades to cast from bigint to xfloat8
 +ERROR:  only support select and create table statement
 diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_regress_input/results/date.out
---- /home/longqimin/pg_regress_input/expected/date.out	2024-03-14 10:57:23.067573786 +0800
-+++ /home/longqimin/pg_regress_input/results/date.out	2024-03-14 12:04:23.294897116 +0800
+--- /home/longqimin/pg_regress_input/expected/date.out	2024-03-25 09:21:23.437606375 +0800
++++ /home/longqimin/pg_regress_input/results/date.out	2024-03-25 16:06:07.714313073 +0800
 @@ -10,7 +10,7 @@
  INSERT INTO DATE_TBL VALUES ('1996-03-02');
  INSERT INTO DATE_TBL VALUES ('1997-02-28');
@@ -3815,7 +4047,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
  SELECT f1 FROM DATE_TBL order by 1;
        f1       
  ---------------
-@@ -70,13 +71,11 @@
+@@ -70,93 +71,73 @@
  -- Check all the documented input formats
  --
  SET datestyle TO iso;  -- display results in ISO
@@ -3830,9 +4062,17 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 -
 +ERROR:  invalid input syntax for type date: "January 8, 1999"
  SELECT date '1999-01-08';
-     date    
+-    date    
++  ?column?  
  ------------
-@@ -90,53 +89,37 @@
+  1999-01-08
+ (1 row)
+ 
+ SELECT date '1999-01-18';
+-    date    
++  ?column?  
+ ------------
+  1999-01-18
  (1 row)
  
  SELECT date '1/8/1999';
@@ -3851,22 +4091,25 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 -(1 row)
 -
 -SELECT date '19990108';
-     date    
+-    date    
++  ?column?  
  ------------
   1999-01-08
  (1 row)
  
 -SELECT date '990108';
+-    date    
 +SELECT date '1/18/1999';
-     date    
++  ?column?  
  ------------
 - 1999-01-08
 + 1999-01-18
  (1 row)
  
 -SELECT date '1999.008';
+-    date    
 +SELECT date '18/1/1999';
-     date    
++  ?column?  
  ------------
 - 1999-01-08
 + 1999-01-18
@@ -3899,9 +4142,10 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 -
 +ERROR:  invalid input syntax for type date: "99-Jan-08"
  SELECT date '1999-Jan-08';
-     date    
+-    date    
++  ?column?  
  ------------
-@@ -144,8 +127,7 @@
+  1999-01-08
  (1 row)
  
  SELECT date '08-Jan-99';
@@ -3909,9 +4153,10 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 -HINT:  Perhaps you need a different "datestyle" setting.
 +ERROR:  invalid input syntax for type date: "08-Jan-99"
  SELECT date '08-Jan-1999';
-     date    
+-    date    
++  ?column?  
  ------------
-@@ -153,8 +135,7 @@
+  1999-01-08
  (1 row)
  
  SELECT date 'Jan-08-99';
@@ -3919,9 +4164,12 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 -HINT:  Perhaps you need a different "datestyle" setting.
 +ERROR:  invalid input syntax for type date: "Jan-08-99"
  SELECT date 'Jan-08-1999';
-     date    
+-    date    
++  ?column?  
  ------------
-@@ -166,77 +147,47 @@
+  1999-01-08
+ (1 row)
+@@ -166,218 +147,135 @@
  SELECT date '1999-08-Jan';
  ERROR:  invalid input syntax for type date: "1999-08-Jan"
  SELECT date '99 Jan 08';
@@ -3975,29 +4223,31 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 -
 +ERROR:  invalid input syntax for type date: "1999 08 Jan"
  SELECT date '99-01-08';
+-    date    
+-------------
+- 1999-01-08
+-(1 row)
+-
 +ERROR:  invalid input syntax for type date: "99-01-08"
-+SELECT date '1999-01-08';
-     date    
+ SELECT date '1999-01-08';
+-    date    
++  ?column?  
  ------------
   1999-01-08
  (1 row)
  
--SELECT date '1999-01-08';
-+SELECT date '08-01-99';
-+ERROR:  invalid input syntax for type date: "08-01-99"
-+SELECT date '08-01-1999';
-     date    
- ------------
-- 1999-01-08
-+ 1999-08-01
- (1 row)
- 
--SELECT date '08-01-99';
+ SELECT date '08-01-99';
 -ERROR:  date/time field value out of range: "08-01-99"
 -HINT:  Perhaps you need a different "datestyle" setting.
--SELECT date '08-01-1999';
++ERROR:  invalid input syntax for type date: "08-01-99"
+ SELECT date '08-01-1999';
 -ERROR:  date/time field value out of range: "08-01-1999"
 -HINT:  Perhaps you need a different "datestyle" setting.
++  ?column?  
++------------
++ 1999-08-01
++(1 row)
++
  SELECT date '01-08-99';
 -ERROR:  date/time field value out of range: "01-08-99"
 -HINT:  Perhaps you need a different "datestyle" setting.
@@ -4006,7 +4256,8 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 -ERROR:  date/time field value out of range: "01-08-1999"
 -HINT:  Perhaps you need a different "datestyle" setting.
 -SELECT date '99-08-01';
-     date    
+-    date    
++  ?column?  
  ------------
 - 1999-08-01
 + 1999-01-08
@@ -4015,9 +4266,10 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 +SELECT date '99-08-01';
 +ERROR:  invalid input syntax for type date: "99-08-01"
  SELECT date '1999-08-01';
-     date    
+-    date    
++  ?column?  
  ------------
-@@ -244,48 +195,25 @@
+  1999-08-01
  (1 row)
  
  SELECT date '99 01 08';
@@ -4074,11 +4326,22 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 -
 +ERROR:  invalid input syntax for type date: "January 8, 1999"
  SELECT date '1999-01-08';
-     date    
+-    date    
++  ?column?  
  ------------
-@@ -301,57 +229,35 @@
+  1999-01-08
+ (1 row)
+ 
+ SELECT date '1999-01-18';
+-    date    
++  ?column?  
+ ------------
+  1999-01-18
+ (1 row)
+ 
  SELECT date '1/8/1999';
-     date    
+-    date    
++  ?column?  
  ------------
 - 1999-08-01
 + 1999-01-08
@@ -4088,14 +4351,16 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 -ERROR:  date/time field value out of range: "1/18/1999"
 -HINT:  Perhaps you need a different "datestyle" setting.
 -SELECT date '18/1/1999';
-     date    
+-    date    
++  ?column?  
  ------------
   1999-01-18
  (1 row)
  
 -SELECT date '01/02/03';
+-    date    
 +SELECT date '18/1/1999';
-     date    
++  ?column?  
  ------------
 - 2003-02-01
 + 1999-01-18
@@ -4143,9 +4408,10 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 -HINT:  Perhaps you need a different "datestyle" setting.
 +ERROR:  invalid input syntax for type date: "99-Jan-08"
  SELECT date '1999-Jan-08';
-     date    
+-    date    
++  ?column?  
  ------------
-@@ -359,11 +265,7 @@
+  1999-01-08
  (1 row)
  
  SELECT date '08-Jan-99';
@@ -4156,9 +4422,10 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 -
 +ERROR:  invalid input syntax for type date: "08-Jan-99"
  SELECT date '08-Jan-1999';
-     date    
+-    date    
++  ?column?  
  ------------
-@@ -371,11 +273,7 @@
+  1999-01-08
  (1 row)
  
  SELECT date 'Jan-08-99';
@@ -4169,9 +4436,12 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 -
 +ERROR:  invalid input syntax for type date: "Jan-08-99"
  SELECT date 'Jan-08-1999';
-     date    
+-    date    
++  ?column?  
  ------------
-@@ -387,49 +285,23 @@
+  1999-01-08
+ (1 row)
+@@ -387,229 +285,135 @@
  SELECT date '1999-08-Jan';
  ERROR:  invalid input syntax for type date: "1999-08-Jan"
  SELECT date '99 Jan 08';
@@ -4227,9 +4497,10 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 -HINT:  Perhaps you need a different "datestyle" setting.
 +ERROR:  invalid input syntax for type date: "99-01-08"
  SELECT date '1999-01-08';
-     date    
+-    date    
++  ?column?  
  ------------
-@@ -437,32 +309,23 @@
+  1999-01-08
  (1 row)
  
  SELECT date '08-01-99';
@@ -4240,21 +4511,23 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 -
 +ERROR:  invalid input syntax for type date: "08-01-99"
  SELECT date '08-01-1999';
-     date    
- ------------
+-    date    
+-------------
 - 1999-01-08
 -(1 row)
 -
 -SELECT date '01-08-99';
 -    date    
--------------
++  ?column?  
+ ------------
   1999-08-01
  (1 row)
  
 +SELECT date '01-08-99';
 +ERROR:  invalid input syntax for type date: "01-08-99"
  SELECT date '01-08-1999';
-     date    
+-    date    
++  ?column?  
  ------------
 - 1999-08-01
 + 1999-01-08
@@ -4265,9 +4538,10 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 -HINT:  Perhaps you need a different "datestyle" setting.
 +ERROR:  invalid input syntax for type date: "99-08-01"
  SELECT date '1999-08-01';
-     date    
+-    date    
++  ?column?  
  ------------
-@@ -470,54 +333,25 @@
+  1999-08-01
  (1 row)
  
  SELECT date '99 01 08';
@@ -4330,16 +4604,39 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 -
 +ERROR:  invalid input syntax for type date: "January 8, 1999"
  SELECT date '1999-01-08';
-     date    
+-    date    
++  ?column?  
  ------------
-@@ -543,47 +377,25 @@
+  1999-01-08
+ (1 row)
+ 
+ SELECT date '1999-01-18';
+-    date    
++  ?column?  
+ ------------
+  1999-01-18
+ (1 row)
+ 
+ SELECT date '1/8/1999';
+-    date    
++  ?column?  
+ ------------
+  1999-01-08
+ (1 row)
+ 
+ SELECT date '1/18/1999';
+-    date    
++  ?column?  
+ ------------
+  1999-01-18
  (1 row)
  
  SELECT date '18/1/1999';
 -ERROR:  date/time field value out of range: "18/1/1999"
 -HINT:  Perhaps you need a different "datestyle" setting.
 -SELECT date '01/02/03';
-     date    
+-    date    
++  ?column?  
  ------------
 - 2003-01-02
 + 1999-01-18
@@ -4387,9 +4684,10 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 -HINT:  Perhaps you need a different "datestyle" setting.
 +ERROR:  invalid input syntax for type date: "99-Jan-08"
  SELECT date '1999-Jan-08';
-     date    
+-    date    
++  ?column?  
  ------------
-@@ -591,11 +403,7 @@
+  1999-01-08
  (1 row)
  
  SELECT date '08-Jan-99';
@@ -4400,9 +4698,10 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 -
 +ERROR:  invalid input syntax for type date: "08-Jan-99"
  SELECT date '08-Jan-1999';
-     date    
+-    date    
++  ?column?  
  ------------
-@@ -603,11 +411,7 @@
+  1999-01-08
  (1 row)
  
  SELECT date 'Jan-08-99';
@@ -4413,9 +4712,12 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 -
 +ERROR:  invalid input syntax for type date: "Jan-08-99"
  SELECT date 'Jan-08-1999';
-     date    
+-    date    
++  ?column?  
  ------------
-@@ -621,46 +425,21 @@
+  1999-01-08
+ (1 row)
+@@ -621,149 +425,89 @@
  SELECT date '99 Jan 08';
  ERROR:  invalid input syntax for type date: "99 Jan 08"
  SELECT date '1999 Jan 08';
@@ -4467,9 +4769,10 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 -HINT:  Perhaps you need a different "datestyle" setting.
 +ERROR:  invalid input syntax for type date: "99-01-08"
  SELECT date '1999-01-08';
-     date    
+-    date    
++  ?column?  
  ------------
-@@ -668,11 +447,7 @@
+  1999-01-08
  (1 row)
  
  SELECT date '08-01-99';
@@ -4480,9 +4783,10 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 -
 +ERROR:  invalid input syntax for type date: "08-01-99"
  SELECT date '08-01-1999';
-     date    
+-    date    
++  ?column?  
  ------------
-@@ -680,11 +455,7 @@
+  1999-08-01
  (1 row)
  
  SELECT date '01-08-99';
@@ -4493,9 +4797,10 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 -
 +ERROR:  invalid input syntax for type date: "01-08-99"
  SELECT date '01-08-1999';
-     date    
+-    date    
++  ?column?  
  ------------
-@@ -692,8 +463,7 @@
+  1999-01-08
  (1 row)
  
  SELECT date '99-08-01';
@@ -4503,9 +4808,10 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 -HINT:  Perhaps you need a different "datestyle" setting.
 +ERROR:  invalid input syntax for type date: "99-08-01"
  SELECT date '1999-08-01';
-     date    
+-    date    
++  ?column?  
  ------------
-@@ -701,47 +471,21 @@
+  1999-08-01
  (1 row)
  
  SELECT date '99 01 08';
@@ -4560,14 +4866,17 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 +ERROR:  invalid input syntax for type date: "1999 08 01"
  -- Check upper and lower limits of date range
  SELECT date '4714-11-24 BC';
-      date      
-@@ -750,20 +494,20 @@
+-     date      
++   ?column?    
+ ---------------
+  4714-11-24 BC
  (1 row)
  
  SELECT date '4714-11-23 BC';  -- out of range
 -ERROR:  date out of range: "4714-11-23 BC"
 -SELECT date '5874897-12-31';
-      date      
+-     date      
++   ?column?    
  ---------------
 - 5874897-12-31
 + 4714-11-23 BC
@@ -4714,7 +5023,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
  --
  -- test extract!
  --
-@@ -892,35 +586,12 @@
+@@ -892,90 +586,67 @@
      date_part('julian', f1) AS julian,
      date_part('epoch', f1) AS epoch
      FROM date_tbl order by 1;
@@ -4752,48 +5061,320 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
  --
  -- century
  --
-@@ -1079,15 +750,35 @@
+ SELECT EXTRACT(CENTURY FROM DATE '0101-12-31 BC'); -- -2
+- extract 
+----------
+-      -2
++ date_part 
++-----------
++        -2
+ (1 row)
+ 
+ SELECT EXTRACT(CENTURY FROM DATE '0100-12-31 BC'); -- -1
+- extract 
+----------
+-      -1
++ date_part 
++-----------
++        -1
+ (1 row)
+ 
+ SELECT EXTRACT(CENTURY FROM DATE '0001-12-31 BC'); -- -1
+- extract 
+----------
+-      -1
++ date_part 
++-----------
++        -1
+ (1 row)
+ 
+ SELECT EXTRACT(CENTURY FROM DATE '0001-01-01');    --  1
+- extract 
+----------
+-       1
++ date_part 
++-----------
++         1
+ (1 row)
+ 
+ SELECT EXTRACT(CENTURY FROM DATE '0001-01-01 AD'); --  1
+- extract 
+----------
+-       1
++ date_part 
++-----------
++         1
+ (1 row)
+ 
+ SELECT EXTRACT(CENTURY FROM DATE '1900-12-31');    -- 19
+- extract 
+----------
+-      19
++ date_part 
++-----------
++        19
+ (1 row)
+ 
+ SELECT EXTRACT(CENTURY FROM DATE '1901-01-01');    -- 20
+- extract 
+----------
+-      20
++ date_part 
++-----------
++        20
+ (1 row)
+ 
+ SELECT EXTRACT(CENTURY FROM DATE '2000-12-31');    -- 20
+- extract 
+----------
+-      20
++ date_part 
++-----------
++        20
+ (1 row)
+ 
+ SELECT EXTRACT(CENTURY FROM DATE '2001-01-01');    -- 21
+- extract 
+----------
+-      21
++ date_part 
++-----------
++        21
+ (1 row)
+ 
+ SELECT EXTRACT(CENTURY FROM CURRENT_DATE)>=21 AS True;     -- true
+@@ -988,220 +659,196 @@
+ -- millennium
+ --
+ SELECT EXTRACT(MILLENNIUM FROM DATE '0001-12-31 BC'); -- -1
+- extract 
+----------
+-      -1
++ date_part 
++-----------
++        -1
+ (1 row)
+ 
+ SELECT EXTRACT(MILLENNIUM FROM DATE '0001-01-01 AD'); --  1
+- extract 
+----------
+-       1
++ date_part 
++-----------
++         1
+ (1 row)
+ 
+ SELECT EXTRACT(MILLENNIUM FROM DATE '1000-12-31');    --  1
+- extract 
+----------
+-       1
++ date_part 
++-----------
++         1
+ (1 row)
+ 
+ SELECT EXTRACT(MILLENNIUM FROM DATE '1001-01-01');    --  2
+- extract 
+----------
+-       2
++ date_part 
++-----------
++         2
+ (1 row)
+ 
+ SELECT EXTRACT(MILLENNIUM FROM DATE '2000-12-31');    --  2
+- extract 
+----------
+-       2
++ date_part 
++-----------
++         2
+ (1 row)
+ 
+ SELECT EXTRACT(MILLENNIUM FROM DATE '2001-01-01');    --  3
+- extract 
+----------
+-       3
++ date_part 
++-----------
++         3
+ (1 row)
+ 
+ -- next test to be fixed on the turn of the next millennium;-)
+ SELECT EXTRACT(MILLENNIUM FROM CURRENT_DATE);         --  3
+- extract 
+----------
+-       3
++ date_part 
++-----------
++         3
+ (1 row)
+ 
+ --
+ -- decade
+ --
+ SELECT EXTRACT(DECADE FROM DATE '1994-12-25');    -- 199
+- extract 
+----------
+-     199
++ date_part 
++-----------
++       199
+ (1 row)
+ 
+ SELECT EXTRACT(DECADE FROM DATE '0010-01-01');    --   1
+- extract 
+----------
+-       1
++ date_part 
++-----------
++         1
+ (1 row)
+ 
+ SELECT EXTRACT(DECADE FROM DATE '0009-12-31');    --   0
+- extract 
+----------
+-       0
++ date_part 
++-----------
++         0
+ (1 row)
+ 
+ SELECT EXTRACT(DECADE FROM DATE '0001-01-01 BC'); --   0
+- extract 
+----------
+-       0
++ date_part 
++-----------
++         0
+ (1 row)
+ 
+ SELECT EXTRACT(DECADE FROM DATE '0002-12-31 BC'); --  -1
+- extract 
+----------
+-      -1
++ date_part 
++-----------
++        -1
+ (1 row)
+ 
+ SELECT EXTRACT(DECADE FROM DATE '0011-01-01 BC'); --  -1
+- extract 
+----------
+-      -1
++ date_part 
++-----------
++        -1
+ (1 row)
+ 
+ SELECT EXTRACT(DECADE FROM DATE '0012-12-31 BC'); --  -2
+- extract 
+----------
+-      -2
++ date_part 
++-----------
++        -2
+ (1 row)
+ 
+ --
  -- all possible fields
  --
  SELECT EXTRACT(MICROSECONDS  FROM DATE '2020-08-11');
 -ERROR:  unit "microseconds" not supported for type date
-+ extract 
-+---------
-+       0
++ date_part 
++-----------
++         0
 +(1 row)
 +
  SELECT EXTRACT(MILLISECONDS  FROM DATE '2020-08-11');
 -ERROR:  unit "milliseconds" not supported for type date
-+ extract 
-+---------
-+       0
++ date_part 
++-----------
++         0
 +(1 row)
 +
  SELECT EXTRACT(SECOND        FROM DATE '2020-08-11');
 -ERROR:  unit "second" not supported for type date
-+ extract 
-+---------
-+       0
++ date_part 
++-----------
++         0
 +(1 row)
 +
  SELECT EXTRACT(MINUTE        FROM DATE '2020-08-11');
 -ERROR:  unit "minute" not supported for type date
-+ extract 
-+---------
-+       0
++ date_part 
++-----------
++         0
 +(1 row)
 +
  SELECT EXTRACT(HOUR          FROM DATE '2020-08-11');
 -ERROR:  unit "hour" not supported for type date
-+ extract 
-+---------
-+       0
++ date_part 
++-----------
++         0
 +(1 row)
 +
  SELECT EXTRACT(DAY           FROM DATE '2020-08-11');
-  extract 
- ---------
-@@ -1131,77 +822,33 @@
+- extract 
+----------
+-      11
++ date_part 
++-----------
++        11
+ (1 row)
+ 
+ SELECT EXTRACT(MONTH         FROM DATE '2020-08-11');
+- extract 
+----------
+-       8
++ date_part 
++-----------
++         8
+ (1 row)
+ 
+ SELECT EXTRACT(YEAR          FROM DATE '2020-08-11');
+- extract 
+----------
+-    2020
++ date_part 
++-----------
++      2020
+ (1 row)
+ 
+ SELECT EXTRACT(YEAR          FROM DATE '2020-08-11 BC');
+- extract 
+----------
+-   -2020
++ date_part 
++-----------
++     -2020
+ (1 row)
+ 
+ SELECT EXTRACT(DECADE        FROM DATE '2020-08-11');
+- extract 
+----------
+-     202
++ date_part 
++-----------
++       202
+ (1 row)
+ 
+ SELECT EXTRACT(CENTURY       FROM DATE '2020-08-11');
+- extract 
+----------
+-      21
++ date_part 
++-----------
++        21
+ (1 row)
+ 
+ SELECT EXTRACT(MILLENNIUM    FROM DATE '2020-08-11');
+- extract 
+----------
+-       3
++ date_part 
++-----------
++         3
  (1 row)
  
  SELECT EXTRACT(ISOYEAR       FROM DATE '2020-08-11');
@@ -4898,7 +5479,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
  (1 row)
  
  SELECT DATE_TRUNC('CENTURY', TIMESTAMP '1970-03-20 04:30:00.00000'); -- 1901
-@@ -1224,230 +871,126 @@
+@@ -1224,201 +871,109 @@
  (1 row)
  
  SELECT DATE_TRUNC('CENTURY', DATE '1970-03-20'); -- 1901
@@ -5144,56 +5725,50 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 +ERROR:  invalid input syntax for type date: "infinity"
  -- test constructors
  select make_date(2013, 7, 15);
-- make_date  
--------------
-- 2013-07-15
--(1 row)
--
-+ERROR:  function make_date does not exist
- select make_date(-44, 3, 15);
--   make_date   
-----------------
-- 0044-03-15 BC
--(1 row)
--
-+ERROR:  function make_date does not exist
- select make_time(8, 20, 0.0);
-- make_time 
-------------
-- 08:20:00
--(1 row)
--
-+ERROR:  function make_time does not exist
+  make_date  
+@@ -1440,14 +995,18 @@
+ 
  -- should fail
  select make_date(0, 7, 15);
 -ERROR:  date field value out of range: 0-07-15
-+ERROR:  function make_date does not exist
++ERROR:  out of range
  select make_date(2013, 2, 30);
 -ERROR:  date field value out of range: 2013-02-30
-+ERROR:  function make_date does not exist
++ERROR:  out of range
  select make_date(2013, 13, 1);
 -ERROR:  date field value out of range: 2013-13-01
-+ERROR:  function make_date does not exist
++ERROR:  out of range
  select make_date(2013, 11, -1);
 -ERROR:  date field value out of range: 2013-11--1
-+ERROR:  function make_date does not exist
++ERROR:  out of range
  select make_time(10, 55, 100.1);
 -ERROR:  time field value out of range: 10:55:100.1
-+ERROR:  function make_time does not exist
++ make_time  
++------------
++ 10:56:40.1
++(1 row)
++
  select make_time(24, 0, 2.1);
 -ERROR:  time field value out of range: 24:00:2.1
-+ERROR:  function make_time does not exist
++ERROR:  out of range
 diff -U3 /home/longqimin/pg_regress_input/expected/time.out /home/longqimin/pg_regress_input/results/time.out
---- /home/longqimin/pg_regress_input/expected/time.out	2024-03-13 14:02:08.630100256 +0800
-+++ /home/longqimin/pg_regress_input/results/time.out	2024-03-14 12:04:37.032906808 +0800
-@@ -79,31 +79,23 @@
+--- /home/longqimin/pg_regress_input/expected/time.out	2024-03-25 09:21:23.437606375 +0800
++++ /home/longqimin/pg_regress_input/results/time.out	2024-03-25 16:06:51.225343520 +0800
+@@ -73,37 +73,29 @@
+ 
+ -- Check edge cases
+ SELECT '23:59:59.999999'::time;
+-      time       
++    ?column?     
+ -----------------
+  23:59:59.999999
  (1 row)
  
  SELECT '23:59:59.9999999'::time;  -- rounds up
 -   time   
 -----------
 - 24:00:00
-+      time       
++    ?column?     
 +-----------------
 + 23:59:59.999999
  (1 row)
@@ -5247,7 +5822,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/time.out /home/longqimin/pg_r
  --
  -- TIME simple math
  --
-@@ -144,8 +128,7 @@
+@@ -144,53 +128,52 @@
  -- and do the rest of the testing in horology.sql
  -- where we do mixed-type arithmetic. - thomas 2000-12-02
  SELECT f1 + time '00:01' AS "Illegal" FROM TIME_TBL order by 1;
@@ -5257,14 +5832,52 @@ diff -U3 /home/longqimin/pg_regress_input/expected/time.out /home/longqimin/pg_r
  --
  -- test EXTRACT
  --
-@@ -180,17 +163,17 @@
+ SELECT EXTRACT(MICROSECOND FROM TIME '2020-05-26 13:30:25.575401');
+- extract  
+-----------
+- 25575401
++ date_part 
++-----------
++  25575401
+ (1 row)
+ 
+ SELECT EXTRACT(MILLISECOND FROM TIME '2020-05-26 13:30:25.575401');
+-  extract  
++ date_part 
+ -----------
+  25575.401
+ (1 row)
+ 
+ SELECT EXTRACT(SECOND      FROM TIME '2020-05-26 13:30:25.575401');
+-  extract  
++ date_part 
+ -----------
+  25.575401
+ (1 row)
+ 
+ SELECT EXTRACT(MINUTE      FROM TIME '2020-05-26 13:30:25.575401');
+- extract 
+----------
+-      30
++ date_part 
++-----------
++        30
+ (1 row)
+ 
+ SELECT EXTRACT(HOUR        FROM TIME '2020-05-26 13:30:25.575401');
+- extract 
+----------
+-      13
++ date_part 
++-----------
++        13
  (1 row)
  
  SELECT EXTRACT(DAY         FROM TIME '2020-05-26 13:30:25.575401');  -- error
 -ERROR:  unit "day" not supported for type time without time zone
-+ extract 
-+---------
-+       0
++ date_part 
++-----------
++         0
 +(1 row)
 +
  SELECT EXTRACT(FORTNIGHT   FROM TIME '2020-05-26 13:30:25.575401');  -- error
@@ -5295,7 +5908,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/time.out /home/longqimin/pg_r
 +ERROR:  timestamp units "epoch" not recognized
 diff -U3 /home/longqimin/pg_regress_input/expected/select.out /home/longqimin/pg_regress_input/results/select.out
 --- /home/longqimin/pg_regress_input/expected/select.out	2024-03-08 12:19:19.529430515 +0800
-+++ /home/longqimin/pg_regress_input/results/select.out	2024-03-14 12:04:38.608907920 +0800
++++ /home/longqimin/pg_regress_input/results/select.out	2024-03-25 16:06:59.997349659 +0800
 @@ -219,16 +219,16 @@
  SELECT onek2.* FROM onek2 WHERE onek2.unique1 < 10;
   unique1 | unique2 | two | four | ten | twenty | hundred | thousand | twothousand | fivethous | tenthous | odd | even | stringu1 | stringu2 | string4 
@@ -5422,7 +6035,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select.out /home/longqimin/pg
 - linda   |  19
 -(58 rows)
 -
-+ERROR:  can't find table : public.person
++ERROR:  relation "public.person" does not exist
  --
  -- awk '{print $1,$2;}' person.data |
  -- awk '{if(NF!=2){print $3,$2;}else{print;}}' - emp.data |
@@ -5492,7 +6105,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select.out /home/longqimin/pg
 - mary    |   8
 -(58 rows)
 -
-+ERROR:  can't find table : public.person
++ERROR:  relation "public.person" does not exist
  --
  -- Test some cases involving whole-row Var referencing a subquery
  --
@@ -5528,11 +6141,11 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select.out /home/longqimin/pg
 -     931 |       1 |   1 |    3 |   1 |     11 |       1 |       31 |         131 |       431 |      931 |   2 |    3 | VJAAAA   | BAAAAA   | HHHHxx  | 931 | VJAAAA
 -(2 rows)
 -
-+ERROR:  missing FROM-clause entry for table "v"
++ERROR:  clapdb doesn't support select ValueLists
  -- a more complex case
  -- looks like we're coding lisp :-)
  select * from onek,
-@@ -471,56 +332,27 @@
+@@ -471,56 +332,28 @@
      (values(10000), (2), (389), (1000), (2000), ((select 10029))) as foo(i)
      order by i asc limit 1))) bar (i)
    where onek.unique1 = bar.i;
@@ -5541,7 +6154,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select.out /home/longqimin/pg
 -       2 |     326 |   0 |    2 |   2 |      2 |       2 |        2 |           2 |         2 |        2 |   4 |    5 | CAAAAA   | OMAAAA   | OOOOxx  | 2
 -(1 row)
 -
-+ERROR:  missing FROM-clause entry for table "bar"
++ERROR:  clapdb doesn't support select ValueLists
  -- try VALUES in a subquery
  select * from onek
      where (unique1,ten) in (values (1,1), (20,0), (99,9), (17,99))
@@ -5553,7 +6166,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select.out /home/longqimin/pg
 -      99 |     101 |   1 |    3 |   9 |     19 |       9 |       99 |          99 |        99 |       99 |  18 |   19 | VDAAAA   | XDAAAA   | HHHHxx
 -(3 rows)
 -
-+ERROR:  expr only support column_ref / a_const / func_call / type_cast [node_case=31]
++ERROR:  clapdb doesn't support select ValueLists
  -- VALUES is also legal as a standalone query or a set-operation member
  VALUES (1,2), (3,4+4), (7,77.7);
 - column1 | column2 
@@ -5563,7 +6176,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select.out /home/longqimin/pg
 -       7 |    77.7
 -(3 rows)
 -
-+ERROR:  select list can't be empty currently
++ERROR:  clapdb doesn't support select ValueLists
  VALUES (1,2), (3,4+4), (7,77.7)
  UNION ALL
  SELECT 2+2, 57
@@ -5582,20 +6195,21 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select.out /home/longqimin/pg
 - 4567890123456789 | -4567890123456789
 -(9 rows)
 -
-+ERROR:  select list can't be empty currently
++ERROR:  clapdb doesn't support [op=SETOP_UNION]
  -- corner case: VALUES with no columns
  CREATE TEMP TABLE nocols();
  INSERT INTO nocols DEFAULT VALUES;
-+ERROR:  std::get: wrong index for variant
- SELECT * FROM nocols n, LATERAL (VALUES(n.*)) v;
+-SELECT * FROM nocols n, LATERAL (VALUES(n.*)) v;
 ---
 -(1 row)
--
-+ERROR:  select list can't be empty currently
++ERROR:  std::get variant by ref type error: /home/longqimin/stdb/hardy/pgsql/connection.cc:248:25
+ 
++SELECT * FROM nocols n, LATERAL (VALUES(n.*)) v;
++ERROR:  clapdb doesn't support select ValueLists
  --
  -- Test ORDER BY options
  --
-@@ -588,6 +420,7 @@
+@@ -588,6 +421,7 @@
  
  -- check if indexscans do the right things
  CREATE INDEX fooi ON foo (f1);
@@ -5603,7 +6217,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select.out /home/longqimin/pg
  --SET enable_sort = false;
  SELECT * FROM foo ORDER BY f1;
   f1 
-@@ -638,7 +471,9 @@
+@@ -638,7 +472,9 @@
  (7 rows)
  
  DROP INDEX fooi;
@@ -5613,7 +6227,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select.out /home/longqimin/pg
  SELECT * FROM foo ORDER BY f1;
   f1 
  ----
-@@ -688,7 +523,9 @@
+@@ -688,7 +524,9 @@
  (7 rows)
  
  DROP INDEX fooi;
@@ -5623,7 +6237,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select.out /home/longqimin/pg
  SELECT * FROM foo ORDER BY f1;
   f1 
  ----
-@@ -842,51 +679,30 @@
+@@ -842,51 +680,30 @@
  -- But ORDER BY on a set-valued expression does
  create function sillysrf(int) returns setof int as
    'values (1),(10),(2),($1)' language sql immutable;
@@ -5659,7 +6273,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select.out /home/longqimin/pg
 - 2
 -(2 rows)
 -
-+ERROR:  select list can't be empty currently
++ERROR:  clapdb doesn't support select ValueLists
  select * from (values (2),(null),(1)) v(k) where k = k;
 - k 
 ----
@@ -5667,7 +6281,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select.out /home/longqimin/pg
 - 1
 -(2 rows)
 -
-+ERROR:  select list can't be empty currently
++ERROR:  clapdb doesn't support select ValueLists
  -- Test partitioned tables with no partitions, which should be handled the
  -- same as the non-inheritance case when expanding its RTE.
  create table list_parted_tbl (a int,b int) partition by list (a);
@@ -5679,17 +6293,17 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select.out /home/longqimin/pg
 - Result
 -   One-Time Filter: false
 +explain (costs off) select * from list_parted_tbl;
-+                        QUERY PLAN                        | TIME/ms 
-+----------------------------------------------------------+---------
-+ tuple(table_0) = ProjectOnEmptyTable([], [Int32, Int32]) |       0
-+ return tuple(table_0)                                    |       0
++                        QUERY PLAN                        
++----------------------------------------------------------
++ tuple(table_0) = ProjectOnEmptyTable([], [Int32, Int32])
++ return tuple(table_0)
  (2 rows)
  
  drop table list_parted_tbl;
 +ERROR:  only support select and create table statement
 diff -U3 /home/longqimin/pg_regress_input/expected/select_distinct.out /home/longqimin/pg_regress_input/results/select_distinct.out
 --- /home/longqimin/pg_regress_input/expected/select_distinct.out	2024-02-27 09:30:35.100460308 +0800
-+++ /home/longqimin/pg_regress_input/results/select_distinct.out	2024-03-14 12:04:42.840910906 +0800
++++ /home/longqimin/pg_regress_input/results/select_distinct.out	2024-03-25 16:07:09.042355988 +0800
 @@ -48,50 +48,7 @@
  SELECT DISTINCT two, string4, ten
     FROM onek
@@ -5787,11 +6401,11 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select_distinct.out /home/lon
 -         ->  Seq Scan on public.tenk1
 -               Output: tenk1.two, tenk1.four, tenk1.two
 -(7 rows)
-+                         QUERY PLAN                         | TIME/ms 
-+------------------------------------------------------------+---------
-+ datum(col_0_literal) = LiteralAggregate(COUNT_NOT_NULL(0)) |       0
-+ tuple(table_0) = [datum(col_0_literal)]                    |       0
-+ return tuple(table_0)                                      |       0
++                            QUERY PLAN                            
++------------------------------------------------------------------
++ datum(col_0_literal) = LiteralAggregate(COUNT_NOT_NULL(0) tenk1)
++ tuple(table_0) = [datum(col_0_literal)]
++ return tuple(table_0)
 +(3 rows)
  
  SELECT count(*) FROM
@@ -5845,11 +6459,11 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select_distinct.out /home/lon
 -         Presorted Key: hundred
 -         ->  Index Scan using tenk1_hundred on tenk1
 -(5 rows)
-+                                                        QUERY PLAN                                                        | TIME/ms 
-+--------------------------------------------------------------------------------------------------------------------------+---------
-+ tuple(table_0) = parallel: [tuple(table_0) = IndexScan([column(hundred), column(two)]) + unique), return tuple(table_0)] |      20
-+ tuple(table_0) = Unique(tuple(table_0))                                                                                  |       0
-+ return tuple(table_0)                                                                                                    |       0
++                                                        QUERY PLAN                                                        
++--------------------------------------------------------------------------------------------------------------------------
++ tuple(table_0) = parallel: [tuple(table_0) = IndexScan([column(hundred), column(two)]) + unique), return tuple(table_0)]
++ tuple(table_0) = Unique(tuple(table_0))
++ return tuple(table_0)
 +(3 rows)
  
  RESET enable_seqscan;
@@ -5891,7 +6505,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select_distinct.out /home/lon
 -----------
 -(0 rows)
 -
-+ERROR:  select list can't be empty currently
++ERROR:  clapdb doesn't support [op=SETOP_UNION]
  (SELECT * FROM distinct_hash_1 EXCEPT SELECT * FROM distinct_group_1)
    UNION ALL
  (SELECT * FROM distinct_group_1 EXCEPT SELECT * FROM distinct_hash_1);
@@ -5899,7 +6513,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select_distinct.out /home/lon
 -----------
 -(0 rows)
 -
-+ERROR:  select list can't be empty currently
++ERROR:  clapdb doesn't support [op=SETOP_UNION]
  DROP TABLE distinct_hash_1;
 +ERROR:  only support select and create table statement
  DROP TABLE distinct_hash_2;
@@ -5931,12 +6545,12 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select_distinct.out /home/lon
 -                     Group Key: four
 -                     ->  Parallel Seq Scan on tenk1
 -(8 rows)
-+                                                 QUERY PLAN                                                  | TIME/ms 
-+-------------------------------------------------------------------------------------------------------------+---------
-+ tuple(table_0) = parallel: [tuple(var_5_1) = IndexTopN([columns(four ASC)], unique), return tuple(var_5_1)] |       1
-+ tuple(table_0) = Unique(tuple(table_0))                                                                     |       0
-+ tuple(table_0) = Sort(tuple(table_0), [columns(0 ASC)])                                                     |       0
-+ return tuple(table_0)                                                                                       |       0
++                                                 QUERY PLAN                                                  
++-------------------------------------------------------------------------------------------------------------
++ tuple(table_0) = parallel: [tuple(var_5_1) = IndexTopN([columns(four ASC)], unique), return tuple(var_5_1)]
++ tuple(table_0) = Unique(tuple(table_0))
++ tuple(table_0) = Sort(tuple(table_0), [columns(0 ASC)])
++ return tuple(table_0)
 +(4 rows)
  
  -- Ensure the parallel plan produces the correct results
@@ -6001,18 +6615,18 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select_distinct.out /home/lon
 -   ->  Seq Scan on tenk1
 -         Filter: (four = 0)
 -(3 rows)
-+                                                                   QUERY PLAN                                                                    | TIME/ms 
-+-------------------------------------------------------------------------------------------------------------------------------------------------+---------
-+ tid(where) = parallel: [tid(var_5_1) = IndexFilter(column(four) == 0), return tid(var_5_1)]                                                     |       0
-+ tuple(table_0) = broadcast: [tid(where)] parallel: [tuple(var_6_1) = IndexTopN([columns(four ASC)], tid(where), unique), return tuple(var_6_1)] |       1
-+ tuple(table_0) = Unique(tuple(table_0))                                                                                                         |       0
-+ tuple(table_0) = Sort(tuple(table_0), [columns(0 ASC)])                                                                                         |       0
-+ return tuple(table_0)                                                                                                                           |       0
++                                                                   QUERY PLAN                                                                    
++-------------------------------------------------------------------------------------------------------------------------------------------------
++ tid(where) = parallel: [tid(var_5_1) = IndexFilter(column(four) == 0), return tid(var_5_1)]
++ tuple(table_0) = broadcast: [tid(where)] parallel: [tuple(var_6_1) = IndexTopN([columns(four ASC)], tid(where), unique), return tuple(var_6_1)]
++ tuple(table_0) = Unique(tuple(table_0))
++ tuple(table_0) = Sort(tuple(table_0), [columns(0 ASC)])
++ return tuple(table_0)
 +(5 rows)
  
  -- Ensure the above gives us the correct result
  SELECT DISTINCT four FROM tenk1 WHERE four = 0;
-@@ -318,28 +238,35 @@
+@@ -318,28 +238,40 @@
  -- Ensure we get a plan with a Limit 1
  EXPLAIN (COSTS OFF)
  SELECT DISTINCT four FROM tenk1 WHERE four = 0 AND two <> 0;
@@ -6022,15 +6636,15 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select_distinct.out /home/lon
 -   ->  Seq Scan on tenk1
 -         Filter: ((two <> 0) AND (four = 0))
 -(3 rows)
-+                                                                   QUERY PLAN                                                                    | TIME/ms 
-+-------------------------------------------------------------------------------------------------------------------------------------------------+---------
-+ tid(var_5_1) = parallel: [tid(var_5_2) = IndexFilter(column(four) == 0), return tid(var_5_2)]                                                   |       0
-+ tid(var_5_3) = parallel: [tid(var_5_4) = IndexFilter(column(two) != 0), return tid(var_5_4)]                                                    |       0
-+ tid(where) = [tid(var_5_3) and tid(var_5_1)]                                                                                                    |       0
-+ tuple(table_0) = broadcast: [tid(where)] parallel: [tuple(var_6_1) = IndexTopN([columns(four ASC)], tid(where), unique), return tuple(var_6_1)] |       1
-+ tuple(table_0) = Unique(tuple(table_0))                                                                                                         |       0
-+ tuple(table_0) = Sort(tuple(table_0), [columns(0 ASC)])                                                                                         |       0
-+ return tuple(table_0)                                                                                                                           |       0
++                                                                   QUERY PLAN                                                                    
++-------------------------------------------------------------------------------------------------------------------------------------------------
++ tid(var_5_1) = parallel: [tid(var_5_2) = IndexFilter(column(four) == 0), return tid(var_5_2)]
++ tid(var_5_3) = parallel: [tid(var_5_4) = IndexFilter(column(two) != 0), return tid(var_5_4)]
++ tid(where) = [tid(var_5_3) and tid(var_5_1)]
++ tuple(table_0) = broadcast: [tid(where)] parallel: [tuple(var_6_1) = IndexTopN([columns(four ASC)], tid(where), unique), return tuple(var_6_1)]
++ tuple(table_0) = Unique(tuple(table_0))
++ tuple(table_0) = Sort(tuple(table_0), [columns(0 ASC)])
++ return tuple(table_0)
 +(7 rows)
  
  -- Ensure no rows are returned
@@ -6049,20 +6663,25 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select_distinct.out /home/lon
 -   ->  Seq Scan on tenk1
 -         Filter: (four = 0)
 -(3 rows)
-+                                                                                    QUERY PLAN                                                                                    | TIME/ms 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------
-+ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(four) == 0), return tid(var_4_1)]                                                                                      |       0
-+ tuple_with_tid(table_0_index) = broadcast: [tid(where)] parallel: [tuple_with_tid(table_0_index) = IndexScan([column(four)] + tid(where)), return tuple_with_tid(table_0_index)] |       1
-+ tuple(table_0_literal) = ConstExprTuple([1, 2, 3], tid(where))                                                                                                                   |       0
-+ tuple_with_tid(table_0_index) = SortByTID(tuple_with_tid(table_0_index))                                                                                                         |       0
-+ tuple(table_0) = TupleExpand(tuple_with_tid(table_0_index), tuple(table_0_literal))                                                                                              |       0
-+ tuple(table_0) = Unique(tuple(table_0))                                                                                                                                          |       1
-+ return tuple(table_0)                                                                                                                                                            |       0
-+(7 rows)
++                                                                    QUERY PLAN                                                                    
++--------------------------------------------------------------------------------------------------------------------------------------------------
++ tuple_with_tid(where_with_value) = parallel: [tuple_with_tid(var_4_1) = IndexFilterWithValue(column(four) == 0), return tuple_with_tid(var_4_1)]
++ tuple(table_0) = tuple_with_tid(where_with_value)
++ datum(var_5_1) = TupleAt(tuple(table_0) 0)
++ tuple(var_5_3) = ConstExprTuple([1], table_0)
++ datum(var_5_2) = TupleAt(tuple(var_5_3) 0)
++ tuple(var_5_5) = ConstExprTuple([2], table_0)
++ datum(var_5_4) = TupleAt(tuple(var_5_5) 0)
++ tuple(var_5_7) = ConstExprTuple([3], table_0)
++ datum(var_5_6) = TupleAt(tuple(var_5_7) 0)
++ tuple(table_0) = [datum(var_5_1), datum(var_5_2), datum(var_5_4), datum(var_5_6)]
++ tuple(table_0) = Unique(tuple(table_0))
++ return tuple(table_0)
++(12 rows)
  
  -- Ensure we only get 1 row
  SELECT DISTINCT four,1,2,3 FROM tenk1 WHERE four = 0;
-@@ -349,25 +276,30 @@
+@@ -349,25 +281,30 @@
  (1 row)
  
  SET parallel_setup_cost=0;
@@ -6084,13 +6703,13 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select_distinct.out /home/lon
 -               ->  Parallel Seq Scan on tenk1
 -                     Filter: (four = 10)
 -(6 rows)
-+                                                                   QUERY PLAN                                                                    | TIME/ms 
-+-------------------------------------------------------------------------------------------------------------------------------------------------+---------
-+ tid(where) = parallel: [tid(var_5_1) = IndexFilter(column(four) == 10), return tid(var_5_1)]                                                    |       0
-+ tuple(table_0) = broadcast: [tid(where)] parallel: [tuple(var_6_1) = IndexTopN([columns(four ASC)], tid(where), unique), return tuple(var_6_1)] |       1
-+ tuple(table_0) = Unique(tuple(table_0))                                                                                                         |       0
-+ tuple(table_0) = Sort(tuple(table_0), [columns(0 ASC)])                                                                                         |       0
-+ return tuple(table_0)                                                                                                                           |       0
++                                                                   QUERY PLAN                                                                    
++-------------------------------------------------------------------------------------------------------------------------------------------------
++ tid(where) = parallel: [tid(var_5_1) = IndexFilter(column(four) == 10), return tid(var_5_1)]
++ tuple(table_0) = broadcast: [tid(where)] parallel: [tuple(var_6_1) = IndexTopN([columns(four ASC)], tid(where), unique), return tuple(var_6_1)]
++ tuple(table_0) = Unique(tuple(table_0))
++ tuple(table_0) = Sort(tuple(table_0), [columns(0 ASC)])
++ return tuple(table_0)
 +(5 rows)
  
  RESET max_parallel_workers_per_gather;
@@ -6102,7 +6721,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select_distinct.out /home/lon
  --
  -- Also, some tests of IS DISTINCT FROM, which doesn't quite deserve its
  -- very own regression file.
-@@ -379,88 +311,28 @@
+@@ -379,88 +316,28 @@
  INSERT INTO DISTTABLE VALUES(NULL);
  -- basic cases
  SELECT f1, f1 IS DISTINCT FROM 2 as "not 2" FROM disttable;
@@ -6205,7 +6824,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select_distinct.out /home/lon
 +ERROR:  a_expr only support op and between [kind=5]
 diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimin/pg_regress_input/results/aggregates.out
 --- /home/longqimin/pg_regress_input/expected/aggregates.out	2024-03-08 12:19:19.528430515 +0800
-+++ /home/longqimin/pg_regress_input/results/aggregates.out	2024-03-14 12:04:55.298919694 +0800
++++ /home/longqimin/pg_regress_input/results/aggregates.out	2024-03-25 16:10:42.843505603 +0800
 @@ -5,6 +5,7 @@
  \getenv abs_srcdir PG_ABS_SRCDIR
  -- avoid bit-exact output here because operations may not be bit-exact.
@@ -6231,28 +6850,28 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -         1
 -(1 row)
 -
-+ERROR:  function any_value does not exist
++ERROR:  clapdb doesn't support select ValueLists
  SELECT any_value(v) FROM (VALUES (NULL)) AS v (v);
 - any_value 
 ------------
 - 
 -(1 row)
 -
-+ERROR:  function any_value does not exist
++ERROR:  clapdb doesn't support select ValueLists
  SELECT any_value(v) FROM (VALUES (NULL), (1), (2)) AS v (v);
 - any_value 
 ------------
 -         1
 -(1 row)
 -
-+ERROR:  function any_value does not exist
++ERROR:  clapdb doesn't support select ValueLists
  SELECT any_value(v) FROM (VALUES (array['hello', 'world'])) AS v (v);
 -   any_value   
 ----------------
 - {hello,world}
 -(1 row)
 -
-+ERROR:  function any_value does not exist
++ERROR:  clapdb doesn't support select ValueLists
  -- In 7.1, avg(float4) is computed using float8 arithmetic.
  -- Round the result to 3 digits to avoid platform-specific results.
  SELECT avg(b)::numeric(10,3) AS avg_107_943 FROM aggtest;
@@ -6261,14 +6880,14 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -     107.943
 -(1 row)
 -
-+ERROR:  not processed pg_catalog type [pg_catalog_type=numeric]
++ERROR:  not implemented type_cast case [to=numeric]
  SELECT avg(gpa) AS avg_3_4 FROM ONLY student;
 - avg_3_4 
 ----------
 -     3.4
 -(1 row)
 -
-+ERROR:  can't find table : public.student
++ERROR:  relation "public.student" does not exist
  SELECT sum(four) AS sum_1500 FROM onek;
   sum_1500 
  ----------
@@ -6286,7 +6905,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -     6.8
 -(1 row)
 -
-+ERROR:  can't find table : public.student
++ERROR:  relation "public.student" does not exist
  SELECT max(four) AS max_3 FROM onek;
   max_3 
  -------
@@ -6299,7 +6918,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -     3.7
 -(1 row)
 -
-+ERROR:  can't find table : public.student
++ERROR:  relation "public.student" does not exist
  SELECT stddev_pop(b) FROM aggtest;
 -   stddev_pop    
 ------------------
@@ -6563,7 +7182,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - Infinity | Infinity |     NaN
 -(1 row)
 -
-+ERROR:  function var_pop does not exist
++ERROR:  clapdb doesn't support select ValueLists
  SELECT sum(x::float8), avg(x::float8), var_pop(x::float8)
  FROM (VALUES ('infinity'), ('1')) v(x);
 -   sum    |   avg    | var_pop 
@@ -6571,7 +7190,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - Infinity | Infinity |     NaN
 -(1 row)
 -
-+ERROR:  function var_pop does not exist
++ERROR:  clapdb doesn't support select ValueLists
  SELECT sum(x::float8), avg(x::float8), var_pop(x::float8)
  FROM (VALUES ('infinity'), ('infinity')) v(x);
 -   sum    |   avg    | var_pop 
@@ -6579,7 +7198,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - Infinity | Infinity |     NaN
 -(1 row)
 -
-+ERROR:  function var_pop does not exist
++ERROR:  clapdb doesn't support select ValueLists
  SELECT sum(x::float8), avg(x::float8), var_pop(x::float8)
  FROM (VALUES ('-infinity'), ('infinity')) v(x);
 - sum | avg | var_pop 
@@ -6587,7 +7206,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - NaN | NaN |     NaN
 -(1 row)
 -
-+ERROR:  function var_pop does not exist
++ERROR:  clapdb doesn't support select ValueLists
  SELECT sum(x::float8), avg(x::float8), var_pop(x::float8)
  FROM (VALUES ('-infinity'), ('-infinity')) v(x);
 -    sum    |    avg    | var_pop 
@@ -6595,7 +7214,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - -Infinity | -Infinity |     NaN
 -(1 row)
 -
-+ERROR:  function var_pop does not exist
++ERROR:  clapdb doesn't support select ValueLists
  SELECT sum(x::numeric), avg(x::numeric), var_pop(x::numeric)
  FROM (VALUES ('1'), ('infinity')) v(x);
 -   sum    |   avg    | var_pop 
@@ -6603,7 +7222,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - Infinity | Infinity |     NaN
 -(1 row)
 -
-+ERROR:  not processed pg_catalog type [pg_catalog_type=numeric]
++ERROR:  clapdb doesn't support select ValueLists
  SELECT sum(x::numeric), avg(x::numeric), var_pop(x::numeric)
  FROM (VALUES ('infinity'), ('1')) v(x);
 -   sum    |   avg    | var_pop 
@@ -6611,7 +7230,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - Infinity | Infinity |     NaN
 -(1 row)
 -
-+ERROR:  not processed pg_catalog type [pg_catalog_type=numeric]
++ERROR:  clapdb doesn't support select ValueLists
  SELECT sum(x::numeric), avg(x::numeric), var_pop(x::numeric)
  FROM (VALUES ('infinity'), ('infinity')) v(x);
 -   sum    |   avg    | var_pop 
@@ -6619,7 +7238,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - Infinity | Infinity |     NaN
 -(1 row)
 -
-+ERROR:  not processed pg_catalog type [pg_catalog_type=numeric]
++ERROR:  clapdb doesn't support select ValueLists
  SELECT sum(x::numeric), avg(x::numeric), var_pop(x::numeric)
  FROM (VALUES ('-infinity'), ('infinity')) v(x);
 - sum | avg | var_pop 
@@ -6627,7 +7246,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - NaN | NaN |     NaN
 -(1 row)
 -
-+ERROR:  not processed pg_catalog type [pg_catalog_type=numeric]
++ERROR:  clapdb doesn't support select ValueLists
  SELECT sum(x::numeric), avg(x::numeric), var_pop(x::numeric)
  FROM (VALUES ('-infinity'), ('-infinity')) v(x);
 -    sum    |    avg    | var_pop 
@@ -6635,7 +7254,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - -Infinity | -Infinity |     NaN
 -(1 row)
 -
-+ERROR:  not processed pg_catalog type [pg_catalog_type=numeric]
++ERROR:  clapdb doesn't support select ValueLists
  -- test accuracy with a large input offset
  SELECT avg(x::float8), var_pop(x::float8)
  FROM (VALUES (100000003), (100000004), (100000006), (100000007)) v(x);
@@ -6644,7 +7263,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - 100000005 |     2.5
 -(1 row)
 -
-+ERROR:  function var_pop does not exist
++ERROR:  clapdb doesn't support select ValueLists
  SELECT avg(x::float8), var_pop(x::float8)
  FROM (VALUES (7000000000005), (7000000000007)) v(x);
 -      avg      | var_pop 
@@ -6652,7 +7271,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - 7000000000006 |       1
 -(1 row)
 -
-+ERROR:  function var_pop does not exist
++ERROR:  clapdb doesn't support select ValueLists
  -- SQL2003 binary aggregates
  SELECT regr_count(b, a) FROM aggtest;
 - regr_count 
@@ -6917,7 +7536,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - 9999
 -(1 row)
 -
-+ERROR:  expr only support column_ref / a_const / func_call / type_cast [node_case=17]
++ERROR:  clapdb doesn't support subquery as expr currently
  -- Test handling of Params within aggregate arguments in hashed aggregation.
  -- Per bug report from Jeevan Chalke.
  explain (verbose, costs off)
@@ -7136,11 +7755,11 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -           ->  Index Only Scan using tenk1_unique1 on tenk1
 -                 Index Cond: (unique1 IS NOT NULL)
 -(5 rows)
-+                                 QUERY PLAN                                 | TIME/ms 
-+----------------------------------------------------------------------------+---------
-+ datum(col_0_unique1) = IndexAggregateForMultiSegment(MIN, column(unique1)) |       7
-+ tuple(table_0) = [datum(col_0_unique1)]                                    |       0
-+ return tuple(table_0)                                                      |       0
++                                 QUERY PLAN                                 
++----------------------------------------------------------------------------
++ datum(col_0_unique1) = IndexAggregateForMultiSegment(MIN, column(unique1))
++ tuple(table_0) = [datum(col_0_unique1)]
++ return tuple(table_0)
 +(3 rows)
  
  select min(unique1) from tenk1;
@@ -7157,11 +7776,11 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -           ->  Index Only Scan Backward using tenk1_unique1 on tenk1
 -                 Index Cond: (unique1 IS NOT NULL)
 -(5 rows)
-+                                 QUERY PLAN                                 | TIME/ms 
-+----------------------------------------------------------------------------+---------
-+ datum(col_0_unique1) = IndexAggregateForMultiSegment(MAX, column(unique1)) |       1
-+ tuple(table_0) = [datum(col_0_unique1)]                                    |       0
-+ return tuple(table_0)                                                      |       0
++                                 QUERY PLAN                                 
++----------------------------------------------------------------------------
++ datum(col_0_unique1) = IndexAggregateForMultiSegment(MAX, column(unique1))
++ tuple(table_0) = [datum(col_0_unique1)]
++ return tuple(table_0)
 +(3 rows)
  
  select max(unique1) from tenk1;
@@ -7178,12 +7797,12 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -           ->  Index Only Scan Backward using tenk1_unique1 on tenk1
 -                 Index Cond: ((unique1 IS NOT NULL) AND (unique1 < 42))
 -(5 rows)
-+                                           QUERY PLAN                                           | TIME/ms 
-+------------------------------------------------------------------------------------------------+---------
-+ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(unique1) < 42), return tid(var_4_1)] |       1
-+ datum(col_0_unique1) = IndexAggregateForMultiSegment(MAX, column(unique1), tid(where))         |       0
-+ tuple(table_0) = [datum(col_0_unique1)]                                                        |       0
-+ return tuple(table_0)                                                                          |       0
++                                           QUERY PLAN                                           
++------------------------------------------------------------------------------------------------
++ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(unique1) < 42), return tid(var_4_1)]
++ datum(col_0_unique1) = IndexAggregateForMultiSegment(MAX, column(unique1), tid(where))
++ tuple(table_0) = [datum(col_0_unique1)]
++ return tuple(table_0)
 +(4 rows)
  
  select max(unique1) from tenk1 where unique1 < 42;
@@ -7200,12 +7819,12 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -           ->  Index Only Scan Backward using tenk1_unique1 on tenk1
 -                 Index Cond: ((unique1 IS NOT NULL) AND (unique1 > 42))
 -(5 rows)
-+                                           QUERY PLAN                                           | TIME/ms 
-+------------------------------------------------------------------------------------------------+---------
-+ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(unique1) > 42), return tid(var_4_1)] |       1
-+ datum(col_0_unique1) = IndexAggregateForMultiSegment(MAX, column(unique1), tid(where))         |       0
-+ tuple(table_0) = [datum(col_0_unique1)]                                                        |       0
-+ return tuple(table_0)                                                                          |       0
++                                           QUERY PLAN                                           
++------------------------------------------------------------------------------------------------
++ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(unique1) > 42), return tid(var_4_1)]
++ datum(col_0_unique1) = IndexAggregateForMultiSegment(MAX, column(unique1), tid(where))
++ tuple(table_0) = [datum(col_0_unique1)]
++ return tuple(table_0)
 +(4 rows)
  
  select max(unique1) from tenk1 where unique1 > 42;
@@ -7227,12 +7846,12 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -           ->  Index Only Scan Backward using tenk1_unique1 on tenk1
 -                 Index Cond: ((unique1 IS NOT NULL) AND (unique1 > 42000))
 -(5 rows)
-+                                            QUERY PLAN                                             | TIME/ms 
-+---------------------------------------------------------------------------------------------------+---------
-+ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(unique1) > 42000), return tid(var_4_1)] |       0
-+ datum(col_0_unique1) = IndexAggregateForMultiSegment(MAX, column(unique1), tid(where))            |       1
-+ tuple(table_0) = [datum(col_0_unique1)]                                                           |       0
-+ return tuple(table_0)                                                                             |       0
++                                            QUERY PLAN                                             
++---------------------------------------------------------------------------------------------------
++ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(unique1) > 42000), return tid(var_4_1)]
++ datum(col_0_unique1) = IndexAggregateForMultiSegment(MAX, column(unique1), tid(where))
++ tuple(table_0) = [datum(col_0_unique1)]
++ return tuple(table_0)
 +(4 rows)
  
  select max(unique1) from tenk1 where unique1 > 42000;
@@ -7255,12 +7874,12 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -           ->  Index Only Scan Backward using tenk1_thous_tenthous on tenk1
 -                 Index Cond: ((thousand = 33) AND (tenthous IS NOT NULL))
 -(5 rows)
-+                                            QUERY PLAN                                            | TIME/ms 
-+--------------------------------------------------------------------------------------------------+---------
-+ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(thousand) == 33), return tid(var_4_1)] |       5
-+ datum(col_0_tenthous) = IndexAggregateForMultiSegment(MAX, column(tenthous), tid(where))         |       5
-+ tuple(table_0) = [datum(col_0_tenthous)]                                                         |       0
-+ return tuple(table_0)                                                                            |       0
++                                            QUERY PLAN                                            
++--------------------------------------------------------------------------------------------------
++ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(thousand) == 33), return tid(var_4_1)]
++ datum(col_0_tenthous) = IndexAggregateForMultiSegment(MAX, column(tenthous), tid(where))
++ tuple(table_0) = [datum(col_0_tenthous)]
++ return tuple(table_0)
 +(4 rows)
  
  select max(tenthous) from tenk1 where thousand = 33;
@@ -7277,17 +7896,17 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -           ->  Index Only Scan using tenk1_thous_tenthous on tenk1
 -                 Index Cond: ((thousand = 33) AND (tenthous IS NOT NULL))
 -(5 rows)
-+                                            QUERY PLAN                                            | TIME/ms 
-+--------------------------------------------------------------------------------------------------+---------
-+ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(thousand) == 33), return tid(var_4_1)] |       0
-+ datum(col_0_tenthous) = IndexAggregateForMultiSegment(MIN, column(tenthous), tid(where))         |       1
-+ tuple(table_0) = [datum(col_0_tenthous)]                                                         |       0
-+ return tuple(table_0)                                                                            |       0
++                                            QUERY PLAN                                            
++--------------------------------------------------------------------------------------------------
++ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(thousand) == 33), return tid(var_4_1)]
++ datum(col_0_tenthous) = IndexAggregateForMultiSegment(MIN, column(tenthous), tid(where))
++ tuple(table_0) = [datum(col_0_tenthous)]
++ return tuple(table_0)
 +(4 rows)
  
  select min(tenthous) from tenk1 where thousand = 33;
   min 
-@@ -1041,41 +609,20 @@
+@@ -1041,41 +609,19 @@
  explain (costs off)
    select f1, (select min(unique1) from tenk1 where unique1 > f1) AS gt
      from int4_tbl;
@@ -7302,7 +7921,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -                         Index Cond: ((unique1 IS NOT NULL) AND (unique1 > int4_tbl.f1))
 -(7 rows)
 -
-+ERROR:  expr only support column_ref / a_const / func_call / type_cast [node_case=17]
++ERROR:  clapdb doesn't support subquery as expr currently
  select f1, (select min(unique1) from tenk1 where unique1 > f1) AS gt
    from int4_tbl;
 -     f1      | gt 
@@ -7314,7 +7933,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - -2147483647 |  0
 -(5 rows)
 -
-+ERROR:  expr only support column_ref / a_const / func_call / type_cast [node_case=17]
++ERROR:  clapdb doesn't support subquery as expr currently
  -- check some cases that were handled incorrectly in 8.3.0
  explain (costs off)
    select distinct max(unique2) from tenk1;
@@ -7328,17 +7947,16 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -                 Index Cond: (unique2 IS NOT NULL)
 -   ->  Result
 -(7 rows)
-+                                            QUERY PLAN                                             | TIME/ms 
-+---------------------------------------------------------------------------------------------------+---------
-+ tuple(table_0) = parallel: [tuple(table_0) = IndexScan([column(unique2)]), return tuple(table_0)] |      10
-+ hash_tuple(var_6_1) = TupleHash(tuple(table_0), groupby([]))                                      |       0
-+ tuple(table_0) = HashTupleAggregate(hash_tuple(var_6_1) [MAX(0)])                                 |       0
-+ return tuple(table_0)                                                                             |       0
-+(4 rows)
++                                 QUERY PLAN                                 
++----------------------------------------------------------------------------
++ datum(col_0_unique2) = IndexAggregateForMultiSegment(MAX, column(unique2))
++ tuple(table_0) = [datum(col_0_unique2)]
++ return tuple(table_0)
++(3 rows)
  
  select distinct max(unique2) from tenk1;
   max  
-@@ -1085,16 +632,13 @@
+@@ -1085,16 +631,13 @@
  
  explain (costs off)
    select max(unique2) from tenk1 order by 1;
@@ -7352,17 +7970,17 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -                 Index Cond: (unique2 IS NOT NULL)
 -   ->  Result
 -(7 rows)
-+                                 QUERY PLAN                                 | TIME/ms 
-+----------------------------------------------------------------------------+---------
-+ datum(col_0_unique2) = IndexAggregateForMultiSegment(MAX, column(unique2)) |       1
-+ tuple(table_0) = [datum(col_0_unique2)]                                    |       0
-+ tuple(table_0) = Sort(tuple(table_0), [columns(0 ASC)])                    |       0
-+ return tuple(table_0)                                                      |       0
++                                 QUERY PLAN                                 
++----------------------------------------------------------------------------
++ datum(col_0_unique2) = IndexAggregateForMultiSegment(MAX, column(unique2))
++ tuple(table_0) = [datum(col_0_unique2)]
++ tuple(table_0) = Sort(tuple(table_0), [columns(0 ASC)])
++ return tuple(table_0)
 +(4 rows)
  
  select max(unique2) from tenk1 order by 1;
   max  
-@@ -1104,16 +648,13 @@
+@@ -1104,16 +647,13 @@
  
  explain (costs off)
    select max(unique2) from tenk1 order by max(unique2);
@@ -7376,17 +7994,17 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -                 Index Cond: (unique2 IS NOT NULL)
 -   ->  Result
 -(7 rows)
-+                                 QUERY PLAN                                 | TIME/ms 
-+----------------------------------------------------------------------------+---------
-+ datum(col_0_unique2) = IndexAggregateForMultiSegment(MAX, column(unique2)) |       0
-+ tuple(table_0) = [datum(col_0_unique2)]                                    |       0
-+ tuple(table_0) = Sort(tuple(table_0), [columns(0 ASC)])                    |       0
-+ return tuple(table_0)                                                      |       0
++                                 QUERY PLAN                                 
++----------------------------------------------------------------------------
++ datum(col_0_unique2) = IndexAggregateForMultiSegment(MAX, column(unique2))
++ tuple(table_0) = [datum(col_0_unique2)]
++ tuple(table_0) = Sort(tuple(table_0), [columns(0 ASC)])
++ return tuple(table_0)
 +(4 rows)
  
  select max(unique2) from tenk1 order by max(unique2);
   max  
-@@ -1123,16 +664,18 @@
+@@ -1123,16 +663,18 @@
  
  explain (costs off)
    select max(unique2) from tenk1 order by max(unique2)+1;
@@ -7400,22 +8018,22 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -                 Index Cond: (unique2 IS NOT NULL)
 -   ->  Result
 -(7 rows)
-+                                 QUERY PLAN                                 | TIME/ms 
-+----------------------------------------------------------------------------+---------
-+ datum(col_0_unique2) = IndexAggregateForMultiSegment(MAX, column(unique2)) |       0
-+ tuple(table_0) = [datum(col_0_unique2)]                                    |       0
-+ datum(var_7_1) = TupleAt(tuple(table_0) 0)                                 |       0
-+ datum(var_7_2) = DatumMapJIT(cast(Int64, datum(var_7_1)) + 1)              |       0
-+ tuple(tmp_order) = [datum(var_7_2)]                                        |       0
-+ tuple(table_0) = TupleExpand(tuple(table_0), tuple(tmp_order))             |       0
-+ tuple(table_0) = Sort(tuple(table_0), [columns(1 ASC)])                    |       0
-+ tuple(table_0) = Erase(tuple(table_0), [1])                                |       0
-+ return tuple(table_0)                                                      |       0
++                                 QUERY PLAN                                 
++----------------------------------------------------------------------------
++ datum(col_0_unique2) = IndexAggregateForMultiSegment(MAX, column(unique2))
++ tuple(table_0) = [datum(col_0_unique2)]
++ datum(var_7_1) = TupleAt(tuple(table_0) 0)
++ datum(var_7_2) = DatumMapJIT(cast(Int64, datum(var_7_1)) + 1)
++ tuple(tmp_order) = [datum(var_7_2)]
++ tuple(table_0) = TupleExpand(tuple(table_0), tuple(tmp_order))
++ tuple(table_0) = Sort(tuple(table_0), [columns(1 ASC)])
++ tuple(table_0) = Erase(tuple(table_0), [1])
++ return tuple(table_0)
 +(9 rows)
  
  select max(unique2) from tenk1 order by max(unique2)+1;
   max  
-@@ -1142,38 +685,18 @@
+@@ -1142,38 +684,18 @@
  
  explain (costs off)
    select max(unique2), generate_series(1,3) as g from tenk1 order by g desc;
@@ -7453,16 +8071,16 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -                 One-Time Filter: (100 IS NOT NULL)
 -                 ->  Seq Scan on tenk1
 -(6 rows)
-+                    QUERY PLAN                     | TIME/ms 
-+---------------------------------------------------+---------
-+ datum(col_0_literal) = LiteralAggregate(MAX(100)) |       0
-+ tuple(table_0) = [datum(col_0_literal)]           |       0
-+ return tuple(table_0)                             |       0
++                       QUERY PLAN                        
++---------------------------------------------------------
++ datum(col_0_literal) = LiteralAggregate(MAX(100) tenk1)
++ tuple(table_0) = [datum(col_0_literal)]
++ return tuple(table_0)
 +(3 rows)
  
  select max(100) from tenk1;
   max 
-@@ -1187,191 +710,96 @@
+@@ -1187,191 +709,99 @@
  create table minmaxtest2(f1 int);
  create table minmaxtest3(f1 int);
  create index minmaxtesti on minmaxtest(f1);
@@ -7505,12 +8123,12 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -                       Index Cond: (f1 IS NOT NULL)
 -                 ->  Index Only Scan Backward using minmaxtest3i on minmaxtest3 minmaxtest_9
 -(23 rows)
-+                            QUERY PLAN                            | TIME/ms 
-+------------------------------------------------------------------+---------
-+ datum(col_0_f1) = IndexAggregateForMultiSegment(MIN, column(f1)) |       5
-+ datum(col_1_f1) = IndexAggregateForMultiSegment(MAX, column(f1)) |       0
-+ tuple(table_0) = [datum(col_0_f1), datum(col_1_f1)]              |       0
-+ return tuple(table_0)                                            |       0
++                            QUERY PLAN                            
++------------------------------------------------------------------
++ datum(col_0_f1) = IndexAggregateForMultiSegment(MIN, column(f1))
++ datum(col_1_f1) = IndexAggregateForMultiSegment(MAX, column(f1))
++ tuple(table_0) = [datum(col_0_f1), datum(col_1_f1)]
++ return tuple(table_0)
 +(4 rows)
  
  select min(f1), max(f1) from minmaxtest;
@@ -7552,12 +8170,12 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -         Sort Key: ($0), ($1)
 -         ->  Result
 -(26 rows)
-+                            QUERY PLAN                            | TIME/ms 
-+------------------------------------------------------------------+---------
-+ datum(col_0_f1) = IndexAggregateForMultiSegment(MIN, column(f1)) |       1
-+ datum(col_1_f1) = IndexAggregateForMultiSegment(MAX, column(f1)) |       0
-+ tuple(table_0) = [datum(col_0_f1), datum(col_1_f1)]              |       0
-+ return tuple(table_0)                                            |       0
++                            QUERY PLAN                            
++------------------------------------------------------------------
++ datum(col_0_f1) = IndexAggregateForMultiSegment(MIN, column(f1))
++ datum(col_1_f1) = IndexAggregateForMultiSegment(MAX, column(f1))
++ tuple(table_0) = [datum(col_0_f1), datum(col_1_f1)]
++ return tuple(table_0)
 +(4 rows)
  
  select distinct min(f1), max(f1) from minmaxtest;
@@ -7582,23 +8200,26 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -ERROR:  aggregate function calls cannot be nested
 -LINE 1: select (select max(min(unique1)) from int8_tbl) from tenk1;
 -                           ^
-+ERROR:  expr only support column_ref / a_const / func_call / type_cast [node_case=17]
++ERROR:  clapdb doesn't support subquery as expr currently
  select avg((select avg(a1.col1 order by (select avg(a2.col2) from tenk1 a3))
              from tenk1 a1(col1)))
  from tenk1 a2(col2);
 -ERROR:  aggregate function calls cannot be nested
 -LINE 1: select avg((select avg(a1.col1 order by (select avg(a2.col2)...
 -                                                        ^
-+ERROR:  expr only support column_ref / a_const / func_call / type_cast [node_case=17]
++ERROR:  clapdb doesn't support subquery as expr currently
  --
  -- Test removal of redundant GROUP BY columns
  --
  create temp table t1 (a int, b int, c int, d int, primary key (a, b));
-+ERROR:  std::get: wrong index for variant
++ERROR:  std::get variant by const ref type error: /home/longqimin/stdb/arabic/pgsql/arabic_create.cc:338:47
++
  create temp table t2 (x int, y int, z int, primary key (x, y));
-+ERROR:  std::get: wrong index for variant
++ERROR:  std::get variant by const ref type error: /home/longqimin/stdb/arabic/pgsql/arabic_create.cc:338:47
++
  create temp table t3 (a int, b int, c int, primary key(a, b) deferrable);
-+ERROR:  std::get: wrong index for variant
++ERROR:  std::get variant by const ref type error: /home/longqimin/stdb/arabic/pgsql/arabic_create.cc:338:47
++
  -- Non-primary-key columns can be removed from GROUP BY
  explain (costs off) select * from t1 group by a,b,c,d;
 -      QUERY PLAN      
@@ -7608,7 +8229,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -   ->  Seq Scan on t1
 -(3 rows)
 -
-+ERROR:  can't find table : public.t1
++ERROR:  relation "public.t1" does not exist
  -- No removal can happen if the complete PK is not present in GROUP BY
  explain (costs off) select a,c from t1 group by a,c,d;
 -      QUERY PLAN      
@@ -7618,7 +8239,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -   ->  Seq Scan on t1
 -(3 rows)
 -
-+ERROR:  can't find table : public.t1
++ERROR:  relation "public.t1" does not exist
  -- Test removal across multiple relations
  explain (costs off) select *
  from t1 inner join t2 on t1.a = t2.x and t1.b = t2.y
@@ -7660,7 +8281,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -   ->  Seq Scan on t3
 -(3 rows)
 -
-+ERROR:  can't find table : public.t3
++ERROR:  relation "public.t3" does not exist
  create temp table t1c () inherits (t1);
  -- Ensure we don't remove any columns when t1 has a child table
  explain (costs off) select * from t1 group by a,b,c,d;
@@ -7673,7 +8294,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -         ->  Seq Scan on t1c t1_2
 -(5 rows)
 -
-+ERROR:  can't find table : public.t1
++ERROR:  relation "public.t1" does not exist
  -- Okay to remove columns if we're only querying the parent.
  explain (costs off) select * from only t1 group by a,b,c,d;
 -      QUERY PLAN      
@@ -7683,15 +8304,16 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -   ->  Seq Scan on t1
 -(3 rows)
 -
-+ERROR:  can't find table : public.t1
++ERROR:  relation "public.t1" does not exist
  create temp table p_t1 (
    a int,
    b int,
-@@ -1379,66 +807,47 @@
+@@ -1379,66 +809,48 @@
    d int,
    primary key(a,b)
  ) partition by list(a);
-+ERROR:  std::get: wrong index for variant
++ERROR:  std::get variant by const ref type error: /home/longqimin/stdb/arabic/pgsql/arabic_create.cc:338:47
++
  create temp table p_t1_1 partition of p_t1 for values in(1);
  create temp table p_t1_2 partition of p_t1 for values in(2);
  -- Ensure we can remove non-PK columns for partitioned tables.
@@ -7705,7 +8327,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -         ->  Seq Scan on p_t1_2
 -(5 rows)
 -
-+ERROR:  can't find table : public.p_t1
++ERROR:  relation "public.p_t1" does not exist
  drop table t1 cascade;
 -NOTICE:  drop cascades to table t1c
 +ERROR:  only support select and create table statement
@@ -7768,7 +8390,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
  --
  -- Test planner's selection of pathkeys for ORDER BY aggregates
  --
-@@ -1446,13 +855,14 @@
+@@ -1446,13 +858,14 @@
  explain (costs off)
  select sum(two order by two),max(four order by four), min(four order by four)
  from tenk1;
@@ -7779,18 +8401,18 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -         Sort Key: four
 -         ->  Seq Scan on tenk1
 -(4 rows)
-+                                QUERY PLAN                                 | TIME/ms 
-+---------------------------------------------------------------------------+---------
-+ datum(col_0_two) = IndexAggregateForMultiSegment(SUM, column(two))        |       1
-+ datum(col_1_four) = IndexAggregateForMultiSegment(MAX, column(four))      |       0
-+ datum(col_2_four) = IndexAggregateForMultiSegment(MIN, column(four))      |       0
-+ tuple(table_0) = [datum(col_0_two), datum(col_1_four), datum(col_2_four)] |       0
-+ return tuple(table_0)                                                     |       0
++                                QUERY PLAN                                 
++---------------------------------------------------------------------------
++ datum(col_0_two) = IndexAggregateForMultiSegment(SUM, column(two))
++ datum(col_1_four) = IndexAggregateForMultiSegment(MAX, column(four))
++ datum(col_2_four) = IndexAggregateForMultiSegment(MIN, column(four))
++ tuple(table_0) = [datum(col_0_two), datum(col_1_four), datum(col_2_four)]
++ return tuple(table_0)
 +(5 rows)
  
  -- Ensure we order by two.  It's a tie between ordering by two and four but
  -- we tiebreak on the aggregate's position.
-@@ -1461,13 +871,15 @@
+@@ -1461,13 +874,15 @@
    sum(two order by two), max(four order by four),
    min(four order by four), max(two order by two)
  from tenk1;
@@ -7801,19 +8423,19 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -         Sort Key: two
 -         ->  Seq Scan on tenk1
 -(4 rows)
-+                                         QUERY PLAN                                          | TIME/ms 
-+---------------------------------------------------------------------------------------------+---------
-+ datum(col_0_two) = IndexAggregateForMultiSegment(SUM, column(two))                          |       1
-+ datum(col_1_four) = IndexAggregateForMultiSegment(MAX, column(four))                        |       0
-+ datum(col_2_four) = IndexAggregateForMultiSegment(MIN, column(four))                        |       0
-+ datum(col_3_two) = IndexAggregateForMultiSegment(MAX, column(two))                          |       1
-+ tuple(table_0) = [datum(col_0_two), datum(col_1_four), datum(col_2_four), datum(col_3_two)] |       0
-+ return tuple(table_0)                                                                       |       0
++                                         QUERY PLAN                                          
++---------------------------------------------------------------------------------------------
++ datum(col_0_two) = IndexAggregateForMultiSegment(SUM, column(two))
++ datum(col_1_four) = IndexAggregateForMultiSegment(MAX, column(four))
++ datum(col_2_four) = IndexAggregateForMultiSegment(MIN, column(four))
++ datum(col_3_two) = IndexAggregateForMultiSegment(MAX, column(two))
++ tuple(table_0) = [datum(col_0_two), datum(col_1_four), datum(col_2_four), datum(col_3_two)]
++ return tuple(table_0)
 +(6 rows)
  
  -- Similar to above, but tiebreak on ordering by four
  explain (costs off)
-@@ -1475,13 +887,15 @@
+@@ -1475,13 +890,15 @@
    max(four order by four), sum(two order by two),
    min(four order by four), max(two order by two)
  from tenk1;
@@ -7824,19 +8446,19 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -         Sort Key: four
 -         ->  Seq Scan on tenk1
 -(4 rows)
-+                                         QUERY PLAN                                          | TIME/ms 
-+---------------------------------------------------------------------------------------------+---------
-+ datum(col_0_four) = IndexAggregateForMultiSegment(MAX, column(four))                        |       0
-+ datum(col_1_two) = IndexAggregateForMultiSegment(SUM, column(two))                          |       0
-+ datum(col_2_four) = IndexAggregateForMultiSegment(MIN, column(four))                        |       0
-+ datum(col_3_two) = IndexAggregateForMultiSegment(MAX, column(two))                          |       0
-+ tuple(table_0) = [datum(col_0_four), datum(col_1_two), datum(col_2_four), datum(col_3_two)] |       0
-+ return tuple(table_0)                                                                       |       0
++                                         QUERY PLAN                                          
++---------------------------------------------------------------------------------------------
++ datum(col_0_four) = IndexAggregateForMultiSegment(MAX, column(four))
++ datum(col_1_two) = IndexAggregateForMultiSegment(SUM, column(two))
++ datum(col_2_four) = IndexAggregateForMultiSegment(MIN, column(four))
++ datum(col_3_two) = IndexAggregateForMultiSegment(MAX, column(two))
++ tuple(table_0) = [datum(col_0_four), datum(col_1_two), datum(col_2_four), datum(col_3_two)]
++ return tuple(table_0)
 +(6 rows)
  
  -- Ensure this one orders by ten since there are 3 aggregates that require ten
  -- vs two that suit two and four.
-@@ -1491,13 +905,18 @@
+@@ -1491,13 +908,18 @@
    min(four order by four), max(two order by two),
    sum(ten order by ten), min(ten order by ten), max(ten order by ten)
  from tenk1;
@@ -7847,22 +8469,22 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -         Sort Key: ten
 -         ->  Seq Scan on tenk1
 -(4 rows)
-+                                                                    QUERY PLAN                                                                     | TIME/ms 
-+---------------------------------------------------------------------------------------------------------------------------------------------------+---------
-+ datum(col_0_four) = IndexAggregateForMultiSegment(MAX, column(four))                                                                              |       1
-+ datum(col_1_two) = IndexAggregateForMultiSegment(SUM, column(two))                                                                                |       0
-+ datum(col_2_four) = IndexAggregateForMultiSegment(MIN, column(four))                                                                              |       0
-+ datum(col_3_two) = IndexAggregateForMultiSegment(MAX, column(two))                                                                                |       0
-+ datum(col_4_ten) = IndexAggregateForMultiSegment(SUM, column(ten))                                                                                |       3
-+ datum(col_5_ten) = IndexAggregateForMultiSegment(MIN, column(ten))                                                                                |       1
-+ datum(col_6_ten) = IndexAggregateForMultiSegment(MAX, column(ten))                                                                                |       0
-+ tuple(table_0) = [datum(col_0_four), datum(col_1_two), datum(col_2_four), datum(col_3_two), datum(col_4_ten), datum(col_5_ten), datum(col_6_ten)] |       0
-+ return tuple(table_0)                                                                                                                             |       0
++                                                                    QUERY PLAN                                                                     
++---------------------------------------------------------------------------------------------------------------------------------------------------
++ datum(col_0_four) = IndexAggregateForMultiSegment(MAX, column(four))
++ datum(col_1_two) = IndexAggregateForMultiSegment(SUM, column(two))
++ datum(col_2_four) = IndexAggregateForMultiSegment(MIN, column(four))
++ datum(col_3_two) = IndexAggregateForMultiSegment(MAX, column(two))
++ datum(col_4_ten) = IndexAggregateForMultiSegment(SUM, column(ten))
++ datum(col_5_ten) = IndexAggregateForMultiSegment(MIN, column(ten))
++ datum(col_6_ten) = IndexAggregateForMultiSegment(MAX, column(ten))
++ tuple(table_0) = [datum(col_0_four), datum(col_1_two), datum(col_2_four), datum(col_3_two), datum(col_4_ten), datum(col_5_ten), datum(col_6_ten)]
++ return tuple(table_0)
 +(9 rows)
  
  -- Try a case involving a GROUP BY clause where the GROUP BY column is also
  -- part of an aggregate's ORDER BY clause.  We want a sort order that works
-@@ -1508,14 +927,20 @@
+@@ -1508,14 +930,20 @@
    sum(unique1 order by two, four)
  from tenk1
  group by ten;
@@ -7874,24 +8496,24 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -         Sort Key: ten, two, four
 -         ->  Seq Scan on tenk1
 -(5 rows)
-+                                                                              QUERY PLAN                                                                              | TIME/ms 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------
-+ FilterHistogram(histogram_tenk1_0) = parallel: [FilterHistogram(var_5_1) = IndexTopNGroup([Get(ten)], 10000, [ASC_AND_NULLS_LAST]), return FilterHistogram(var_5_1)] |       2
-+ tuple(tuple_0_tenk1) = to_tuple(FilterHistogram(histogram_tenk1_0))                                                                                                  |       0
-+ tuple(tuple_0_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))                                            |       2
-+ tuple(tuple_1_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))                                            |       1
-+ tuple(tuple_2_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))                                            |       1
-+ tuple(table_0) = TupleExpand(tuple(tuple_0_tenk1), tuple(tuple_0_unique1))                                                                                           |       0
-+ tuple(table_0) = TupleExpand(tuple(table_0), tuple(tuple_1_unique1))                                                                                                 |       0
-+ tuple(table_0) = TupleExpand(tuple(table_0), tuple(tuple_2_unique1))                                                                                                 |       0
-+ tuple(table_0) = TupleReorder(tuple(table_0), [3, 0, 1, 2])                                                                                                          |       0
-+ tuple(table_0) = Erase(tuple(table_0), [3])                                                                                                                          |       0
-+ return tuple(table_0)                                                                                                                                                |       0
++                                                                              QUERY PLAN                                                                              
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------
++ FilterHistogram(histogram_tenk1_0) = parallel: [FilterHistogram(var_5_1) = IndexTopNGroup([Get(ten)], 10000, [ASC_AND_NULLS_LAST]), return FilterHistogram(var_5_1)]
++ tuple(tuple_0_tenk1) = to_tuple(FilterHistogram(histogram_tenk1_0))
++ tuple(tuple_0_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))
++ tuple(tuple_1_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))
++ tuple(tuple_2_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))
++ tuple(table_0) = TupleExpand(tuple(tuple_0_tenk1), tuple(tuple_0_unique1))
++ tuple(table_0) = TupleExpand(tuple(table_0), tuple(tuple_1_unique1))
++ tuple(table_0) = TupleExpand(tuple(table_0), tuple(tuple_2_unique1))
++ tuple(table_0) = TupleReorder(tuple(table_0), [3, 0, 1, 2])
++ tuple(table_0) = Erase(tuple(table_0), [3])
++ return tuple(table_0)
 +(11 rows)
  
  -- Ensure that we never choose to provide presorted input to an Aggref with
  -- a volatile function in the ORDER BY / DISTINCT clause.  We want to ensure
-@@ -1527,173 +952,110 @@
+@@ -1527,173 +955,110 @@
    sum(unique1 order by two, random(), random() + 1)
  from tenk1
  group by ten;
@@ -7903,23 +8525,23 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -         Sort Key: ten, four, two
 -         ->  Seq Scan on tenk1
 -(5 rows)
-+                                                                              QUERY PLAN                                                                              | TIME/ms 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------
-+ FilterHistogram(histogram_tenk1_0) = parallel: [FilterHistogram(var_5_1) = IndexTopNGroup([Get(ten)], 10000, [ASC_AND_NULLS_LAST]), return FilterHistogram(var_5_1)] |       1
-+ tuple(tuple_0_tenk1) = to_tuple(FilterHistogram(histogram_tenk1_0))                                                                                                  |       0
-+ tuple(tuple_0_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))                                            |       2
-+ tuple(tuple_1_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))                                            |       1
-+ tuple(tuple_2_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))                                            |       1
-+ tuple(tuple_3_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))                                            |       1
-+ tuple(tuple_4_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))                                            |       1
-+ tuple(table_0) = TupleExpand(tuple(tuple_0_tenk1), tuple(tuple_0_unique1))                                                                                           |       0
-+ tuple(table_0) = TupleExpand(tuple(table_0), tuple(tuple_1_unique1))                                                                                                 |       0
-+ tuple(table_0) = TupleExpand(tuple(table_0), tuple(tuple_2_unique1))                                                                                                 |       0
-+ tuple(table_0) = TupleExpand(tuple(table_0), tuple(tuple_3_unique1))                                                                                                 |       0
-+ tuple(table_0) = TupleExpand(tuple(table_0), tuple(tuple_4_unique1))                                                                                                 |       0
-+ tuple(table_0) = TupleReorder(tuple(table_0), [5, 0, 1, 2, 3, 4])                                                                                                    |       0
-+ tuple(table_0) = Erase(tuple(table_0), [5])                                                                                                                          |       0
-+ return tuple(table_0)                                                                                                                                                |       0
++                                                                              QUERY PLAN                                                                              
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------
++ FilterHistogram(histogram_tenk1_0) = parallel: [FilterHistogram(var_5_1) = IndexTopNGroup([Get(ten)], 10000, [ASC_AND_NULLS_LAST]), return FilterHistogram(var_5_1)]
++ tuple(tuple_0_tenk1) = to_tuple(FilterHistogram(histogram_tenk1_0))
++ tuple(tuple_0_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))
++ tuple(tuple_1_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))
++ tuple(tuple_2_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))
++ tuple(tuple_3_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))
++ tuple(tuple_4_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))
++ tuple(table_0) = TupleExpand(tuple(tuple_0_tenk1), tuple(tuple_0_unique1))
++ tuple(table_0) = TupleExpand(tuple(table_0), tuple(tuple_1_unique1))
++ tuple(table_0) = TupleExpand(tuple(table_0), tuple(tuple_2_unique1))
++ tuple(table_0) = TupleExpand(tuple(table_0), tuple(tuple_3_unique1))
++ tuple(table_0) = TupleExpand(tuple(table_0), tuple(tuple_4_unique1))
++ tuple(table_0) = TupleReorder(tuple(table_0), [5, 0, 1, 2, 3, 4])
++ tuple(table_0) = Erase(tuple(table_0), [5])
++ return tuple(table_0)
 +(15 rows)
  
  -- Ensure consecutive NULLs are properly treated as distinct from each other
@@ -7941,11 +8563,11 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - Aggregate
 -   ->  Seq Scan on tenk1
 -(2 rows)
-+                             QUERY PLAN                             | TIME/ms 
-+--------------------------------------------------------------------+---------
-+ datum(col_0_two) = IndexAggregateForMultiSegment(SUM, column(two)) |       1
-+ tuple(table_0) = [datum(col_0_two)]                                |       0
-+ return tuple(table_0)                                              |       0
++                             QUERY PLAN                             
++--------------------------------------------------------------------
++ datum(col_0_two) = IndexAggregateForMultiSegment(SUM, column(two))
++ tuple(table_0) = [datum(col_0_two)]
++ return tuple(table_0)
 +(3 rows)
  
  reset enable_presorted_aggregate;
@@ -7960,7 +8582,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - {3,4,2,1}
 -(1 row)
 -
-+ERROR:  function array_agg does not exist
++ERROR:  clapdb doesn't support select ValueLists
  select array_agg(a order by a)
    from (values (1,4),(2,3),(3,1),(4,2)) v(a,b);
 - array_agg 
@@ -7968,7 +8590,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - {1,2,3,4}
 -(1 row)
 -
-+ERROR:  function array_agg does not exist
++ERROR:  clapdb doesn't support select ValueLists
  select array_agg(a order by a desc)
    from (values (1,4),(2,3),(3,1),(4,2)) v(a,b);
 - array_agg 
@@ -7976,7 +8598,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - {4,3,2,1}
 -(1 row)
 -
-+ERROR:  function array_agg does not exist
++ERROR:  clapdb doesn't support select ValueLists
  select array_agg(b order by a desc)
    from (values (1,4),(2,3),(3,1),(4,2)) v(a,b);
 - array_agg 
@@ -7984,7 +8606,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - {2,1,3,4}
 -(1 row)
 -
-+ERROR:  function array_agg does not exist
++ERROR:  clapdb doesn't support select ValueLists
  select array_agg(distinct a)
    from (values (1),(2),(1),(3),(null),(2)) v(a);
 -  array_agg   
@@ -7992,7 +8614,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - {1,2,3,NULL}
 -(1 row)
 -
-+ERROR:  function array_agg does not exist
++ERROR:  clapdb doesn't support select ValueLists
  select array_agg(distinct a order by a)
    from (values (1),(2),(1),(3),(null),(2)) v(a);
 -  array_agg   
@@ -8000,7 +8622,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - {1,2,3,NULL}
 -(1 row)
 -
-+ERROR:  function array_agg does not exist
++ERROR:  clapdb doesn't support select ValueLists
  select array_agg(distinct a order by a desc)
    from (values (1),(2),(1),(3),(null),(2)) v(a);
 -  array_agg   
@@ -8008,7 +8630,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - {NULL,3,2,1}
 -(1 row)
 -
-+ERROR:  function array_agg does not exist
++ERROR:  clapdb doesn't support select ValueLists
  select array_agg(distinct a order by a desc nulls last)
    from (values (1),(2),(1),(3),(null),(2)) v(a);
 -  array_agg   
@@ -8016,7 +8638,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - {3,2,1,NULL}
 -(1 row)
 -
-+ERROR:  function array_agg does not exist
++ERROR:  clapdb doesn't support select ValueLists
  -- multi-arg aggs, strict/nonstrict, distinct/order by
  select aggfstr(a,b,c)
    from (values (1,3,'foo'),(0,null,null),(2,2,'bar'),(3,1,'baz')) v(a,b,c);
@@ -8025,7 +8647,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - {"(1,3,foo)","(2,2,bar)","(3,1,baz)"}
 -(1 row)
 -
-+ERROR:  function aggfstr does not exist
++ERROR:  clapdb doesn't support select ValueLists
  select aggfns(a,b,c)
    from (values (1,3,'foo'),(0,null,null),(2,2,'bar'),(3,1,'baz')) v(a,b,c);
 -                    aggfns                     
@@ -8033,7 +8655,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - {"(1,3,foo)","(0,,)","(2,2,bar)","(3,1,baz)"}
 -(1 row)
 -
-+ERROR:  function aggfns does not exist
++ERROR:  clapdb doesn't support select ValueLists
  select aggfstr(distinct a,b,c)
    from (values (1,3,'foo'),(0,null,null),(2,2,'bar'),(3,1,'baz')) v(a,b,c),
         generate_series(1,3) i;
@@ -8042,7 +8664,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - {"(1,3,foo)","(2,2,bar)","(3,1,baz)"}
 -(1 row)
 -
-+ERROR:  function generate_series does not exist
++ERROR:  clapdb doesn't support select ValueLists
  select aggfns(distinct a,b,c)
    from (values (1,3,'foo'),(0,null,null),(2,2,'bar'),(3,1,'baz')) v(a,b,c),
         generate_series(1,3) i;
@@ -8051,7 +8673,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - {"(0,,)","(1,3,foo)","(2,2,bar)","(3,1,baz)"}
 -(1 row)
 -
-+ERROR:  function generate_series does not exist
++ERROR:  clapdb doesn't support select ValueLists
  select aggfstr(distinct a,b,c order by b)
    from (values (1,3,'foo'),(0,null,null),(2,2,'bar'),(3,1,'baz')) v(a,b,c),
         generate_series(1,3) i;
@@ -8060,7 +8682,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - {"(3,1,baz)","(2,2,bar)","(1,3,foo)"}
 -(1 row)
 -
-+ERROR:  function generate_series does not exist
++ERROR:  clapdb doesn't support select ValueLists
  select aggfns(distinct a,b,c order by b)
    from (values (1,3,'foo'),(0,null,null),(2,2,'bar'),(3,1,'baz')) v(a,b,c),
         generate_series(1,3) i;
@@ -8069,7 +8691,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - {"(3,1,baz)","(2,2,bar)","(1,3,foo)","(0,,)"}
 -(1 row)
 -
-+ERROR:  function generate_series does not exist
++ERROR:  clapdb doesn't support select ValueLists
  -- test specific code paths
  select aggfns(distinct a,a,c order by c using ~<~,a)
    from (values (1,3,'foo'),(0,null,null),(2,2,'bar'),(3,1,'baz')) v(a,b,c),
@@ -8079,7 +8701,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - {"(2,2,bar)","(3,3,baz)","(1,1,foo)","(0,0,)"}
 -(1 row)
 -
-+ERROR:  function generate_series does not exist
++ERROR:  clapdb doesn't support select ValueLists
  select aggfns(distinct a,a,c order by c using ~<~)
    from (values (1,3,'foo'),(0,null,null),(2,2,'bar'),(3,1,'baz')) v(a,b,c),
         generate_series(1,2) i;
@@ -8088,7 +8710,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - {"(2,2,bar)","(3,3,baz)","(1,1,foo)","(0,0,)"}
 -(1 row)
 -
-+ERROR:  function generate_series does not exist
++ERROR:  clapdb doesn't support select ValueLists
  select aggfns(distinct a,a,c order by a)
    from (values (1,3,'foo'),(0,null,null),(2,2,'bar'),(3,1,'baz')) v(a,b,c),
         generate_series(1,2) i;
@@ -8097,7 +8719,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - {"(0,0,)","(1,1,foo)","(2,2,bar)","(3,3,baz)"}
 -(1 row)
 -
-+ERROR:  function generate_series does not exist
++ERROR:  clapdb doesn't support select ValueLists
  select aggfns(distinct a,b,c order by a,c using ~<~,b)
    from (values (1,3,'foo'),(0,null,null),(2,2,'bar'),(3,1,'baz')) v(a,b,c),
         generate_series(1,2) i;
@@ -8106,11 +8728,11 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - {"(0,,)","(1,3,foo)","(2,2,bar)","(3,1,baz)"}
 -(1 row)
 -
-+ERROR:  function generate_series does not exist
++ERROR:  clapdb doesn't support select ValueLists
  -- test a more complex permutation that has previous caused issues
  select
      string_agg(distinct 'a', ','),
-@@ -1702,244 +1064,137 @@
+@@ -1702,244 +1067,137 @@
          from (values(1)) b(id)
          where a.id = b.id
  )) from unnest(array[1]) a(id);
@@ -8131,7 +8753,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - {"(1,3,foo)","(0,,)","(2,2,bar)","(3,1,baz)"}
 -(1 row)
 -
-+ERROR:  can't find table : public.agg_view1
++ERROR:  relation "public.agg_view1" does not exist
  select pg_get_viewdef('agg_view1'::regclass);
 -                                                   pg_get_viewdef                                                    
 ----------------------------------------------------------------------------------------------------------------------
@@ -8151,7 +8773,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - {"(0,,)","(1,3,foo)","(2,2,bar)","(3,1,baz)"}
 -(1 row)
 -
-+ERROR:  can't find table : public.agg_view1
++ERROR:  relation "public.agg_view1" does not exist
  select pg_get_viewdef('agg_view1'::regclass);
 -                                                   pg_get_viewdef                                                    
 ----------------------------------------------------------------------------------------------------------------------
@@ -8172,7 +8794,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - {"(3,1,baz)","(2,2,bar)","(1,3,foo)","(0,,)"}
 -(1 row)
 -
-+ERROR:  can't find table : public.agg_view1
++ERROR:  relation "public.agg_view1" does not exist
  select pg_get_viewdef('agg_view1'::regclass);
 -                                                   pg_get_viewdef                                                    
 ----------------------------------------------------------------------------------------------------------------------
@@ -8192,7 +8814,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - {"(3,1,baz)","(2,2,bar)","(1,3,foo)","(0,,)"}
 -(1 row)
 -
-+ERROR:  can't find table : public.agg_view1
++ERROR:  relation "public.agg_view1" does not exist
  select pg_get_viewdef('agg_view1'::regclass);
 -                                                   pg_get_viewdef                                                    
 ----------------------------------------------------------------------------------------------------------------------
@@ -8211,7 +8833,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - {"(3,3,baz)","(2,2,bar)","(1,1,foo)","(0,0,)"}
 -(1 row)
 -
-+ERROR:  can't find table : public.agg_view1
++ERROR:  relation "public.agg_view1" does not exist
  select pg_get_viewdef('agg_view1'::regclass);
 -                                                   pg_get_viewdef                                                    
 ----------------------------------------------------------------------------------------------------------------------
@@ -8230,7 +8852,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - {"(2,2,bar)","(3,1,baz)","(1,3,foo)","(0,,)"}
 -(1 row)
 -
-+ERROR:  can't find table : public.agg_view1
++ERROR:  relation "public.agg_view1" does not exist
  select pg_get_viewdef('agg_view1'::regclass);
 -                                                   pg_get_viewdef                                                    
 ----------------------------------------------------------------------------------------------------------------------
@@ -8250,7 +8872,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - {"(0,,)","(1,3,foo)","(2,2,bar)","(3,1,baz)"}
 -(1 row)
 -
-+ERROR:  can't find table : public.agg_view1
++ERROR:  relation "public.agg_view1" does not exist
  select pg_get_viewdef('agg_view1'::regclass);
 -                                                   pg_get_viewdef                                                    
 ----------------------------------------------------------------------------------------------------------------------
@@ -8268,25 +8890,25 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -ERROR:  in an aggregate with DISTINCT, ORDER BY expressions must appear in argument list
 -LINE 1: select aggfns(distinct a,b,c order by i)
 -                                              ^
-+ERROR:  function generate_series does not exist
++ERROR:  clapdb doesn't support select ValueLists
  select aggfns(distinct a,b,c order by a,b+1)
    from (values (1,1,'foo')) v(a,b,c), generate_series(1,2) i;
 -ERROR:  in an aggregate with DISTINCT, ORDER BY expressions must appear in argument list
 -LINE 1: select aggfns(distinct a,b,c order by a,b+1)
 -                                                ^
-+ERROR:  function generate_series does not exist
++ERROR:  clapdb doesn't support select ValueLists
  select aggfns(distinct a,b,c order by a,b,i,c)
    from (values (1,1,'foo')) v(a,b,c), generate_series(1,2) i;
 -ERROR:  in an aggregate with DISTINCT, ORDER BY expressions must appear in argument list
 -LINE 1: select aggfns(distinct a,b,c order by a,b,i,c)
 -                                                  ^
-+ERROR:  function generate_series does not exist
++ERROR:  clapdb doesn't support select ValueLists
  select aggfns(distinct a,a,c order by a,b)
    from (values (1,1,'foo')) v(a,b,c), generate_series(1,2) i;
 -ERROR:  in an aggregate with DISTINCT, ORDER BY expressions must appear in argument list
 -LINE 1: select aggfns(distinct a,a,c order by a,b)
 -                                                ^
-+ERROR:  function generate_series does not exist
++ERROR:  clapdb doesn't support select ValueLists
  -- string_agg tests
  select string_agg(a,',') from (values('aaaa'),('bbbb'),('cccc')) g(a);
 -   string_agg   
@@ -8294,28 +8916,28 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - aaaa,bbbb,cccc
 -(1 row)
 -
-+ERROR:  function string_agg does not exist
++ERROR:  clapdb doesn't support select ValueLists
  select string_agg(a,',') from (values('aaaa'),(null),('bbbb'),('cccc')) g(a);
 -   string_agg   
 -----------------
 - aaaa,bbbb,cccc
 -(1 row)
 -
-+ERROR:  function string_agg does not exist
++ERROR:  clapdb doesn't support select ValueLists
  select string_agg(a,'AB') from (values(null),(null),('bbbb'),('cccc')) g(a);
 - string_agg 
 -------------
 - bbbbABcccc
 -(1 row)
 -
-+ERROR:  function string_agg does not exist
++ERROR:  clapdb doesn't support select ValueLists
  select string_agg(a,',') from (values(null),(null)) g(a);
 - string_agg 
 -------------
 - 
 -(1 row)
 -
-+ERROR:  function string_agg does not exist
++ERROR:  clapdb doesn't support select ValueLists
  -- check some implicit casting cases, as per bug #5564
  select string_agg(distinct f1, ',' order by f1) from varchar_tbl;  -- ok
 - string_agg 
@@ -8406,7 +9028,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
  -- create a view as we otherwise have to repeat this query a few times.
  create view v_pagg_test AS
  select
-@@ -1967,424 +1222,223 @@
+@@ -1967,424 +1225,223 @@
  	) a1
  ) a2
  group by y;
@@ -8427,7 +9049,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - 9 |   19 | 4999 |        250 | 1019 | 999  |        250 |   19 | 4999 |        250 |    19 |  4999 |         250
 -(10 rows)
 -
-+ERROR:  can't find table : public.v_pagg_test
++ERROR:  relation "public.v_pagg_test" does not exist
  -- Ensure parallel aggregation is actually being used.
  explain (costs off) select * from v_pagg_test order by y;
 -                                                              QUERY PLAN                                                              
@@ -8447,7 +9069,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -                                       ->  Parallel Seq Scan on pagg_test
 -(13 rows)
 -
-+ERROR:  can't find table : public.v_pagg_test
++ERROR:  relation "public.v_pagg_test" does not exist
  set max_parallel_workers_per_gather = 0;
 +ERROR:  only support select and create table statement
  -- Ensure results are the same without parallel aggregation.
@@ -8466,7 +9088,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - 9 |   19 | 4999 |        250 | 1019 | 999  |        250 |   19 | 4999 |        250 |    19 |  4999 |         250
 -(10 rows)
 -
-+ERROR:  can't find table : public.v_pagg_test
++ERROR:  relation "public.v_pagg_test" does not exist
  -- Clean up
  reset max_parallel_workers_per_gather;
 +ERROR:  only support select and create table statement
@@ -8545,14 +9167,14 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - a
 -(1 row)
 -
-+ERROR:  expr only support column_ref / a_const / func_call / type_cast [node_case=182]
++ERROR:  clapdb doesn't support select ValueLists
  select any_value(v) filter (where v > 2) from (values (1), (2), (3)) as v (v);
 - any_value 
 ------------
 -         3
 -(1 row)
 -
-+ERROR:  function any_value does not exist
++ERROR:  clapdb doesn't support select ValueLists
  -- outer reference in FILTER (PostgreSQL extension)
  select (select count(*)
          from (values (1)) t0(inner_c))
@@ -8563,7 +9185,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -     1
 -(2 rows)
 -
-+ERROR:  expr only support column_ref / a_const / func_call / type_cast [node_case=17]
++ERROR:  clapdb doesn't support select ValueLists
  select (select count(*) filter (where outer_c <> 0)
          from (values (1)) t0(inner_c))
  from (values (2),(3)) t1(outer_c); -- outer query is aggregation query
@@ -8572,7 +9194,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -     2
 -(1 row)
 -
-+ERROR:  expr only support column_ref / a_const / func_call / type_cast [node_case=17]
++ERROR:  clapdb doesn't support select ValueLists
  select (select count(inner_c) filter (where outer_c <> 0)
          from (values (1)) t0(inner_c))
  from (values (2),(3)) t1(outer_c); -- inner query is aggregation query
@@ -8582,7 +9204,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -     1
 -(2 rows)
 -
-+ERROR:  expr only support column_ref / a_const / func_call / type_cast [node_case=17]
++ERROR:  clapdb doesn't support select ValueLists
  select
    (select max((select i.unique2 from tenk1 i where i.unique1 = o.unique1))
       filter (where o.unique1 < 10))
@@ -8592,7 +9214,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - 9998
 -(1 row)
 -
-+ERROR:  expr only support column_ref / a_const / func_call / type_cast [node_case=17]
++ERROR:  clapdb doesn't support subquery as expr currently
  -- subquery in FILTER clause (PostgreSQL extension)
  select sum(unique1) FILTER (WHERE
    unique1 IN (SELECT unique1 FROM onek where unique1 < 100)) FROM tenk1;
@@ -8613,7 +9235,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - {"(2,2,bar)","(3,1,baz)"}
 -(1 row)
 -
-+ERROR:  function generate_series does not exist
++ERROR:  clapdb doesn't support select ValueLists
  -- check handling of bare boolean Var in FILTER
  select max(0) filter (where b1) from bool_test;
   max 
@@ -8628,7 +9250,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -   0
 -(1 row)
 -
-+ERROR:  expr only support column_ref / a_const / func_call / type_cast [node_case=17]
++ERROR:  clapdb doesn't support subquery as expr currently
  -- check for correct detection of nested-aggregate errors in FILTER
  select max(unique1) filter (where sum(ten) > 0) from tenk1;
 -ERROR:  aggregate functions are not allowed in FILTER
@@ -8643,7 +9265,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -ERROR:  aggregate function calls cannot be nested
 -LINE 1: select (select max(unique1) filter (where sum(ten) > 0) from...
 -                                                  ^
-+ERROR:  expr only support column_ref / a_const / func_call / type_cast [node_case=17]
++ERROR:  clapdb doesn't support subquery as expr currently
  select max(unique1) filter (where bool_or(ten > 0)) from tenk1;
 -ERROR:  aggregate functions are not allowed in FILTER
 -LINE 1: select max(unique1) filter (where bool_or(ten > 0)) from ten...
@@ -8657,7 +9279,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -ERROR:  aggregate function calls cannot be nested
 -LINE 1: select (select max(unique1) filter (where bool_or(ten > 0)) ...
 -                                                  ^
-+ERROR:  expr only support column_ref / a_const / func_call / type_cast [node_case=17]
++ERROR:  clapdb doesn't support subquery as expr currently
  -- ordered-set aggregates
  select p, percentile_cont(p) within group (order by x::float8)
  from generate_series(1,5) x,
@@ -8735,7 +9357,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -    5
 -(1 row)
 -
-+ERROR:  function rank does not exist
++ERROR:  clapdb doesn't support select ValueLists
  select cume_dist(3) within group (order by x)
  from (values (1),(1),(2),(2),(3),(3),(4)) v(x);
 - cume_dist 
@@ -8743,7 +9365,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -     0.875
 -(1 row)
 -
-+ERROR:  function cume_dist does not exist
++ERROR:  clapdb doesn't support select ValueLists
  select percent_rank(3) within group (order by x)
  from (values (1),(1),(2),(2),(3),(3),(4),(5)) v(x);
 - percent_rank 
@@ -8751,7 +9373,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -          0.5
 -(1 row)
 -
-+ERROR:  function percent_rank does not exist
++ERROR:  clapdb doesn't support select ValueLists
  select dense_rank(3) within group (order by x)
  from (values (1),(1),(2),(2),(3),(3),(4)) v(x);
 - dense_rank 
@@ -8759,7 +9381,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -          3
 -(1 row)
 -
-+ERROR:  function dense_rank does not exist
++ERROR:  clapdb doesn't support select ValueLists
  select percentile_disc(array[0,0.1,0.25,0.5,0.75,0.9,1]) within group (order by thousand)
  from tenk1;
 -      percentile_disc       
@@ -8824,7 +9446,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - "POSIX"
 -(1 row)
 -
-+ERROR:  function pg_collation_for does not exist
++ERROR:  clapdb doesn't support select ValueLists
  -- ordered-set aggs created with CREATE AGGREGATE
  select test_rank(3) within group (order by x)
  from (values (1),(1),(2),(2),(3),(3),(4)) v(x);
@@ -8833,7 +9455,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -         5
 -(1 row)
 -
-+ERROR:  function test_rank does not exist
++ERROR:  clapdb doesn't support select ValueLists
  select test_percentile_disc(0.5) within group (order by thousand) from tenk1;
 - test_percentile_disc 
 -----------------------
@@ -8867,7 +9489,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -ERROR:  WITHIN GROUP types text and integer cannot be matched
 -LINE 1: select rank(3) within group (order by x) from (values ('fred...
 -                    ^
-+ERROR:  function rank does not exist
++ERROR:  clapdb doesn't support select ValueLists
  select rank(3) within group (order by stringu1,stringu2) from tenk1;
 -ERROR:  function rank(integer, name, name) does not exist
 -LINE 1: select rank(3) within group (order by stringu1,stringu2) fro...
@@ -8884,7 +9506,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -ERROR:  collation mismatch between explicit collations "C" and "POSIX"
 -LINE 1: ...adam'::text collate "C") within group (order by x collate "P...
 -                                                             ^
-+ERROR:  function rank does not exist
++ERROR:  clapdb doesn't support select ValueLists
  -- hypothetical-set type unification successes:
  select rank('adam'::varchar) within group (order by x) from (values ('fred'),('jim')) v(x);
 - rank 
@@ -8892,7 +9514,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -    1
 -(1 row)
 -
-+ERROR:  function rank does not exist
++ERROR:  clapdb doesn't support select ValueLists
  select rank('3') within group (order by x) from generate_series(1,5) x;
 - rank 
 -------
@@ -8911,7 +9533,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
  -- deparse and multiple features:
  create view aggordview1 as
  select ten,
-@@ -2393,74 +1447,31 @@
+@@ -2393,74 +1450,31 @@
         rank(5,'AZZZZ',50) within group (order by hundred, string4 desc, hundred)
    from tenk1
   group by ten order by ten;
@@ -8944,7 +9566,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -   9 | 499 |     |    1
 -(10 rows)
 -
-+ERROR:  can't find table : public.aggordview1
++ERROR:  relation "public.aggordview1" does not exist
  drop view aggordview1;
 +ERROR:  only support select and create table statement
  -- variadic aggregates
@@ -8998,7 +9620,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
  create or replace function avg_transfn(state avg_state, n int) returns avg_state as
  $$
  declare new_state avg_state;
-@@ -2482,6 +1493,7 @@
+@@ -2482,6 +1496,7 @@
  	return null;
  end
  $$ language plpgsql;
@@ -9006,7 +9628,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
  create function avg_finalfn(state avg_state) returns int4 as
  $$
  begin
-@@ -2492,6 +1504,7 @@
+@@ -2492,6 +1507,7 @@
  	end if;
  end
  $$ language plpgsql;
@@ -9014,7 +9636,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
  create function sum_finalfn(state avg_state) returns int4 as
  $$
  begin
-@@ -2502,106 +1515,56 @@
+@@ -2502,106 +1518,56 @@
  	end if;
  end
  $$ language plpgsql;
@@ -9042,7 +9664,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -      2 |      2
 -(1 row)
 -
-+ERROR:  function my_avg does not exist
++ERROR:  clapdb doesn't support select ValueLists
  -- aggregate state should be shared as transfn is the same for both aggs.
  select my_avg(one),my_sum(one) from (values(1),(3)) t(one);
 -NOTICE:  avg_transfn called with 1
@@ -9052,7 +9674,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -      2 |      4
 -(1 row)
 -
-+ERROR:  function my_avg does not exist
++ERROR:  clapdb doesn't support select ValueLists
  -- same as previous one, but with DISTINCT, which requires sorting the input.
  select my_avg(distinct one),my_sum(distinct one) from (values(1),(3),(1)) t(one);
 -NOTICE:  avg_transfn called with 1
@@ -9062,7 +9684,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -      2 |      4
 -(1 row)
 -
-+ERROR:  function my_avg does not exist
++ERROR:  clapdb doesn't support select ValueLists
  -- shouldn't share states due to the distinctness not matching.
  select my_avg(distinct one),my_sum(one) from (values(1),(3)) t(one);
 -NOTICE:  avg_transfn called with 1
@@ -9074,7 +9696,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -      2 |      4
 -(1 row)
 -
-+ERROR:  function my_avg does not exist
++ERROR:  clapdb doesn't support select ValueLists
  -- shouldn't share states due to the filter clause not matching.
  select my_avg(one) filter (where one > 1),my_sum(one) from (values(1),(3)) t(one);
 -NOTICE:  avg_transfn called with 1
@@ -9085,7 +9707,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -      3 |      4
 -(1 row)
 -
-+ERROR:  function my_avg does not exist
++ERROR:  clapdb doesn't support select ValueLists
  -- this should not share the state due to different input columns.
  select my_avg(one),my_sum(two) from (values(1,2),(3,4)) t(one,two);
 -NOTICE:  avg_transfn called with 1
@@ -9097,7 +9719,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -      2 |      6
 -(1 row)
 -
-+ERROR:  function my_avg does not exist
++ERROR:  clapdb doesn't support select ValueLists
  -- exercise cases where OSAs share state
  select
    percentile_cont(0.5) within group (order by a),
@@ -9108,7 +9730,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -               4 |               3
 -(1 row)
 -
-+ERROR:  function percentile_cont does not exist
++ERROR:  clapdb doesn't support select ValueLists
  select
    percentile_cont(0.25) within group (order by a),
    percentile_disc(0.5) within group (order by a)
@@ -9118,7 +9740,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -             2.5 |               3
 -(1 row)
 -
-+ERROR:  function percentile_cont does not exist
++ERROR:  clapdb doesn't support select ValueLists
  -- these can't share state currently
  select
    rank(4) within group (order by a),
@@ -9129,11 +9751,11 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -    3 |          3
 -(1 row)
 -
-+ERROR:  function rank does not exist
++ERROR:  clapdb doesn't support select ValueLists
  -- test that aggs with the same sfunc and initcond share the same agg state
  create aggregate my_sum_init(int4)
  (
-@@ -2610,6 +1573,7 @@
+@@ -2610,6 +1576,7 @@
     finalfunc = sum_finalfn,
     initcond = '(10,0)'
  );
@@ -9141,7 +9763,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
  create aggregate my_avg_init(int4)
  (
     stype = avg_state,
-@@ -2617,6 +1581,7 @@
+@@ -2617,6 +1584,7 @@
     finalfunc = avg_finalfn,
     initcond = '(10,0)'
  );
@@ -9149,7 +9771,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
  create aggregate my_avg_init2(int4)
  (
     stype = avg_state,
-@@ -2624,30 +1589,19 @@
+@@ -2624,30 +1592,19 @@
     finalfunc = avg_finalfn,
     initcond = '(4,0)'
  );
@@ -9163,7 +9785,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -          14 |           7
 -(1 row)
 -
-+ERROR:  function my_sum_init does not exist
++ERROR:  clapdb doesn't support select ValueLists
  -- Varying INITCONDs should cause the states not to be shared.
  select my_sum_init(one),my_avg_init2(one) from (values(1),(3)) t(one);
 -NOTICE:  avg_transfn called with 1
@@ -9175,7 +9797,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -          14 |            4
 -(1 row)
 -
-+ERROR:  function my_sum_init does not exist
++ERROR:  clapdb doesn't support select ValueLists
  rollback;
 +ERROR:  only support select and create table statement
  -- test aggregate state sharing to ensure it works if one aggregate has a
@@ -9185,7 +9807,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
  create or replace function sum_transfn(state int4, n int4) returns int4 as
  $$
  declare new_state int4;
-@@ -2667,6 +1621,7 @@
+@@ -2667,6 +1624,7 @@
  	return null;
  end
  $$ language plpgsql;
@@ -9193,7 +9815,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
  create function halfsum_finalfn(state int4) returns int4 as
  $$
  begin
-@@ -2677,33 +1632,30 @@
+@@ -2677,33 +1635,30 @@
  	end if;
  end
  $$ language plpgsql;
@@ -9222,7 +9844,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -     10 |           5
 -(1 row)
 -
-+ERROR:  function my_sum does not exist
++ERROR:  clapdb doesn't support select ValueLists
  rollback;
 +ERROR:  only support select and create table statement
  -- test that the aggregate transition logic correctly handles
@@ -9233,7 +9855,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
  CREATE FUNCTION balkifnull(int8, int4)
  RETURNS int8
  STRICT
-@@ -2714,6 +1666,7 @@
+@@ -2714,6 +1669,7 @@
      END IF;
      RETURN NULL;
  END$$;
@@ -9241,7 +9863,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
  CREATE AGGREGATE balk(int4)
  (
      SFUNC = balkifnull(int8, int4),
-@@ -2721,13 +1674,11 @@
+@@ -2721,13 +1677,11 @@
      PARALLEL = SAFE,
      INITCOND = '0'
  );
@@ -9258,7 +9880,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
  -- GROUP BY optimization by reordering GROUP BY clauses
  CREATE TABLE btg AS SELECT
    i % 10 AS x,
-@@ -2735,116 +1686,58 @@
+@@ -2735,116 +1689,58 @@
    'abc' || i % 10 AS z,
    i AS w
  FROM generate_series(1, 100) AS i;
@@ -9281,7 +9903,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -   ->  Index Only Scan using btg_x_y_idx on btg
 -(3 rows)
 -
-+ERROR:  can't find table : public.btg
++ERROR:  relation "public.btg" does not exist
  -- Engage incremental sort
  EXPLAIN (COSTS OFF)
  SELECT count(*) FROM btg GROUP BY z, y, w, x;
@@ -9295,7 +9917,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -         ->  Index Scan using btg_x_y_idx on btg
 -(6 rows)
 -
-+ERROR:  can't find table : public.btg
++ERROR:  relation "public.btg" does not exist
  -- Utilize the ordering of subquery scan to avoid a Sort operation
  EXPLAIN (COSTS OFF) SELECT count(*)
  FROM (SELECT * FROM btg ORDER BY x, y, w, z) AS q1
@@ -9310,7 +9932,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -         ->  Index Scan using btg_x_y_idx on btg
 -(6 rows)
 -
-+ERROR:  can't find table : public.btg
++ERROR:  relation "public.btg" does not exist
  -- Utilize the ordering of merge join to avoid a full Sort operation
  SET enable_hashjoin = off;
 +ERROR:  only support select and create table statement
@@ -9354,7 +9976,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -         ->  Index Scan using btg_x_y_idx on btg
 -(5 rows)
 -
-+ERROR:  can't find table : public.btg
++ERROR:  relation "public.btg" does not exist
  -- Utilize incremental sort to make the ORDER BY rule a bit cheaper
  EXPLAIN (COSTS OFF)
  SELECT count(*) FROM btg GROUP BY w, x, y, z ORDER BY x*x, z;
@@ -9370,7 +9992,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -               ->  Index Scan using btg_x_y_idx on btg
 -(8 rows)
 -
-+ERROR:  can't find table : public.btg
++ERROR:  relation "public.btg" does not exist
  -- Test the case where the number of incoming subtree path keys is more than
  -- the number of grouping keys.
  CREATE INDEX btg_y_x_w_idx ON btg(y, x, w);
@@ -9392,7 +10014,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
  -- Ensure that we do not select the aggregate pathkeys instead of the grouping
  -- pathkeys
  CREATE TABLE group_agg_pk AS SELECT
-@@ -2854,70 +1747,54 @@
+@@ -2854,70 +1750,54 @@
    2 AS w,
    i % 10 AS f
  FROM generate_series(1,100) AS i;
@@ -9481,7 +10103,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
  CREATE FUNCTION balkifnull(int8, int8)
  RETURNS int8
  PARALLEL SAFE
-@@ -2929,6 +1806,7 @@
+@@ -2929,6 +1809,7 @@
      END IF;
      RETURN NULL;
  END$$;
@@ -9489,7 +10111,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
  CREATE AGGREGATE balk(int4)
  (
      SFUNC = int4_sum(int8, int4),
-@@ -2937,35 +1815,30 @@
+@@ -2937,35 +1818,30 @@
      PARALLEL = SAFE,
      INITCOND = '0'
  );
@@ -9534,7 +10156,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
  CREATE FUNCTION rwagg_finalfunc(x anyarray) RETURNS anyarray
  LANGUAGE plpgsql STRICT IMMUTABLE AS $$
  DECLARE
-@@ -2976,11 +1849,13 @@
+@@ -2976,11 +1852,13 @@
      RETURN res;
  END;
  $$;
@@ -9548,7 +10170,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
  CREATE FUNCTION eatarray(x real[]) RETURNS real[]
  LANGUAGE plpgsql STRICT IMMUTABLE AS $$
  BEGIN
-@@ -2988,21 +1863,26 @@
+@@ -2988,21 +1866,26 @@
      RETURN x;
  END;
  $$;
@@ -9580,7 +10202,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
  -- variance(int4) covers numeric_poly_combine
  -- sum(int8) covers int8_avg_combine
  -- regr_count(float8, float8) covers int8inc_float8_float8 and aggregates with > 1 arg
-@@ -3012,36 +1892,13 @@
+@@ -3012,36 +1895,13 @@
        UNION ALL SELECT * FROM tenk1
        UNION ALL SELECT * FROM tenk1
        UNION ALL SELECT * FROM tenk1) u;
@@ -9604,7 +10226,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -                           Output: tenk1_3.unique1
 -(16 rows)
 -
-+ERROR:  function variance does not exist
++ERROR:  clapdb doesn't support [op=SETOP_UNION]
  SELECT variance(unique1::int4), sum(unique1::int8), regr_count(unique1::float8, unique1::float8)
  FROM (SELECT * FROM tenk1
        UNION ALL SELECT * FROM tenk1
@@ -9615,11 +10237,11 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - 8333541.588539713493 | 199980000 |      40000
 -(1 row)
 -
-+ERROR:  function variance does not exist
++ERROR:  clapdb doesn't support [op=SETOP_UNION]
  -- variance(int8) covers numeric_combine
  -- avg(numeric) covers numeric_avg_combine
  EXPLAIN (COSTS OFF, VERBOSE)
-@@ -3050,192 +1907,117 @@
+@@ -3050,192 +1910,117 @@
        UNION ALL SELECT * FROM tenk1
        UNION ALL SELECT * FROM tenk1
        UNION ALL SELECT * FROM tenk1) u;
@@ -9643,7 +10265,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -                           Output: tenk1_3.unique1
 -(16 rows)
 -
-+ERROR:  function variance does not exist
++ERROR:  clapdb doesn't support [op=SETOP_UNION]
  SELECT variance(unique1::int8), avg(unique1::numeric)
  FROM (SELECT * FROM tenk1
        UNION ALL SELECT * FROM tenk1
@@ -9654,7 +10276,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 - 8333541.588539713493 | 4999.5000000000000000
 -(1 row)
 -
-+ERROR:  function variance does not exist
++ERROR:  clapdb doesn't support [op=SETOP_UNION]
  ROLLBACK;
 +ERROR:  only support select and create table statement
  -- test coverage for dense_rank
@@ -9666,7 +10288,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -          1
 -(3 rows)
 -
-+ERROR:  function dense_rank does not exist
++ERROR:  clapdb doesn't support select ValueLists
  -- Ensure that the STRICT checks for aggregates does not take NULLness
  -- of ORDER BY columns into account. See bug report around
  -- 2a505161-2727-2473-7c46-591ed108ac52@email.cz
@@ -9676,14 +10298,14 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -   1
 -(1 row)
 -
-+ERROR:  column "x" not exist
++ERROR:  clapdb doesn't support select ValueLists
  SELECT min(x ORDER BY y) FROM (VALUES(1, 2)) AS d(x,y);
 - min 
 ------
 -   1
 -(1 row)
 -
-+ERROR:  column "x" not exist
++ERROR:  clapdb doesn't support select ValueLists
  -- check collation-sensitive matching between grouping expressions
  select v||'a', case v||'a' when 'aa' then 1 else 0 end, count(*)
    from unnest(array['a','b']) u(v)
@@ -9853,7 +10475,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -         ->  Seq Scan on agg_data_20k
 -(5 rows)
 -
-+ERROR:  not processed pg_catalog type [pg_catalog_type=numeric]
++ERROR:  not implemented type_cast case [to=numeric]
  create table agg_group_1 as
  select g%10000 as c1, sum(g::numeric) as c2, count(*) as c3
    from agg_data_20k group by g%10000;
@@ -9861,7 +10483,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
  create table agg_group_2 as
  select * from
    (values (100), (300), (500)) as r(a),
-@@ -3246,30 +2028,32 @@
+@@ -3246,30 +2031,32 @@
      from agg_data_2k
      where g < r.a
      group by g/2) as s;
@@ -9893,7 +10515,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -   ->  Seq Scan on agg_data_20k
 -(3 rows)
 -
-+ERROR:  not processed pg_catalog type [pg_catalog_type=numeric]
++ERROR:  not implemented type_cast case [to=numeric]
  create table agg_hash_1 as
  select g%10000 as c1, sum(g::numeric) as c2, count(*) as c3
    from agg_data_20k group by g%10000;
@@ -9901,7 +10523,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
  create table agg_hash_2 as
  select * from
    (values (100), (300), (500)) as r(a),
-@@ -3280,49 +2064,51 @@
+@@ -3280,49 +2067,51 @@
      from agg_data_2k
      where g < r.a
      group by g/2) as s;
@@ -9928,7 +10550,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -----+----+----
 -(0 rows)
 -
-+ERROR:  select list can't be empty currently
++ERROR:  clapdb doesn't support [op=SETOP_UNION]
  (select * from agg_hash_2 except select * from agg_group_2)
    union all
  (select * from agg_group_2 except select * from agg_hash_2);
@@ -9936,7 +10558,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 ----+----+----+----
 -(0 rows)
 -
-+ERROR:  select list can't be empty currently
++ERROR:  clapdb doesn't support [op=SETOP_UNION]
  (select * from agg_hash_3 except select * from agg_group_3)
    union all
  (select * from agg_group_3 except select * from agg_hash_3);
@@ -9944,7 +10566,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -----+----+----
 -(0 rows)
 -
-+ERROR:  select list can't be empty currently
++ERROR:  clapdb doesn't support [op=SETOP_UNION]
  (select * from agg_hash_4 except select * from agg_group_4)
    union all
  (select * from agg_group_4 except select * from agg_hash_4);
@@ -9952,7 +10574,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -----+----+----
 -(0 rows)
 -
-+ERROR:  select list can't be empty currently
++ERROR:  clapdb doesn't support [op=SETOP_UNION]
  drop table agg_group_1;
 +ERROR:  only support select and create table statement
  drop table agg_group_2;
