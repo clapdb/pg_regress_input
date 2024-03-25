@@ -1,3 +1,4 @@
 [submodule "postgres"]
 	path = postgres
+	update = none
 	url = https://github.com/postgres/postgres.git
