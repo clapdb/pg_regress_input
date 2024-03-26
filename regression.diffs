@@ -1,6 +1,6 @@
 diff -U3 /home/longqimin/pg_regress_input/expected/boolean.out /home/longqimin/pg_regress_input/results/boolean.out
 --- /home/longqimin/pg_regress_input/expected/boolean.out	2024-03-25 09:21:06.160601856 +0800
-+++ /home/longqimin/pg_regress_input/results/boolean.out	2024-03-26 10:06:03.575704354 +0800
++++ /home/longqimin/pg_regress_input/results/boolean.out	2024-03-26 12:18:01.255470568 +0800
 @@ -136,11 +136,7 @@
  (1 row)
  
@@ -156,7 +156,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/boolean.out /home/longqimin/p
 +ERROR:  only support select and create table statement
 diff -U3 /home/longqimin/pg_regress_input/expected/int2.out /home/longqimin/pg_regress_input/results/int2.out
 --- /home/longqimin/pg_regress_input/expected/int2.out	2024-03-22 14:23:59.097610627 +0800
-+++ /home/longqimin/pg_regress_input/results/int2.out	2024-03-26 10:06:06.918713435 +0800
++++ /home/longqimin/pg_regress_input/results/int2.out	2024-03-26 12:18:04.645473108 +0800
 @@ -4,21 +4,21 @@
  -- int2_tbl was already created and filled in test_setup.sql.
  -- Here we just try to insert bad values.
@@ -523,7 +523,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int2.out /home/longqimin/pg_r
 +ERROR:  invalid input syntax for type integer: "10__000"
 diff -U3 /home/longqimin/pg_regress_input/expected/int4.out /home/longqimin/pg_regress_input/results/int4.out
 --- /home/longqimin/pg_regress_input/expected/int4.out	2024-03-11 11:46:21.656870844 +0800
-+++ /home/longqimin/pg_regress_input/results/int4.out	2024-03-26 10:06:10.866724161 +0800
++++ /home/longqimin/pg_regress_input/results/int4.out	2024-03-26 12:18:08.313475857 +0800
 @@ -49,11 +49,7 @@
  (1 row)
  
@@ -908,7 +908,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int4.out /home/longqimin/pg_r
  ERROR:  invalid input syntax for type integer: "_100"
 diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_regress_input/results/int8.out
 --- /home/longqimin/pg_regress_input/expected/int8.out	2024-03-11 11:46:21.657870845 +0800
-+++ /home/longqimin/pg_regress_input/results/int8.out	2024-03-26 10:06:20.996751679 +0800
++++ /home/longqimin/pg_regress_input/results/int8.out	2024-03-26 12:18:18.723483659 +0800
 @@ -5,19 +5,19 @@
  -- int8_tbl was already created and filled in test_setup.sql.
  -- Here we just try to insert bad values.
@@ -1799,7 +1799,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
 +ERROR:  invalid input syntax for type integer: "100__000"
 diff -U3 /home/longqimin/pg_regress_input/expected/float4.out /home/longqimin/pg_regress_input/results/float4.out
 --- /home/longqimin/pg_regress_input/expected/float4.out	2024-03-11 11:46:21.655870843 +0800
-+++ /home/longqimin/pg_regress_input/results/float4.out	2024-03-26 10:06:28.067770887 +0800
++++ /home/longqimin/pg_regress_input/results/float4.out	2024-03-26 12:18:25.671488866 +0800
 @@ -9,44 +9,44 @@
  INSERT INTO FLOAT4_TBL(f1) VALUES ('1.2345678901234e-20');
  -- test for over and under flow
@@ -2555,7 +2555,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float4.out /home/longqimin/pg
 +ERROR:  only support select and create table statement
 diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg_regress_input/results/float8.out
 --- /home/longqimin/pg_regress_input/expected/float8.out	2024-03-25 09:21:06.162601856 +0800
-+++ /home/longqimin/pg_regress_input/results/float8.out	2024-03-26 10:06:37.044795274 +0800
++++ /home/longqimin/pg_regress_input/results/float8.out	2024-03-26 12:18:34.757495676 +0800
 @@ -6,6 +6,7 @@
  -- (This temporarily hides the table created in test_setup.sql)
  --
@@ -4029,7 +4029,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
 +ERROR:  only support select and create table statement
 diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_regress_input/results/date.out
 --- /home/longqimin/pg_regress_input/expected/date.out	2024-03-25 09:21:23.437606375 +0800
-+++ /home/longqimin/pg_regress_input/results/date.out	2024-03-26 10:07:03.270866518 +0800
++++ /home/longqimin/pg_regress_input/results/date.out	2024-03-26 12:19:00.974515324 +0800
 @@ -10,7 +10,7 @@
  INSERT INTO DATE_TBL VALUES ('1996-03-02');
  INSERT INTO DATE_TBL VALUES ('1997-02-28');
@@ -5753,7 +5753,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 +ERROR:  out of range
 diff -U3 /home/longqimin/pg_regress_input/expected/time.out /home/longqimin/pg_regress_input/results/time.out
 --- /home/longqimin/pg_regress_input/expected/time.out	2024-03-25 09:21:23.437606375 +0800
-+++ /home/longqimin/pg_regress_input/results/time.out	2024-03-26 10:07:46.658984414 +0800
++++ /home/longqimin/pg_regress_input/results/time.out	2024-03-26 12:19:44.357547818 +0800
 @@ -73,37 +73,29 @@
  
  -- Check edge cases
@@ -5907,8 +5907,8 @@ diff -U3 /home/longqimin/pg_regress_input/expected/time.out /home/longqimin/pg_r
 -
 +ERROR:  timestamp units "epoch" not recognized
 diff -U3 /home/longqimin/pg_regress_input/expected/select.out /home/longqimin/pg_regress_input/results/select.out
---- /home/longqimin/pg_regress_input/expected/select.out	2024-03-26 10:04:58.592527808 +0800
-+++ /home/longqimin/pg_regress_input/results/select.out	2024-03-26 10:07:55.206007632 +0800
+--- /home/longqimin/pg_regress_input/expected/select.out	2024-03-26 10:12:30.471589674 +0800
++++ /home/longqimin/pg_regress_input/results/select.out	2024-03-26 12:19:54.223555215 +0800
 @@ -219,16 +219,16 @@
  SELECT onek2.* FROM onek2 WHERE onek2.unique1 < 10;
   unique1 | unique2 | two | four | ten | twenty | hundred | thousand | twothousand | fivethous | tenthous | odd | even | stringu1 | stringu2 | string4 
@@ -6145,7 +6145,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select.out /home/longqimin/pg
  -- a more complex case
  -- looks like we're coding lisp :-)
  select * from onek,
-@@ -471,49 +332,21 @@
+@@ -471,56 +332,26 @@
      (values(10000), (2), (389), (1000), (2000), ((select 10029))) as foo(i)
      order by i asc limit 1))) bar (i)
    where onek.unique1 = bar.i;
@@ -6198,8 +6198,16 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select.out /home/longqimin/pg
 +ERROR:  clapdb doesn't support [op=SETOP_UNION]
  -- corner case: VALUES with no columns
  CREATE TEMP TABLE nocols();
- --INSERT INTO nocols DEFAULT VALUES;
-@@ -585,6 +418,7 @@
+ INSERT INTO nocols DEFAULT VALUES;
+ SELECT * FROM nocols n, LATERAL (VALUES(n.*)) v;
+---
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ --
+ -- Test ORDER BY options
+ --
+@@ -588,6 +419,7 @@
  
  -- check if indexscans do the right things
  CREATE INDEX fooi ON foo (f1);
@@ -6207,7 +6215,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select.out /home/longqimin/pg
  --SET enable_sort = false;
  SELECT * FROM foo ORDER BY f1;
   f1 
-@@ -635,7 +469,9 @@
+@@ -638,7 +470,9 @@
  (7 rows)
  
  DROP INDEX fooi;
@@ -6217,7 +6225,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select.out /home/longqimin/pg
  SELECT * FROM foo ORDER BY f1;
   f1 
  ----
-@@ -685,7 +521,9 @@
+@@ -688,7 +522,9 @@
  (7 rows)
  
  DROP INDEX fooi;
@@ -6227,7 +6235,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select.out /home/longqimin/pg
  SELECT * FROM foo ORDER BY f1;
   f1 
  ----
-@@ -839,51 +677,30 @@
+@@ -842,51 +678,30 @@
  -- But ORDER BY on a set-valued expression does
  create function sillysrf(int) returns setof int as
    'values (1),(10),(2),($1)' language sql immutable;
@@ -6290,4 +6298,4294 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select.out /home/longqimin/pg
  (2 rows)
  
  drop table list_parted_tbl;
++ERROR:  only support select and create table statement
+diff -U3 /home/longqimin/pg_regress_input/expected/select_distinct.out /home/longqimin/pg_regress_input/results/select_distinct.out
+--- /home/longqimin/pg_regress_input/expected/select_distinct.out	2024-02-27 09:30:35.100460308 +0800
++++ /home/longqimin/pg_regress_input/results/select_distinct.out	2024-03-26 12:20:03.152561909 +0800
+@@ -48,50 +48,7 @@
+ SELECT DISTINCT two, string4, ten
+    FROM onek
+    ORDER BY two using <, string4 using <, ten using <;
+- two | string4 | ten 
+------+---------+-----
+-   0 | AAAAxx  |   0
+-   0 | AAAAxx  |   2
+-   0 | AAAAxx  |   4
+-   0 | AAAAxx  |   6
+-   0 | AAAAxx  |   8
+-   0 | HHHHxx  |   0
+-   0 | HHHHxx  |   2
+-   0 | HHHHxx  |   4
+-   0 | HHHHxx  |   6
+-   0 | HHHHxx  |   8
+-   0 | OOOOxx  |   0
+-   0 | OOOOxx  |   2
+-   0 | OOOOxx  |   4
+-   0 | OOOOxx  |   6
+-   0 | OOOOxx  |   8
+-   0 | VVVVxx  |   0
+-   0 | VVVVxx  |   2
+-   0 | VVVVxx  |   4
+-   0 | VVVVxx  |   6
+-   0 | VVVVxx  |   8
+-   1 | AAAAxx  |   1
+-   1 | AAAAxx  |   3
+-   1 | AAAAxx  |   5
+-   1 | AAAAxx  |   7
+-   1 | AAAAxx  |   9
+-   1 | HHHHxx  |   1
+-   1 | HHHHxx  |   3
+-   1 | HHHHxx  |   5
+-   1 | HHHHxx  |   7
+-   1 | HHHHxx  |   9
+-   1 | OOOOxx  |   1
+-   1 | OOOOxx  |   3
+-   1 | OOOOxx  |   5
+-   1 | OOOOxx  |   7
+-   1 | OOOOxx  |   9
+-   1 | VVVVxx  |   1
+-   1 | VVVVxx  |   3
+-   1 | VVVVxx  |   5
+-   1 | VVVVxx  |   7
+-   1 | VVVVxx  |   9
+-(40 rows)
+-
++ERROR:  order by not support using
+ --
+ -- awk '{print $2;}' person.data |
+ -- awk '{if(NF!=1){print $2;}else{print;}}' - emp.data |
+@@ -100,52 +57,25 @@
+ -- sort -n -r | uniq
+ --
+ SELECT DISTINCT p.age FROM person* p ORDER BY age using >;
+- age 
+------
+-  98
+-  88
+-  78
+-  68
+-  60
+-  58
+-  50
+-  48
+-  40
+-  38
+-  34
+-  30
+-  28
+-  25
+-  24
+-  23
+-  20
+-  19
+-  18
+-   8
+-(20 rows)
+-
++ERROR:  order by not support using
+ --
+ -- Check mentioning same column more than once
+ --
+ EXPLAIN (VERBOSE, COSTS OFF)
+ SELECT count(*) FROM
+   (SELECT DISTINCT two, four, two FROM tenk1) ss;
+-                       QUERY PLAN                       
+---------------------------------------------------------
+- Aggregate
+-   Output: count(*)
+-   ->  HashAggregate
+-         Output: tenk1.two, tenk1.four, tenk1.two
+-         Group Key: tenk1.two, tenk1.four
+-         ->  Seq Scan on public.tenk1
+-               Output: tenk1.two, tenk1.four, tenk1.two
+-(7 rows)
++                            QUERY PLAN                            
++------------------------------------------------------------------
++ datum(col_0_literal) = LiteralAggregate(COUNT_NOT_NULL(0) tenk1)
++ tuple(table_0) = [datum(col_0_literal)]
++ return tuple(table_0)
++(3 rows)
+ 
+ SELECT count(*) FROM
+   (SELECT DISTINCT two, four, two FROM tenk1) ss;
+  count 
+ -------
+-     4
++ 10000
+ (1 row)
+ 
+ --
+@@ -153,96 +83,95 @@
+ -- aggregation. Force spilling in both cases by setting work_mem low.
+ --
+ SET work_mem='64kB';
++ERROR:  only support select and create table statement
+ -- Produce results with sorting.
+ SET enable_hashagg=FALSE;
++ERROR:  only support select and create table statement
+ SET jit_above_cost=0;
++ERROR:  only support select and create table statement
+ EXPLAIN (costs off)
+ SELECT DISTINCT g%1000 FROM generate_series(0,9999) g;
+-                   QUERY PLAN                   
+-------------------------------------------------
+- Unique
+-   ->  Sort
+-         Sort Key: ((g % 1000))
+-         ->  Function Scan on generate_series g
+-(4 rows)
+-
++ERROR:  function generate_series does not exist
+ CREATE TABLE distinct_group_1 AS
+ SELECT DISTINCT g%1000 FROM generate_series(0,9999) g;
++ERROR:  only support select and create table statement
+ SET jit_above_cost TO DEFAULT;
++ERROR:  only support select and create table statement
+ CREATE TABLE distinct_group_2 AS
+ SELECT DISTINCT (g%1000)::text FROM generate_series(0,9999) g;
++ERROR:  only support select and create table statement
+ SET enable_seqscan = 0;
++ERROR:  only support select and create table statement
+ -- Check to see we get an incremental sort plan
+ EXPLAIN (costs off)
+ SELECT DISTINCT hundred, two FROM tenk1;
+-                     QUERY PLAN                      
+------------------------------------------------------
+- Unique
+-   ->  Incremental Sort
+-         Sort Key: hundred, two
+-         Presorted Key: hundred
+-         ->  Index Scan using tenk1_hundred on tenk1
+-(5 rows)
++                                                        QUERY PLAN                                                        
++--------------------------------------------------------------------------------------------------------------------------
++ tuple(table_0) = parallel: [tuple(table_0) = IndexScan([column(hundred), column(two)]) + unique), return tuple(table_0)]
++ tuple(table_0) = Unique(tuple(table_0))
++ return tuple(table_0)
++(3 rows)
+ 
+ RESET enable_seqscan;
++ERROR:  only support select and create table statement
+ SET enable_hashagg=TRUE;
++ERROR:  only support select and create table statement
+ -- Produce results with hash aggregation.
+ SET enable_sort=FALSE;
++ERROR:  only support select and create table statement
+ SET jit_above_cost=0;
++ERROR:  only support select and create table statement
+ EXPLAIN (costs off)
+ SELECT DISTINCT g%1000 FROM generate_series(0,9999) g;
+-                QUERY PLAN                
+-------------------------------------------
+- HashAggregate
+-   Group Key: (g % 1000)
+-   ->  Function Scan on generate_series g
+-(3 rows)
+-
++ERROR:  function generate_series does not exist
+ CREATE TABLE distinct_hash_1 AS
+ SELECT DISTINCT g%1000 FROM generate_series(0,9999) g;
++ERROR:  only support select and create table statement
+ SET jit_above_cost TO DEFAULT;
++ERROR:  only support select and create table statement
+ CREATE TABLE distinct_hash_2 AS
+ SELECT DISTINCT (g%1000)::text FROM generate_series(0,9999) g;
++ERROR:  only support select and create table statement
+ SET enable_sort=TRUE;
++ERROR:  only support select and create table statement
+ SET work_mem TO DEFAULT;
++ERROR:  only support select and create table statement
+ -- Compare results
+ (SELECT * FROM distinct_hash_1 EXCEPT SELECT * FROM distinct_group_1)
+   UNION ALL
+ (SELECT * FROM distinct_group_1 EXCEPT SELECT * FROM distinct_hash_1);
+- ?column? 
+-----------
+-(0 rows)
+-
++ERROR:  clapdb doesn't support [op=SETOP_UNION]
+ (SELECT * FROM distinct_hash_1 EXCEPT SELECT * FROM distinct_group_1)
+   UNION ALL
+ (SELECT * FROM distinct_group_1 EXCEPT SELECT * FROM distinct_hash_1);
+- ?column? 
+-----------
+-(0 rows)
+-
++ERROR:  clapdb doesn't support [op=SETOP_UNION]
+ DROP TABLE distinct_hash_1;
++ERROR:  only support select and create table statement
+ DROP TABLE distinct_hash_2;
++ERROR:  only support select and create table statement
+ DROP TABLE distinct_group_1;
++ERROR:  only support select and create table statement
+ DROP TABLE distinct_group_2;
++ERROR:  only support select and create table statement
+ -- Test parallel DISTINCT
+ SET parallel_tuple_cost=0;
++ERROR:  only support select and create table statement
+ SET parallel_setup_cost=0;
++ERROR:  only support select and create table statement
+ SET min_parallel_table_scan_size=0;
++ERROR:  only support select and create table statement
+ SET max_parallel_workers_per_gather=2;
++ERROR:  only support select and create table statement
+ -- Ensure we get a parallel plan
+ EXPLAIN (costs off)
+ SELECT DISTINCT four FROM tenk1;
+-                     QUERY PLAN                     
+-----------------------------------------------------
+- Unique
+-   ->  Gather Merge
+-         Workers Planned: 2
+-         ->  Sort
+-               Sort Key: four
+-               ->  HashAggregate
+-                     Group Key: four
+-                     ->  Parallel Seq Scan on tenk1
+-(8 rows)
++                                                 QUERY PLAN                                                  
++-------------------------------------------------------------------------------------------------------------
++ tuple(table_0) = parallel: [tuple(var_5_1) = IndexTopN([columns(four ASC)], unique), return tuple(var_5_1)]
++ tuple(table_0) = Unique(tuple(table_0))
++ tuple(table_0) = Sort(tuple(table_0), [columns(0 ASC)])
++ return tuple(table_0)
++(4 rows)
+ 
+ -- Ensure the parallel plan produces the correct results
+ SELECT DISTINCT four FROM tenk1;
+@@ -259,41 +188,30 @@
+     RETURN a;
+   END;
+ $$ LANGUAGE plpgsql PARALLEL UNSAFE;
++ERROR:  only support select and create table statement
+ -- Ensure we don't do parallel distinct with a parallel unsafe function
+ EXPLAIN (COSTS OFF)
+ SELECT DISTINCT distinct_func(1) FROM tenk1;
+-                        QUERY PLAN                        
+-----------------------------------------------------------
+- Unique
+-   ->  Sort
+-         Sort Key: (distinct_func(1))
+-         ->  Index Only Scan using tenk1_hundred on tenk1
+-(4 rows)
+-
++ERROR:  function distinct_func does not exist
+ -- make the function parallel safe
+ CREATE OR REPLACE FUNCTION distinct_func(a INT) RETURNS INT AS $$
+   BEGIN
+     RETURN a;
+   END;
+ $$ LANGUAGE plpgsql PARALLEL SAFE;
++ERROR:  only support select and create table statement
+ -- Ensure we do parallel distinct now that the function is parallel safe
+ EXPLAIN (COSTS OFF)
+ SELECT DISTINCT distinct_func(1) FROM tenk1;
+-                     QUERY PLAN                     
+-----------------------------------------------------
+- Unique
+-   ->  Gather Merge
+-         Workers Planned: 2
+-         ->  Unique
+-               ->  Sort
+-                     Sort Key: (distinct_func(1))
+-                     ->  Parallel Seq Scan on tenk1
+-(7 rows)
+-
++ERROR:  function distinct_func does not exist
+ RESET max_parallel_workers_per_gather;
++ERROR:  only support select and create table statement
+ RESET min_parallel_table_scan_size;
++ERROR:  only support select and create table statement
+ RESET parallel_setup_cost;
++ERROR:  only support select and create table statement
+ RESET parallel_tuple_cost;
++ERROR:  only support select and create table statement
+ --
+ -- Test the planner's ability to use a LIMIT 1 instead of a Unique node when
+ -- all of the distinct_pathkeys have been marked as redundant
+@@ -301,12 +219,14 @@
+ -- Ensure we get a plan with a Limit 1
+ EXPLAIN (COSTS OFF)
+ SELECT DISTINCT four FROM tenk1 WHERE four = 0;
+-         QUERY PLAN         
+-----------------------------
+- Limit
+-   ->  Seq Scan on tenk1
+-         Filter: (four = 0)
+-(3 rows)
++                                                                   QUERY PLAN                                                                    
++-------------------------------------------------------------------------------------------------------------------------------------------------
++ tid(where) = parallel: [tid(var_5_1) = IndexFilter(column(four) == 0), return tid(var_5_1)]
++ tuple(table_0) = broadcast: [tid(where)] parallel: [tuple(var_6_1) = IndexTopN([columns(four ASC)], tid(where), unique), return tuple(var_6_1)]
++ tuple(table_0) = Unique(tuple(table_0))
++ tuple(table_0) = Sort(tuple(table_0), [columns(0 ASC)])
++ return tuple(table_0)
++(5 rows)
+ 
+ -- Ensure the above gives us the correct result
+ SELECT DISTINCT four FROM tenk1 WHERE four = 0;
+@@ -318,28 +238,40 @@
+ -- Ensure we get a plan with a Limit 1
+ EXPLAIN (COSTS OFF)
+ SELECT DISTINCT four FROM tenk1 WHERE four = 0 AND two <> 0;
+-                 QUERY PLAN                  
+----------------------------------------------
+- Limit
+-   ->  Seq Scan on tenk1
+-         Filter: ((two <> 0) AND (four = 0))
+-(3 rows)
++                                                                   QUERY PLAN                                                                    
++-------------------------------------------------------------------------------------------------------------------------------------------------
++ tid(var_5_1) = parallel: [tid(var_5_2) = IndexFilter(column(four) == 0), return tid(var_5_2)]
++ tid(var_5_3) = parallel: [tid(var_5_4) = IndexFilter(column(two) != 0), return tid(var_5_4)]
++ tid(where) = [tid(var_5_3) and tid(var_5_1)]
++ tuple(table_0) = broadcast: [tid(where)] parallel: [tuple(var_6_1) = IndexTopN([columns(four ASC)], tid(where), unique), return tuple(var_6_1)]
++ tuple(table_0) = Unique(tuple(table_0))
++ tuple(table_0) = Sort(tuple(table_0), [columns(0 ASC)])
++ return tuple(table_0)
++(7 rows)
+ 
+ -- Ensure no rows are returned
+ SELECT DISTINCT four FROM tenk1 WHERE four = 0 AND two <> 0;
+- four 
+-------
++--
+ (0 rows)
+ 
+ -- Ensure we get a plan with a Limit 1 when the SELECT list contains constants
+ EXPLAIN (COSTS OFF)
+ SELECT DISTINCT four,1,2,3 FROM tenk1 WHERE four = 0;
+-         QUERY PLAN         
+-----------------------------
+- Limit
+-   ->  Seq Scan on tenk1
+-         Filter: (four = 0)
+-(3 rows)
++                                                                    QUERY PLAN                                                                    
++--------------------------------------------------------------------------------------------------------------------------------------------------
++ tuple_with_tid(where_with_value) = parallel: [tuple_with_tid(var_4_1) = IndexFilterWithValue(column(four) == 0), return tuple_with_tid(var_4_1)]
++ tuple(table_0) = tuple_with_tid(where_with_value)
++ datum(var_5_1) = TupleAt(tuple(table_0) 0)
++ tuple(var_5_3) = ConstExprTuple([1], table_0)
++ datum(var_5_2) = TupleAt(tuple(var_5_3) 0)
++ tuple(var_5_5) = ConstExprTuple([2], table_0)
++ datum(var_5_4) = TupleAt(tuple(var_5_5) 0)
++ tuple(var_5_7) = ConstExprTuple([3], table_0)
++ datum(var_5_6) = TupleAt(tuple(var_5_7) 0)
++ tuple(table_0) = [datum(var_5_1), datum(var_5_2), datum(var_5_4), datum(var_5_6)]
++ tuple(table_0) = Unique(tuple(table_0))
++ return tuple(table_0)
++(12 rows)
+ 
+ -- Ensure we only get 1 row
+ SELECT DISTINCT four,1,2,3 FROM tenk1 WHERE four = 0;
+@@ -349,25 +281,30 @@
+ (1 row)
+ 
+ SET parallel_setup_cost=0;
++ERROR:  only support select and create table statement
+ SET min_parallel_table_scan_size=0;
++ERROR:  only support select and create table statement
+ SET max_parallel_workers_per_gather=2;
++ERROR:  only support select and create table statement
+ -- Ensure we get a plan with a Limit 1 in both partial distinct and final
+ -- distinct
+ EXPLAIN (COSTS OFF)
+ SELECT DISTINCT four FROM tenk1 WHERE four = 10;
+-                  QUERY PLAN                  
+-----------------------------------------------
+- Limit
+-   ->  Gather
+-         Workers Planned: 2
+-         ->  Limit
+-               ->  Parallel Seq Scan on tenk1
+-                     Filter: (four = 10)
+-(6 rows)
++                                                                   QUERY PLAN                                                                    
++-------------------------------------------------------------------------------------------------------------------------------------------------
++ tid(where) = parallel: [tid(var_5_1) = IndexFilter(column(four) == 10), return tid(var_5_1)]
++ tuple(table_0) = broadcast: [tid(where)] parallel: [tuple(var_6_1) = IndexTopN([columns(four ASC)], tid(where), unique), return tuple(var_6_1)]
++ tuple(table_0) = Unique(tuple(table_0))
++ tuple(table_0) = Sort(tuple(table_0), [columns(0 ASC)])
++ return tuple(table_0)
++(5 rows)
+ 
+ RESET max_parallel_workers_per_gather;
++ERROR:  only support select and create table statement
+ RESET min_parallel_table_scan_size;
++ERROR:  only support select and create table statement
+ RESET parallel_setup_cost;
++ERROR:  only support select and create table statement
+ --
+ -- Also, some tests of IS DISTINCT FROM, which doesn't quite deserve its
+ -- very own regression file.
+@@ -379,88 +316,28 @@
+ INSERT INTO DISTTABLE VALUES(NULL);
+ -- basic cases
+ SELECT f1, f1 IS DISTINCT FROM 2 as "not 2" FROM disttable;
+- f1 | not 2 
+-----+-------
+-  1 | t
+-  2 | f
+-  3 | t
+-    | t
+-(4 rows)
+-
++ERROR:  a_expr only support op and between [kind=4]
+ SELECT f1, f1 IS DISTINCT FROM NULL as "not null" FROM disttable;
+- f1 | not null 
+-----+----------
+-  1 | t
+-  2 | t
+-  3 | t
+-    | f
+-(4 rows)
+-
++ERROR:  a_expr only support op and between [kind=4]
+ SELECT f1, f1 IS DISTINCT FROM f1 as "false" FROM disttable;
+- f1 | false 
+-----+-------
+-  1 | f
+-  2 | f
+-  3 | f
+-    | f
+-(4 rows)
+-
++ERROR:  a_expr only support op and between [kind=4]
+ SELECT f1, f1 IS DISTINCT FROM f1+1 as "not null" FROM disttable;
+- f1 | not null 
+-----+----------
+-  1 | t
+-  2 | t
+-  3 | t
+-    | f
+-(4 rows)
+-
++ERROR:  a_expr only support op and between [kind=4]
+ -- check that optimizer constant-folds it properly
+ SELECT 1 IS DISTINCT FROM 2 as "yes";
+- yes 
+------
+- t
+-(1 row)
+-
++ERROR:  a_expr only support op and between [kind=4]
+ SELECT 2 IS DISTINCT FROM 2 as "no";
+- no 
+-----
+- f
+-(1 row)
+-
++ERROR:  a_expr only support op and between [kind=4]
+ SELECT 2 IS DISTINCT FROM null as "yes";
+- yes 
+------
+- t
+-(1 row)
+-
++ERROR:  a_expr only support op and between [kind=4]
+ SELECT null IS DISTINCT FROM null as "no";
+- no 
+-----
+- f
+-(1 row)
+-
++ERROR:  a_expr only support op and between [kind=4]
+ -- negated form
+ SELECT 1 IS NOT DISTINCT FROM 2 as "no";
+- no 
+-----
+- f
+-(1 row)
+-
++ERROR:  a_expr only support op and between [kind=5]
+ SELECT 2 IS NOT DISTINCT FROM 2 as "yes";
+- yes 
+------
+- t
+-(1 row)
+-
++ERROR:  a_expr only support op and between [kind=5]
+ SELECT 2 IS NOT DISTINCT FROM null as "no";
+- no 
+-----
+- f
+-(1 row)
+-
++ERROR:  a_expr only support op and between [kind=5]
+ SELECT null IS NOT DISTINCT FROM null as "yes";
+- yes 
+------
+- t
+-(1 row)
+-
++ERROR:  a_expr only support op and between [kind=5]
+diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimin/pg_regress_input/results/aggregates.out
+--- /home/longqimin/pg_regress_input/expected/aggregates.out	2024-03-08 12:19:19.528430515 +0800
++++ /home/longqimin/pg_regress_input/results/aggregates.out	2024-03-26 12:23:32.952713689 +0800
+@@ -5,6 +5,7 @@
+ \getenv abs_srcdir PG_ABS_SRCDIR
+ -- avoid bit-exact output here because operations may not be bit-exact.
+ SET extra_float_digits = 0;
++ERROR:  only support select and create table statement
+ -- prepare some test data
+ CREATE TABLE aggtest (
+ 	a 			int2,
+@@ -13,6 +14,7 @@
+ \set filename :abs_srcdir '/data/agg.data'
+ COPY aggtest FROM :'filename';
+ ANALYZE aggtest;
++ERROR:  only support select and create table statement
+ SELECT avg(four) AS avg_1 FROM onek;
+        avg_1        
+ --------------------
+@@ -26,43 +28,19 @@
+ (1 row)
+ 
+ SELECT any_value(v) FROM (VALUES (1), (2), (3)) AS v (v);
+- any_value 
+------------
+-         1
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ SELECT any_value(v) FROM (VALUES (NULL)) AS v (v);
+- any_value 
+------------
+- 
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ SELECT any_value(v) FROM (VALUES (NULL), (1), (2)) AS v (v);
+- any_value 
+------------
+-         1
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ SELECT any_value(v) FROM (VALUES (array['hello', 'world'])) AS v (v);
+-   any_value   
+----------------
+- {hello,world}
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ -- In 7.1, avg(float4) is computed using float8 arithmetic.
+ -- Round the result to 3 digits to avoid platform-specific results.
+ SELECT avg(b)::numeric(10,3) AS avg_107_943 FROM aggtest;
+- avg_107_943 
+--------------
+-     107.943
+-(1 row)
+-
++ERROR:  not implemented type_cast case [to=numeric]
+ SELECT avg(gpa) AS avg_3_4 FROM ONLY student;
+- avg_3_4 
+----------
+-     3.4
+-(1 row)
+-
++ERROR:  relation "public.student" does not exist
+ SELECT sum(four) AS sum_1500 FROM onek;
+  sum_1500 
+ ----------
+@@ -78,15 +56,11 @@
+ SELECT sum(b) AS avg_431_773 FROM aggtest;
+  avg_431_773 
+ -------------
+-     431.773
++    431.7726
+ (1 row)
+ 
+ SELECT sum(gpa) AS avg_6_8 FROM ONLY student;
+- avg_6_8 
+----------
+-     6.8
+-(1 row)
+-
++ERROR:  relation "public.student" does not exist
+ SELECT max(four) AS max_3 FROM onek;
+  max_3 
+ -------
+@@ -106,473 +80,182 @@
+ (1 row)
+ 
+ SELECT max(student.gpa) AS max_3_7 FROM student;
+- max_3_7 
+----------
+-     3.7
+-(1 row)
+-
++ERROR:  relation "public.student" does not exist
+ SELECT stddev_pop(b) FROM aggtest;
+-   stddev_pop    
+------------------
+- 131.10703231895
+-(1 row)
+-
++ERROR:  function stddev_pop does not exist
+ SELECT stddev_samp(b) FROM aggtest;
+-   stddev_samp    
+-------------------
+- 151.389360803998
+-(1 row)
+-
++ERROR:  function stddev_samp does not exist
+ SELECT var_pop(b) FROM aggtest;
+-     var_pop      
+-------------------
+- 17189.0539234823
+-(1 row)
+-
++ERROR:  function var_pop does not exist
+ SELECT var_samp(b) FROM aggtest;
+-     var_samp     
+-------------------
+- 22918.7385646431
+-(1 row)
+-
++ERROR:  function var_samp does not exist
+ SELECT stddev_pop(b::numeric) FROM aggtest;
+-    stddev_pop    
+-------------------
+- 131.107032862199
+-(1 row)
+-
++ERROR:  function stddev_pop does not exist
+ SELECT stddev_samp(b::numeric) FROM aggtest;
+-   stddev_samp    
+-------------------
+- 151.389361431288
+-(1 row)
+-
++ERROR:  function stddev_samp does not exist
+ SELECT var_pop(b::numeric) FROM aggtest;
+-      var_pop       
+---------------------
+- 17189.054065929769
+-(1 row)
+-
++ERROR:  function var_pop does not exist
+ SELECT var_samp(b::numeric) FROM aggtest;
+-      var_samp      
+---------------------
+- 22918.738754573025
+-(1 row)
+-
++ERROR:  function var_samp does not exist
+ -- population variance is defined for a single tuple, sample variance
+ -- is not
+ SELECT var_pop(1.0::float8), var_samp(2.0::float8);
+- var_pop | var_samp 
+----------+----------
+-       0 |         
+-(1 row)
+-
++ERROR:  function var_pop does not exist
+ SELECT stddev_pop(3.0::float8), stddev_samp(4.0::float8);
+- stddev_pop | stddev_samp 
+-------------+-------------
+-          0 |            
+-(1 row)
+-
++ERROR:  function stddev_pop does not exist
+ SELECT var_pop('inf'::float8), var_samp('inf'::float8);
+- var_pop | var_samp 
+----------+----------
+-     NaN |         
+-(1 row)
+-
++ERROR:  function var_pop does not exist
+ SELECT stddev_pop('inf'::float8), stddev_samp('inf'::float8);
+- stddev_pop | stddev_samp 
+-------------+-------------
+-        NaN |            
+-(1 row)
+-
++ERROR:  function stddev_pop does not exist
+ SELECT var_pop('nan'::float8), var_samp('nan'::float8);
+- var_pop | var_samp 
+----------+----------
+-     NaN |         
+-(1 row)
+-
++ERROR:  function var_pop does not exist
+ SELECT stddev_pop('nan'::float8), stddev_samp('nan'::float8);
+- stddev_pop | stddev_samp 
+-------------+-------------
+-        NaN |            
+-(1 row)
+-
++ERROR:  function stddev_pop does not exist
+ SELECT var_pop(1.0::float4), var_samp(2.0::float4);
+- var_pop | var_samp 
+----------+----------
+-       0 |         
+-(1 row)
+-
++ERROR:  function var_pop does not exist
+ SELECT stddev_pop(3.0::float4), stddev_samp(4.0::float4);
+- stddev_pop | stddev_samp 
+-------------+-------------
+-          0 |            
+-(1 row)
+-
++ERROR:  function stddev_pop does not exist
+ SELECT var_pop('inf'::float4), var_samp('inf'::float4);
+- var_pop | var_samp 
+----------+----------
+-     NaN |         
+-(1 row)
+-
++ERROR:  function var_pop does not exist
+ SELECT stddev_pop('inf'::float4), stddev_samp('inf'::float4);
+- stddev_pop | stddev_samp 
+-------------+-------------
+-        NaN |            
+-(1 row)
+-
++ERROR:  function stddev_pop does not exist
+ SELECT var_pop('nan'::float4), var_samp('nan'::float4);
+- var_pop | var_samp 
+----------+----------
+-     NaN |         
+-(1 row)
+-
++ERROR:  function var_pop does not exist
+ SELECT stddev_pop('nan'::float4), stddev_samp('nan'::float4);
+- stddev_pop | stddev_samp 
+-------------+-------------
+-        NaN |            
+-(1 row)
+-
++ERROR:  function stddev_pop does not exist
+ SELECT var_pop(1.0::numeric), var_samp(2.0::numeric);
+- var_pop | var_samp 
+----------+----------
+-       0 |         
+-(1 row)
+-
++ERROR:  function var_pop does not exist
+ SELECT stddev_pop(3.0::numeric), stddev_samp(4.0::numeric);
+- stddev_pop | stddev_samp 
+-------------+-------------
+-          0 |            
+-(1 row)
+-
++ERROR:  function stddev_pop does not exist
+ SELECT var_pop('inf'::numeric), var_samp('inf'::numeric);
+- var_pop | var_samp 
+----------+----------
+-     NaN |         
+-(1 row)
+-
++ERROR:  function var_pop does not exist
+ SELECT stddev_pop('inf'::numeric), stddev_samp('inf'::numeric);
+- stddev_pop | stddev_samp 
+-------------+-------------
+-        NaN |            
+-(1 row)
+-
++ERROR:  function stddev_pop does not exist
+ SELECT var_pop('nan'::numeric), var_samp('nan'::numeric);
+- var_pop | var_samp 
+----------+----------
+-     NaN |         
+-(1 row)
+-
++ERROR:  function var_pop does not exist
+ SELECT stddev_pop('nan'::numeric), stddev_samp('nan'::numeric);
+- stddev_pop | stddev_samp 
+-------------+-------------
+-        NaN |            
+-(1 row)
+-
++ERROR:  function stddev_pop does not exist
+ -- verify correct results for null and NaN inputs
+ select sum(null::int4) from generate_series(1,3);
+- sum 
+------
+-    
+-(1 row)
+-
++ERROR:  function generate_series does not exist
+ select sum(null::int8) from generate_series(1,3);
+- sum 
+------
+-    
+-(1 row)
+-
++ERROR:  function generate_series does not exist
+ select sum(null::numeric) from generate_series(1,3);
+- sum 
+------
+-    
+-(1 row)
+-
++ERROR:  function generate_series does not exist
+ select sum(null::float8) from generate_series(1,3);
+- sum 
+------
+-    
+-(1 row)
+-
++ERROR:  function generate_series does not exist
+ select avg(null::int4) from generate_series(1,3);
+- avg 
+------
+-    
+-(1 row)
+-
++ERROR:  function generate_series does not exist
+ select avg(null::int8) from generate_series(1,3);
+- avg 
+------
+-    
+-(1 row)
+-
++ERROR:  function generate_series does not exist
+ select avg(null::numeric) from generate_series(1,3);
+- avg 
+------
+-    
+-(1 row)
+-
++ERROR:  function generate_series does not exist
+ select avg(null::float8) from generate_series(1,3);
+- avg 
+------
+-    
+-(1 row)
+-
++ERROR:  function generate_series does not exist
+ select sum('NaN'::numeric) from generate_series(1,3);
+- sum 
+------
+- NaN
+-(1 row)
+-
++ERROR:  function generate_series does not exist
+ select avg('NaN'::numeric) from generate_series(1,3);
+- avg 
+------
+- NaN
+-(1 row)
+-
++ERROR:  function generate_series does not exist
+ -- verify correct results for infinite inputs
+ SELECT sum(x::float8), avg(x::float8), var_pop(x::float8)
+ FROM (VALUES ('1'), ('infinity')) v(x);
+-   sum    |   avg    | var_pop 
+-----------+----------+---------
+- Infinity | Infinity |     NaN
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ SELECT sum(x::float8), avg(x::float8), var_pop(x::float8)
+ FROM (VALUES ('infinity'), ('1')) v(x);
+-   sum    |   avg    | var_pop 
+-----------+----------+---------
+- Infinity | Infinity |     NaN
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ SELECT sum(x::float8), avg(x::float8), var_pop(x::float8)
+ FROM (VALUES ('infinity'), ('infinity')) v(x);
+-   sum    |   avg    | var_pop 
+-----------+----------+---------
+- Infinity | Infinity |     NaN
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ SELECT sum(x::float8), avg(x::float8), var_pop(x::float8)
+ FROM (VALUES ('-infinity'), ('infinity')) v(x);
+- sum | avg | var_pop 
+------+-----+---------
+- NaN | NaN |     NaN
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ SELECT sum(x::float8), avg(x::float8), var_pop(x::float8)
+ FROM (VALUES ('-infinity'), ('-infinity')) v(x);
+-    sum    |    avg    | var_pop 
+------------+-----------+---------
+- -Infinity | -Infinity |     NaN
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ SELECT sum(x::numeric), avg(x::numeric), var_pop(x::numeric)
+ FROM (VALUES ('1'), ('infinity')) v(x);
+-   sum    |   avg    | var_pop 
+-----------+----------+---------
+- Infinity | Infinity |     NaN
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ SELECT sum(x::numeric), avg(x::numeric), var_pop(x::numeric)
+ FROM (VALUES ('infinity'), ('1')) v(x);
+-   sum    |   avg    | var_pop 
+-----------+----------+---------
+- Infinity | Infinity |     NaN
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ SELECT sum(x::numeric), avg(x::numeric), var_pop(x::numeric)
+ FROM (VALUES ('infinity'), ('infinity')) v(x);
+-   sum    |   avg    | var_pop 
+-----------+----------+---------
+- Infinity | Infinity |     NaN
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ SELECT sum(x::numeric), avg(x::numeric), var_pop(x::numeric)
+ FROM (VALUES ('-infinity'), ('infinity')) v(x);
+- sum | avg | var_pop 
+------+-----+---------
+- NaN | NaN |     NaN
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ SELECT sum(x::numeric), avg(x::numeric), var_pop(x::numeric)
+ FROM (VALUES ('-infinity'), ('-infinity')) v(x);
+-    sum    |    avg    | var_pop 
+------------+-----------+---------
+- -Infinity | -Infinity |     NaN
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ -- test accuracy with a large input offset
+ SELECT avg(x::float8), var_pop(x::float8)
+ FROM (VALUES (100000003), (100000004), (100000006), (100000007)) v(x);
+-    avg    | var_pop 
+------------+---------
+- 100000005 |     2.5
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ SELECT avg(x::float8), var_pop(x::float8)
+ FROM (VALUES (7000000000005), (7000000000007)) v(x);
+-      avg      | var_pop 
+----------------+---------
+- 7000000000006 |       1
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ -- SQL2003 binary aggregates
+ SELECT regr_count(b, a) FROM aggtest;
+- regr_count 
+-------------
+-          4
+-(1 row)
+-
++ERROR:  function regr_count does not exist
+ SELECT regr_sxx(b, a) FROM aggtest;
+- regr_sxx 
+-----------
+-     5099
+-(1 row)
+-
++ERROR:  function regr_sxx does not exist
+ SELECT regr_syy(b, a) FROM aggtest;
+-     regr_syy     
+-------------------
+- 68756.2156939293
+-(1 row)
+-
++ERROR:  function regr_syy does not exist
+ SELECT regr_sxy(b, a) FROM aggtest;
+-     regr_sxy     
+-------------------
+- 2614.51582155004
+-(1 row)
+-
++ERROR:  function regr_sxy does not exist
+ SELECT regr_avgx(b, a), regr_avgy(b, a) FROM aggtest;
+- regr_avgx |    regr_avgy     
+------------+------------------
+-      49.5 | 107.943152273074
+-(1 row)
+-
++ERROR:  function regr_avgx does not exist
+ SELECT regr_r2(b, a) FROM aggtest;
+-      regr_r2       
+---------------------
+- 0.0194977982031803
+-(1 row)
+-
++ERROR:  function regr_r2 does not exist
+ SELECT regr_slope(b, a), regr_intercept(b, a) FROM aggtest;
+-    regr_slope     |  regr_intercept  
+--------------------+------------------
+- 0.512750700441271 | 82.5619926012309
+-(1 row)
+-
++ERROR:  function regr_slope does not exist
+ SELECT covar_pop(b, a), covar_samp(b, a) FROM aggtest;
+-    covar_pop    |    covar_samp    
+------------------+------------------
+- 653.62895538751 | 871.505273850014
+-(1 row)
+-
++ERROR:  function covar_pop does not exist
+ SELECT corr(b, a) FROM aggtest;
+-       corr        
+--------------------
+- 0.139634516517873
+-(1 row)
+-
++ERROR:  function corr does not exist
+ -- check single-tuple behavior
+ SELECT covar_pop(1::float8,2::float8), covar_samp(3::float8,4::float8);
+- covar_pop | covar_samp 
+------------+------------
+-         0 |           
+-(1 row)
+-
++ERROR:  function covar_pop does not exist
+ SELECT covar_pop(1::float8,'inf'::float8), covar_samp(3::float8,'inf'::float8);
+- covar_pop | covar_samp 
+------------+------------
+-       NaN |           
+-(1 row)
+-
++ERROR:  function covar_pop does not exist
+ SELECT covar_pop(1::float8,'nan'::float8), covar_samp(3::float8,'nan'::float8);
+- covar_pop | covar_samp 
+------------+------------
+-       NaN |           
+-(1 row)
+-
++ERROR:  function covar_pop does not exist
+ -- test accum and combine functions directly
+ CREATE TABLE regr_test (x float8, y float8);
+ INSERT INTO regr_test VALUES (10,150),(20,250),(30,350),(80,540),(100,200);
+ SELECT count(*), sum(x), regr_sxx(y,x), sum(y),regr_syy(y,x), regr_sxy(y,x)
+ FROM regr_test WHERE x IN (10,20,30,80);
+- count | sum | regr_sxx | sum  | regr_syy | regr_sxy 
+--------+-----+----------+------+----------+----------
+-     4 | 140 |     2900 | 1290 |    83075 |    15050
+-(1 row)
+-
++ERROR:  function regr_sxx does not exist
+ SELECT count(*), sum(x), regr_sxx(y,x), sum(y),regr_syy(y,x), regr_sxy(y,x)
+ FROM regr_test;
+- count | sum | regr_sxx | sum  | regr_syy | regr_sxy 
+--------+-----+----------+------+----------+----------
+-     5 | 240 |     6280 | 1490 |    95080 |     8680
+-(1 row)
+-
++ERROR:  function regr_sxx does not exist
+ SELECT float8_accum('{4,140,2900}'::float8[], 100);
+- float8_accum 
+---------------
+- {5,240,6280}
+-(1 row)
+-
++ERROR:  function float8_accum does not exist
+ SELECT float8_regr_accum('{4,140,2900,1290,83075,15050}'::float8[], 200, 100);
+-      float8_regr_accum       
+-------------------------------
+- {5,240,6280,1490,95080,8680}
+-(1 row)
+-
++ERROR:  function float8_regr_accum does not exist
+ SELECT count(*), sum(x), regr_sxx(y,x), sum(y),regr_syy(y,x), regr_sxy(y,x)
+ FROM regr_test WHERE x IN (10,20,30);
+- count | sum | regr_sxx | sum | regr_syy | regr_sxy 
+--------+-----+----------+-----+----------+----------
+-     3 |  60 |      200 | 750 |    20000 |     2000
+-(1 row)
+-
++ERROR:  function regr_sxx does not exist
+ SELECT count(*), sum(x), regr_sxx(y,x), sum(y),regr_syy(y,x), regr_sxy(y,x)
+ FROM regr_test WHERE x IN (80,100);
+- count | sum | regr_sxx | sum | regr_syy | regr_sxy 
+--------+-----+----------+-----+----------+----------
+-     2 | 180 |      200 | 740 |    57800 |    -3400
+-(1 row)
+-
++ERROR:  function regr_sxx does not exist
+ SELECT float8_combine('{3,60,200}'::float8[], '{0,0,0}'::float8[]);
+- float8_combine 
+-----------------
+- {3,60,200}
+-(1 row)
+-
++ERROR:  function float8_combine does not exist
+ SELECT float8_combine('{0,0,0}'::float8[], '{2,180,200}'::float8[]);
+- float8_combine 
+-----------------
+- {2,180,200}
+-(1 row)
+-
++ERROR:  function float8_combine does not exist
+ SELECT float8_combine('{3,60,200}'::float8[], '{2,180,200}'::float8[]);
+- float8_combine 
+-----------------
+- {5,240,6280}
+-(1 row)
+-
++ERROR:  function float8_combine does not exist
+ SELECT float8_regr_combine('{3,60,200,750,20000,2000}'::float8[],
+                            '{0,0,0,0,0,0}'::float8[]);
+-    float8_regr_combine    
+----------------------------
+- {3,60,200,750,20000,2000}
+-(1 row)
+-
++ERROR:  function float8_regr_combine does not exist
+ SELECT float8_regr_combine('{0,0,0,0,0,0}'::float8[],
+                            '{2,180,200,740,57800,-3400}'::float8[]);
+-     float8_regr_combine     
+------------------------------
+- {2,180,200,740,57800,-3400}
+-(1 row)
+-
++ERROR:  function float8_regr_combine does not exist
+ SELECT float8_regr_combine('{3,60,200,750,20000,2000}'::float8[],
+                            '{2,180,200,740,57800,-3400}'::float8[]);
+-     float8_regr_combine      
+-------------------------------
+- {5,240,6280,1490,95080,8680}
+-(1 row)
+-
++ERROR:  function float8_regr_combine does not exist
+ DROP TABLE regr_test;
++ERROR:  only support select and create table statement
+ -- test count, distinct
+ SELECT count(four) AS cnt_1000 FROM onek;
+  cnt_1000 
+@@ -620,73 +303,35 @@
+ 
+ -- user-defined aggregates
+ SELECT newavg(four) AS avg_1 FROM onek;
+-       avg_1        
+---------------------
+- 1.5000000000000000
+-(1 row)
+-
++ERROR:  function newavg does not exist
+ SELECT newsum(four) AS sum_1500 FROM onek;
+- sum_1500 
+-----------
+-     1500
+-(1 row)
+-
++ERROR:  function newsum does not exist
+ SELECT newcnt(four) AS cnt_1000 FROM onek;
+- cnt_1000 
+-----------
+-     1000
+-(1 row)
+-
++ERROR:  function newcnt does not exist
+ SELECT newcnt(*) AS cnt_1000 FROM onek;
+- cnt_1000 
+-----------
+-     1000
+-(1 row)
+-
++ERROR:  function newcnt does not exist
+ SELECT oldcnt(*) AS cnt_1000 FROM onek;
+- cnt_1000 
+-----------
+-     1000
+-(1 row)
+-
++ERROR:  function oldcnt does not exist
+ SELECT sum2(q1,q2) FROM int8_tbl;
+-       sum2        
+--------------------
+- 18271560493827981
+-(1 row)
+-
++ERROR:  function sum2 does not exist
+ -- test for outer-level aggregates
+ -- this should work
+ select ten, sum(distinct four) from onek a
+ group by ten
+ having exists (select 1 from onek b where sum(distinct a.four) = b.four);
+- ten | sum 
+------+-----
+-   0 |   2
+-   2 |   2
+-   4 |   2
+-   6 |   2
+-   8 |   2
+-(5 rows)
+-
++ERROR:  split_condition_by_logical_operator bug! optr: AND
+ -- this should fail because subquery has an agg of its own in WHERE
+ select ten, sum(distinct four) from onek a
+ group by ten
+ having exists (select 1 from onek b
+                where sum(distinct a.four + b.four) = b.four);
+-ERROR:  aggregate functions are not allowed in WHERE
+-LINE 4:                where sum(distinct a.four + b.four) = b.four)...
+-                             ^
++ERROR:  split_condition_by_logical_operator bug! optr: AND
+ -- Test handling of sublinks within outer-level aggregates.
+ -- Per bug report from Daniel Grace.
+ select
+   (select max((select i.unique2 from tenk1 i where i.unique1 = o.unique1)))
+ from tenk1 o;
+- max  
+-------
+- 9999
+-(1 row)
+-
++ERROR:  clapdb doesn't support subquery as expr currently
+ -- Test handling of Params within aggregate arguments in hashed aggregation.
+ -- Per bug report from Jeevan Chalke.
+ explain (verbose, costs off)
+@@ -695,73 +340,22 @@
+      lateral (select s2, sum(s1 + s2) sm
+               from generate_series(1, 3) s2 group by s2) ss
+ order by 1, 2;
+-                            QUERY PLAN                            
+-------------------------------------------------------------------
+- Sort
+-   Output: s1.s1, s2.s2, (sum((s1.s1 + s2.s2)))
+-   Sort Key: s1.s1, s2.s2
+-   ->  Nested Loop
+-         Output: s1.s1, s2.s2, (sum((s1.s1 + s2.s2)))
+-         ->  Function Scan on pg_catalog.generate_series s1
+-               Output: s1.s1
+-               Function Call: generate_series(1, 3)
+-         ->  HashAggregate
+-               Output: s2.s2, sum((s1.s1 + s2.s2))
+-               Group Key: s2.s2
+-               ->  Function Scan on pg_catalog.generate_series s2
+-                     Output: s2.s2
+-                     Function Call: generate_series(1, 3)
+-(14 rows)
+-
++ERROR:  function generate_series does not exist
+ select s1, s2, sm
+ from generate_series(1, 3) s1,
+      lateral (select s2, sum(s1 + s2) sm
+               from generate_series(1, 3) s2 group by s2) ss
+ order by 1, 2;
+- s1 | s2 | sm 
+-----+----+----
+-  1 |  1 |  2
+-  1 |  2 |  3
+-  1 |  3 |  4
+-  2 |  1 |  3
+-  2 |  2 |  4
+-  2 |  3 |  5
+-  3 |  1 |  4
+-  3 |  2 |  5
+-  3 |  3 |  6
+-(9 rows)
+-
++ERROR:  function generate_series does not exist
+ explain (verbose, costs off)
+ select array(select sum(x+y) s
+             from generate_series(1,3) y group by y order by s)
+   from generate_series(1,3) x;
+-                            QUERY PLAN                             
+--------------------------------------------------------------------
+- Function Scan on pg_catalog.generate_series x
+-   Output: (SubPlan 1)
+-   Function Call: generate_series(1, 3)
+-   SubPlan 1
+-     ->  Sort
+-           Output: (sum((x.x + y.y))), y.y
+-           Sort Key: (sum((x.x + y.y)))
+-           ->  HashAggregate
+-                 Output: sum((x.x + y.y)), y.y
+-                 Group Key: y.y
+-                 ->  Function Scan on pg_catalog.generate_series y
+-                       Output: y.y
+-                       Function Call: generate_series(1, 3)
+-(13 rows)
+-
++ERROR:  function generate_series does not exist
+ select array(select sum(x+y) s
+             from generate_series(1,3) y group by y order by s)
+   from generate_series(1,3) x;
+-  array  
+----------
+- {2,3,4}
+- {3,4,5}
+- {4,5,6}
+-(3 rows)
+-
++ERROR:  function generate_series does not exist
+ --
+ -- test for bitwise integer aggregates
+ --
+@@ -773,18 +367,21 @@
+   x INT2,
+   y BIT(4)
+ );
++ERROR:  invalid column type [type_name=bit]
+ -- empty case
+ SELECT
+   BIT_AND(i2) AS "?",
+   BIT_OR(i4)  AS "?",
+   BIT_XOR(i8) AS "?"
+ FROM bitwise_test;
+- ? | ? | ? 
+----+---+---
+-   |   |  
+-(1 row)
+-
++ERROR:  function bit_and does not exist
+ COPY bitwise_test FROM STDIN NULL 'null';
++ERROR:  relation "public.bitwise_test" not exists
++1	1	1	1	1	B0101
++3	3	3	null	2	B0100
++7	7	7	3	4	B1100
++\.
++invalid command \.
+ SELECT
+   BIT_AND(i2) AS "1",
+   BIT_AND(i4) AS "1",
+@@ -805,11 +402,7 @@
+   BIT_XOR(x)  AS "7",
+   BIT_XOR(y)  AS "1101"
+ FROM bitwise_test;
+- 1 | 1 | 1 | ? | 0 | 0100 | 7 | 7 | 7 | ? | 7 | 1101 | 5 | 5 | 5 | ? | 7 | 1101 
+----+---+---+---+---+------+---+---+---+---+---+------+---+---+---+---+---+------
+- 1 | 1 | 1 | 1 | 0 | 0100 | 7 | 7 | 7 | 3 | 7 | 1101 | 5 | 5 | 5 | 2 | 7 | 1101
+-(1 row)
+-
++ERROR:  syntax error at or near "1"
+ --
+ -- test boolean aggregates
+ --
+@@ -827,11 +420,7 @@
+   NOT booland_statefunc(TRUE, FALSE) AS "t",
+   NOT booland_statefunc(FALSE, TRUE) AS "t",
+   NOT booland_statefunc(FALSE, FALSE) AS "t";
+- t | t | t | t | t | t | t | t | t 
+----+---+---+---+---+---+---+---+---
+- t | t | t | t | t | t | t | t | t
+-(1 row)
+-
++ERROR:  function booland_statefunc does not exist
+ SELECT
+   -- boolean or transitions
+   -- null because strict
+@@ -845,11 +434,7 @@
+   boolor_statefunc(TRUE, FALSE) AS "t",
+   boolor_statefunc(FALSE, TRUE) AS "t",
+   NOT boolor_statefunc(FALSE, FALSE) AS "t";
+- t | t | t | t | t | t | t | t | t 
+----+---+---+---+---+---+---+---+---
+- t | t | t | t | t | t | t | t | t
+-(1 row)
+-
++ERROR:  function boolor_statefunc does not exist
+ CREATE TEMPORARY TABLE bool_test(
+   b1 BOOL,
+   b2 BOOL,
+@@ -860,12 +445,14 @@
+   BOOL_AND(b1)   AS "n",
+   BOOL_OR(b3)    AS "n"
+ FROM bool_test;
+- n | n 
+----+---
+-   | 
+-(1 row)
+-
++ERROR:  function bool_and does not exist
+ COPY bool_test FROM STDIN NULL 'null';
++ERROR:  Can not open file "" because "No such file or directory".
++TRUE	null	FALSE	null
++FALSE	TRUE	null	null
++null	TRUE	FALSE	null
++\.
++invalid command \.
+ SELECT
+   BOOL_AND(b1)     AS "f",
+   BOOL_AND(b2)     AS "t",
+@@ -874,11 +461,7 @@
+   BOOL_AND(NOT b2) AS "f",
+   BOOL_AND(NOT b3) AS "t"
+ FROM bool_test;
+- f | t | f | n | f | t 
+----+---+---+---+---+---
+- f | t | f |   | f | t
+-(1 row)
+-
++ERROR:  syntax error at or near "TRUE"
+ SELECT
+   EVERY(b1)     AS "f",
+   EVERY(b2)     AS "t",
+@@ -887,11 +470,7 @@
+   EVERY(NOT b2) AS "f",
+   EVERY(NOT b3) AS "t"
+ FROM bool_test;
+- f | t | f | n | f | t 
+----+---+---+---+---+---
+- f | t | f |   | f | t
+-(1 row)
+-
++ERROR:  function every does not exist
+ SELECT
+   BOOL_OR(b1)      AS "t",
+   BOOL_OR(b2)      AS "t",
+@@ -900,11 +479,7 @@
+   BOOL_OR(NOT b2)  AS "f",
+   BOOL_OR(NOT b3)  AS "t"
+ FROM bool_test;
+- t | t | f | n | f | t 
+----+---+---+---+---+---
+- t | t | f |   | f | t
+-(1 row)
+-
++ERROR:  function bool_or does not exist
+ --
+ -- Test cases that should be optimized into indexscans instead of
+ -- the generic aggregate implementation.
+@@ -912,14 +487,12 @@
+ -- Basic cases
+ explain (costs off)
+   select min(unique1) from tenk1;
+-                         QUERY PLAN                         
+-------------------------------------------------------------
+- Result
+-   InitPlan 1 (returns $0)
+-     ->  Limit
+-           ->  Index Only Scan using tenk1_unique1 on tenk1
+-                 Index Cond: (unique1 IS NOT NULL)
+-(5 rows)
++                                 QUERY PLAN                                 
++----------------------------------------------------------------------------
++ datum(col_0_unique1) = IndexAggregateForMultiSegment(MIN, column(unique1))
++ tuple(table_0) = [datum(col_0_unique1)]
++ return tuple(table_0)
++(3 rows)
+ 
+ select min(unique1) from tenk1;
+  min 
+@@ -929,14 +502,12 @@
+ 
+ explain (costs off)
+   select max(unique1) from tenk1;
+-                             QUERY PLAN                              
+----------------------------------------------------------------------
+- Result
+-   InitPlan 1 (returns $0)
+-     ->  Limit
+-           ->  Index Only Scan Backward using tenk1_unique1 on tenk1
+-                 Index Cond: (unique1 IS NOT NULL)
+-(5 rows)
++                                 QUERY PLAN                                 
++----------------------------------------------------------------------------
++ datum(col_0_unique1) = IndexAggregateForMultiSegment(MAX, column(unique1))
++ tuple(table_0) = [datum(col_0_unique1)]
++ return tuple(table_0)
++(3 rows)
+ 
+ select max(unique1) from tenk1;
+  max  
+@@ -946,14 +517,13 @@
+ 
+ explain (costs off)
+   select max(unique1) from tenk1 where unique1 < 42;
+-                               QUERY PLAN                               
+-------------------------------------------------------------------------
+- Result
+-   InitPlan 1 (returns $0)
+-     ->  Limit
+-           ->  Index Only Scan Backward using tenk1_unique1 on tenk1
+-                 Index Cond: ((unique1 IS NOT NULL) AND (unique1 < 42))
+-(5 rows)
++                                           QUERY PLAN                                           
++------------------------------------------------------------------------------------------------
++ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(unique1) < 42), return tid(var_4_1)]
++ datum(col_0_unique1) = IndexAggregateForMultiSegment(MAX, column(unique1), tid(where))
++ tuple(table_0) = [datum(col_0_unique1)]
++ return tuple(table_0)
++(4 rows)
+ 
+ select max(unique1) from tenk1 where unique1 < 42;
+  max 
+@@ -963,14 +533,13 @@
+ 
+ explain (costs off)
+   select max(unique1) from tenk1 where unique1 > 42;
+-                               QUERY PLAN                               
+-------------------------------------------------------------------------
+- Result
+-   InitPlan 1 (returns $0)
+-     ->  Limit
+-           ->  Index Only Scan Backward using tenk1_unique1 on tenk1
+-                 Index Cond: ((unique1 IS NOT NULL) AND (unique1 > 42))
+-(5 rows)
++                                           QUERY PLAN                                           
++------------------------------------------------------------------------------------------------
++ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(unique1) > 42), return tid(var_4_1)]
++ datum(col_0_unique1) = IndexAggregateForMultiSegment(MAX, column(unique1), tid(where))
++ tuple(table_0) = [datum(col_0_unique1)]
++ return tuple(table_0)
++(4 rows)
+ 
+ select max(unique1) from tenk1 where unique1 > 42;
+  max  
+@@ -983,36 +552,36 @@
+ -- plan, which has almost identical cost, will not be.  we want to test
+ -- the optimized plan, so temporarily disable parallel query.
+ begin;
++ERROR:  only support select and create table statement
+ set local max_parallel_workers_per_gather = 0;
++ERROR:  only support select and create table statement
+ explain (costs off)
+   select max(unique1) from tenk1 where unique1 > 42000;
+-                                QUERY PLAN                                 
+----------------------------------------------------------------------------
+- Result
+-   InitPlan 1 (returns $0)
+-     ->  Limit
+-           ->  Index Only Scan Backward using tenk1_unique1 on tenk1
+-                 Index Cond: ((unique1 IS NOT NULL) AND (unique1 > 42000))
+-(5 rows)
++                                            QUERY PLAN                                             
++---------------------------------------------------------------------------------------------------
++ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(unique1) > 42000), return tid(var_4_1)]
++ datum(col_0_unique1) = IndexAggregateForMultiSegment(MAX, column(unique1), tid(where))
++ tuple(table_0) = [datum(col_0_unique1)]
++ return tuple(table_0)
++(4 rows)
+ 
+ select max(unique1) from tenk1 where unique1 > 42000;
+  max 
+ -----
+-    
+-(1 row)
++(0 rows)
+ 
+ rollback;
++ERROR:  only support select and create table statement
+ -- multi-column index (uses tenk1_thous_tenthous)
+ explain (costs off)
+   select max(tenthous) from tenk1 where thousand = 33;
+-                                 QUERY PLAN                                 
+-----------------------------------------------------------------------------
+- Result
+-   InitPlan 1 (returns $0)
+-     ->  Limit
+-           ->  Index Only Scan Backward using tenk1_thous_tenthous on tenk1
+-                 Index Cond: ((thousand = 33) AND (tenthous IS NOT NULL))
+-(5 rows)
++                                            QUERY PLAN                                            
++--------------------------------------------------------------------------------------------------
++ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(thousand) == 33), return tid(var_4_1)]
++ datum(col_0_tenthous) = IndexAggregateForMultiSegment(MAX, column(tenthous), tid(where))
++ tuple(table_0) = [datum(col_0_tenthous)]
++ return tuple(table_0)
++(4 rows)
+ 
+ select max(tenthous) from tenk1 where thousand = 33;
+  max  
+@@ -1022,14 +591,13 @@
+ 
+ explain (costs off)
+   select min(tenthous) from tenk1 where thousand = 33;
+-                                QUERY PLAN                                
+---------------------------------------------------------------------------
+- Result
+-   InitPlan 1 (returns $0)
+-     ->  Limit
+-           ->  Index Only Scan using tenk1_thous_tenthous on tenk1
+-                 Index Cond: ((thousand = 33) AND (tenthous IS NOT NULL))
+-(5 rows)
++                                            QUERY PLAN                                            
++--------------------------------------------------------------------------------------------------
++ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(thousand) == 33), return tid(var_4_1)]
++ datum(col_0_tenthous) = IndexAggregateForMultiSegment(MIN, column(tenthous), tid(where))
++ tuple(table_0) = [datum(col_0_tenthous)]
++ return tuple(table_0)
++(4 rows)
+ 
+ select min(tenthous) from tenk1 where thousand = 33;
+  min 
+@@ -1041,41 +609,19 @@
+ explain (costs off)
+   select f1, (select min(unique1) from tenk1 where unique1 > f1) AS gt
+     from int4_tbl;
+-                                       QUERY PLAN                                        
+------------------------------------------------------------------------------------------
+- Seq Scan on int4_tbl
+-   SubPlan 2
+-     ->  Result
+-           InitPlan 1 (returns $1)
+-             ->  Limit
+-                   ->  Index Only Scan using tenk1_unique1 on tenk1
+-                         Index Cond: ((unique1 IS NOT NULL) AND (unique1 > int4_tbl.f1))
+-(7 rows)
+-
++ERROR:  clapdb doesn't support subquery as expr currently
+ select f1, (select min(unique1) from tenk1 where unique1 > f1) AS gt
+   from int4_tbl;
+-     f1      | gt 
+--------------+----
+-           0 |  1
+-      123456 |   
+-     -123456 |  0
+-  2147483647 |   
+- -2147483647 |  0
+-(5 rows)
+-
++ERROR:  clapdb doesn't support subquery as expr currently
+ -- check some cases that were handled incorrectly in 8.3.0
+ explain (costs off)
+   select distinct max(unique2) from tenk1;
+-                             QUERY PLAN                              
+----------------------------------------------------------------------
+- HashAggregate
+-   Group Key: $0
+-   InitPlan 1 (returns $0)
+-     ->  Limit
+-           ->  Index Only Scan Backward using tenk1_unique2 on tenk1
+-                 Index Cond: (unique2 IS NOT NULL)
+-   ->  Result
+-(7 rows)
++                                 QUERY PLAN                                 
++----------------------------------------------------------------------------
++ datum(col_0_unique2) = IndexAggregateForMultiSegment(MAX, column(unique2))
++ tuple(table_0) = [datum(col_0_unique2)]
++ return tuple(table_0)
++(3 rows)
+ 
+ select distinct max(unique2) from tenk1;
+  max  
+@@ -1085,16 +631,13 @@
+ 
+ explain (costs off)
+   select max(unique2) from tenk1 order by 1;
+-                             QUERY PLAN                              
+----------------------------------------------------------------------
+- Sort
+-   Sort Key: ($0)
+-   InitPlan 1 (returns $0)
+-     ->  Limit
+-           ->  Index Only Scan Backward using tenk1_unique2 on tenk1
+-                 Index Cond: (unique2 IS NOT NULL)
+-   ->  Result
+-(7 rows)
++                                 QUERY PLAN                                 
++----------------------------------------------------------------------------
++ datum(col_0_unique2) = IndexAggregateForMultiSegment(MAX, column(unique2))
++ tuple(table_0) = [datum(col_0_unique2)]
++ tuple(table_0) = Sort(tuple(table_0), [columns(0 ASC)])
++ return tuple(table_0)
++(4 rows)
+ 
+ select max(unique2) from tenk1 order by 1;
+  max  
+@@ -1104,16 +647,13 @@
+ 
+ explain (costs off)
+   select max(unique2) from tenk1 order by max(unique2);
+-                             QUERY PLAN                              
+----------------------------------------------------------------------
+- Sort
+-   Sort Key: ($0)
+-   InitPlan 1 (returns $0)
+-     ->  Limit
+-           ->  Index Only Scan Backward using tenk1_unique2 on tenk1
+-                 Index Cond: (unique2 IS NOT NULL)
+-   ->  Result
+-(7 rows)
++                                 QUERY PLAN                                 
++----------------------------------------------------------------------------
++ datum(col_0_unique2) = IndexAggregateForMultiSegment(MAX, column(unique2))
++ tuple(table_0) = [datum(col_0_unique2)]
++ tuple(table_0) = Sort(tuple(table_0), [columns(0 ASC)])
++ return tuple(table_0)
++(4 rows)
+ 
+ select max(unique2) from tenk1 order by max(unique2);
+  max  
+@@ -1123,16 +663,18 @@
+ 
+ explain (costs off)
+   select max(unique2) from tenk1 order by max(unique2)+1;
+-                             QUERY PLAN                              
+----------------------------------------------------------------------
+- Sort
+-   Sort Key: (($0 + 1))
+-   InitPlan 1 (returns $0)
+-     ->  Limit
+-           ->  Index Only Scan Backward using tenk1_unique2 on tenk1
+-                 Index Cond: (unique2 IS NOT NULL)
+-   ->  Result
+-(7 rows)
++                                 QUERY PLAN                                 
++----------------------------------------------------------------------------
++ datum(col_0_unique2) = IndexAggregateForMultiSegment(MAX, column(unique2))
++ tuple(table_0) = [datum(col_0_unique2)]
++ datum(var_7_1) = TupleAt(tuple(table_0) 0)
++ datum(var_7_2) = DatumMapJIT(cast(Int64, datum(var_7_1)) + 1)
++ tuple(tmp_order) = [datum(var_7_2)]
++ tuple(table_0) = TupleExpand(tuple(table_0), tuple(tmp_order))
++ tuple(table_0) = Sort(tuple(table_0), [columns(1 ASC)])
++ tuple(table_0) = Erase(tuple(table_0), [1])
++ return tuple(table_0)
++(9 rows)
+ 
+ select max(unique2) from tenk1 order by max(unique2)+1;
+  max  
+@@ -1142,38 +684,18 @@
+ 
+ explain (costs off)
+   select max(unique2), generate_series(1,3) as g from tenk1 order by g desc;
+-                             QUERY PLAN                              
+----------------------------------------------------------------------
+- Sort
+-   Sort Key: (generate_series(1, 3)) DESC
+-   InitPlan 1 (returns $0)
+-     ->  Limit
+-           ->  Index Only Scan Backward using tenk1_unique2 on tenk1
+-                 Index Cond: (unique2 IS NOT NULL)
+-   ->  ProjectSet
+-         ->  Result
+-(8 rows)
+-
++ERROR:  function generate_series does not exist
+ select max(unique2), generate_series(1,3) as g from tenk1 order by g desc;
+- max  | g 
+-------+---
+- 9999 | 3
+- 9999 | 2
+- 9999 | 1
+-(3 rows)
+-
++ERROR:  function generate_series does not exist
+ -- interesting corner case: constant gets optimized into a seqscan
+ explain (costs off)
+   select max(100) from tenk1;
+-                     QUERY PLAN                     
+-----------------------------------------------------
+- Result
+-   InitPlan 1 (returns $0)
+-     ->  Limit
+-           ->  Result
+-                 One-Time Filter: (100 IS NOT NULL)
+-                 ->  Seq Scan on tenk1
+-(6 rows)
++                       QUERY PLAN                        
++---------------------------------------------------------
++ datum(col_0_literal) = LiteralAggregate(MAX(100) tenk1)
++ tuple(table_0) = [datum(col_0_literal)]
++ return tuple(table_0)
++(3 rows)
+ 
+ select max(100) from tenk1;
+  max 
+@@ -1187,191 +709,99 @@
+ create table minmaxtest2(f1 int);
+ create table minmaxtest3(f1 int);
+ create index minmaxtesti on minmaxtest(f1);
++ERROR:  only support select and create table statement
+ create index minmaxtest1i on minmaxtest1(f1);
++ERROR:  only support select and create table statement
+ create index minmaxtest2i on minmaxtest2(f1 desc);
++ERROR:  only support select and create table statement
+ create index minmaxtest3i on minmaxtest3(f1) where f1 is not null;
++ERROR:  only support select and create table statement
+ insert into minmaxtest values(11), (12);
+ insert into minmaxtest1 values(13), (14);
+ insert into minmaxtest2 values(15), (16);
+ insert into minmaxtest3 values(17), (18);
+ explain (costs off)
+   select min(f1), max(f1) from minmaxtest;
+-                                         QUERY PLAN                                          
+----------------------------------------------------------------------------------------------
+- Result
+-   InitPlan 1 (returns $0)
+-     ->  Limit
+-           ->  Merge Append
+-                 Sort Key: minmaxtest.f1
+-                 ->  Index Only Scan using minmaxtesti on minmaxtest minmaxtest_1
+-                       Index Cond: (f1 IS NOT NULL)
+-                 ->  Index Only Scan using minmaxtest1i on minmaxtest1 minmaxtest_2
+-                       Index Cond: (f1 IS NOT NULL)
+-                 ->  Index Only Scan Backward using minmaxtest2i on minmaxtest2 minmaxtest_3
+-                       Index Cond: (f1 IS NOT NULL)
+-                 ->  Index Only Scan using minmaxtest3i on minmaxtest3 minmaxtest_4
+-   InitPlan 2 (returns $1)
+-     ->  Limit
+-           ->  Merge Append
+-                 Sort Key: minmaxtest_5.f1 DESC
+-                 ->  Index Only Scan Backward using minmaxtesti on minmaxtest minmaxtest_6
+-                       Index Cond: (f1 IS NOT NULL)
+-                 ->  Index Only Scan Backward using minmaxtest1i on minmaxtest1 minmaxtest_7
+-                       Index Cond: (f1 IS NOT NULL)
+-                 ->  Index Only Scan using minmaxtest2i on minmaxtest2 minmaxtest_8
+-                       Index Cond: (f1 IS NOT NULL)
+-                 ->  Index Only Scan Backward using minmaxtest3i on minmaxtest3 minmaxtest_9
+-(23 rows)
++                            QUERY PLAN                            
++------------------------------------------------------------------
++ datum(col_0_f1) = IndexAggregateForMultiSegment(MIN, column(f1))
++ datum(col_1_f1) = IndexAggregateForMultiSegment(MAX, column(f1))
++ tuple(table_0) = [datum(col_0_f1), datum(col_1_f1)]
++ return tuple(table_0)
++(4 rows)
+ 
+ select min(f1), max(f1) from minmaxtest;
+  min | max 
+ -----+-----
+-  11 |  18
++  11 |  12
+ (1 row)
+ 
+ -- DISTINCT doesn't do anything useful here, but it shouldn't fail
+ explain (costs off)
+   select distinct min(f1), max(f1) from minmaxtest;
+-                                         QUERY PLAN                                          
+----------------------------------------------------------------------------------------------
+- Unique
+-   InitPlan 1 (returns $0)
+-     ->  Limit
+-           ->  Merge Append
+-                 Sort Key: minmaxtest.f1
+-                 ->  Index Only Scan using minmaxtesti on minmaxtest minmaxtest_1
+-                       Index Cond: (f1 IS NOT NULL)
+-                 ->  Index Only Scan using minmaxtest1i on minmaxtest1 minmaxtest_2
+-                       Index Cond: (f1 IS NOT NULL)
+-                 ->  Index Only Scan Backward using minmaxtest2i on minmaxtest2 minmaxtest_3
+-                       Index Cond: (f1 IS NOT NULL)
+-                 ->  Index Only Scan using minmaxtest3i on minmaxtest3 minmaxtest_4
+-   InitPlan 2 (returns $1)
+-     ->  Limit
+-           ->  Merge Append
+-                 Sort Key: minmaxtest_5.f1 DESC
+-                 ->  Index Only Scan Backward using minmaxtesti on minmaxtest minmaxtest_6
+-                       Index Cond: (f1 IS NOT NULL)
+-                 ->  Index Only Scan Backward using minmaxtest1i on minmaxtest1 minmaxtest_7
+-                       Index Cond: (f1 IS NOT NULL)
+-                 ->  Index Only Scan using minmaxtest2i on minmaxtest2 minmaxtest_8
+-                       Index Cond: (f1 IS NOT NULL)
+-                 ->  Index Only Scan Backward using minmaxtest3i on minmaxtest3 minmaxtest_9
+-   ->  Sort
+-         Sort Key: ($0), ($1)
+-         ->  Result
+-(26 rows)
++                            QUERY PLAN                            
++------------------------------------------------------------------
++ datum(col_0_f1) = IndexAggregateForMultiSegment(MIN, column(f1))
++ datum(col_1_f1) = IndexAggregateForMultiSegment(MAX, column(f1))
++ tuple(table_0) = [datum(col_0_f1), datum(col_1_f1)]
++ return tuple(table_0)
++(4 rows)
+ 
+ select distinct min(f1), max(f1) from minmaxtest;
+  min | max 
+ -----+-----
+-  11 |  18
++  11 |  12
+ (1 row)
+ 
+ drop table minmaxtest cascade;
+-NOTICE:  drop cascades to 3 other objects
+-DETAIL:  drop cascades to table minmaxtest1
+-drop cascades to table minmaxtest2
+-drop cascades to table minmaxtest3
++ERROR:  only support select and create table statement
+ -- check for correct detection of nested-aggregate errors
+ select max(min(unique1)) from tenk1;
+ ERROR:  aggregate function calls cannot be nested
+-LINE 1: select max(min(unique1)) from tenk1;
+-                   ^
+ select (select max(min(unique1)) from int8_tbl) from tenk1;
+-ERROR:  aggregate function calls cannot be nested
+-LINE 1: select (select max(min(unique1)) from int8_tbl) from tenk1;
+-                           ^
++ERROR:  clapdb doesn't support subquery as expr currently
+ select avg((select avg(a1.col1 order by (select avg(a2.col2) from tenk1 a3))
+             from tenk1 a1(col1)))
+ from tenk1 a2(col2);
+-ERROR:  aggregate function calls cannot be nested
+-LINE 1: select avg((select avg(a1.col1 order by (select avg(a2.col2)...
+-                                                        ^
++ERROR:  clapdb doesn't support subquery as expr currently
+ --
+ -- Test removal of redundant GROUP BY columns
+ --
+ create temp table t1 (a int, b int, c int, d int, primary key (a, b));
++ERROR:  std::get variant by const ref type error: /home/longqimin/stdb/arabic/pgsql/arabic_create.cc:338:47
++
+ create temp table t2 (x int, y int, z int, primary key (x, y));
++ERROR:  std::get variant by const ref type error: /home/longqimin/stdb/arabic/pgsql/arabic_create.cc:338:47
++
+ create temp table t3 (a int, b int, c int, primary key(a, b) deferrable);
++ERROR:  std::get variant by const ref type error: /home/longqimin/stdb/arabic/pgsql/arabic_create.cc:338:47
++
+ -- Non-primary-key columns can be removed from GROUP BY
+ explain (costs off) select * from t1 group by a,b,c,d;
+-      QUERY PLAN      
+-----------------------
+- HashAggregate
+-   Group Key: a, b
+-   ->  Seq Scan on t1
+-(3 rows)
+-
++ERROR:  relation "public.t1" does not exist
+ -- No removal can happen if the complete PK is not present in GROUP BY
+ explain (costs off) select a,c from t1 group by a,c,d;
+-      QUERY PLAN      
+-----------------------
+- HashAggregate
+-   Group Key: a, c, d
+-   ->  Seq Scan on t1
+-(3 rows)
+-
++ERROR:  relation "public.t1" does not exist
+ -- Test removal across multiple relations
+ explain (costs off) select *
+ from t1 inner join t2 on t1.a = t2.x and t1.b = t2.y
+ group by t1.a,t1.b,t1.c,t1.d,t2.x,t2.y,t2.z;
+-                      QUERY PLAN                      
+-------------------------------------------------------
+- HashAggregate
+-   Group Key: t1.a, t1.b
+-   ->  Hash Join
+-         Hash Cond: ((t2.x = t1.a) AND (t2.y = t1.b))
+-         ->  Seq Scan on t2
+-         ->  Hash
+-               ->  Seq Scan on t1
+-(7 rows)
+-
++ERROR:  from_clause[i].node_case is not range_var or RangeSubselect [node_case=47] [index=0]
+ -- Test case where t1 can be optimized but not t2
+ explain (costs off) select t1.*,t2.x,t2.z
+ from t1 inner join t2 on t1.a = t2.x and t1.b = t2.y
+ group by t1.a,t1.b,t1.c,t1.d,t2.x,t2.z;
+-                      QUERY PLAN                      
+-------------------------------------------------------
+- HashAggregate
+-   Group Key: t1.a, t1.b, t2.z
+-   ->  Hash Join
+-         Hash Cond: ((t2.x = t1.a) AND (t2.y = t1.b))
+-         ->  Seq Scan on t2
+-         ->  Hash
+-               ->  Seq Scan on t1
+-(7 rows)
+-
++ERROR:  from_clause[i].node_case is not range_var or RangeSubselect [node_case=47] [index=0]
+ -- Cannot optimize when PK is deferrable
+ explain (costs off) select * from t3 group by a,b,c;
+-      QUERY PLAN      
+-----------------------
+- HashAggregate
+-   Group Key: a, b, c
+-   ->  Seq Scan on t3
+-(3 rows)
+-
++ERROR:  relation "public.t3" does not exist
+ create temp table t1c () inherits (t1);
+ -- Ensure we don't remove any columns when t1 has a child table
+ explain (costs off) select * from t1 group by a,b,c,d;
+-             QUERY PLAN              
+--------------------------------------
+- HashAggregate
+-   Group Key: t1.a, t1.b, t1.c, t1.d
+-   ->  Append
+-         ->  Seq Scan on t1 t1_1
+-         ->  Seq Scan on t1c t1_2
+-(5 rows)
+-
++ERROR:  relation "public.t1" does not exist
+ -- Okay to remove columns if we're only querying the parent.
+ explain (costs off) select * from only t1 group by a,b,c,d;
+-      QUERY PLAN      
+-----------------------
+- HashAggregate
+-   Group Key: a, b
+-   ->  Seq Scan on t1
+-(3 rows)
+-
++ERROR:  relation "public.t1" does not exist
+ create temp table p_t1 (
+   a int,
+   b int,
+@@ -1379,66 +809,48 @@
+   d int,
+   primary key(a,b)
+ ) partition by list(a);
++ERROR:  std::get variant by const ref type error: /home/longqimin/stdb/arabic/pgsql/arabic_create.cc:338:47
++
+ create temp table p_t1_1 partition of p_t1 for values in(1);
+ create temp table p_t1_2 partition of p_t1 for values in(2);
+ -- Ensure we can remove non-PK columns for partitioned tables.
+ explain (costs off) select * from p_t1 group by a,b,c,d;
+-           QUERY PLAN           
+---------------------------------
+- HashAggregate
+-   Group Key: p_t1.a, p_t1.b
+-   ->  Append
+-         ->  Seq Scan on p_t1_1
+-         ->  Seq Scan on p_t1_2
+-(5 rows)
+-
++ERROR:  relation "public.p_t1" does not exist
+ drop table t1 cascade;
+-NOTICE:  drop cascades to table t1c
++ERROR:  only support select and create table statement
+ drop table t2;
++ERROR:  only support select and create table statement
+ drop table t3;
++ERROR:  only support select and create table statement
+ drop table p_t1;
++ERROR:  only support select and create table statement
+ --
+ -- Test GROUP BY matching of join columns that are type-coerced due to USING
+ --
+ create temp table t1(f1 int, f2 int);
+ create temp table t2(f1 bigint, f2 oid);
++ERROR:  invalid column type [type_name=oid]
+ select f1 from t1 left join t2 using (f1) group by f1;
+- f1 
+-----
+-(0 rows)
+-
++ERROR:  from_clause[i].node_case is not range_var or RangeSubselect [node_case=47] [index=0]
+ select f1 from t1 left join t2 using (f1) group by t1.f1;
+- f1 
+-----
+-(0 rows)
+-
++ERROR:  from_clause[i].node_case is not range_var or RangeSubselect [node_case=47] [index=0]
+ select t1.f1 from t1 left join t2 using (f1) group by t1.f1;
+- f1 
+-----
+-(0 rows)
+-
++ERROR:  from_clause[i].node_case is not range_var or RangeSubselect [node_case=47] [index=0]
+ -- only this one should fail:
+ select t1.f1 from t1 left join t2 using (f1) group by f1;
+-ERROR:  column "t1.f1" must appear in the GROUP BY clause or be used in an aggregate function
+-LINE 1: select t1.f1 from t1 left join t2 using (f1) group by f1;
+-               ^
++ERROR:  from_clause[i].node_case is not range_var or RangeSubselect [node_case=47] [index=0]
+ -- check case where we have to inject nullingrels into coerced join alias
+ select f1, count(*) from
+ t1 x(x0,x1) left join (t1 left join t2 using(f1)) on (x0 = 0)
+ group by f1;
+- f1 | count 
+-----+-------
+-(0 rows)
+-
++ERROR:  from_clause[i].node_case is not range_var or RangeSubselect [node_case=47] [index=0]
+ -- same, for a RelabelType coercion
+ select f2, count(*) from
+ t1 x(x0,x1) left join (t1 left join t2 using(f2)) on (x0 = 0)
+ group by f2;
+- f2 | count 
+-----+-------
+-(0 rows)
+-
++ERROR:  from_clause[i].node_case is not range_var or RangeSubselect [node_case=47] [index=0]
+ drop table t1, t2;
++ERROR:  only support select and create table statement
+ --
+ -- Test planner's selection of pathkeys for ORDER BY aggregates
+ --
+@@ -1446,13 +858,14 @@
+ explain (costs off)
+ select sum(two order by two),max(four order by four), min(four order by four)
+ from tenk1;
+-          QUERY PLAN           
+--------------------------------
+- Aggregate
+-   ->  Sort
+-         Sort Key: four
+-         ->  Seq Scan on tenk1
+-(4 rows)
++                                QUERY PLAN                                 
++---------------------------------------------------------------------------
++ datum(col_0_two) = IndexAggregateForMultiSegment(SUM, column(two))
++ datum(col_1_four) = IndexAggregateForMultiSegment(MAX, column(four))
++ datum(col_2_four) = IndexAggregateForMultiSegment(MIN, column(four))
++ tuple(table_0) = [datum(col_0_two), datum(col_1_four), datum(col_2_four)]
++ return tuple(table_0)
++(5 rows)
+ 
+ -- Ensure we order by two.  It's a tie between ordering by two and four but
+ -- we tiebreak on the aggregate's position.
+@@ -1461,13 +874,15 @@
+   sum(two order by two), max(four order by four),
+   min(four order by four), max(two order by two)
+ from tenk1;
+-          QUERY PLAN           
+--------------------------------
+- Aggregate
+-   ->  Sort
+-         Sort Key: two
+-         ->  Seq Scan on tenk1
+-(4 rows)
++                                         QUERY PLAN                                          
++---------------------------------------------------------------------------------------------
++ datum(col_0_two) = IndexAggregateForMultiSegment(SUM, column(two))
++ datum(col_1_four) = IndexAggregateForMultiSegment(MAX, column(four))
++ datum(col_2_four) = IndexAggregateForMultiSegment(MIN, column(four))
++ datum(col_3_two) = IndexAggregateForMultiSegment(MAX, column(two))
++ tuple(table_0) = [datum(col_0_two), datum(col_1_four), datum(col_2_four), datum(col_3_two)]
++ return tuple(table_0)
++(6 rows)
+ 
+ -- Similar to above, but tiebreak on ordering by four
+ explain (costs off)
+@@ -1475,13 +890,15 @@
+   max(four order by four), sum(two order by two),
+   min(four order by four), max(two order by two)
+ from tenk1;
+-          QUERY PLAN           
+--------------------------------
+- Aggregate
+-   ->  Sort
+-         Sort Key: four
+-         ->  Seq Scan on tenk1
+-(4 rows)
++                                         QUERY PLAN                                          
++---------------------------------------------------------------------------------------------
++ datum(col_0_four) = IndexAggregateForMultiSegment(MAX, column(four))
++ datum(col_1_two) = IndexAggregateForMultiSegment(SUM, column(two))
++ datum(col_2_four) = IndexAggregateForMultiSegment(MIN, column(four))
++ datum(col_3_two) = IndexAggregateForMultiSegment(MAX, column(two))
++ tuple(table_0) = [datum(col_0_four), datum(col_1_two), datum(col_2_four), datum(col_3_two)]
++ return tuple(table_0)
++(6 rows)
+ 
+ -- Ensure this one orders by ten since there are 3 aggregates that require ten
+ -- vs two that suit two and four.
+@@ -1491,13 +908,18 @@
+   min(four order by four), max(two order by two),
+   sum(ten order by ten), min(ten order by ten), max(ten order by ten)
+ from tenk1;
+-          QUERY PLAN           
+--------------------------------
+- Aggregate
+-   ->  Sort
+-         Sort Key: ten
+-         ->  Seq Scan on tenk1
+-(4 rows)
++                                                                    QUERY PLAN                                                                     
++---------------------------------------------------------------------------------------------------------------------------------------------------
++ datum(col_0_four) = IndexAggregateForMultiSegment(MAX, column(four))
++ datum(col_1_two) = IndexAggregateForMultiSegment(SUM, column(two))
++ datum(col_2_four) = IndexAggregateForMultiSegment(MIN, column(four))
++ datum(col_3_two) = IndexAggregateForMultiSegment(MAX, column(two))
++ datum(col_4_ten) = IndexAggregateForMultiSegment(SUM, column(ten))
++ datum(col_5_ten) = IndexAggregateForMultiSegment(MIN, column(ten))
++ datum(col_6_ten) = IndexAggregateForMultiSegment(MAX, column(ten))
++ tuple(table_0) = [datum(col_0_four), datum(col_1_two), datum(col_2_four), datum(col_3_two), datum(col_4_ten), datum(col_5_ten), datum(col_6_ten)]
++ return tuple(table_0)
++(9 rows)
+ 
+ -- Try a case involving a GROUP BY clause where the GROUP BY column is also
+ -- part of an aggregate's ORDER BY clause.  We want a sort order that works
+@@ -1508,14 +930,20 @@
+   sum(unique1 order by two, four)
+ from tenk1
+ group by ten;
+-            QUERY PLAN            
+-----------------------------------
+- GroupAggregate
+-   Group Key: ten
+-   ->  Sort
+-         Sort Key: ten, two, four
+-         ->  Seq Scan on tenk1
+-(5 rows)
++                                                                              QUERY PLAN                                                                              
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------
++ FilterHistogram(histogram_tenk1_0) = parallel: [FilterHistogram(var_5_1) = IndexTopNGroup([Get(ten)], 10000, [ASC_AND_NULLS_LAST]), return FilterHistogram(var_5_1)]
++ tuple(tuple_0_tenk1) = to_tuple(FilterHistogram(histogram_tenk1_0))
++ tuple(tuple_0_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))
++ tuple(tuple_1_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))
++ tuple(tuple_2_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))
++ tuple(table_0) = TupleExpand(tuple(tuple_0_tenk1), tuple(tuple_0_unique1))
++ tuple(table_0) = TupleExpand(tuple(table_0), tuple(tuple_1_unique1))
++ tuple(table_0) = TupleExpand(tuple(table_0), tuple(tuple_2_unique1))
++ tuple(table_0) = TupleReorder(tuple(table_0), [3, 0, 1, 2])
++ tuple(table_0) = Erase(tuple(table_0), [3])
++ return tuple(table_0)
++(11 rows)
+ 
+ -- Ensure that we never choose to provide presorted input to an Aggref with
+ -- a volatile function in the ORDER BY / DISTINCT clause.  We want to ensure
+@@ -1527,173 +955,110 @@
+   sum(unique1 order by two, random(), random() + 1)
+ from tenk1
+ group by ten;
+-            QUERY PLAN            
+-----------------------------------
+- GroupAggregate
+-   Group Key: ten
+-   ->  Sort
+-         Sort Key: ten, four, two
+-         ->  Seq Scan on tenk1
+-(5 rows)
++                                                                              QUERY PLAN                                                                              
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------
++ FilterHistogram(histogram_tenk1_0) = parallel: [FilterHistogram(var_5_1) = IndexTopNGroup([Get(ten)], 10000, [ASC_AND_NULLS_LAST]), return FilterHistogram(var_5_1)]
++ tuple(tuple_0_tenk1) = to_tuple(FilterHistogram(histogram_tenk1_0))
++ tuple(tuple_0_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))
++ tuple(tuple_1_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))
++ tuple(tuple_2_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))
++ tuple(tuple_3_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))
++ tuple(tuple_4_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))
++ tuple(table_0) = TupleExpand(tuple(tuple_0_tenk1), tuple(tuple_0_unique1))
++ tuple(table_0) = TupleExpand(tuple(table_0), tuple(tuple_1_unique1))
++ tuple(table_0) = TupleExpand(tuple(table_0), tuple(tuple_2_unique1))
++ tuple(table_0) = TupleExpand(tuple(table_0), tuple(tuple_3_unique1))
++ tuple(table_0) = TupleExpand(tuple(table_0), tuple(tuple_4_unique1))
++ tuple(table_0) = TupleReorder(tuple(table_0), [5, 0, 1, 2, 3, 4])
++ tuple(table_0) = Erase(tuple(table_0), [5])
++ return tuple(table_0)
++(15 rows)
+ 
+ -- Ensure consecutive NULLs are properly treated as distinct from each other
+ select array_agg(distinct val)
+ from (select null as val from generate_series(1, 2));
+- array_agg 
+------------
+- {NULL}
+-(1 row)
+-
++ERROR:  subquery in FROM must have an alias
+ -- Ensure no ordering is requested when enable_presorted_aggregate is off
+ set enable_presorted_aggregate to off;
++ERROR:  only support select and create table statement
+ explain (costs off)
+ select sum(two order by two) from tenk1;
+-       QUERY PLAN        
+--------------------------
+- Aggregate
+-   ->  Seq Scan on tenk1
+-(2 rows)
++                             QUERY PLAN                             
++--------------------------------------------------------------------
++ datum(col_0_two) = IndexAggregateForMultiSegment(SUM, column(two))
++ tuple(table_0) = [datum(col_0_two)]
++ return tuple(table_0)
++(3 rows)
+ 
+ reset enable_presorted_aggregate;
++ERROR:  only support select and create table statement
+ --
+ -- Test combinations of DISTINCT and/or ORDER BY
+ --
+ select array_agg(a order by b)
+   from (values (1,4),(2,3),(3,1),(4,2)) v(a,b);
+- array_agg 
+------------
+- {3,4,2,1}
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ select array_agg(a order by a)
+   from (values (1,4),(2,3),(3,1),(4,2)) v(a,b);
+- array_agg 
+------------
+- {1,2,3,4}
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ select array_agg(a order by a desc)
+   from (values (1,4),(2,3),(3,1),(4,2)) v(a,b);
+- array_agg 
+------------
+- {4,3,2,1}
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ select array_agg(b order by a desc)
+   from (values (1,4),(2,3),(3,1),(4,2)) v(a,b);
+- array_agg 
+------------
+- {2,1,3,4}
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ select array_agg(distinct a)
+   from (values (1),(2),(1),(3),(null),(2)) v(a);
+-  array_agg   
+---------------
+- {1,2,3,NULL}
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ select array_agg(distinct a order by a)
+   from (values (1),(2),(1),(3),(null),(2)) v(a);
+-  array_agg   
+---------------
+- {1,2,3,NULL}
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ select array_agg(distinct a order by a desc)
+   from (values (1),(2),(1),(3),(null),(2)) v(a);
+-  array_agg   
+---------------
+- {NULL,3,2,1}
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ select array_agg(distinct a order by a desc nulls last)
+   from (values (1),(2),(1),(3),(null),(2)) v(a);
+-  array_agg   
+---------------
+- {3,2,1,NULL}
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ -- multi-arg aggs, strict/nonstrict, distinct/order by
+ select aggfstr(a,b,c)
+   from (values (1,3,'foo'),(0,null,null),(2,2,'bar'),(3,1,'baz')) v(a,b,c);
+-                aggfstr                
+----------------------------------------
+- {"(1,3,foo)","(2,2,bar)","(3,1,baz)"}
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ select aggfns(a,b,c)
+   from (values (1,3,'foo'),(0,null,null),(2,2,'bar'),(3,1,'baz')) v(a,b,c);
+-                    aggfns                     
+------------------------------------------------
+- {"(1,3,foo)","(0,,)","(2,2,bar)","(3,1,baz)"}
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ select aggfstr(distinct a,b,c)
+   from (values (1,3,'foo'),(0,null,null),(2,2,'bar'),(3,1,'baz')) v(a,b,c),
+        generate_series(1,3) i;
+-                aggfstr                
+----------------------------------------
+- {"(1,3,foo)","(2,2,bar)","(3,1,baz)"}
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ select aggfns(distinct a,b,c)
+   from (values (1,3,'foo'),(0,null,null),(2,2,'bar'),(3,1,'baz')) v(a,b,c),
+        generate_series(1,3) i;
+-                    aggfns                     
+------------------------------------------------
+- {"(0,,)","(1,3,foo)","(2,2,bar)","(3,1,baz)"}
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ select aggfstr(distinct a,b,c order by b)
+   from (values (1,3,'foo'),(0,null,null),(2,2,'bar'),(3,1,'baz')) v(a,b,c),
+        generate_series(1,3) i;
+-                aggfstr                
+----------------------------------------
+- {"(3,1,baz)","(2,2,bar)","(1,3,foo)"}
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ select aggfns(distinct a,b,c order by b)
+   from (values (1,3,'foo'),(0,null,null),(2,2,'bar'),(3,1,'baz')) v(a,b,c),
+        generate_series(1,3) i;
+-                    aggfns                     
+------------------------------------------------
+- {"(3,1,baz)","(2,2,bar)","(1,3,foo)","(0,,)"}
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ -- test specific code paths
+ select aggfns(distinct a,a,c order by c using ~<~,a)
+   from (values (1,3,'foo'),(0,null,null),(2,2,'bar'),(3,1,'baz')) v(a,b,c),
+        generate_series(1,2) i;
+-                     aggfns                     
+-------------------------------------------------
+- {"(2,2,bar)","(3,3,baz)","(1,1,foo)","(0,0,)"}
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ select aggfns(distinct a,a,c order by c using ~<~)
+   from (values (1,3,'foo'),(0,null,null),(2,2,'bar'),(3,1,'baz')) v(a,b,c),
+        generate_series(1,2) i;
+-                     aggfns                     
+-------------------------------------------------
+- {"(2,2,bar)","(3,3,baz)","(1,1,foo)","(0,0,)"}
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ select aggfns(distinct a,a,c order by a)
+   from (values (1,3,'foo'),(0,null,null),(2,2,'bar'),(3,1,'baz')) v(a,b,c),
+        generate_series(1,2) i;
+-                     aggfns                     
+-------------------------------------------------
+- {"(0,0,)","(1,1,foo)","(2,2,bar)","(3,3,baz)"}
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ select aggfns(distinct a,b,c order by a,c using ~<~,b)
+   from (values (1,3,'foo'),(0,null,null),(2,2,'bar'),(3,1,'baz')) v(a,b,c),
+        generate_series(1,2) i;
+-                    aggfns                     
+------------------------------------------------
+- {"(0,,)","(1,3,foo)","(2,2,bar)","(3,1,baz)"}
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ -- test a more complex permutation that has previous caused issues
+ select
+     string_agg(distinct 'a', ','),
+@@ -1702,244 +1067,137 @@
+         from (values(1)) b(id)
+         where a.id = b.id
+ )) from unnest(array[1]) a(id);
+- string_agg | sum 
+-------------+-----
+- a          |   1
+-(1 row)
+-
++ERROR:  function unnest does not exist
+ -- check node I/O via view creation and usage, also deparsing logic
+ create view agg_view1 as
+   select aggfns(a,b,c)
+     from (values (1,3,'foo'),(0,null,null),(2,2,'bar'),(3,1,'baz')) v(a,b,c);
++ERROR:  only support select and create table statement
+ select * from agg_view1;
+-                    aggfns                     
+------------------------------------------------
+- {"(1,3,foo)","(0,,)","(2,2,bar)","(3,1,baz)"}
+-(1 row)
+-
++ERROR:  relation "public.agg_view1" does not exist
+ select pg_get_viewdef('agg_view1'::regclass);
+-                                                   pg_get_viewdef                                                    
+----------------------------------------------------------------------------------------------------------------------
+-  SELECT aggfns(a, b, c) AS aggfns                                                                                  +
+-    FROM ( VALUES (1,3,'foo'::text), (0,NULL::integer,NULL::text), (2,2,'bar'::text), (3,1,'baz'::text)) v(a, b, c);
+-(1 row)
+-
++ERROR:  function pg_get_viewdef does not exist
+ create or replace view agg_view1 as
+   select aggfns(distinct a,b,c)
+     from (values (1,3,'foo'),(0,null,null),(2,2,'bar'),(3,1,'baz')) v(a,b,c),
+          generate_series(1,3) i;
++ERROR:  only support select and create table statement
+ select * from agg_view1;
+-                    aggfns                     
+------------------------------------------------
+- {"(0,,)","(1,3,foo)","(2,2,bar)","(3,1,baz)"}
+-(1 row)
+-
++ERROR:  relation "public.agg_view1" does not exist
+ select pg_get_viewdef('agg_view1'::regclass);
+-                                                   pg_get_viewdef                                                    
+----------------------------------------------------------------------------------------------------------------------
+-  SELECT aggfns(DISTINCT v.a, v.b, v.c) AS aggfns                                                                   +
+-    FROM ( VALUES (1,3,'foo'::text), (0,NULL::integer,NULL::text), (2,2,'bar'::text), (3,1,'baz'::text)) v(a, b, c),+
+-     generate_series(1, 3) i(i);
+-(1 row)
+-
++ERROR:  function pg_get_viewdef does not exist
+ create or replace view agg_view1 as
+   select aggfns(distinct a,b,c order by b)
+     from (values (1,3,'foo'),(0,null,null),(2,2,'bar'),(3,1,'baz')) v(a,b,c),
+          generate_series(1,3) i;
++ERROR:  only support select and create table statement
+ select * from agg_view1;
+-                    aggfns                     
+------------------------------------------------
+- {"(3,1,baz)","(2,2,bar)","(1,3,foo)","(0,,)"}
+-(1 row)
+-
++ERROR:  relation "public.agg_view1" does not exist
+ select pg_get_viewdef('agg_view1'::regclass);
+-                                                   pg_get_viewdef                                                    
+----------------------------------------------------------------------------------------------------------------------
+-  SELECT aggfns(DISTINCT v.a, v.b, v.c ORDER BY v.b) AS aggfns                                                      +
+-    FROM ( VALUES (1,3,'foo'::text), (0,NULL::integer,NULL::text), (2,2,'bar'::text), (3,1,'baz'::text)) v(a, b, c),+
+-     generate_series(1, 3) i(i);
+-(1 row)
+-
++ERROR:  function pg_get_viewdef does not exist
+ create or replace view agg_view1 as
+   select aggfns(a,b,c order by b+1)
+     from (values (1,3,'foo'),(0,null,null),(2,2,'bar'),(3,1,'baz')) v(a,b,c);
++ERROR:  only support select and create table statement
+ select * from agg_view1;
+-                    aggfns                     
+------------------------------------------------
+- {"(3,1,baz)","(2,2,bar)","(1,3,foo)","(0,,)"}
+-(1 row)
+-
++ERROR:  relation "public.agg_view1" does not exist
+ select pg_get_viewdef('agg_view1'::regclass);
+-                                                   pg_get_viewdef                                                    
+----------------------------------------------------------------------------------------------------------------------
+-  SELECT aggfns(a, b, c ORDER BY (b + 1)) AS aggfns                                                                 +
+-    FROM ( VALUES (1,3,'foo'::text), (0,NULL::integer,NULL::text), (2,2,'bar'::text), (3,1,'baz'::text)) v(a, b, c);
+-(1 row)
+-
++ERROR:  function pg_get_viewdef does not exist
+ create or replace view agg_view1 as
+   select aggfns(a,a,c order by b)
+     from (values (1,3,'foo'),(0,null,null),(2,2,'bar'),(3,1,'baz')) v(a,b,c);
++ERROR:  only support select and create table statement
+ select * from agg_view1;
+-                     aggfns                     
+-------------------------------------------------
+- {"(3,3,baz)","(2,2,bar)","(1,1,foo)","(0,0,)"}
+-(1 row)
+-
++ERROR:  relation "public.agg_view1" does not exist
+ select pg_get_viewdef('agg_view1'::regclass);
+-                                                   pg_get_viewdef                                                    
+----------------------------------------------------------------------------------------------------------------------
+-  SELECT aggfns(a, a, c ORDER BY b) AS aggfns                                                                       +
+-    FROM ( VALUES (1,3,'foo'::text), (0,NULL::integer,NULL::text), (2,2,'bar'::text), (3,1,'baz'::text)) v(a, b, c);
+-(1 row)
+-
++ERROR:  function pg_get_viewdef does not exist
+ create or replace view agg_view1 as
+   select aggfns(a,b,c order by c using ~<~)
+     from (values (1,3,'foo'),(0,null,null),(2,2,'bar'),(3,1,'baz')) v(a,b,c);
++ERROR:  only support select and create table statement
+ select * from agg_view1;
+-                    aggfns                     
+------------------------------------------------
+- {"(2,2,bar)","(3,1,baz)","(1,3,foo)","(0,,)"}
+-(1 row)
+-
++ERROR:  relation "public.agg_view1" does not exist
+ select pg_get_viewdef('agg_view1'::regclass);
+-                                                   pg_get_viewdef                                                    
+----------------------------------------------------------------------------------------------------------------------
+-  SELECT aggfns(a, b, c ORDER BY c USING ~<~ NULLS LAST) AS aggfns                                                  +
+-    FROM ( VALUES (1,3,'foo'::text), (0,NULL::integer,NULL::text), (2,2,'bar'::text), (3,1,'baz'::text)) v(a, b, c);
+-(1 row)
+-
++ERROR:  function pg_get_viewdef does not exist
+ create or replace view agg_view1 as
+   select aggfns(distinct a,b,c order by a,c using ~<~,b)
+     from (values (1,3,'foo'),(0,null,null),(2,2,'bar'),(3,1,'baz')) v(a,b,c),
+          generate_series(1,2) i;
++ERROR:  only support select and create table statement
+ select * from agg_view1;
+-                    aggfns                     
+------------------------------------------------
+- {"(0,,)","(1,3,foo)","(2,2,bar)","(3,1,baz)"}
+-(1 row)
+-
++ERROR:  relation "public.agg_view1" does not exist
+ select pg_get_viewdef('agg_view1'::regclass);
+-                                                   pg_get_viewdef                                                    
+----------------------------------------------------------------------------------------------------------------------
+-  SELECT aggfns(DISTINCT v.a, v.b, v.c ORDER BY v.a, v.c USING ~<~ NULLS LAST, v.b) AS aggfns                       +
+-    FROM ( VALUES (1,3,'foo'::text), (0,NULL::integer,NULL::text), (2,2,'bar'::text), (3,1,'baz'::text)) v(a, b, c),+
+-     generate_series(1, 2) i(i);
+-(1 row)
+-
++ERROR:  function pg_get_viewdef does not exist
+ drop view agg_view1;
++ERROR:  only support select and create table statement
+ -- incorrect DISTINCT usage errors
+ select aggfns(distinct a,b,c order by i)
+   from (values (1,1,'foo')) v(a,b,c), generate_series(1,2) i;
+-ERROR:  in an aggregate with DISTINCT, ORDER BY expressions must appear in argument list
+-LINE 1: select aggfns(distinct a,b,c order by i)
+-                                              ^
++ERROR:  clapdb doesn't support select ValueLists
+ select aggfns(distinct a,b,c order by a,b+1)
+   from (values (1,1,'foo')) v(a,b,c), generate_series(1,2) i;
+-ERROR:  in an aggregate with DISTINCT, ORDER BY expressions must appear in argument list
+-LINE 1: select aggfns(distinct a,b,c order by a,b+1)
+-                                                ^
++ERROR:  clapdb doesn't support select ValueLists
+ select aggfns(distinct a,b,c order by a,b,i,c)
+   from (values (1,1,'foo')) v(a,b,c), generate_series(1,2) i;
+-ERROR:  in an aggregate with DISTINCT, ORDER BY expressions must appear in argument list
+-LINE 1: select aggfns(distinct a,b,c order by a,b,i,c)
+-                                                  ^
++ERROR:  clapdb doesn't support select ValueLists
+ select aggfns(distinct a,a,c order by a,b)
+   from (values (1,1,'foo')) v(a,b,c), generate_series(1,2) i;
+-ERROR:  in an aggregate with DISTINCT, ORDER BY expressions must appear in argument list
+-LINE 1: select aggfns(distinct a,a,c order by a,b)
+-                                                ^
++ERROR:  clapdb doesn't support select ValueLists
+ -- string_agg tests
+ select string_agg(a,',') from (values('aaaa'),('bbbb'),('cccc')) g(a);
+-   string_agg   
+-----------------
+- aaaa,bbbb,cccc
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ select string_agg(a,',') from (values('aaaa'),(null),('bbbb'),('cccc')) g(a);
+-   string_agg   
+-----------------
+- aaaa,bbbb,cccc
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ select string_agg(a,'AB') from (values(null),(null),('bbbb'),('cccc')) g(a);
+- string_agg 
+-------------
+- bbbbABcccc
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ select string_agg(a,',') from (values(null),(null)) g(a);
+- string_agg 
+-------------
+- 
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ -- check some implicit casting cases, as per bug #5564
+ select string_agg(distinct f1, ',' order by f1) from varchar_tbl;  -- ok
+- string_agg 
+-------------
+- a,ab,abcd
+-(1 row)
+-
++ERROR:  function string_agg does not exist
+ select string_agg(distinct f1::text, ',' order by f1) from varchar_tbl;  -- not ok
+-ERROR:  in an aggregate with DISTINCT, ORDER BY expressions must appear in argument list
+-LINE 1: select string_agg(distinct f1::text, ',' order by f1) from v...
+-                                                          ^
++ERROR:  function string_agg does not exist
+ select string_agg(distinct f1, ',' order by f1::text) from varchar_tbl;  -- not ok
+-ERROR:  in an aggregate with DISTINCT, ORDER BY expressions must appear in argument list
+-LINE 1: select string_agg(distinct f1, ',' order by f1::text) from v...
+-                                                    ^
++ERROR:  function string_agg does not exist
+ select string_agg(distinct f1::text, ',' order by f1::text) from varchar_tbl;  -- ok
+- string_agg 
+-------------
+- a,ab,abcd
+-(1 row)
+-
++ERROR:  function string_agg does not exist
+ -- string_agg bytea tests
+ create table bytea_test_table(v bytea);
++ERROR:  invalid column type [type_name=bytea]
+ select string_agg(v, '') from bytea_test_table;
+- string_agg 
+-------------
+- 
+-(1 row)
+-
++ERROR:  function string_agg does not exist
+ insert into bytea_test_table values(decode('ff','hex'));
++ERROR:  relation "public.bytea_test_table" not exists
+ select string_agg(v, '') from bytea_test_table;
+- string_agg 
+-------------
+- \xff
+-(1 row)
+-
++ERROR:  function string_agg does not exist
+ insert into bytea_test_table values(decode('aa','hex'));
++ERROR:  relation "public.bytea_test_table" not exists
+ select string_agg(v, '') from bytea_test_table;
+- string_agg 
+-------------
+- \xffaa
+-(1 row)
+-
++ERROR:  function string_agg does not exist
+ select string_agg(v, NULL) from bytea_test_table;
+- string_agg 
+-------------
+- \xffaa
+-(1 row)
+-
++ERROR:  function string_agg does not exist
+ select string_agg(v, decode('ee', 'hex')) from bytea_test_table;
+- string_agg 
+-------------
+- \xffeeaa
+-(1 row)
+-
++ERROR:  function string_agg does not exist
+ drop table bytea_test_table;
++ERROR:  only support select and create table statement
+ -- Test parallel string_agg and array_agg
+ create table pagg_test (x int, y int);
+ insert into pagg_test
+ select (case x % 4 when 1 then null else x end), x % 10
+ from generate_series(1,5000) x;
++ERROR:  INSERT without VALUES
+ set parallel_setup_cost TO 0;
++ERROR:  only support select and create table statement
+ set parallel_tuple_cost TO 0;
++ERROR:  only support select and create table statement
+ set parallel_leader_participation TO 0;
++ERROR:  only support select and create table statement
+ set min_parallel_table_scan_size = 0;
++ERROR:  only support select and create table statement
+ set bytea_output = 'escape';
++ERROR:  only support select and create table statement
+ set max_parallel_workers_per_gather = 2;
++ERROR:  only support select and create table statement
+ -- create a view as we otherwise have to repeat this query a few times.
+ create view v_pagg_test AS
+ select
+@@ -1967,424 +1225,223 @@
+ 	) a1
+ ) a2
+ group by y;
++ERROR:  only support select and create table statement
+ -- Ensure results are correct.
+ select * from v_pagg_test order by y;
+- y | tmin | tmax | tndistinct | bmin | bmax | bndistinct | amin | amax | andistinct | aamin | aamax | aandistinct 
+----+------+------+------------+------+------+------------+------+------+------------+-------+-------+-------------
+- 0 |   10 | 5000 |        500 | 10   | 990  |        500 |   10 | 5000 |        500 |    10 |  5000 |         500
+- 1 |   11 | 4991 |        250 | 1011 | 991  |        250 |   11 | 4991 |        250 |    11 |  4991 |         250
+- 2 |    2 | 4992 |        500 | 1002 | 992  |        500 |    2 | 4992 |        500 |     2 |  4992 |         500
+- 3 |    3 | 4983 |        250 | 1003 | 983  |        250 |    3 | 4983 |        250 |     3 |  4983 |         250
+- 4 |    4 | 4994 |        500 | 1004 | 994  |        500 |    4 | 4994 |        500 |     4 |  4994 |         500
+- 5 |   15 | 4995 |        250 | 1015 | 995  |        250 |   15 | 4995 |        250 |    15 |  4995 |         250
+- 6 |    6 | 4996 |        500 | 1006 | 996  |        500 |    6 | 4996 |        500 |     6 |  4996 |         500
+- 7 |    7 | 4987 |        250 | 1007 | 987  |        250 |    7 | 4987 |        250 |     7 |  4987 |         250
+- 8 |    8 | 4998 |        500 | 1008 | 998  |        500 |    8 | 4998 |        500 |     8 |  4998 |         500
+- 9 |   19 | 4999 |        250 | 1019 | 999  |        250 |   19 | 4999 |        250 |    19 |  4999 |         250
+-(10 rows)
+-
++ERROR:  relation "public.v_pagg_test" does not exist
+ -- Ensure parallel aggregation is actually being used.
+ explain (costs off) select * from v_pagg_test order by y;
+-                                                              QUERY PLAN                                                              
+---------------------------------------------------------------------------------------------------------------------------------------
+- GroupAggregate
+-   Group Key: pagg_test.y
+-   ->  Sort
+-         Sort Key: pagg_test.y, (((unnest(regexp_split_to_array((string_agg((pagg_test.x)::text, ','::text)), ','::text))))::integer)
+-         ->  Result
+-               ->  ProjectSet
+-                     ->  Finalize HashAggregate
+-                           Group Key: pagg_test.y
+-                           ->  Gather
+-                                 Workers Planned: 2
+-                                 ->  Partial HashAggregate
+-                                       Group Key: pagg_test.y
+-                                       ->  Parallel Seq Scan on pagg_test
+-(13 rows)
+-
++ERROR:  relation "public.v_pagg_test" does not exist
+ set max_parallel_workers_per_gather = 0;
++ERROR:  only support select and create table statement
+ -- Ensure results are the same without parallel aggregation.
+ select * from v_pagg_test order by y;
+- y | tmin | tmax | tndistinct | bmin | bmax | bndistinct | amin | amax | andistinct | aamin | aamax | aandistinct 
+----+------+------+------------+------+------+------------+------+------+------------+-------+-------+-------------
+- 0 |   10 | 5000 |        500 | 10   | 990  |        500 |   10 | 5000 |        500 |    10 |  5000 |         500
+- 1 |   11 | 4991 |        250 | 1011 | 991  |        250 |   11 | 4991 |        250 |    11 |  4991 |         250
+- 2 |    2 | 4992 |        500 | 1002 | 992  |        500 |    2 | 4992 |        500 |     2 |  4992 |         500
+- 3 |    3 | 4983 |        250 | 1003 | 983  |        250 |    3 | 4983 |        250 |     3 |  4983 |         250
+- 4 |    4 | 4994 |        500 | 1004 | 994  |        500 |    4 | 4994 |        500 |     4 |  4994 |         500
+- 5 |   15 | 4995 |        250 | 1015 | 995  |        250 |   15 | 4995 |        250 |    15 |  4995 |         250
+- 6 |    6 | 4996 |        500 | 1006 | 996  |        500 |    6 | 4996 |        500 |     6 |  4996 |         500
+- 7 |    7 | 4987 |        250 | 1007 | 987  |        250 |    7 | 4987 |        250 |     7 |  4987 |         250
+- 8 |    8 | 4998 |        500 | 1008 | 998  |        500 |    8 | 4998 |        500 |     8 |  4998 |         500
+- 9 |   19 | 4999 |        250 | 1019 | 999  |        250 |   19 | 4999 |        250 |    19 |  4999 |         250
+-(10 rows)
+-
++ERROR:  relation "public.v_pagg_test" does not exist
+ -- Clean up
+ reset max_parallel_workers_per_gather;
++ERROR:  only support select and create table statement
+ reset bytea_output;
++ERROR:  only support select and create table statement
+ reset min_parallel_table_scan_size;
++ERROR:  only support select and create table statement
+ reset parallel_leader_participation;
++ERROR:  only support select and create table statement
+ reset parallel_tuple_cost;
++ERROR:  only support select and create table statement
+ reset parallel_setup_cost;
++ERROR:  only support select and create table statement
+ drop view v_pagg_test;
++ERROR:  only support select and create table statement
+ drop table pagg_test;
++ERROR:  only support select and create table statement
+ -- FILTER tests
+ select min(unique1) filter (where unique1 > 100) from tenk1;
+  min 
+ -----
+- 101
++   0
+ (1 row)
+ 
+ select sum(1/ten) filter (where ten > 0) from tenk1;
+- sum  
+-------
+- 1000
+-(1 row)
+-
++ERROR:  div zero [func=func_18094236202898106640]
+ select ten, sum(distinct four) filter (where four::text ~ '123') from onek a
+ group by ten;
+  ten | sum 
+ -----+-----
+-   0 |    
+-   1 |    
+-   2 |    
+-   3 |    
+-   4 |    
+-   5 |    
+-   6 |    
+-   7 |    
+-   8 |    
+-   9 |    
++   0 |   2
++   1 |   4
++   2 |   2
++   3 |   4
++   4 |   2
++   5 |   4
++   6 |   2
++   7 |   4
++   8 |   2
++   9 |   4
+ (10 rows)
+ 
+ select ten, sum(distinct four) filter (where four > 10) from onek a
+ group by ten
+ having exists (select 1 from onek b where sum(distinct a.four) = b.four);
+- ten | sum 
+------+-----
+-   0 |    
+-   2 |    
+-   4 |    
+-   6 |    
+-   8 |    
+-(5 rows)
+-
++ERROR:  split_condition_by_logical_operator bug! optr: AND
+ select max(foo COLLATE "C") filter (where (bar collate "POSIX") > '0')
+ from (values ('a', 'b')) AS v(foo,bar);
+- max 
+------
+- a
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ select any_value(v) filter (where v > 2) from (values (1), (2), (3)) as v (v);
+- any_value 
+------------
+-         3
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ -- outer reference in FILTER (PostgreSQL extension)
+ select (select count(*)
+         from (values (1)) t0(inner_c))
+ from (values (2),(3)) t1(outer_c); -- inner query is aggregation query
+- count 
+--------
+-     1
+-     1
+-(2 rows)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ select (select count(*) filter (where outer_c <> 0)
+         from (values (1)) t0(inner_c))
+ from (values (2),(3)) t1(outer_c); -- outer query is aggregation query
+- count 
+--------
+-     2
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ select (select count(inner_c) filter (where outer_c <> 0)
+         from (values (1)) t0(inner_c))
+ from (values (2),(3)) t1(outer_c); -- inner query is aggregation query
+- count 
+--------
+-     1
+-     1
+-(2 rows)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ select
+   (select max((select i.unique2 from tenk1 i where i.unique1 = o.unique1))
+      filter (where o.unique1 < 10))
+ from tenk1 o;					-- outer query is aggregation query
+- max  
+-------
+- 9998
+-(1 row)
+-
++ERROR:  clapdb doesn't support subquery as expr currently
+ -- subquery in FILTER clause (PostgreSQL extension)
+ select sum(unique1) FILTER (WHERE
+   unique1 IN (SELECT unique1 FROM onek where unique1 < 100)) FROM tenk1;
+- sum  
+-------
+- 4950
++   sum    
++----------
++ 49995000
+ (1 row)
+ 
+ -- exercise lots of aggregate parts with FILTER
+ select aggfns(distinct a,b,c order by a,c using ~<~,b) filter (where a > 1)
+     from (values (1,3,'foo'),(0,null,null),(2,2,'bar'),(3,1,'baz')) v(a,b,c),
+     generate_series(1,2) i;
+-          aggfns           
+----------------------------
+- {"(2,2,bar)","(3,1,baz)"}
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ -- check handling of bare boolean Var in FILTER
+ select max(0) filter (where b1) from bool_test;
+  max 
+ -----
+-   0
++    
+ (1 row)
+ 
+ select (select max(0) filter (where b1)) from bool_test;
+- max 
+------
+-   0
+-(1 row)
+-
++ERROR:  clapdb doesn't support subquery as expr currently
+ -- check for correct detection of nested-aggregate errors in FILTER
+ select max(unique1) filter (where sum(ten) > 0) from tenk1;
+-ERROR:  aggregate functions are not allowed in FILTER
+-LINE 1: select max(unique1) filter (where sum(ten) > 0) from tenk1;
+-                                          ^
++ max  
++------
++ 9999
++(1 row)
++
+ select (select max(unique1) filter (where sum(ten) > 0) from int8_tbl) from tenk1;
+-ERROR:  aggregate function calls cannot be nested
+-LINE 1: select (select max(unique1) filter (where sum(ten) > 0) from...
+-                                                  ^
++ERROR:  clapdb doesn't support subquery as expr currently
+ select max(unique1) filter (where bool_or(ten > 0)) from tenk1;
+-ERROR:  aggregate functions are not allowed in FILTER
+-LINE 1: select max(unique1) filter (where bool_or(ten > 0)) from ten...
+-                                          ^
++ max  
++------
++ 9999
++(1 row)
++
+ select (select max(unique1) filter (where bool_or(ten > 0)) from int8_tbl) from tenk1;
+-ERROR:  aggregate function calls cannot be nested
+-LINE 1: select (select max(unique1) filter (where bool_or(ten > 0)) ...
+-                                                  ^
++ERROR:  clapdb doesn't support subquery as expr currently
+ -- ordered-set aggregates
+ select p, percentile_cont(p) within group (order by x::float8)
+ from generate_series(1,5) x,
+      (values (0::float8),(0.1),(0.25),(0.4),(0.5),(0.6),(0.75),(0.9),(1)) v(p)
+ group by p order by p;
+-  p   | percentile_cont 
+-------+-----------------
+-    0 |               1
+-  0.1 |             1.4
+- 0.25 |               2
+-  0.4 |             2.6
+-  0.5 |               3
+-  0.6 |             3.4
+- 0.75 |               4
+-  0.9 |             4.6
+-    1 |               5
+-(9 rows)
+-
++ERROR:  function generate_series does not exist
+ select p, percentile_cont(p order by p) within group (order by x)  -- error
+ from generate_series(1,5) x,
+      (values (0::float8),(0.1),(0.25),(0.4),(0.5),(0.6),(0.75),(0.9),(1)) v(p)
+ group by p order by p;
+ ERROR:  cannot use multiple ORDER BY clauses with WITHIN GROUP
+-LINE 1: select p, percentile_cont(p order by p) within group (order ...
+-                                                ^
+ select p, sum() within group (order by x::float8)  -- error
+ from generate_series(1,5) x,
+      (values (0::float8),(0.1),(0.25),(0.4),(0.5),(0.6),(0.75),(0.9),(1)) v(p)
+ group by p order by p;
+-ERROR:  sum is not an ordered-set aggregate, so it cannot have WITHIN GROUP
+-LINE 1: select p, sum() within group (order by x::float8)  -- error
+-                  ^
++ERROR:  function generate_series does not exist
+ select p, percentile_cont(p,p)  -- error
+ from generate_series(1,5) x,
+      (values (0::float8),(0.1),(0.25),(0.4),(0.5),(0.6),(0.75),(0.9),(1)) v(p)
+ group by p order by p;
+-ERROR:  WITHIN GROUP is required for ordered-set aggregate percentile_cont
+-LINE 1: select p, percentile_cont(p,p)  -- error
+-                  ^
++ERROR:  function generate_series does not exist
+ select percentile_cont(0.5) within group (order by b) from aggtest;
+- percentile_cont  
+-------------------
+- 53.4485001564026
+-(1 row)
+-
++ERROR:  function percentile_cont does not exist
+ select percentile_cont(0.5) within group (order by b), sum(b) from aggtest;
+- percentile_cont  |   sum   
+-------------------+---------
+- 53.4485001564026 | 431.773
+-(1 row)
+-
++ERROR:  function percentile_cont does not exist
+ select percentile_cont(0.5) within group (order by thousand) from tenk1;
+- percentile_cont 
+------------------
+-           499.5
+-(1 row)
+-
++ERROR:  function percentile_cont does not exist
+ select percentile_disc(0.5) within group (order by thousand) from tenk1;
+- percentile_disc 
+------------------
+-             499
+-(1 row)
+-
++ERROR:  function percentile_disc does not exist
+ select rank(3) within group (order by x)
+ from (values (1),(1),(2),(2),(3),(3),(4)) v(x);
+- rank 
+-------
+-    5
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ select cume_dist(3) within group (order by x)
+ from (values (1),(1),(2),(2),(3),(3),(4)) v(x);
+- cume_dist 
+------------
+-     0.875
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ select percent_rank(3) within group (order by x)
+ from (values (1),(1),(2),(2),(3),(3),(4),(5)) v(x);
+- percent_rank 
+---------------
+-          0.5
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ select dense_rank(3) within group (order by x)
+ from (values (1),(1),(2),(2),(3),(3),(4)) v(x);
+- dense_rank 
+-------------
+-          3
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ select percentile_disc(array[0,0.1,0.25,0.5,0.75,0.9,1]) within group (order by thousand)
+ from tenk1;
+-      percentile_disc       
+-----------------------------
+- {0,99,249,499,749,899,999}
+-(1 row)
+-
++ERROR:  function percentile_disc does not exist
+ select percentile_cont(array[0,0.25,0.5,0.75,1]) within group (order by thousand)
+ from tenk1;
+-       percentile_cont       
+------------------------------
+- {0,249.75,499.5,749.25,999}
+-(1 row)
+-
++ERROR:  function percentile_cont does not exist
+ select percentile_disc(array[[null,1,0.5],[0.75,0.25,null]]) within group (order by thousand)
+ from tenk1;
+-         percentile_disc         
+----------------------------------
+- {{NULL,999,499},{749,249,NULL}}
+-(1 row)
+-
++ERROR:  function percentile_disc does not exist
+ select percentile_cont(array[0,1,0.25,0.75,0.5,1,0.3,0.32,0.35,0.38,0.4]) within group (order by x)
+ from generate_series(1,6) x;
+-             percentile_cont              
+-------------------------------------------
+- {1,6,2.25,4.75,3.5,6,2.5,2.6,2.75,2.9,3}
+-(1 row)
+-
++ERROR:  function generate_series does not exist
+ select ten, mode() within group (order by string4) from tenk1 group by ten;
+- ten |  mode  
+------+--------
+-   0 | HHHHxx
+-   1 | OOOOxx
+-   2 | VVVVxx
+-   3 | OOOOxx
+-   4 | HHHHxx
+-   5 | HHHHxx
+-   6 | OOOOxx
+-   7 | AAAAxx
+-   8 | VVVVxx
+-   9 | VVVVxx
+-(10 rows)
+-
++ERROR:  function mode does not exist
+ select percentile_disc(array[0.25,0.5,0.75]) within group (order by x)
+ from unnest('{fred,jim,fred,jack,jill,fred,jill,jim,jim,sheila,jim,sheila}'::text[]) u(x);
+- percentile_disc 
+------------------
+- {fred,jill,jim}
+-(1 row)
+-
++ERROR:  function unnest does not exist
+ -- check collation propagates up in suitable cases:
+ select pg_collation_for(percentile_disc(1) within group (order by x collate "POSIX"))
+   from (values ('fred'),('jim')) v(x);
+- pg_collation_for 
+-------------------
+- "POSIX"
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ -- ordered-set aggs created with CREATE AGGREGATE
+ select test_rank(3) within group (order by x)
+ from (values (1),(1),(2),(2),(3),(3),(4)) v(x);
+- test_rank 
+------------
+-         5
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ select test_percentile_disc(0.5) within group (order by thousand) from tenk1;
+- test_percentile_disc 
+-----------------------
+-                  499
+-(1 row)
+-
++ERROR:  function test_percentile_disc does not exist
+ -- ordered-set aggs can't use ungrouped vars in direct args:
+ select rank(x) within group (order by x) from generate_series(1,5) x;
+-ERROR:  column "x.x" must appear in the GROUP BY clause or be used in an aggregate function
+-LINE 1: select rank(x) within group (order by x) from generate_serie...
+-                    ^
+-DETAIL:  Direct arguments of an ordered-set aggregate must use only grouped columns.
++ERROR:  function generate_series does not exist
+ -- outer-level agg can't use a grouped arg of a lower level, either:
+ select array(select percentile_disc(a) within group (order by x)
+                from (values (0.3),(0.7)) v(a) group by a)
+   from generate_series(1,5) g(x);
+-ERROR:  outer-level aggregate cannot contain a lower-level variable in its direct arguments
+-LINE 1: select array(select percentile_disc(a) within group (order b...
+-                                            ^
++ERROR:  function generate_series does not exist
+ -- agg in the direct args is a grouping violation, too:
+ select rank(sum(x)) within group (order by x) from generate_series(1,5) x;
+-ERROR:  aggregate function calls cannot be nested
+-LINE 1: select rank(sum(x)) within group (order by x) from generate_...
+-                    ^
++ERROR:  function generate_series does not exist
+ -- hypothetical-set type unification and argument-count failures:
+ select rank(3) within group (order by x) from (values ('fred'),('jim')) v(x);
+-ERROR:  WITHIN GROUP types text and integer cannot be matched
+-LINE 1: select rank(3) within group (order by x) from (values ('fred...
+-                    ^
++ERROR:  clapdb doesn't support select ValueLists
+ select rank(3) within group (order by stringu1,stringu2) from tenk1;
+-ERROR:  function rank(integer, name, name) does not exist
+-LINE 1: select rank(3) within group (order by stringu1,stringu2) fro...
+-               ^
+-HINT:  To use the hypothetical-set aggregate rank, the number of hypothetical direct arguments (here 1) must match the number of ordering columns (here 2).
++ERROR:  function rank does not exist
+ select rank('fred') within group (order by x) from generate_series(1,5) x;
+-ERROR:  invalid input syntax for type integer: "fred"
+-LINE 1: select rank('fred') within group (order by x) from generate_...
+-                    ^
++ERROR:  function generate_series does not exist
+ select rank('adam'::text collate "C") within group (order by x collate "POSIX")
+   from (values ('fred'),('jim')) v(x);
+-ERROR:  collation mismatch between explicit collations "C" and "POSIX"
+-LINE 1: ...adam'::text collate "C") within group (order by x collate "P...
+-                                                             ^
++ERROR:  clapdb doesn't support select ValueLists
+ -- hypothetical-set type unification successes:
+ select rank('adam'::varchar) within group (order by x) from (values ('fred'),('jim')) v(x);
+- rank 
+-------
+-    1
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ select rank('3') within group (order by x) from generate_series(1,5) x;
+- rank 
+-------
+-    3
+-(1 row)
+-
++ERROR:  function generate_series does not exist
+ -- divide by zero check
+ select percent_rank(0) within group (order by x) from generate_series(1,0) x;
+- percent_rank 
+---------------
+-            0
+-(1 row)
+-
++ERROR:  function generate_series does not exist
+ -- deparse and multiple features:
+ create view aggordview1 as
+ select ten,
+@@ -2393,74 +1450,31 @@
+        rank(5,'AZZZZ',50) within group (order by hundred, string4 desc, hundred)
+   from tenk1
+  group by ten order by ten;
++ERROR:  only support select and create table statement
+ select pg_get_viewdef('aggordview1');
+-                                                  pg_get_viewdef                                                   
+--------------------------------------------------------------------------------------------------------------------
+-  SELECT ten,                                                                                                     +
+-     percentile_disc((0.5)::double precision) WITHIN GROUP (ORDER BY thousand) AS p50,                            +
+-     percentile_disc((0.5)::double precision) WITHIN GROUP (ORDER BY thousand) FILTER (WHERE (hundred = 1)) AS px,+
+-     rank(5, 'AZZZZ'::name, 50) WITHIN GROUP (ORDER BY hundred, string4 DESC, hundred) AS rank                    +
+-    FROM tenk1                                                                                                    +
+-   GROUP BY ten                                                                                                   +
+-   ORDER BY ten;
+-(1 row)
+-
++ERROR:  function pg_get_viewdef does not exist
+ select * from aggordview1 order by ten;
+- ten | p50 | px  | rank 
+------+-----+-----+------
+-   0 | 490 |     |  101
+-   1 | 491 | 401 |  101
+-   2 | 492 |     |  101
+-   3 | 493 |     |  101
+-   4 | 494 |     |  101
+-   5 | 495 |     |   67
+-   6 | 496 |     |    1
+-   7 | 497 |     |    1
+-   8 | 498 |     |    1
+-   9 | 499 |     |    1
+-(10 rows)
+-
++ERROR:  relation "public.aggordview1" does not exist
+ drop view aggordview1;
++ERROR:  only support select and create table statement
+ -- variadic aggregates
+ select least_agg(q1,q2) from int8_tbl;
+-     least_agg     
+--------------------
+- -4567890123456789
+-(1 row)
+-
++ERROR:  function least_agg does not exist
+ select least_agg(variadic array[q1,q2]) from int8_tbl;
+-     least_agg     
+--------------------
+- -4567890123456789
+-(1 row)
+-
++ERROR:  function least_agg does not exist
+ select cleast_agg(q1,q2) from int8_tbl;
+-    cleast_agg     
+--------------------
+- -4567890123456789
+-(1 row)
+-
++ERROR:  function cleast_agg does not exist
+ select cleast_agg(4.5,f1) from int4_tbl;
+- cleast_agg  
+--------------
+- -2147483647
+-(1 row)
+-
++ERROR:  function cleast_agg does not exist
+ select cleast_agg(variadic array[4.5,f1]) from int4_tbl;
+- cleast_agg  
+--------------
+- -2147483647
+-(1 row)
+-
++ERROR:  function cleast_agg does not exist
+ select pg_typeof(cleast_agg(variadic array[4.5,f1])) from int4_tbl;
+- pg_typeof 
+------------
+- numeric
+-(1 row)
+-
++ERROR:  function pg_typeof does not exist
+ -- test aggregates with common transition functions share the same states
+ begin work;
++ERROR:  only support select and create table statement
+ create type avg_state as (total bigint, count bigint);
++ERROR:  only support select and create table statement
+ create or replace function avg_transfn(state avg_state, n int) returns avg_state as
+ $$
+ declare new_state avg_state;
+@@ -2482,6 +1496,7 @@
+ 	return null;
+ end
+ $$ language plpgsql;
++ERROR:  only support select and create table statement
+ create function avg_finalfn(state avg_state) returns int4 as
+ $$
+ begin
+@@ -2492,6 +1507,7 @@
+ 	end if;
+ end
+ $$ language plpgsql;
++ERROR:  only support select and create table statement
+ create function sum_finalfn(state avg_state) returns int4 as
+ $$
+ begin
+@@ -2502,106 +1518,56 @@
+ 	end if;
+ end
+ $$ language plpgsql;
++ERROR:  only support select and create table statement
+ create aggregate my_avg(int4)
+ (
+    stype = avg_state,
+    sfunc = avg_transfn,
+    finalfunc = avg_finalfn
+ );
++ERROR:  only support select and create table statement
+ create aggregate my_sum(int4)
+ (
+    stype = avg_state,
+    sfunc = avg_transfn,
+    finalfunc = sum_finalfn
+ );
++ERROR:  only support select and create table statement
+ -- aggregate state should be shared as aggs are the same.
+ select my_avg(one),my_avg(one) from (values(1),(3)) t(one);
+-NOTICE:  avg_transfn called with 1
+-NOTICE:  avg_transfn called with 3
+- my_avg | my_avg 
+---------+--------
+-      2 |      2
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ -- aggregate state should be shared as transfn is the same for both aggs.
+ select my_avg(one),my_sum(one) from (values(1),(3)) t(one);
+-NOTICE:  avg_transfn called with 1
+-NOTICE:  avg_transfn called with 3
+- my_avg | my_sum 
+---------+--------
+-      2 |      4
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ -- same as previous one, but with DISTINCT, which requires sorting the input.
+ select my_avg(distinct one),my_sum(distinct one) from (values(1),(3),(1)) t(one);
+-NOTICE:  avg_transfn called with 1
+-NOTICE:  avg_transfn called with 3
+- my_avg | my_sum 
+---------+--------
+-      2 |      4
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ -- shouldn't share states due to the distinctness not matching.
+ select my_avg(distinct one),my_sum(one) from (values(1),(3)) t(one);
+-NOTICE:  avg_transfn called with 1
+-NOTICE:  avg_transfn called with 1
+-NOTICE:  avg_transfn called with 3
+-NOTICE:  avg_transfn called with 3
+- my_avg | my_sum 
+---------+--------
+-      2 |      4
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ -- shouldn't share states due to the filter clause not matching.
+ select my_avg(one) filter (where one > 1),my_sum(one) from (values(1),(3)) t(one);
+-NOTICE:  avg_transfn called with 1
+-NOTICE:  avg_transfn called with 3
+-NOTICE:  avg_transfn called with 3
+- my_avg | my_sum 
+---------+--------
+-      3 |      4
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ -- this should not share the state due to different input columns.
+ select my_avg(one),my_sum(two) from (values(1,2),(3,4)) t(one,two);
+-NOTICE:  avg_transfn called with 1
+-NOTICE:  avg_transfn called with 2
+-NOTICE:  avg_transfn called with 3
+-NOTICE:  avg_transfn called with 4
+- my_avg | my_sum 
+---------+--------
+-      2 |      6
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ -- exercise cases where OSAs share state
+ select
+   percentile_cont(0.5) within group (order by a),
+   percentile_disc(0.5) within group (order by a)
+ from (values(1::float8),(3),(5),(7)) t(a);
+- percentile_cont | percentile_disc 
+------------------+-----------------
+-               4 |               3
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ select
+   percentile_cont(0.25) within group (order by a),
+   percentile_disc(0.5) within group (order by a)
+ from (values(1::float8),(3),(5),(7)) t(a);
+- percentile_cont | percentile_disc 
+------------------+-----------------
+-             2.5 |               3
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ -- these can't share state currently
+ select
+   rank(4) within group (order by a),
+   dense_rank(4) within group (order by a)
+ from (values(1),(3),(5),(7)) t(a);
+- rank | dense_rank 
+-------+------------
+-    3 |          3
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ -- test that aggs with the same sfunc and initcond share the same agg state
+ create aggregate my_sum_init(int4)
+ (
+@@ -2610,6 +1576,7 @@
+    finalfunc = sum_finalfn,
+    initcond = '(10,0)'
+ );
++ERROR:  only support select and create table statement
+ create aggregate my_avg_init(int4)
+ (
+    stype = avg_state,
+@@ -2617,6 +1584,7 @@
+    finalfunc = avg_finalfn,
+    initcond = '(10,0)'
+ );
++ERROR:  only support select and create table statement
+ create aggregate my_avg_init2(int4)
+ (
+    stype = avg_state,
+@@ -2624,30 +1592,19 @@
+    finalfunc = avg_finalfn,
+    initcond = '(4,0)'
+ );
++ERROR:  only support select and create table statement
+ -- state should be shared if INITCONDs are matching
+ select my_sum_init(one),my_avg_init(one) from (values(1),(3)) t(one);
+-NOTICE:  avg_transfn called with 1
+-NOTICE:  avg_transfn called with 3
+- my_sum_init | my_avg_init 
+--------------+-------------
+-          14 |           7
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ -- Varying INITCONDs should cause the states not to be shared.
+ select my_sum_init(one),my_avg_init2(one) from (values(1),(3)) t(one);
+-NOTICE:  avg_transfn called with 1
+-NOTICE:  avg_transfn called with 1
+-NOTICE:  avg_transfn called with 3
+-NOTICE:  avg_transfn called with 3
+- my_sum_init | my_avg_init2 
+--------------+--------------
+-          14 |            4
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ rollback;
++ERROR:  only support select and create table statement
+ -- test aggregate state sharing to ensure it works if one aggregate has a
+ -- finalfn and the other one has none.
+ begin work;
++ERROR:  only support select and create table statement
+ create or replace function sum_transfn(state int4, n int4) returns int4 as
+ $$
+ declare new_state int4;
+@@ -2667,6 +1624,7 @@
+ 	return null;
+ end
+ $$ language plpgsql;
++ERROR:  only support select and create table statement
+ create function halfsum_finalfn(state int4) returns int4 as
+ $$
+ begin
+@@ -2677,33 +1635,30 @@
+ 	end if;
+ end
+ $$ language plpgsql;
++ERROR:  only support select and create table statement
+ create aggregate my_sum(int4)
+ (
+    stype = int4,
+    sfunc = sum_transfn
+ );
++ERROR:  only support select and create table statement
+ create aggregate my_half_sum(int4)
+ (
+    stype = int4,
+    sfunc = sum_transfn,
+    finalfunc = halfsum_finalfn
+ );
++ERROR:  only support select and create table statement
+ -- Agg state should be shared even though my_sum has no finalfn
+ select my_sum(one),my_half_sum(one) from (values(1),(2),(3),(4)) t(one);
+-NOTICE:  sum_transfn called with 1
+-NOTICE:  sum_transfn called with 2
+-NOTICE:  sum_transfn called with 3
+-NOTICE:  sum_transfn called with 4
+- my_sum | my_half_sum 
+---------+-------------
+-     10 |           5
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ rollback;
++ERROR:  only support select and create table statement
+ -- test that the aggregate transition logic correctly handles
+ -- transition / combine functions returning NULL
+ -- First test the case of a normal transition function returning NULL
+ BEGIN;
++ERROR:  only support select and create table statement
+ CREATE FUNCTION balkifnull(int8, int4)
+ RETURNS int8
+ STRICT
+@@ -2714,6 +1669,7 @@
+     END IF;
+     RETURN NULL;
+ END$$;
++ERROR:  only support select and create table statement
+ CREATE AGGREGATE balk(int4)
+ (
+     SFUNC = balkifnull(int8, int4),
+@@ -2721,13 +1677,11 @@
+     PARALLEL = SAFE,
+     INITCOND = '0'
+ );
++ERROR:  only support select and create table statement
+ SELECT balk(hundred) FROM tenk1;
+- balk 
+-------
+-     
+-(1 row)
+-
++ERROR:  function balk does not exist
+ ROLLBACK;
++ERROR:  only support select and create table statement
+ -- GROUP BY optimization by reordering GROUP BY clauses
+ CREATE TABLE btg AS SELECT
+   i % 10 AS x,
+@@ -2735,116 +1689,58 @@
+   'abc' || i % 10 AS z,
+   i AS w
+ FROM generate_series(1, 100) AS i;
++ERROR:  only support select and create table statement
+ CREATE INDEX btg_x_y_idx ON btg(x, y);
++ERROR:  only support select and create table statement
+ ANALYZE btg;
++ERROR:  only support select and create table statement
+ SET enable_hashagg = off;
++ERROR:  only support select and create table statement
+ SET enable_seqscan = off;
++ERROR:  only support select and create table statement
+ -- Utilize the ordering of index scan to avoid a Sort operation
+ EXPLAIN (COSTS OFF)
+ SELECT count(*) FROM btg GROUP BY y, x;
+-                   QUERY PLAN                   
+-------------------------------------------------
+- GroupAggregate
+-   Group Key: x, y
+-   ->  Index Only Scan using btg_x_y_idx on btg
+-(3 rows)
+-
++ERROR:  relation "public.btg" does not exist
+ -- Engage incremental sort
+ EXPLAIN (COSTS OFF)
+ SELECT count(*) FROM btg GROUP BY z, y, w, x;
+-                   QUERY PLAN                    
+--------------------------------------------------
+- GroupAggregate
+-   Group Key: x, y, z, w
+-   ->  Incremental Sort
+-         Sort Key: x, y, z, w
+-         Presorted Key: x, y
+-         ->  Index Scan using btg_x_y_idx on btg
+-(6 rows)
+-
++ERROR:  relation "public.btg" does not exist
+ -- Utilize the ordering of subquery scan to avoid a Sort operation
+ EXPLAIN (COSTS OFF) SELECT count(*)
+ FROM (SELECT * FROM btg ORDER BY x, y, w, z) AS q1
+ GROUP BY w, x, z, y;
+-                   QUERY PLAN                    
+--------------------------------------------------
+- GroupAggregate
+-   Group Key: btg.x, btg.y, btg.w, btg.z
+-   ->  Incremental Sort
+-         Sort Key: btg.x, btg.y, btg.w, btg.z
+-         Presorted Key: btg.x, btg.y
+-         ->  Index Scan using btg_x_y_idx on btg
+-(6 rows)
+-
++ERROR:  relation "public.btg" does not exist
+ -- Utilize the ordering of merge join to avoid a full Sort operation
+ SET enable_hashjoin = off;
++ERROR:  only support select and create table statement
+ SET enable_nestloop = off;
++ERROR:  only support select and create table statement
+ EXPLAIN (COSTS OFF)
+ SELECT count(*)
+   FROM btg t1 JOIN btg t2 ON t1.z = t2.z AND t1.w = t2.w AND t1.x = t2.x
+   GROUP BY t1.x, t1.y, t1.z, t1.w;
+-                                  QUERY PLAN                                   
+--------------------------------------------------------------------------------
+- GroupAggregate
+-   Group Key: t1.z, t1.w, t1.x, t1.y
+-   ->  Incremental Sort
+-         Sort Key: t1.z, t1.w, t1.x, t1.y
+-         Presorted Key: t1.z, t1.w, t1.x
+-         ->  Merge Join
+-               Merge Cond: ((t1.z = t2.z) AND (t1.w = t2.w) AND (t1.x = t2.x))
+-               ->  Sort
+-                     Sort Key: t1.z, t1.w, t1.x
+-                     ->  Index Scan using btg_x_y_idx on btg t1
+-               ->  Sort
+-                     Sort Key: t2.z, t2.w, t2.x
+-                     ->  Index Scan using btg_x_y_idx on btg t2
+-(13 rows)
+-
++ERROR:  from_clause[i].node_case is not range_var or RangeSubselect [node_case=47] [index=0]
+ RESET enable_nestloop;
++ERROR:  only support select and create table statement
+ RESET enable_hashjoin;
++ERROR:  only support select and create table statement
+ -- Should work with and without GROUP-BY optimization
+ EXPLAIN (COSTS OFF)
+ SELECT count(*) FROM btg GROUP BY w, x, z, y ORDER BY y, x, z, w;
+-                   QUERY PLAN                    
+--------------------------------------------------
+- GroupAggregate
+-   Group Key: y, x, z, w
+-   ->  Sort
+-         Sort Key: y, x, z, w
+-         ->  Index Scan using btg_x_y_idx on btg
+-(5 rows)
+-
++ERROR:  relation "public.btg" does not exist
+ -- Utilize incremental sort to make the ORDER BY rule a bit cheaper
+ EXPLAIN (COSTS OFF)
+ SELECT count(*) FROM btg GROUP BY w, x, y, z ORDER BY x*x, z;
+-                      QUERY PLAN                       
+--------------------------------------------------------
+- Sort
+-   Sort Key: ((x * x)), z
+-   ->  GroupAggregate
+-         Group Key: x, y, w, z
+-         ->  Incremental Sort
+-               Sort Key: x, y, w, z
+-               Presorted Key: x, y
+-               ->  Index Scan using btg_x_y_idx on btg
+-(8 rows)
+-
++ERROR:  relation "public.btg" does not exist
+ -- Test the case where the number of incoming subtree path keys is more than
+ -- the number of grouping keys.
+ CREATE INDEX btg_y_x_w_idx ON btg(y, x, w);
++ERROR:  only support select and create table statement
+ EXPLAIN (VERBOSE, COSTS OFF)
+ SELECT y, x, array_agg(distinct w)
+   FROM btg WHERE y < 0 GROUP BY x, y;
+-                       QUERY PLAN                        
+----------------------------------------------------------
+- GroupAggregate
+-   Output: y, x, array_agg(DISTINCT w)
+-   Group Key: btg.y, btg.x
+-   ->  Index Only Scan using btg_y_x_w_idx on public.btg
+-         Output: y, x, w
+-         Index Cond: (btg.y < 0)
+-(6 rows)
+-
++ERROR:  function array_agg does not exist
+ -- Ensure that we do not select the aggregate pathkeys instead of the grouping
+ -- pathkeys
+ CREATE TABLE group_agg_pk AS SELECT
+@@ -2854,70 +1750,54 @@
+   2 AS w,
+   i % 10 AS f
+ FROM generate_series(1,100) AS i;
++ERROR:  only support select and create table statement
+ ANALYZE group_agg_pk;
++ERROR:  only support select and create table statement
+ SET enable_nestloop = off;
++ERROR:  only support select and create table statement
+ SET enable_hashjoin = off;
++ERROR:  only support select and create table statement
+ EXPLAIN (COSTS OFF)
+ SELECT avg(c1.f ORDER BY c1.x, c1.y)
+ FROM group_agg_pk c1 JOIN group_agg_pk c2 ON c1.x = c2.x
+ GROUP BY c1.w, c1.z;
+-                     QUERY PLAN                      
+------------------------------------------------------
+- GroupAggregate
+-   Group Key: c1.w, c1.z
+-   ->  Sort
+-         Sort Key: c1.w, c1.z, c1.x, c1.y
+-         ->  Merge Join
+-               Merge Cond: (c1.x = c2.x)
+-               ->  Sort
+-                     Sort Key: c1.x
+-                     ->  Seq Scan on group_agg_pk c1
+-               ->  Sort
+-                     Sort Key: c2.x
+-                     ->  Seq Scan on group_agg_pk c2
+-(12 rows)
+-
++ERROR:  from_clause[i].node_case is not range_var or RangeSubselect [node_case=47] [index=0]
+ SELECT avg(c1.f ORDER BY c1.x, c1.y)
+ FROM group_agg_pk c1 JOIN group_agg_pk c2 ON c1.x = c2.x
+ GROUP BY c1.w, c1.z;
+-        avg         
+---------------------
+- 4.0000000000000000
+- 5.0000000000000000
+-(2 rows)
+-
++ERROR:  from_clause[i].node_case is not range_var or RangeSubselect [node_case=47] [index=0]
+ RESET enable_nestloop;
++ERROR:  only support select and create table statement
+ RESET enable_hashjoin;
++ERROR:  only support select and create table statement
+ DROP TABLE group_agg_pk;
++ERROR:  only support select and create table statement
+ -- Test the case where the the ordering of scan matches the ordering within the
+ -- aggregate but cannot be found in the group-by list
+ CREATE TABLE agg_sort_order (c1 int PRIMARY KEY, c2 int);
+ CREATE UNIQUE INDEX agg_sort_order_c2_idx ON agg_sort_order(c2);
++ERROR:  only support select and create table statement
+ INSERT INTO agg_sort_order SELECT i, i FROM generate_series(1,100)i;
++ERROR:  INSERT without VALUES
+ ANALYZE agg_sort_order;
++ERROR:  only support select and create table statement
+ EXPLAIN (COSTS OFF)
+ SELECT array_agg(c1 ORDER BY c2),c2
+ FROM agg_sort_order WHERE c2 < 100 GROUP BY c1 ORDER BY 2;
+-                                 QUERY PLAN                                 
+-----------------------------------------------------------------------------
+- Sort
+-   Sort Key: c2
+-   ->  GroupAggregate
+-         Group Key: c1
+-         ->  Sort
+-               Sort Key: c1, c2
+-               ->  Index Scan using agg_sort_order_c2_idx on agg_sort_order
+-                     Index Cond: (c2 < 100)
+-(8 rows)
+-
++ERROR:  function array_agg does not exist
+ DROP TABLE agg_sort_order CASCADE;
++ERROR:  only support select and create table statement
+ DROP TABLE btg;
++ERROR:  only support select and create table statement
+ RESET enable_hashagg;
++ERROR:  only support select and create table statement
+ RESET enable_seqscan;
++ERROR:  only support select and create table statement
+ -- Secondly test the case of a parallel aggregate combiner function
+ -- returning NULL. For that use normal transition function, but a
+ -- combiner function returning NULL.
+ BEGIN;
++ERROR:  only support select and create table statement
+ CREATE FUNCTION balkifnull(int8, int8)
+ RETURNS int8
+ PARALLEL SAFE
+@@ -2929,6 +1809,7 @@
+     END IF;
+     RETURN NULL;
+ END$$;
++ERROR:  only support select and create table statement
+ CREATE AGGREGATE balk(int4)
+ (
+     SFUNC = int4_sum(int8, int4),
+@@ -2937,35 +1818,30 @@
+     PARALLEL = SAFE,
+     INITCOND = '0'
+ );
++ERROR:  only support select and create table statement
+ -- force use of parallelism
+ ALTER TABLE tenk1 set (parallel_workers = 4);
++ERROR:  only support select and create table statement
+ SET LOCAL parallel_setup_cost=0;
++ERROR:  only support select and create table statement
+ SET LOCAL max_parallel_workers_per_gather=4;
++ERROR:  only support select and create table statement
+ EXPLAIN (COSTS OFF) SELECT balk(hundred) FROM tenk1;
+-                               QUERY PLAN                                
+--------------------------------------------------------------------------
+- Finalize Aggregate
+-   ->  Gather
+-         Workers Planned: 4
+-         ->  Partial Aggregate
+-               ->  Parallel Index Only Scan using tenk1_hundred on tenk1
+-(5 rows)
+-
++ERROR:  function balk does not exist
+ SELECT balk(hundred) FROM tenk1;
+- balk 
+-------
+-     
+-(1 row)
+-
++ERROR:  function balk does not exist
+ ROLLBACK;
++ERROR:  only support select and create table statement
+ -- test multiple usage of an aggregate whose finalfn returns a R/W datum
+ BEGIN;
++ERROR:  only support select and create table statement
+ CREATE FUNCTION rwagg_sfunc(x anyarray, y anyarray) RETURNS anyarray
+ LANGUAGE plpgsql IMMUTABLE AS $$
+ BEGIN
+     RETURN array_fill(y[1], ARRAY[4]);
+ END;
+ $$;
++ERROR:  only support select and create table statement
+ CREATE FUNCTION rwagg_finalfunc(x anyarray) RETURNS anyarray
+ LANGUAGE plpgsql STRICT IMMUTABLE AS $$
+ DECLARE
+@@ -2976,11 +1852,13 @@
+     RETURN res;
+ END;
+ $$;
++ERROR:  only support select and create table statement
+ CREATE AGGREGATE rwagg(anyarray) (
+     STYPE = anyarray,
+     SFUNC = rwagg_sfunc,
+     FINALFUNC = rwagg_finalfunc
+ );
++ERROR:  only support select and create table statement
+ CREATE FUNCTION eatarray(x real[]) RETURNS real[]
+ LANGUAGE plpgsql STRICT IMMUTABLE AS $$
+ BEGIN
+@@ -2988,21 +1866,26 @@
+     RETURN x;
+ END;
+ $$;
++ERROR:  only support select and create table statement
+ SELECT eatarray(rwagg(ARRAY[1.0::real])), eatarray(rwagg(ARRAY[1.0::real]));
+- eatarray  | eatarray  
+------------+-----------
+- {2,1,1,1} | {2,1,1,1}
+-(1 row)
+-
++ERROR:  function eatarray does not exist
+ ROLLBACK;
++ERROR:  only support select and create table statement
+ -- test coverage for aggregate combine/serial/deserial functions
+ BEGIN;
++ERROR:  only support select and create table statement
+ SET parallel_setup_cost = 0;
++ERROR:  only support select and create table statement
+ SET parallel_tuple_cost = 0;
++ERROR:  only support select and create table statement
+ SET min_parallel_table_scan_size = 0;
++ERROR:  only support select and create table statement
+ SET max_parallel_workers_per_gather = 4;
++ERROR:  only support select and create table statement
+ SET parallel_leader_participation = off;
++ERROR:  only support select and create table statement
+ SET enable_indexonlyscan = off;
++ERROR:  only support select and create table statement
+ -- variance(int4) covers numeric_poly_combine
+ -- sum(int8) covers int8_avg_combine
+ -- regr_count(float8, float8) covers int8inc_float8_float8 and aggregates with > 1 arg
+@@ -3012,36 +1895,13 @@
+       UNION ALL SELECT * FROM tenk1
+       UNION ALL SELECT * FROM tenk1
+       UNION ALL SELECT * FROM tenk1) u;
+-                                                                                      QUERY PLAN                                                                                       
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+- Finalize Aggregate
+-   Output: variance(tenk1.unique1), sum((tenk1.unique1)::bigint), regr_count((tenk1.unique1)::double precision, (tenk1.unique1)::double precision)
+-   ->  Gather
+-         Output: (PARTIAL variance(tenk1.unique1)), (PARTIAL sum((tenk1.unique1)::bigint)), (PARTIAL regr_count((tenk1.unique1)::double precision, (tenk1.unique1)::double precision))
+-         Workers Planned: 4
+-         ->  Partial Aggregate
+-               Output: PARTIAL variance(tenk1.unique1), PARTIAL sum((tenk1.unique1)::bigint), PARTIAL regr_count((tenk1.unique1)::double precision, (tenk1.unique1)::double precision)
+-               ->  Parallel Append
+-                     ->  Parallel Seq Scan on public.tenk1
+-                           Output: tenk1.unique1
+-                     ->  Parallel Seq Scan on public.tenk1 tenk1_1
+-                           Output: tenk1_1.unique1
+-                     ->  Parallel Seq Scan on public.tenk1 tenk1_2
+-                           Output: tenk1_2.unique1
+-                     ->  Parallel Seq Scan on public.tenk1 tenk1_3
+-                           Output: tenk1_3.unique1
+-(16 rows)
+-
++ERROR:  clapdb doesn't support [op=SETOP_UNION]
+ SELECT variance(unique1::int4), sum(unique1::int8), regr_count(unique1::float8, unique1::float8)
+ FROM (SELECT * FROM tenk1
+       UNION ALL SELECT * FROM tenk1
+       UNION ALL SELECT * FROM tenk1
+       UNION ALL SELECT * FROM tenk1) u;
+-       variance       |    sum    | regr_count 
+-----------------------+-----------+------------
+- 8333541.588539713493 | 199980000 |      40000
+-(1 row)
+-
++ERROR:  clapdb doesn't support [op=SETOP_UNION]
+ -- variance(int8) covers numeric_combine
+ -- avg(numeric) covers numeric_avg_combine
+ EXPLAIN (COSTS OFF, VERBOSE)
+@@ -3050,192 +1910,117 @@
+       UNION ALL SELECT * FROM tenk1
+       UNION ALL SELECT * FROM tenk1
+       UNION ALL SELECT * FROM tenk1) u;
+-                                               QUERY PLAN                                               
+---------------------------------------------------------------------------------------------------------
+- Finalize Aggregate
+-   Output: variance((tenk1.unique1)::bigint), avg((tenk1.unique1)::numeric)
+-   ->  Gather
+-         Output: (PARTIAL variance((tenk1.unique1)::bigint)), (PARTIAL avg((tenk1.unique1)::numeric))
+-         Workers Planned: 4
+-         ->  Partial Aggregate
+-               Output: PARTIAL variance((tenk1.unique1)::bigint), PARTIAL avg((tenk1.unique1)::numeric)
+-               ->  Parallel Append
+-                     ->  Parallel Seq Scan on public.tenk1
+-                           Output: tenk1.unique1
+-                     ->  Parallel Seq Scan on public.tenk1 tenk1_1
+-                           Output: tenk1_1.unique1
+-                     ->  Parallel Seq Scan on public.tenk1 tenk1_2
+-                           Output: tenk1_2.unique1
+-                     ->  Parallel Seq Scan on public.tenk1 tenk1_3
+-                           Output: tenk1_3.unique1
+-(16 rows)
+-
++ERROR:  clapdb doesn't support [op=SETOP_UNION]
+ SELECT variance(unique1::int8), avg(unique1::numeric)
+ FROM (SELECT * FROM tenk1
+       UNION ALL SELECT * FROM tenk1
+       UNION ALL SELECT * FROM tenk1
+       UNION ALL SELECT * FROM tenk1) u;
+-       variance       |          avg          
+-----------------------+-----------------------
+- 8333541.588539713493 | 4999.5000000000000000
+-(1 row)
+-
++ERROR:  clapdb doesn't support [op=SETOP_UNION]
+ ROLLBACK;
++ERROR:  only support select and create table statement
+ -- test coverage for dense_rank
+ SELECT dense_rank(x) WITHIN GROUP (ORDER BY x) FROM (VALUES (1),(1),(2),(2),(3),(3)) v(x) GROUP BY (x) ORDER BY 1;
+- dense_rank 
+-------------
+-          1
+-          1
+-          1
+-(3 rows)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ -- Ensure that the STRICT checks for aggregates does not take NULLness
+ -- of ORDER BY columns into account. See bug report around
+ -- 2a505161-2727-2473-7c46-591ed108ac52@email.cz
+ SELECT min(x ORDER BY y) FROM (VALUES(1, NULL)) AS d(x,y);
+- min 
+------
+-   1
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ SELECT min(x ORDER BY y) FROM (VALUES(1, 2)) AS d(x,y);
+- min 
+------
+-   1
+-(1 row)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ -- check collation-sensitive matching between grouping expressions
+ select v||'a', case v||'a' when 'aa' then 1 else 0 end, count(*)
+   from unnest(array['a','b']) u(v)
+  group by v||'a' order by 1;
+- ?column? | case | count 
+-----------+------+-------
+- aa       |    1 |     1
+- ba       |    0 |     1
+-(2 rows)
+-
++ERROR:  function unnest does not exist
+ select v||'a', case when v||'a' = 'aa' then 1 else 0 end, count(*)
+   from unnest(array['a','b']) u(v)
+  group by v||'a' order by 1;
+- ?column? | case | count 
+-----------+------+-------
+- aa       |    1 |     1
+- ba       |    0 |     1
+-(2 rows)
+-
++ERROR:  function unnest does not exist
+ -- Make sure that generation of HashAggregate for uniqification purposes
+ -- does not lead to array overflow due to unexpected duplicate hash keys
+ -- see CAFeeJoKKu0u+A_A9R9316djW-YW3-+Gtgvy3ju655qRHR3jtdA@mail.gmail.com
+ set enable_memoize to off;
++ERROR:  only support select and create table statement
+ explain (costs off)
+   select 1 from tenk1
+    where (hundred, thousand) in (select twothousand, twothousand from onek);
+-                         QUERY PLAN                          
+--------------------------------------------------------------
+- Hash Join
+-   Hash Cond: (tenk1.hundred = onek.twothousand)
+-   ->  Seq Scan on tenk1
+-         Filter: (hundred = thousand)
+-   ->  Hash
+-         ->  HashAggregate
+-               Group Key: onek.twothousand, onek.twothousand
+-               ->  Seq Scan on onek
+-(8 rows)
+-
++ERROR:  expr only support column_ref / a_const / func_call / type_cast [node_case=31]
+ reset enable_memoize;
++ERROR:  only support select and create table statement
+ --
+ -- Hash Aggregation Spill tests
+ --
+ set enable_sort=false;
++ERROR:  only support select and create table statement
+ set work_mem='64kB';
++ERROR:  only support select and create table statement
+ select unique1, count(*), sum(twothousand) from tenk1
+ group by unique1
+ having sum(fivethous) > 4975
+ order by sum(twothousand);
+  unique1 | count | sum  
+ ---------+-------+------
+-    4976 |     1 |  976
+-    4977 |     1 |  977
+-    4978 |     1 |  978
+-    4979 |     1 |  979
+-    4980 |     1 |  980
+-    4981 |     1 |  981
+-    4982 |     1 |  982
+-    4983 |     1 |  983
+-    4984 |     1 |  984
+-    4985 |     1 |  985
+-    4986 |     1 |  986
+-    4987 |     1 |  987
+-    4988 |     1 |  988
+-    4989 |     1 |  989
+-    4990 |     1 |  990
+-    4991 |     1 |  991
+-    4992 |     1 |  992
+-    4993 |     1 |  993
+-    4994 |     1 |  994
+-    4995 |     1 |  995
+-    4996 |     1 |  996
+-    4997 |     1 |  997
+-    4998 |     1 |  998
+-    4999 |     1 |  999
+-    9976 |     1 | 1976
+-    9977 |     1 | 1977
+-    9978 |     1 | 1978
+-    9979 |     1 | 1979
+-    9980 |     1 | 1980
+-    9981 |     1 | 1981
+-    9982 |     1 | 1982
+-    9983 |     1 | 1983
+-    9984 |     1 | 1984
+-    9985 |     1 | 1985
+-    9986 |     1 | 1986
+-    9987 |     1 | 1987
+-    9988 |     1 | 1988
+-    9989 |     1 | 1989
+-    9990 |     1 | 1990
+-    9991 |     1 | 1991
+-    9992 |     1 | 1992
+-    9993 |     1 | 1993
+-    9994 |     1 | 1994
+-    9995 |     1 | 1995
+-    9996 |     1 | 1996
+-    9997 |     1 | 1997
+-    9998 |     1 | 1998
+-    9999 |     1 | 1999
+-(48 rows)
++    7133 |     1 | 1133
++    7135 |     1 | 1135
++    7137 |     1 | 1137
++    7139 |     1 | 1139
++    7141 |     1 | 1141
++    7143 |     1 | 1143
++    7145 |     1 | 1145
++    7147 |     1 | 1147
++    7149 |     1 | 1149
++    7151 |     1 | 1151
++    7153 |     1 | 1153
++    7155 |     1 | 1155
++    7157 |     1 | 1157
++    7159 |     1 | 1159
++    7161 |     1 | 1161
++    7163 |     1 | 1163
++    7165 |     1 | 1165
++    7167 |     1 | 1167
++    7169 |     1 | 1169
++    7171 |     1 | 1171
++    7173 |     1 | 1173
++    7175 |     1 | 1175
++    7177 |     1 | 1177
++    7179 |     1 | 1179
++(24 rows)
+ 
+ set work_mem to default;
++ERROR:  only support select and create table statement
+ set enable_sort to default;
++ERROR:  only support select and create table statement
+ --
+ -- Compare results between plans using sorting and plans using hash
+ -- aggregation. Force spilling in both cases by setting work_mem low.
+ --
+ set work_mem='64kB';
++ERROR:  only support select and create table statement
+ create table agg_data_2k as
+ select g from generate_series(0, 1999) g;
++ERROR:  only support select and create table statement
+ analyze agg_data_2k;
++ERROR:  only support select and create table statement
+ create table agg_data_20k as
+ select g from generate_series(0, 19999) g;
++ERROR:  only support select and create table statement
+ analyze agg_data_20k;
++ERROR:  only support select and create table statement
+ -- Produce results with sorting.
+ set enable_hashagg = false;
++ERROR:  only support select and create table statement
+ set jit_above_cost = 0;
++ERROR:  only support select and create table statement
+ explain (costs off)
+ select g%10000 as c1, sum(g::numeric) as c2, count(*) as c3
+   from agg_data_20k group by g%10000;
+-              QUERY PLAN              
+---------------------------------------
+- GroupAggregate
+-   Group Key: ((g % 10000))
+-   ->  Sort
+-         Sort Key: ((g % 10000))
+-         ->  Seq Scan on agg_data_20k
+-(5 rows)
+-
++ERROR:  not implemented type_cast case [to=numeric]
+ create table agg_group_1 as
+ select g%10000 as c1, sum(g::numeric) as c2, count(*) as c3
+   from agg_data_20k group by g%10000;
++ERROR:  only support select and create table statement
+ create table agg_group_2 as
+ select * from
+   (values (100), (300), (500)) as r(a),
+@@ -3246,30 +2031,32 @@
+     from agg_data_2k
+     where g < r.a
+     group by g/2) as s;
++ERROR:  only support select and create table statement
+ set jit_above_cost to default;
++ERROR:  only support select and create table statement
+ create table agg_group_3 as
+ select (g/2)::numeric as c1, sum(7::int4) as c2, count(*) as c3
+   from agg_data_2k group by g/2;
++ERROR:  only support select and create table statement
+ create table agg_group_4 as
+ select (g/2)::numeric as c1, array_agg(g::numeric) as c2, count(*) as c3
+   from agg_data_2k group by g/2;
++ERROR:  only support select and create table statement
+ -- Produce results with hash aggregation
+ set enable_hashagg = true;
++ERROR:  only support select and create table statement
+ set enable_sort = false;
++ERROR:  only support select and create table statement
+ set jit_above_cost = 0;
++ERROR:  only support select and create table statement
+ explain (costs off)
+ select g%10000 as c1, sum(g::numeric) as c2, count(*) as c3
+   from agg_data_20k group by g%10000;
+-           QUERY PLAN           
+---------------------------------
+- HashAggregate
+-   Group Key: (g % 10000)
+-   ->  Seq Scan on agg_data_20k
+-(3 rows)
+-
++ERROR:  not implemented type_cast case [to=numeric]
+ create table agg_hash_1 as
+ select g%10000 as c1, sum(g::numeric) as c2, count(*) as c3
+   from agg_data_20k group by g%10000;
++ERROR:  only support select and create table statement
+ create table agg_hash_2 as
+ select * from
+   (values (100), (300), (500)) as r(a),
+@@ -3280,49 +2067,51 @@
+     from agg_data_2k
+     where g < r.a
+     group by g/2) as s;
++ERROR:  only support select and create table statement
+ set jit_above_cost to default;
++ERROR:  only support select and create table statement
+ create table agg_hash_3 as
+ select (g/2)::numeric as c1, sum(7::int4) as c2, count(*) as c3
+   from agg_data_2k group by g/2;
++ERROR:  only support select and create table statement
+ create table agg_hash_4 as
+ select (g/2)::numeric as c1, array_agg(g::numeric) as c2, count(*) as c3
+   from agg_data_2k group by g/2;
++ERROR:  only support select and create table statement
+ set enable_sort = true;
++ERROR:  only support select and create table statement
+ set work_mem to default;
++ERROR:  only support select and create table statement
+ -- Compare group aggregation results to hash aggregation results
+ (select * from agg_hash_1 except select * from agg_group_1)
+   union all
+ (select * from agg_group_1 except select * from agg_hash_1);
+- c1 | c2 | c3 
+-----+----+----
+-(0 rows)
+-
++ERROR:  clapdb doesn't support [op=SETOP_UNION]
+ (select * from agg_hash_2 except select * from agg_group_2)
+   union all
+ (select * from agg_group_2 except select * from agg_hash_2);
+- a | c1 | c2 | c3 
+----+----+----+----
+-(0 rows)
+-
++ERROR:  clapdb doesn't support [op=SETOP_UNION]
+ (select * from agg_hash_3 except select * from agg_group_3)
+   union all
+ (select * from agg_group_3 except select * from agg_hash_3);
+- c1 | c2 | c3 
+-----+----+----
+-(0 rows)
+-
++ERROR:  clapdb doesn't support [op=SETOP_UNION]
+ (select * from agg_hash_4 except select * from agg_group_4)
+   union all
+ (select * from agg_group_4 except select * from agg_hash_4);
+- c1 | c2 | c3 
+-----+----+----
+-(0 rows)
+-
++ERROR:  clapdb doesn't support [op=SETOP_UNION]
+ drop table agg_group_1;
++ERROR:  only support select and create table statement
+ drop table agg_group_2;
++ERROR:  only support select and create table statement
+ drop table agg_group_3;
++ERROR:  only support select and create table statement
+ drop table agg_group_4;
++ERROR:  only support select and create table statement
+ drop table agg_hash_1;
++ERROR:  only support select and create table statement
+ drop table agg_hash_2;
++ERROR:  only support select and create table statement
+ drop table agg_hash_3;
++ERROR:  only support select and create table statement
+ drop table agg_hash_4;
 +ERROR:  only support select and create table statement
