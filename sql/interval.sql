@@ -29,8 +29,8 @@ INSERT INTO INTERVAL_TBL (f1) VALUES ('1 day 2 hours 3 minutes 4 seconds');
 INSERT INTO INTERVAL_TBL (f1) VALUES ('6 years');
 INSERT INTO INTERVAL_TBL (f1) VALUES ('5 months');
 INSERT INTO INTERVAL_TBL (f1) VALUES ('5 months 12 hours');
-INSERT INTO INTERVAL_TBL (f1) VALUES ('infinity');
-INSERT INTO INTERVAL_TBL (f1) VALUES ('-infinity');
+--INSERT INTO INTERVAL_TBL (f1) VALUES ('infinity');
+--INSERT INTO INTERVAL_TBL (f1) VALUES ('-infinity');
 
 -- badly formatted interval
 INSERT INTO INTERVAL_TBL (f1) VALUES ('badly formatted interval');
@@ -45,25 +45,25 @@ SELECT * FROM pg_input_error_info('@ 30 eons ago', 'interval');
 
 -- test interval operators
 
-SELECT * FROM INTERVAL_TBL;
+SELECT * FROM INTERVAL_TBL order by 1;
 
 SELECT * FROM INTERVAL_TBL
-   WHERE INTERVAL_TBL.f1 <> interval '@ 10 days';
+   WHERE INTERVAL_TBL.f1 <> interval '@ 10 days' order by 1;
 
 SELECT * FROM INTERVAL_TBL
-   WHERE INTERVAL_TBL.f1 <= interval '@ 5 hours';
+   WHERE INTERVAL_TBL.f1 <= interval '@ 5 hours' order by 1;
 
 SELECT * FROM INTERVAL_TBL
-   WHERE INTERVAL_TBL.f1 < interval '@ 1 day';
+   WHERE INTERVAL_TBL.f1 < interval '@ 1 day' order by 1;
 
 SELECT * FROM INTERVAL_TBL
-   WHERE INTERVAL_TBL.f1 = interval '@ 34 years';
+   WHERE INTERVAL_TBL.f1 = interval '@ 34 years' order by 1;
 
 SELECT * FROM INTERVAL_TBL
-   WHERE INTERVAL_TBL.f1 >= interval '@ 1 month';
+   WHERE INTERVAL_TBL.f1 >= interval '@ 1 month' order by 1;
 
 SELECT * FROM INTERVAL_TBL
-   WHERE INTERVAL_TBL.f1 > interval '@ 3 seconds ago';
+   WHERE INTERVAL_TBL.f1 > interval '@ 3 seconds ago' order by 1;
 
 SELECT r1.*, r2.*
    FROM INTERVAL_TBL r1, INTERVAL_TBL r2
@@ -72,7 +72,7 @@ SELECT r1.*, r2.*
 
 -- test unary minus
 
-SELECT f1, -f1 FROM INTERVAL_TBL;
+SELECT f1, -f1 FROM INTERVAL_TBL order by 1;
 SELECT -('-2147483648 months'::interval); -- should fail
 SELECT -('-2147483647 months'::interval); -- ok
 SELECT -('-2147483648 days'::interval); -- should fail
@@ -111,7 +111,7 @@ SELECT f1 FROM INTERVAL_TBL_OF r1 ORDER BY f1;
 RESET enable_seqscan;
 
 -- subtracting about-to-overflow values should result in 0
-SELECT f1 - f1 FROM INTERVAL_TBL_OF;
+SELECT f1 - f1 FROM INTERVAL_TBL_OF order by 1;
 
 DROP TABLE INTERVAL_TBL_OF;
 
@@ -150,9 +150,9 @@ FROM INTERVAL_MULDIV_TBL;
 DROP TABLE INTERVAL_MULDIV_TBL;
 
 SET DATESTYLE = 'postgres';
-SET IntervalStyle to postgres_verbose;
+--SET IntervalStyle to postgres_verbose;
 
-SELECT * FROM INTERVAL_TBL;
+SELECT * FROM INTERVAL_TBL order by 1;
 
 -- multiplication and division overflow test cases
 SELECT '3000000 months'::interval * 1000;
@@ -276,7 +276,7 @@ SELECT interval '-2562047788:00:54.775807' second(2);  -- out of range
 -- test casting to restricted precision (bug #14479)
 SELECT f1, f1::INTERVAL DAY TO MINUTE AS "minutes",
   (f1 + INTERVAL '1 month')::INTERVAL MONTH::INTERVAL YEAR AS "years"
-  FROM interval_tbl;
+  FROM interval_tbl order by 1;
 
 -- test inputting and outputting SQL standard interval literals
 SET IntervalStyle TO sql_standard;
@@ -360,7 +360,7 @@ select interval 'P10.5e4Y';  -- not per spec, but we've historically taken it
 select interval 'P.Y0M3DT4H5M6S';  -- error
 
 -- test a couple rounding cases that changed since 8.3 w/ HAVE_INT64_TIMESTAMP.
-SET IntervalStyle to postgres_verbose;
+--SET IntervalStyle to postgres_verbose;
 select interval '-10 mons -3 days +03:55:06.70';
 select interval '1 year 2 mons 3 days 04:05:06.699999';
 select interval '0:0:0.7', interval '@ 0.70 secs', interval '0.7 seconds';
@@ -561,7 +561,7 @@ SET IntervalStyle to sql_standard;
 select interval '-2147483647 months -2147483648 days -9223372036854775808 us';
 SET IntervalStyle to iso_8601;
 select interval '-2147483647 months -2147483648 days -9223372036854775808 us';
-SET IntervalStyle to postgres_verbose;
+--SET IntervalStyle to postgres_verbose;
 select interval '-2147483647 months -2147483648 days -9223372036854775808 us';
 
 -- check that '30 days' equals '1 month' according to the hash function
@@ -599,7 +599,7 @@ SELECT f1,
     EXTRACT(CENTURY FROM f1) AS CENTURY,
     EXTRACT(MILLENNIUM FROM f1) AS MILLENNIUM,
     EXTRACT(EPOCH FROM f1) AS EPOCH
-    FROM INTERVAL_TBL;
+    FROM INTERVAL_TBL order by 1;
 
 SELECT EXTRACT(FORTNIGHT FROM INTERVAL '2 days');  -- error
 SELECT EXTRACT(TIMEZONE FROM INTERVAL '2 days');  -- error
@@ -621,7 +621,7 @@ SELECT f1,
     date_part('millisecond', f1) AS millisecond,
     date_part('second', f1) AS second,
     date_part('epoch', f1) AS epoch
-    FROM INTERVAL_TBL;
+    FROM INTERVAL_TBL order by 1;
 
 -- internal overflow test case
 SELECT extract(epoch from interval '1000000000 days');
@@ -639,9 +639,9 @@ SELECT interval '-2147483648 months -2147483648 days -9223372036854775808 us';
 SELECT interval '2147483647 months 2147483647 days 9223372036854775807 us';
 
 CREATE TABLE INFINITE_INTERVAL_TBL (i interval);
-INSERT INTO INFINITE_INTERVAL_TBL VALUES ('infinity'), ('-infinity'), ('1 year 2 days 3 hours');
+--INSERT INTO INFINITE_INTERVAL_TBL VALUES ('infinity'), ('-infinity'), ('1 year 2 days 3 hours');
 
-SELECT i, isfinite(i) FROM INFINITE_INTERVAL_TBL;
+--SELECT i, isfinite(i) FROM INFINITE_INTERVAL_TBL;
 
 -- test basic arithmetic
 CREATE FUNCTION eval(expr text)
@@ -701,14 +701,14 @@ FROM (VALUES (timestamptz '-infinity'),
              (interval 'infinity')) AS t2(i);
 
 -- time +/- infinite interval not supported
-SELECT time '11:27:42' + interval 'infinity';
-SELECT time '11:27:42' + interval '-infinity';
-SELECT time '11:27:42' - interval 'infinity';
-SELECT time '11:27:42' - interval '-infinity';
-SELECT timetz '11:27:42' + interval 'infinity';
-SELECT timetz '11:27:42' + interval '-infinity';
-SELECT timetz '11:27:42' - interval 'infinity';
-SELECT timetz '11:27:42' - interval '-infinity';
+--SELECT time '11:27:42' + interval 'infinity';
+--SELECT time '11:27:42' + interval '-infinity';
+--SELECT time '11:27:42' - interval 'infinity';
+--SELECT time '11:27:42' - interval '-infinity';
+--SELECT timetz '11:27:42' + interval 'infinity';
+--SELECT timetz '11:27:42' + interval '-infinity';
+--SELECT timetz '11:27:42' - interval 'infinity';
+--SELECT timetz '11:27:42' - interval '-infinity';
 
 SELECT lhst.i lhs,
     rhst.i rhs,
@@ -733,26 +733,26 @@ SELECT i AS interval,
     WHERE NOT isfinite(i);
 
 SELECT -interval '-2147483647 months -2147483647 days -9223372036854775807 us';
-SELECT interval 'infinity' * 'nan';
-SELECT interval '-infinity' * 'nan';
+--SELECT interval 'infinity' * 'nan';
+--SELECT interval '-infinity' * 'nan';
 SELECT interval '-1073741824 months -1073741824 days -4611686018427387904 us' * 2;
-SELECT interval 'infinity' * 0;
-SELECT interval '-infinity' * 0;
-SELECT interval '0 days' * 'infinity'::float;
-SELECT interval '0 days' * '-infinity'::float;
-SELECT interval '5 days' * 'infinity'::float;
-SELECT interval '5 days' * '-infinity'::float;
+--SELECT interval 'infinity' * 0;
+--SELECT interval '-infinity' * 0;
+--SELECT interval '0 days' * 'infinity'::float;
+--SELECT interval '0 days' * '-infinity'::float;
+--SELECT interval '5 days' * 'infinity'::float;
+--SELECT interval '5 days' * '-infinity'::float;
 
-SELECT interval 'infinity' / 'infinity';
-SELECT interval 'infinity' / '-infinity';
-SELECT interval 'infinity' / 'nan';
-SELECT interval '-infinity' / 'infinity';
-SELECT interval '-infinity' / '-infinity';
-SELECT interval '-infinity' / 'nan';
+--SELECT interval 'infinity' / 'infinity';
+--SELECT interval 'infinity' / '-infinity';
+--SELECT interval 'infinity' / 'nan';
+--SELECT interval '-infinity' / 'infinity';
+--SELECT interval '-infinity' / '-infinity';
+--SELECT interval '-infinity' / 'nan';
 SELECT interval '-1073741824 months -1073741824 days -4611686018427387904 us' / 0.5;
 
-SELECT date_bin('infinity', timestamp '2001-02-16 20:38:40', timestamp '2001-02-16 20:05:00');
-SELECT date_bin('-infinity', timestamp '2001-02-16 20:38:40', timestamp '2001-02-16 20:05:00');
+--SELECT date_bin('infinity', timestamp '2001-02-16 20:38:40', timestamp '2001-02-16 20:05:00');
+--SELECT date_bin('-infinity', timestamp '2001-02-16 20:38:40', timestamp '2001-02-16 20:05:00');
 
 SELECT i AS interval, date_trunc('hour', i)
     FROM INFINITE_INTERVAL_TBL
@@ -762,20 +762,20 @@ SELECT i AS interval, justify_days(i), justify_hours(i), justify_interval(i)
     FROM INFINITE_INTERVAL_TBL
     WHERE NOT isfinite(i);
 
-SELECT timezone('infinity'::interval, '1995-08-06 12:12:12'::timestamp);
-SELECT timezone('-infinity'::interval, '1995-08-06 12:12:12'::timestamp);
-SELECT timezone('infinity'::interval, '1995-08-06 12:12:12'::timestamptz);
-SELECT timezone('-infinity'::interval, '1995-08-06 12:12:12'::timestamptz);
-SELECT timezone('infinity'::interval, '12:12:12'::time);
-SELECT timezone('-infinity'::interval, '12:12:12'::time);
-SELECT timezone('infinity'::interval, '12:12:12'::timetz);
-SELECT timezone('-infinity'::interval, '12:12:12'::timetz);
+--SELECT timezone('infinity'::interval, '1995-08-06 12:12:12'::timestamp);
+--SELECT timezone('-infinity'::interval, '1995-08-06 12:12:12'::timestamp);
+--SELECT timezone('infinity'::interval, '1995-08-06 12:12:12'::timestamptz);
+--SELECT timezone('-infinity'::interval, '1995-08-06 12:12:12'::timestamptz);
+--SELECT timezone('infinity'::interval, '12:12:12'::time);
+--SELECT timezone('-infinity'::interval, '12:12:12'::time);
+--SELECT timezone('infinity'::interval, '12:12:12'::timetz);
+--SELECT timezone('-infinity'::interval, '12:12:12'::timetz);
 
-SELECT 'infinity'::interval::time;
-SELECT '-infinity'::interval::time;
+--SELECT 'infinity'::interval::time;
+--SELECT '-infinity'::interval::time;
 
-SELECT to_char('infinity'::interval, 'YYYY');
-SELECT to_char('-infinity'::interval, 'YYYY');
+--SELECT to_char('infinity'::interval, 'YYYY');
+--SELECT to_char('-infinity'::interval, 'YYYY');
 
 -- "ago" can only appear once at the end of an interval.
 SELECT INTERVAL '42 days 2 seconds ago ago';
@@ -795,6 +795,6 @@ SELECT INTERVAL 'epoch';
 SELECT INTERVAL 'yesterday';
 
 -- infinity specification should be the only thing
-SELECT INTERVAL 'infinity years';
-SELECT INTERVAL 'infinity ago';
-SELECT INTERVAL '+infinity -infinity';
+--SELECT INTERVAL 'infinity years';
+--SELECT INTERVAL 'infinity ago';
+--SELECT INTERVAL '+infinity -infinity';

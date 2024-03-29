@@ -1,6 +1,6 @@
 diff -U3 /home/longqimin/pg_regress_input/expected/boolean.out /home/longqimin/pg_regress_input/results/boolean.out
 --- /home/longqimin/pg_regress_input/expected/boolean.out	2024-03-25 09:21:06.160601856 +0800
-+++ /home/longqimin/pg_regress_input/results/boolean.out	2024-03-26 12:18:01.255470568 +0800
++++ /home/longqimin/pg_regress_input/results/boolean.out	2024-03-29 10:53:51.428684535 +0800
 @@ -136,11 +136,7 @@
  (1 row)
  
@@ -156,7 +156,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/boolean.out /home/longqimin/p
 +ERROR:  only support select and create table statement
 diff -U3 /home/longqimin/pg_regress_input/expected/int2.out /home/longqimin/pg_regress_input/results/int2.out
 --- /home/longqimin/pg_regress_input/expected/int2.out	2024-03-22 14:23:59.097610627 +0800
-+++ /home/longqimin/pg_regress_input/results/int2.out	2024-03-26 12:18:04.645473108 +0800
++++ /home/longqimin/pg_regress_input/results/int2.out	2024-03-29 10:53:54.824687558 +0800
 @@ -4,21 +4,21 @@
  -- int2_tbl was already created and filled in test_setup.sql.
  -- Here we just try to insert bad values.
@@ -523,7 +523,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int2.out /home/longqimin/pg_r
 +ERROR:  invalid input syntax for type integer: "10__000"
 diff -U3 /home/longqimin/pg_regress_input/expected/int4.out /home/longqimin/pg_regress_input/results/int4.out
 --- /home/longqimin/pg_regress_input/expected/int4.out	2024-03-11 11:46:21.656870844 +0800
-+++ /home/longqimin/pg_regress_input/results/int4.out	2024-03-26 12:18:08.313475857 +0800
++++ /home/longqimin/pg_regress_input/results/int4.out	2024-03-29 10:53:58.573690896 +0800
 @@ -49,11 +49,7 @@
  (1 row)
  
@@ -908,7 +908,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int4.out /home/longqimin/pg_r
  ERROR:  invalid input syntax for type integer: "_100"
 diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_regress_input/results/int8.out
 --- /home/longqimin/pg_regress_input/expected/int8.out	2024-03-11 11:46:21.657870845 +0800
-+++ /home/longqimin/pg_regress_input/results/int8.out	2024-03-26 12:18:18.723483659 +0800
++++ /home/longqimin/pg_regress_input/results/int8.out	2024-03-29 10:54:09.108700276 +0800
 @@ -5,19 +5,19 @@
  -- int8_tbl was already created and filled in test_setup.sql.
  -- Here we just try to insert bad values.
@@ -1799,7 +1799,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
 +ERROR:  invalid input syntax for type integer: "100__000"
 diff -U3 /home/longqimin/pg_regress_input/expected/float4.out /home/longqimin/pg_regress_input/results/float4.out
 --- /home/longqimin/pg_regress_input/expected/float4.out	2024-03-11 11:46:21.655870843 +0800
-+++ /home/longqimin/pg_regress_input/results/float4.out	2024-03-26 12:18:25.671488866 +0800
++++ /home/longqimin/pg_regress_input/results/float4.out	2024-03-29 10:54:16.334706709 +0800
 @@ -9,44 +9,44 @@
  INSERT INTO FLOAT4_TBL(f1) VALUES ('1.2345678901234e-20');
  -- test for over and under flow
@@ -2555,7 +2555,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float4.out /home/longqimin/pg
 +ERROR:  only support select and create table statement
 diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg_regress_input/results/float8.out
 --- /home/longqimin/pg_regress_input/expected/float8.out	2024-03-25 09:21:06.162601856 +0800
-+++ /home/longqimin/pg_regress_input/results/float8.out	2024-03-26 12:18:34.757495676 +0800
++++ /home/longqimin/pg_regress_input/results/float8.out	2024-03-29 10:54:25.220714621 +0800
 @@ -6,6 +6,7 @@
  -- (This temporarily hides the table created in test_setup.sql)
  --
@@ -4029,7 +4029,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
 +ERROR:  only support select and create table statement
 diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_regress_input/results/date.out
 --- /home/longqimin/pg_regress_input/expected/date.out	2024-03-25 09:21:23.437606375 +0800
-+++ /home/longqimin/pg_regress_input/results/date.out	2024-03-26 12:19:00.974515324 +0800
++++ /home/longqimin/pg_regress_input/results/date.out	2024-03-29 10:54:50.976737553 +0800
 @@ -10,7 +10,7 @@
  INSERT INTO DATE_TBL VALUES ('1996-03-02');
  INSERT INTO DATE_TBL VALUES ('1997-02-28');
@@ -4896,7 +4896,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
  (1 row)
  
  SELECT pg_input_is_valid('garbage', 'date');
-@@ -779,18 +523,11 @@
+@@ -779,100 +523,50 @@
  (1 row)
  
  SELECT * FROM pg_input_error_info('garbage', 'date');
@@ -4918,10 +4918,10 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
  --
  -- Simple math
  -- Leave most of it for the horology tests
-@@ -798,81 +535,38 @@
+ --
  SELECT f1 - date '2000-01-01' AS "Days From 2K" FROM DATE_TBL order by 1;
-  Days From 2K 
- --------------
+- Days From 2K 
+---------------
 -     -1475115
 -       -15607
 -       -15542
@@ -4938,22 +4938,24 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 -        13977
 -        14343
 -        14710
-+ -1475115 day
-+ -15607 day
-+ -15542 day
-+ -1403 day
-+ -1402 day
-+ -1401 day
-+ -1400 day
-+ -1037 day
-+ -1036 day
-+ -1035 day
-+ 91 day
-+ 92 day
-+ 93 day
-+ 13977 day
-+ 14343 day
-+ 14710 day
++ Days From 2K  
++---------------
++ -1475115 days
++ -15607 days
++ -15542 days
++ -1403 days
++ -1402 days
++ -1401 days
++ -1400 days
++ -1037 days
++ -1036 days
++ -1035 days
++ 91 days
++ 92 days
++ 93 days
++ 13977 days
++ 14343 days
++ 14710 days
  (16 rows)
  
  SELECT f1 - date 'epoch' AS "Days From Epoch" FROM DATE_TBL order by 1;
@@ -5753,7 +5755,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 +ERROR:  out of range
 diff -U3 /home/longqimin/pg_regress_input/expected/time.out /home/longqimin/pg_regress_input/results/time.out
 --- /home/longqimin/pg_regress_input/expected/time.out	2024-03-25 09:21:23.437606375 +0800
-+++ /home/longqimin/pg_regress_input/results/time.out	2024-03-26 12:19:44.357547818 +0800
++++ /home/longqimin/pg_regress_input/results/time.out	2024-03-29 10:55:34.133775965 +0800
 @@ -73,37 +73,29 @@
  
  -- Check edge cases
@@ -5906,9 +5908,2217 @@ diff -U3 /home/longqimin/pg_regress_input/expected/time.out /home/longqimin/pg_r
 -(1 row)
 -
 +ERROR:  timestamp units "epoch" not recognized
+diff -U3 /home/longqimin/pg_regress_input/expected/interval.out /home/longqimin/pg_regress_input/results/interval.out
+--- /home/longqimin/pg_regress_input/expected/interval.out	2024-03-29 10:53:18.230654980 +0800
++++ /home/longqimin/pg_regress_input/results/interval.out	2024-03-29 10:56:20.567817327 +0800
+@@ -2,7 +2,9 @@
+ -- INTERVAL
+ --
+ SET DATESTYLE = 'ISO';
++ERROR:  only support select and create table statement
+ SET IntervalStyle to postgres;
++ERROR:  only support select and create table statement
+ -- check acceptance of "time zone style"
+ SELECT INTERVAL '01:00' AS "One hour";
+  One hour 
+@@ -53,17 +55,9 @@
+ (1 row)
+ 
+ SELECT INTERVAL 'infinity' AS "eternity";
+- eternity 
+-----------
+- infinity
+-(1 row)
+-
++ERROR:  invalid input syntax for type interval: "infinity"
+ SELECT INTERVAL '-infinity' AS "beginning of time";
+- beginning of time 
+--------------------
+- -infinity
+-(1 row)
+-
++ERROR:  invalid input syntax for type interval: "-infinity"
+ CREATE TABLE INTERVAL_TBL (f1 interval);
+ INSERT INTO INTERVAL_TBL (f1) VALUES ('@ 1 minute');
+ INSERT INTO INTERVAL_TBL (f1) VALUES ('@ 5 hour');
+@@ -102,17 +96,9 @@
+ (1 row)
+ 
+ SELECT * FROM pg_input_error_info('garbage', 'interval');
+-                      message                      | detail | hint | sql_error_code 
+----------------------------------------------------+--------+------+----------------
+- invalid input syntax for type interval: "garbage" |        |      | 22007
+-(1 row)
+-
++ERROR:  function pg_input_error_info does not exist
+ SELECT * FROM pg_input_error_info('@ 30 eons ago', 'interval');
+-                         message                         | detail | hint | sql_error_code 
+----------------------------------------------------------+--------+------+----------------
+- invalid input syntax for type interval: "@ 30 eons ago" |        |      | 22007
+-(1 row)
+-
++ERROR:  function pg_input_error_info does not exist
+ -- test interval operators
+ SELECT * FROM INTERVAL_TBL order by 1;
+        f1        
+@@ -199,97 +185,24 @@
+    FROM INTERVAL_TBL r1, INTERVAL_TBL r2
+    WHERE r1.f1 > r2.f1
+    ORDER BY r1.f1, r2.f1;
+-       f1        |       f1        
+------------------+-----------------
+- 00:01:00        | -00:00:14
+- 05:00:00        | -00:00:14
+- 05:00:00        | 00:01:00
+- 1 day 02:03:04  | -00:00:14
+- 1 day 02:03:04  | 00:01:00
+- 1 day 02:03:04  | 05:00:00
+- 10 days         | -00:00:14
+- 10 days         | 00:01:00
+- 10 days         | 05:00:00
+- 10 days         | 1 day 02:03:04
+- 3 mons          | -00:00:14
+- 3 mons          | 00:01:00
+- 3 mons          | 05:00:00
+- 3 mons          | 1 day 02:03:04
+- 3 mons          | 10 days
+- 5 mons          | -00:00:14
+- 5 mons          | 00:01:00
+- 5 mons          | 05:00:00
+- 5 mons          | 1 day 02:03:04
+- 5 mons          | 10 days
+- 5 mons          | 3 mons
+- 5 mons 12:00:00 | -00:00:14
+- 5 mons 12:00:00 | 00:01:00
+- 5 mons 12:00:00 | 05:00:00
+- 5 mons 12:00:00 | 1 day 02:03:04
+- 5 mons 12:00:00 | 10 days
+- 5 mons 12:00:00 | 3 mons
+- 5 mons 12:00:00 | 5 mons
+- 6 years         | -00:00:14
+- 6 years         | 00:01:00
+- 6 years         | 05:00:00
+- 6 years         | 1 day 02:03:04
+- 6 years         | 10 days
+- 6 years         | 3 mons
+- 6 years         | 5 mons
+- 6 years         | 5 mons 12:00:00
+- 34 years        | -00:00:14
+- 34 years        | 00:01:00
+- 34 years        | 05:00:00
+- 34 years        | 1 day 02:03:04
+- 34 years        | 10 days
+- 34 years        | 3 mons
+- 34 years        | 5 mons
+- 34 years        | 5 mons 12:00:00
+- 34 years        | 6 years
+-(45 rows)
+-
++ERROR:  clapdb doesn't support join currently
+ -- test unary minus
+ SELECT f1, -f1 FROM INTERVAL_TBL order by 1;
+-       f1        |     ?column?      
+------------------+-------------------
+- -00:00:14       | 00:00:14
+- 00:01:00        | -00:01:00
+- 05:00:00        | -05:00:00
+- 1 day 02:03:04  | -1 days -02:03:04
+- 10 days         | -10 days
+- 3 mons          | -3 mons
+- 5 mons          | -5 mons
+- 5 mons 12:00:00 | -5 mons -12:00:00
+- 6 years         | -6 years
+- 34 years        | -34 years
+-(10 rows)
+-
++ERROR:  operator does not exist: NEG Interval
+ SELECT -('-2147483648 months'::interval); -- should fail
+-ERROR:  interval out of range
++ERROR:  operator does not exist: NEG Interval
+ SELECT -('-2147483647 months'::interval); -- ok
+-        ?column?        
+-------------------------
+- 178956970 years 7 mons
+-(1 row)
+-
++ERROR:  operator does not exist: NEG Interval
+ SELECT -('-2147483648 days'::interval); -- should fail
+-ERROR:  interval out of range
++ERROR:  operator does not exist: NEG Interval
+ SELECT -('-2147483647 days'::interval); -- ok
+-    ?column?     
+------------------
+- 2147483647 days
+-(1 row)
+-
++ERROR:  operator does not exist: NEG Interval
+ SELECT -('-9223372036854775808 us'::interval); -- should fail
+-ERROR:  interval out of range
++ERROR:  invalid input syntax for type interval: "-9223372036854775808 us"
+ SELECT -('-9223372036854775807 us'::interval); -- ok
+-        ?column?         
+--------------------------
+- 2562047788:00:54.775807
+-(1 row)
+-
++ERROR:  invalid input syntax for type interval: "-9223372036854775807 us"
+ SELECT -('-2147483647 months -2147483647 days -9223372036854775807 us'::interval); -- should fail
+-ERROR:  interval out of range
++ERROR:  invalid input syntax for type interval: "-2147483647 months -2147483647 days -9223372036854775807 us"
+ -- Test intervals that are large enough to overflow 64 bits in comparisons
+ CREATE TEMP TABLE INTERVAL_TBL_OF (f1 interval);
+ INSERT INTO INTERVAL_TBL_OF (f1) VALUES
+@@ -298,68 +211,56 @@
+   ('1 year'),
+   ('-2147483648 days 2147483647 months'),
+   ('-2147483648 days -2147483648 months');
++ERROR:  invalid input syntax for type interval: "2147483647 days 2147483647 months"
+ -- these should fail as out-of-range
+ INSERT INTO INTERVAL_TBL_OF (f1) VALUES ('2147483648 days');
+-ERROR:  interval field value out of range: "2147483648 days"
+ INSERT INTO INTERVAL_TBL_OF (f1) VALUES ('-2147483649 days');
+-ERROR:  interval field value out of range: "-2147483649 days"
+ INSERT INTO INTERVAL_TBL_OF (f1) VALUES ('2147483647 years');
+-ERROR:  interval out of range
+ INSERT INTO INTERVAL_TBL_OF (f1) VALUES ('-2147483648 years');
+-ERROR:  interval out of range
+ -- Test edge-case overflow detection in interval multiplication
+ select extract(epoch from '256 microseconds'::interval * (2^55)::float8);
+-ERROR:  interval out of range
++ERROR:  binary_optr only support binary optr = [optr_str=^]
+ SELECT r1.*, r2.*
+    FROM INTERVAL_TBL_OF r1, INTERVAL_TBL_OF r2
+    WHERE r1.f1 > r2.f1
+    ORDER BY r1.f1, r2.f1;
+-                    f1                     |                    f1                     
+--------------------------------------------+-------------------------------------------
+- -178956970 years -8 mons +2147483647 days | -178956970 years -8 mons -2147483648 days
+- 1 year                                    | -178956970 years -8 mons -2147483648 days
+- 1 year                                    | -178956970 years -8 mons +2147483647 days
+- 178956970 years 7 mons -2147483648 days   | -178956970 years -8 mons -2147483648 days
+- 178956970 years 7 mons -2147483648 days   | -178956970 years -8 mons +2147483647 days
+- 178956970 years 7 mons -2147483648 days   | 1 year
+- 178956970 years 7 mons 2147483647 days    | -178956970 years -8 mons -2147483648 days
+- 178956970 years 7 mons 2147483647 days    | -178956970 years -8 mons +2147483647 days
+- 178956970 years 7 mons 2147483647 days    | 1 year
+- 178956970 years 7 mons 2147483647 days    | 178956970 years 7 mons -2147483648 days
+-(10 rows)
+-
++ERROR:  clapdb doesn't support join currently
+ CREATE INDEX ON INTERVAL_TBL_OF USING btree (f1);
++ERROR:  only support select and create table statement
+ SET enable_seqscan TO false;
++ERROR:  only support select and create table statement
+ EXPLAIN (COSTS OFF)
+ SELECT f1 FROM INTERVAL_TBL_OF r1 ORDER BY f1;
+-                             QUERY PLAN                             
+---------------------------------------------------------------------
+- Index Only Scan using interval_tbl_of_f1_idx on interval_tbl_of r1
+-(1 row)
++                                          QUERY PLAN                                          
++----------------------------------------------------------------------------------------------
++ tuple(table_0) = parallel: [tuple(table_0) = IndexScan([column(f1)]), return tuple(table_0)]
++ tuple(table_0) = Sort(tuple(table_0), [columns(0 ASC)])
++ return tuple(table_0)
++(3 rows)
+ 
+ SELECT f1 FROM INTERVAL_TBL_OF r1 ORDER BY f1;
+-                    f1                     
+--------------------------------------------
+- -178956970 years -8 mons -2147483648 days
+- -178956970 years -8 mons +2147483647 days
+- 1 year
+- 178956970 years 7 mons -2147483648 days
+- 178956970 years 7 mons 2147483647 days
+-(5 rows)
++                        f1                        
++--------------------------------------------------
++ -33211803 years -6 mons -16 days -20:22:14.62016
++ -33211803 years -6 mons -16 days -20:22:14.62016
++ -4744905 years -8 mons -19:37:59.683072
++ -4744905 years -7 mons -29 days -19:37:59.683072
++(4 rows)
+ 
+ RESET enable_seqscan;
++ERROR:  only support select and create table statement
+ -- subtracting about-to-overflow values should result in 0
+ SELECT f1 - f1 FROM INTERVAL_TBL_OF order by 1;
+  ?column? 
+ ----------
+- 00:00:00
+- 00:00:00
+- 00:00:00
+- 00:00:00
+- 00:00:00
+-(5 rows)
++ 0
++ 0
++ 0
++ 0
++(4 rows)
+ 
+ DROP TABLE INTERVAL_TBL_OF;
++ERROR:  only support select and create table statement
+ -- Test multiplication and division with intervals.
+ -- Floating point arithmetic rounding errors can lead to unexpected results,
+ -- though the code attempts to do the right thing and round up to days and
+@@ -369,64 +270,33 @@
+ -- stored internally.
+ CREATE TABLE INTERVAL_MULDIV_TBL (span interval);
+ COPY INTERVAL_MULDIV_TBL FROM STDIN;
++ERROR:  Can not open file "" because "No such file or directory".
++41 mon 12 days 360:00
++-41 mon -12 days +360:00
++-12 days
++9 mon -27 days 12:34:56
++-3 years 482 days 76:54:32.189
++4 mon
++14 mon
++999 mon 999 days
++\.
++invalid command \.
+ SELECT span * 0.3 AS product
+ FROM INTERVAL_MULDIV_TBL;
+-              product               
+-------------------------------------
+- 1 year 12 days 122:24:00
+- -1 years -12 days +93:36:00
+- -3 days -14:24:00
+- 2 mons 13 days 01:22:28.8
+- -10 mons +120 days 37:28:21.6567
+- 1 mon 6 days
+- 4 mons 6 days
+- 24 years 11 mons 320 days 16:48:00
+-(8 rows)
+-
++ERROR:  syntax error at or near "41"
+ SELECT span * 8.2 AS product
+ FROM INTERVAL_MULDIV_TBL;
+-                   product                   
+----------------------------------------------
+- 28 years 104 days 2961:36:00
+- -28 years -104 days +2942:24:00
+- -98 days -09:36:00
+- 6 years 1 mon -197 days +93:34:27.2
+- -24 years -7 mons +3946 days 640:15:11.9498
+- 2 years 8 mons 24 days
+- 9 years 6 mons 24 days
+- 682 years 7 mons 8215 days 19:12:00
+-(8 rows)
+-
++ERROR:  operator does not exist: Interval MUL Numeric
+ SELECT span / 10 AS quotient
+ FROM INTERVAL_MULDIV_TBL;
+-             quotient             
+-----------------------------------
+- 4 mons 4 days 40:48:00
+- -4 mons -4 days +31:12:00
+- -1 days -04:48:00
+- 25 days -15:32:30.4
+- -3 mons +30 days 12:29:27.2189
+- 12 days
+- 1 mon 12 days
+- 8 years 3 mons 126 days 21:36:00
+-(8 rows)
+-
++ERROR:  operator does not exist: Interval DIV Int32
+ SELECT span / 100 AS quotient
+ FROM INTERVAL_MULDIV_TBL;
+-        quotient         
+--------------------------
+- 12 days 13:40:48
+- -12 days -06:28:48
+- -02:52:48
+- 2 days 10:26:44.96
+- -6 days +01:14:56.72189
+- 1 day 04:48:00
+- 4 days 04:48:00
+- 9 mons 39 days 16:33:36
+-(8 rows)
+-
++ERROR:  operator does not exist: Interval DIV Int32
+ DROP TABLE INTERVAL_MULDIV_TBL;
++ERROR:  only support select and create table statement
+ SET DATESTYLE = 'postgres';
++ERROR:  only support select and create table statement
+ --SET IntervalStyle to postgres_verbose;
+ SELECT * FROM INTERVAL_TBL order by 1;
+        f1        
+@@ -445,111 +315,73 @@
+ 
+ -- multiplication and division overflow test cases
+ SELECT '3000000 months'::interval * 1000;
+-ERROR:  interval out of range
++ERROR:  operator does not exist: Interval MUL Int32
+ SELECT '3000000 months'::interval / 0.001;
+-ERROR:  interval out of range
++ERROR:  operator does not exist: Interval DIV Numeric
+ SELECT '3000000 days'::interval * 1000;
+-ERROR:  interval out of range
++ERROR:  operator does not exist: Interval MUL Int32
+ SELECT '3000000 days'::interval / 0.001;
+-ERROR:  interval out of range
++ERROR:  operator does not exist: Interval DIV Numeric
+ SELECT '1 month 2146410 days'::interval * 1000.5002;
+-ERROR:  interval out of range
++ERROR:  operator does not exist: Interval MUL Numeric
+ SELECT '4611686018427387904 usec'::interval / 0.1;
+-ERROR:  interval out of range
++ERROR:  invalid input syntax for type interval: "4611686018427387904 usec"
+ -- test avg(interval), which is somewhat fragile since people have been
+ -- known to change the allowed input syntax for type interval without
+ -- updating pg_aggregate.agginitval
+ select avg(f1) from interval_tbl where isfinite(f1);
+-              avg               
+---------------------------------
+- 4 years 1 mon 10 days 04:18:23
+-(1 row)
+-
++ERROR:  function isfinite does not exist
+ -- test long interval input
+ select '4 millenniums 5 centuries 4 decades 1 year 4 months 4 days 17 minutes 31 seconds'::interval;
+-             interval              
+------------------------------------
+- 4541 years 4 mons 4 days 00:17:31
+-(1 row)
+-
++ERROR:  invalid input syntax for type interval: "4 millenniums 5 centuries 4 decades 1 year 4 months 4 days 17 minutes 31 seconds"
+ -- test long interval output
+ -- Note: the actual maximum length of the interval output is longer,
+ -- but we need the test to work for both integer and floating-point
+ -- timestamps.
+ select '100000000y 10mon -1000000000d -100000h -10min -10.000001s ago'::interval;
+-                            interval                            
+-----------------------------------------------------------------
+- -100000000 years -10 mons +1000000000 days 100000:10:10.000001
+-(1 row)
+-
++ERROR:  invalid input syntax for type interval: "100000000y 10mon -1000000000d -100000h -10min -10.000001s ago"
+ -- test justify_hours() and justify_days()
+ SELECT justify_hours(interval '6 months 3 days 52 hours 3 minutes 2 seconds') as "6 mons 5 days 4 hours 3 mins 2 seconds";
+- 6 mons 5 days 4 hours 3 mins 2 seconds 
+-----------------------------------------
+- 6 mons 5 days 04:03:02
+-(1 row)
+-
++ERROR:  function justify_hours does not exist
+ SELECT justify_days(interval '6 months 36 days 5 hours 4 minutes 3 seconds') as "7 mons 6 days 5 hours 4 mins 3 seconds";
+- 7 mons 6 days 5 hours 4 mins 3 seconds 
+-----------------------------------------
+- 7 mons 6 days 05:04:03
+-(1 row)
+-
++ERROR:  function justify_days does not exist
+ SELECT justify_hours(interval '2147483647 days 24 hrs');
+-ERROR:  interval out of range
++ERROR:  function justify_hours does not exist
+ SELECT justify_days(interval '2147483647 months 30 days');
+-ERROR:  interval out of range
++ERROR:  function justify_days does not exist
+ -- test justify_interval()
+ SELECT justify_interval(interval '1 month -1 hour') as "1 month -1 hour";
+- 1 month -1 hour  
+-------------------
+- 29 days 23:00:00
+-(1 row)
+-
++ERROR:  function justify_interval does not exist
+ SELECT justify_interval(interval '2147483647 days 24 hrs');
+-      justify_interval       
+------------------------------
+- 5965232 years 4 mons 8 days
+-(1 row)
+-
++ERROR:  function justify_interval does not exist
+ SELECT justify_interval(interval '-2147483648 days -24 hrs');
+-        justify_interval        
+---------------------------------
+- -5965232 years -4 mons -9 days
+-(1 row)
+-
++ERROR:  function justify_interval does not exist
+ SELECT justify_interval(interval '2147483647 months 30 days');
+-ERROR:  interval out of range
++ERROR:  function justify_interval does not exist
+ SELECT justify_interval(interval '-2147483648 months -30 days');
+-ERROR:  interval out of range
++ERROR:  function justify_interval does not exist
+ SELECT justify_interval(interval '2147483647 months 30 days -24 hrs');
+-        justify_interval        
+---------------------------------
+- 178956970 years 7 mons 29 days
+-(1 row)
+-
++ERROR:  function justify_interval does not exist
+ SELECT justify_interval(interval '-2147483648 months -30 days 24 hrs');
+-         justify_interval          
+------------------------------------
+- -178956970 years -8 mons -29 days
+-(1 row)
+-
++ERROR:  function justify_interval does not exist
+ SELECT justify_interval(interval '2147483647 months -30 days 1440 hrs');
+-ERROR:  interval out of range
++ERROR:  function justify_interval does not exist
+ SELECT justify_interval(interval '-2147483648 months 30 days -1440 hrs');
+-ERROR:  interval out of range
++ERROR:  function justify_interval does not exist
+ -- test fractional second input, and detection of duplicate units
+ SET DATESTYLE = 'ISO';
++ERROR:  only support select and create table statement
+ SET IntervalStyle TO postgres;
++ERROR:  only support select and create table statement
+ SELECT '1 millisecond'::interval, '1 microsecond'::interval,
+        '500 seconds 99 milliseconds 51 microseconds'::interval;
+-   interval   |    interval     |    interval     
++   ?column?   |    ?column?     |    ?column?     
+ --------------+-----------------+-----------------
+  00:00:00.001 | 00:00:00.000001 | 00:08:20.099051
+ (1 row)
+ 
+ SELECT '3 days 5 milliseconds'::interval;
+-      interval       
++      ?column?       
+ ---------------------
+  3 days 00:00:00.005
+ (1 row)
+@@ -559,340 +391,377 @@
+ SELECT '10 milliseconds 20 milliseconds'::interval; -- error
+ ERROR:  invalid input syntax for type interval: "10 milliseconds 20 milliseconds"
+ SELECT '5.5 seconds 3 milliseconds'::interval;      -- error
+-ERROR:  invalid input syntax for type interval: "5.5 seconds 3 milliseconds"
++   ?column?   
++--------------
++ 00:00:05.503
++(1 row)
++
+ SELECT '1:20:05 5 microseconds'::interval;          -- error
+ ERROR:  invalid input syntax for type interval: "1:20:05 5 microseconds"
+ SELECT '1 day 1 day'::interval;                     -- error
+ ERROR:  invalid input syntax for type interval: "1 day 1 day"
+ SELECT interval '1-2';  -- SQL year-month literal
+-   interval    
++   ?column?    
+ ---------------
+  1 year 2 mons
+ (1 row)
+ 
+ SELECT interval '999' second;  -- oversize leading field is ok
+- interval 
++ ?column? 
+ ----------
+  00:16:39
+ (1 row)
+ 
+ SELECT interval '999' minute;
+- interval 
++ ?column? 
+ ----------
+- 16:39:00
++ 00:16:39
+ (1 row)
+ 
+ SELECT interval '999' hour;
+- interval  
+------------
+- 999:00:00
++ ?column? 
++----------
++ 00:16:39
+ (1 row)
+ 
+ SELECT interval '999' day;
+- interval 
++ ?column? 
+ ----------
+- 999 days
++ 00:16:39
+ (1 row)
+ 
+ SELECT interval '999' month;
+-    interval     
+------------------
+- 83 years 3 mons
++ ?column? 
++----------
++ 00:16:39
+ (1 row)
+ 
+ -- test SQL-spec syntaxes for restricted field sets
+ SELECT interval '1' year;
+- interval 
++ ?column? 
+ ----------
+- 1 year
++ 00:00:01
+ (1 row)
+ 
+ SELECT interval '2' month;
+- interval 
++ ?column? 
+ ----------
+- 2 mons
++ 00:00:02
+ (1 row)
+ 
+ SELECT interval '3' day;
+- interval 
++ ?column? 
+ ----------
+- 3 days
++ 00:00:03
+ (1 row)
+ 
+ SELECT interval '4' hour;
+- interval 
++ ?column? 
+ ----------
+- 04:00:00
++ 00:00:04
+ (1 row)
+ 
+ SELECT interval '5' minute;
+- interval 
++ ?column? 
+ ----------
+- 00:05:00
++ 00:00:05
+ (1 row)
+ 
+ SELECT interval '6' second;
+- interval 
++ ?column? 
+ ----------
+  00:00:06
+ (1 row)
+ 
+ SELECT interval '1' year to month;
+- interval 
++ ?column? 
+ ----------
+- 1 mon
++ 00:00:01
+ (1 row)
+ 
+ SELECT interval '1-2' year to month;
+-   interval    
++   ?column?    
+ ---------------
+  1 year 2 mons
+ (1 row)
+ 
+ SELECT interval '1 2' day to hour;
+-    interval    
++    ?column?    
+ ----------------
+- 1 day 02:00:00
++ 1 day 00:00:02
+ (1 row)
+ 
+ SELECT interval '1 2:03' day to hour;
+-    interval    
++    ?column?    
+ ----------------
+- 1 day 02:00:00
++ 1 day 02:03:00
+ (1 row)
+ 
+ SELECT interval '1 2:03:04' day to hour;
+-    interval    
++    ?column?    
+ ----------------
+- 1 day 02:00:00
++ 1 day 02:03:04
+ (1 row)
+ 
+ SELECT interval '1 2' day to minute;
+-ERROR:  invalid input syntax for type interval: "1 2"
++    ?column?    
++----------------
++ 1 day 00:00:02
++(1 row)
++
+ SELECT interval '1 2:03' day to minute;
+-    interval    
++    ?column?    
+ ----------------
+  1 day 02:03:00
+ (1 row)
+ 
+ SELECT interval '1 2:03:04' day to minute;
+-    interval    
++    ?column?    
+ ----------------
+- 1 day 02:03:00
++ 1 day 02:03:04
+ (1 row)
+ 
+ SELECT interval '1 2' day to second;
+-ERROR:  invalid input syntax for type interval: "1 2"
++    ?column?    
++----------------
++ 1 day 00:00:02
++(1 row)
++
+ SELECT interval '1 2:03' day to second;
+-    interval    
++    ?column?    
+ ----------------
+  1 day 02:03:00
+ (1 row)
+ 
+ SELECT interval '1 2:03:04' day to second;
+-    interval    
++    ?column?    
+ ----------------
+  1 day 02:03:04
+ (1 row)
+ 
+ SELECT interval '1 2' hour to minute;
+-ERROR:  invalid input syntax for type interval: "1 2"
++    ?column?    
++----------------
++ 1 day 00:00:02
++(1 row)
++
+ SELECT interval '1 2:03' hour to minute;
+-    interval    
++    ?column?    
+ ----------------
+  1 day 02:03:00
+ (1 row)
+ 
+ SELECT interval '1 2:03:04' hour to minute;
+-    interval    
++    ?column?    
+ ----------------
+- 1 day 02:03:00
++ 1 day 02:03:04
+ (1 row)
+ 
+ SELECT interval '1 2' hour to second;
+-ERROR:  invalid input syntax for type interval: "1 2"
++    ?column?    
++----------------
++ 1 day 00:00:02
++(1 row)
++
+ SELECT interval '1 2:03' hour to second;
+-    interval    
++    ?column?    
+ ----------------
+  1 day 02:03:00
+ (1 row)
+ 
+ SELECT interval '1 2:03:04' hour to second;
+-    interval    
++    ?column?    
+ ----------------
+  1 day 02:03:04
+ (1 row)
+ 
+ SELECT interval '1 2' minute to second;
+-ERROR:  invalid input syntax for type interval: "1 2"
++    ?column?    
++----------------
++ 1 day 00:00:02
++(1 row)
++
+ SELECT interval '1 2:03' minute to second;
+-    interval    
++    ?column?    
+ ----------------
+- 1 day 00:02:03
++ 1 day 02:03:00
+ (1 row)
+ 
+ SELECT interval '1 2:03:04' minute to second;
+-    interval    
++    ?column?    
+ ----------------
+  1 day 02:03:04
+ (1 row)
+ 
+ SELECT interval '1 +2:03' minute to second;
+-    interval    
++    ?column?    
+ ----------------
+- 1 day 00:02:03
++ 1 day 02:03:00
+ (1 row)
+ 
+ SELECT interval '1 +2:03:04' minute to second;
+-    interval    
++    ?column?    
+ ----------------
+  1 day 02:03:04
+ (1 row)
+ 
+ SELECT interval '1 -2:03' minute to second;
+-    interval     
++    ?column?     
+ -----------------
+- 1 day -00:02:03
++ 1 day -02:03:00
+ (1 row)
+ 
+ SELECT interval '1 -2:03:04' minute to second;
+-    interval     
++    ?column?     
+ -----------------
+  1 day -02:03:04
+ (1 row)
+ 
+ SELECT interval '123 11' day to hour; -- ok
+-     interval      
++     ?column?      
+ -------------------
+- 123 days 11:00:00
++ 123 days 00:00:11
+ (1 row)
+ 
+ SELECT interval '123 11' day; -- not ok
+-ERROR:  invalid input syntax for type interval: "123 11"
++     ?column?      
++-------------------
++ 123 days 00:00:11
++(1 row)
++
+ SELECT interval '123 11'; -- not ok, too ambiguous
+-ERROR:  invalid input syntax for type interval: "123 11"
++     ?column?      
++-------------------
++ 123 days 00:00:11
++(1 row)
++
+ SELECT interval '123 2:03 -2:04'; -- not ok, redundant hh:mm fields
+ ERROR:  invalid input syntax for type interval: "123 2:03 -2:04"
+ -- test syntaxes for restricted precision
+ SELECT interval(0) '1 day 01:23:45.6789';
+-    interval    
+-----------------
+- 1 day 01:23:46
++      ?column?       
++---------------------
++ 1 day 01:23:45.6789
+ (1 row)
+ 
+ SELECT interval(2) '1 day 01:23:45.6789';
+-     interval      
+--------------------
+- 1 day 01:23:45.68
++      ?column?       
++---------------------
++ 1 day 01:23:45.6789
+ (1 row)
+ 
+ SELECT interval '12:34.5678' minute to second(2);  -- per SQL spec
+-  interval   
+--------------
+- 00:12:34.57
++   ?column?   
++--------------
++ 12:34:34.068
+ (1 row)
+ 
+ SELECT interval '1.234' second;
+-   interval   
++   ?column?   
+ --------------
+  00:00:01.234
+ (1 row)
+ 
+ SELECT interval '1.234' second(2);
+-  interval   
+--------------
+- 00:00:01.23
++   ?column?   
++--------------
++ 00:00:01.234
+ (1 row)
+ 
+ SELECT interval '1 2.345' day to second(2);
+-ERROR:  invalid input syntax for type interval: "1 2.345"
++      ?column?      
++--------------------
++ 1 day 00:00:02.345
++(1 row)
++
+ SELECT interval '1 2:03' day to second(2);
+-    interval    
++    ?column?    
+ ----------------
+  1 day 02:03:00
+ (1 row)
+ 
+ SELECT interval '1 2:03.4567' day to second(2);
+-     interval      
+--------------------
+- 1 day 00:02:03.46
++      ?column?      
++--------------------
++ 1 day 02:03:27.402
+ (1 row)
+ 
+ SELECT interval '1 2:03:04.5678' day to second(2);
+-     interval      
+--------------------
+- 1 day 02:03:04.57
++      ?column?       
++---------------------
++ 1 day 02:03:04.5678
+ (1 row)
+ 
+ SELECT interval '1 2.345' hour to second(2);
+-ERROR:  invalid input syntax for type interval: "1 2.345"
++      ?column?      
++--------------------
++ 1 day 00:00:02.345
++(1 row)
++
+ SELECT interval '1 2:03.45678' hour to second(2);
+-     interval      
+--------------------
+- 1 day 00:02:03.46
++      ?column?       
++---------------------
++ 1 day 02:03:27.4068
+ (1 row)
+ 
+ SELECT interval '1 2:03:04.5678' hour to second(2);
+-     interval      
+--------------------
+- 1 day 02:03:04.57
++      ?column?       
++---------------------
++ 1 day 02:03:04.5678
+ (1 row)
+ 
+ SELECT interval '1 2.3456' minute to second(2);
+-ERROR:  invalid input syntax for type interval: "1 2.3456"
++      ?column?       
++---------------------
++ 1 day 00:00:02.3456
++(1 row)
++
+ SELECT interval '1 2:03.5678' minute to second(2);
+-     interval      
+--------------------
+- 1 day 00:02:03.57
++      ?column?      
++--------------------
++ 1 day 02:03:34.068
+ (1 row)
+ 
+ SELECT interval '1 2:03:04.5678' minute to second(2);
+-     interval      
+--------------------
+- 1 day 02:03:04.57
++      ?column?       
++---------------------
++ 1 day 02:03:04.5678
+ (1 row)
+ 
+ SELECT interval '2562047788:00:54.775807' second(2);  -- out of range
+-ERROR:  interval out of range
++         ?column?         
++--------------------------
++ -2562047788:00:54.775808
++(1 row)
++
+ SELECT interval '-2562047788:00:54.775807' second(2);  -- out of range
+-ERROR:  interval out of range
++         ?column?         
++--------------------------
++ -2562047788:00:54.775806
++(1 row)
++
+ -- test casting to restricted precision (bug #14479)
+ SELECT f1, f1::INTERVAL DAY TO MINUTE AS "minutes",
+   (f1 + INTERVAL '1 month')::INTERVAL MONTH::INTERVAL YEAR AS "years"
+   FROM interval_tbl order by 1;
+-       f1        |     minutes     |  years   
+------------------+-----------------+----------
+- -00:00:14       | 00:00:00        | 00:00:00
+- 00:01:00        | 00:01:00        | 00:00:00
+- 05:00:00        | 05:00:00        | 00:00:00
+- 1 day 02:03:04  | 1 day 02:03:00  | 00:00:00
+- 10 days         | 10 days         | 00:00:00
+- 3 mons          | 3 mons          | 00:00:00
+- 5 mons          | 5 mons          | 00:00:00
+- 5 mons 12:00:00 | 5 mons 12:00:00 | 00:00:00
+- 6 years         | 6 years         | 6 years
+- 34 years        | 34 years        | 34 years
+-(10 rows)
+-
++ERROR:  IRGenerator:lookup failed, native function not found: [cast_interval_interval]
+ -- test inputting and outputting SQL standard interval literals
+ SET IntervalStyle TO sql_standard;
++ERROR:  only support select and create table statement
+ SELECT  interval '0'                       AS "zero",
+         interval '1-2' year to month       AS "year-month",
+         interval '1 2:03:04' day to second AS "day-time",
+         - interval '1-2'                   AS "negative year-month",
+         - interval '1 2:03:04'             AS "negative day-time";
+- zero | year-month | day-time  | negative year-month | negative day-time 
+-------+------------+-----------+---------------------+-------------------
+- 0    | 1-2        | 1 2:03:04 | -1-2                | -1 2:03:04
+-(1 row)
+-
++ERROR:  operator does not exist: NEG Interval
+ -- test input of some not-quite-standard interval values in the sql style
+ SET IntervalStyle TO postgres;
++ERROR:  only support select and create table statement
+ SELECT  interval '+1 -1:00:00',
+         interval '-1 +1:00:00',
+         interval '+1-2 -3 +4:05:06.789',
+         interval '-1-2 +3 -4:05:06.789';
+-    interval     |     interval      |              interval               |                interval                
++    ?column?     |     ?column?      |              ?column?               |                ?column?                
+ -----------------+-------------------+-------------------------------------+----------------------------------------
+  1 day -01:00:00 | -1 days +01:00:00 | 1 year 2 mons -3 days +04:05:06.789 | -1 years -2 mons +3 days -04:05:06.789
+ (1 row)
+@@ -902,37 +771,39 @@
+         interval '-1 day 23 hours 45 min 12.34 sec',
+         interval '-1 year 2 months 1 day 23 hours 45 min 12.34 sec',
+         interval '-1 year 2 months 1 day 23 hours 45 min +12.34 sec';
+-   interval   |       interval       |          interval           |          interval           
++   ?column?   |       ?column?       |          ?column?           |          ?column?           
+ --------------+----------------------+-----------------------------+-----------------------------
+  -22:14:47.66 | -1 days +23:45:12.34 | -10 mons +1 day 23:45:12.34 | -10 mons +1 day 23:45:12.34
+ (1 row)
+ 
+ -- test output of couple non-standard interval values in the sql style
+ SET IntervalStyle TO sql_standard;
++ERROR:  only support select and create table statement
+ SELECT  interval '1 day -1 hours',
+         interval '-1 days +1 hours',
+         interval '1 years 2 months -3 days 4 hours 5 minutes 6.789 seconds',
+         - interval '1 years 2 months -3 days 4 hours 5 minutes 6.789 seconds';
+-     interval     |     interval     |       interval       |       ?column?       
+-------------------+------------------+----------------------+----------------------
+- +0-0 +1 -1:00:00 | +0-0 -1 +1:00:00 | +1-2 -3 +4:05:06.789 | -1-2 +3 -4:05:06.789
+-(1 row)
+-
++ERROR:  operator does not exist: NEG Interval
+ -- cases that trigger sign-matching rules in the sql style
+ SELECT  interval '-23 hours 45 min 12.34 sec',
+         interval '-1 day 23 hours 45 min 12.34 sec',
+         interval '-1 year 2 months 1 day 23 hours 45 min 12.34 sec',
+         interval '-1 year 2 months 1 day 23 hours 45 min +12.34 sec';
+-   interval   |    interval    |       interval       |       interval        
+---------------+----------------+----------------------+-----------------------
+- -23:45:12.34 | -1 23:45:12.34 | -1-2 -1 -23:45:12.34 | -0-10 +1 +23:45:12.34
++   ?column?   |       ?column?       |          ?column?           |          ?column?           
++--------------+----------------------+-----------------------------+-----------------------------
++ -22:14:47.66 | -1 days +23:45:12.34 | -10 mons +1 day 23:45:12.34 | -10 mons +1 day 23:45:12.34
+ (1 row)
+ 
+ -- edge case for sign-matching rules
+ SELECT  interval '';  -- error
+-ERROR:  invalid input syntax for type interval: ""
++ ?column? 
++----------
++ 0
++(1 row)
++
+ -- test outputting iso8601 intervals
+ SET IntervalStyle to iso_8601;
++ERROR:  only support select and create table statement
+ select  interval '0'                                AS "zero",
+         interval '1-2'                              AS "a year 2 months",
+         interval '1 2:03:04'                        AS "a bit over a day",
+@@ -940,13 +811,10 @@
+         (interval '1-2' + interval '3 4:05:06.7')   AS "all fields",
+         (interval '1-2' - interval '3 4:05:06.7')   AS "mixed sign",
+         (- interval '1-2' + interval '3 4:05:06.7') AS "negative";
+- zero | a year 2 months | a bit over a day | a bit over 2 hours |    all fields    |      mixed sign      |      negative      
+-------+-----------------+------------------+--------------------+------------------+----------------------+--------------------
+- PT0S | P1Y2M           | P1DT2H3M4S       | PT2H3M4.45679S     | P1Y2M3DT4H5M6.7S | P1Y2M-3DT-4H-5M-6.7S | P-1Y-2M3DT4H5M6.7S
+-(1 row)
+-
++ERROR:  operator does not exist: NEG Interval
+ -- test inputting ISO 8601 4.4.2.1 "Format With Time Unit Designators"
+ SET IntervalStyle to sql_standard;
++ERROR:  only support select and create table statement
+ select  interval 'P0Y'                    AS "zero",
+         interval 'P1Y2M'                  AS "a year 2 months",
+         interval 'P1W'                    AS "a week",
+@@ -954,20 +822,13 @@
+         interval 'P1Y2M3DT4H5M6.7S'       AS "all fields",
+         interval 'P-1Y-2M-3DT-4H-5M-6.7S' AS "negative",
+         interval 'PT-0.1S'                AS "fractional second";
+- zero | a year 2 months |  a week   | a bit over a day |     all fields     |      negative      | fractional second 
+-------+-----------------+-----------+------------------+--------------------+--------------------+-------------------
+- 0    | 1-2             | 7 0:00:00 | 1 2:03:04        | +1-2 +3 +4:05:06.7 | -1-2 -3 -4:05:06.7 | -0:00:00.1
+-(1 row)
+-
++ERROR:  invalid input syntax for type interval: "P0Y"
+ -- test inputting ISO 8601 4.4.2.2 "Alternative Format"
+ SET IntervalStyle to postgres;
++ERROR:  only support select and create table statement
+ select  interval 'P00021015T103020'       AS "ISO8601 Basic Format",
+         interval 'P0002-10-15T10:30:20'   AS "ISO8601 Extended Format";
+-       ISO8601 Basic Format       |     ISO8601 Extended Format      
+-----------------------------------+----------------------------------
+- 2 years 10 mons 15 days 10:30:20 | 2 years 10 mons 15 days 10:30:20
+-(1 row)
+-
++ERROR:  invalid input syntax for type interval: "P00021015T103020"
+ -- Make sure optional ISO8601 alternative format fields are optional.
+ select  interval 'P0002'                  AS "year only",
+         interval 'P0002-10'               AS "year month",
+@@ -977,466 +838,537 @@
+         interval 'P0002-10-15T1S'         AS "year month day plus time",
+         interval 'PT10'                   AS "hour only",
+         interval 'PT10:30'                AS "hour minute";
+- year only |   year month    |     year month day      | year only plus time |   year month plus time   |     year month day plus time     | hour only | hour minute 
+------------+-----------------+-------------------------+---------------------+--------------------------+----------------------------------+-----------+-------------
+- 2 years   | 2 years 10 mons | 2 years 10 mons 15 days | 2 years 00:00:01    | 2 years 10 mons 00:00:01 | 2 years 10 mons 15 days 00:00:01 | 10:00:00  | 10:30:00
+-(1 row)
+-
++ERROR:  invalid input syntax for type interval: "P0002"
+ -- Check handling of fractional fields in ISO8601 format.
+ select interval 'P1Y0M3DT4H5M6S';
+-        interval        
+-------------------------
+- 1 year 3 days 04:05:06
+-(1 row)
+-
++ERROR:  invalid input syntax for type interval: "P1Y0M3DT4H5M6S"
+ select interval 'P1.0Y0M3DT4H5M6S';
+-        interval        
+-------------------------
+- 1 year 3 days 04:05:06
+-(1 row)
+-
++ERROR:  invalid input syntax for type interval: "P1.0Y0M3DT4H5M6S"
+ select interval 'P1.1Y0M3DT4H5M6S';
+-           interval           
+-------------------------------
+- 1 year 1 mon 3 days 04:05:06
+-(1 row)
+-
++ERROR:  invalid input syntax for type interval: "P1.1Y0M3DT4H5M6S"
+ select interval 'P1.Y0M3DT4H5M6S';
+-        interval        
+-------------------------
+- 1 year 3 days 04:05:06
+-(1 row)
+-
++ERROR:  invalid input syntax for type interval: "P1.Y0M3DT4H5M6S"
+ select interval 'P.1Y0M3DT4H5M6S';
+-       interval        
+------------------------
+- 1 mon 3 days 04:05:06
+-(1 row)
+-
++ERROR:  invalid input syntax for type interval: "P.1Y0M3DT4H5M6S"
+ select interval 'P10.5e4Y';  -- not per spec, but we've historically taken it
+-   interval   
+---------------
+- 105000 years
+-(1 row)
+-
++ERROR:  invalid input syntax for type interval: "P10.5e4Y"
+ select interval 'P.Y0M3DT4H5M6S';  -- error
+ ERROR:  invalid input syntax for type interval: "P.Y0M3DT4H5M6S"
+ -- test a couple rounding cases that changed since 8.3 w/ HAVE_INT64_TIMESTAMP.
+ --SET IntervalStyle to postgres_verbose;
+ select interval '-10 mons -3 days +03:55:06.70';
+-           interval           
++           ?column?           
+ ------------------------------
+  -10 mons -3 days +03:55:06.7
+ (1 row)
+ 
+ select interval '1 year 2 mons 3 days 04:05:06.699999';
+-               interval               
++               ?column?               
+ --------------------------------------
+  1 year 2 mons 3 days 04:05:06.699999
+ (1 row)
+ 
+ select interval '0:0:0.7', interval '@ 0.70 secs', interval '0.7 seconds';
+-  interval  |  interval  |  interval  
++  ?column?  |  ?column?  |  ?column?  
+ ------------+------------+------------
+  00:00:00.7 | 00:00:00.7 | 00:00:00.7
+ (1 row)
+ 
+ -- test time fields using entire 64 bit microseconds range
+ select interval '2562047788.01521550194 hours';
+-        interval         
+--------------------------
+- 2562047788:00:54.775807
++         ?column?         
++--------------------------
++ -2562047788:00:54.775808
+ (1 row)
+ 
+ select interval '-2562047788.01521550222 hours';
+-         interval         
++         ?column?         
+ --------------------------
+- -2562047788:00:54.775808
++ -2562047788:00:54.775807
+ (1 row)
+ 
+ select interval '153722867280.912930117 minutes';
+-        interval         
+--------------------------
+- 2562047788:00:54.775807
++         ?column?         
++--------------------------
++ -2562047788:00:54.775808
+ (1 row)
+ 
+ select interval '-153722867280.912930133 minutes';
+-         interval         
++         ?column?         
+ --------------------------
+- -2562047788:00:54.775808
++ -2562047788:00:54.775807
+ (1 row)
+ 
+ select interval '9223372036854.775807 seconds';
+-        interval         
+--------------------------
+- 2562047788:00:54.775807
++         ?column?         
++--------------------------
++ -2562047788:00:54.775808
+ (1 row)
+ 
+ select interval '-9223372036854.775808 seconds';
+-         interval         
++         ?column?         
+ --------------------------
+- -2562047788:00:54.775808
++ -2562047788:00:54.775807
+ (1 row)
+ 
+ select interval '9223372036854775.807 milliseconds';
+-        interval         
+--------------------------
+- 2562047788:00:54.775807
++         ?column?         
++--------------------------
++ -2562047788:00:54.775808
+ (1 row)
+ 
+ select interval '-9223372036854775.808 milliseconds';
+-         interval         
++         ?column?         
+ --------------------------
+- -2562047788:00:54.775808
++ -2562047788:00:54.775807
+ (1 row)
+ 
+ select interval '9223372036854775807 microseconds';
+-        interval         
+--------------------------
+- 2562047788:00:54.775807
++         ?column?         
++--------------------------
++ -2562047788:00:54.775808
+ (1 row)
+ 
+ select interval '-9223372036854775808 microseconds';
+-         interval         
++         ?column?         
+ --------------------------
+- -2562047788:00:54.775808
++ -2562047788:00:54.775807
+ (1 row)
+ 
+ select interval 'PT2562047788H54.775807S';
+-        interval         
+--------------------------
+- 2562047788:00:54.775807
+-(1 row)
+-
++ERROR:  invalid input syntax for type interval: "PT2562047788H54.775807S"
+ select interval 'PT-2562047788H-54.775808S';
+-         interval         
+---------------------------
+- -2562047788:00:54.775808
+-(1 row)
+-
++ERROR:  invalid input syntax for type interval: "PT-2562047788H-54.775808S"
+ select interval 'PT2562047788:00:54.775807';
+-        interval         
+--------------------------
+- 2562047788:00:54.775807
+-(1 row)
+-
++ERROR:  invalid input syntax for type interval: "PT2562047788:00:54.775807"
+ select interval 'PT2562047788.0152155019444';
+-        interval         
+--------------------------
+- 2562047788:00:54.775429
+-(1 row)
+-
++ERROR:  invalid input syntax for type interval: "PT2562047788.0152155019444"
+ select interval 'PT-2562047788.0152155022222';
+-         interval         
+---------------------------
+- -2562047788:00:54.775429
+-(1 row)
+-
++ERROR:  invalid input syntax for type interval: "PT-2562047788.0152155022222"
+ -- overflow each date/time field
+ select interval '2147483648 years';
+-ERROR:  interval field value out of range: "2147483648 years"
++                              ?column?                              
++--------------------------------------------------------------------
++ -178956970 years -8 mons -2147483648 days -2562047788:00:54.775808
++(1 row)
++
+ select interval '-2147483649 years';
+-ERROR:  interval field value out of range: "-2147483649 years"
++                              ?column?                              
++--------------------------------------------------------------------
++ -178956970 years -8 mons -2147483648 days -2562047788:00:54.775808
++(1 row)
++
+ select interval '2147483648 months';
+-ERROR:  interval field value out of range: "2147483648 months"
++                              ?column?                              
++--------------------------------------------------------------------
++ -178956970 years -8 mons -2147483648 days -2562047788:00:54.775808
++(1 row)
++
+ select interval '-2147483649 months';
+-ERROR:  interval field value out of range: "-2147483649 months"
++             ?column?              
++-----------------------------------
++ -178956970 years -8 mons -30 days
++(1 row)
++
+ select interval '2147483648 days';
+-ERROR:  interval field value out of range: "2147483648 days"
++                 ?column?                  
++-------------------------------------------
++ -2147483648 days -2562047788:00:54.775808
++(1 row)
++
+ select interval '-2147483649 days';
+-ERROR:  interval field value out of range: "-2147483649 days"
++          ?column?          
++----------------------------
++ -2147483648 days -24:00:00
++(1 row)
++
+ select interval '2562047789 hours';
+-ERROR:  interval field value out of range: "2562047789 hours"
++         ?column?         
++--------------------------
++ -2562047788:00:54.775808
++(1 row)
++
+ select interval '-2562047789 hours';
+-ERROR:  interval field value out of range: "-2562047789 hours"
++         ?column?         
++--------------------------
++ -2562047788:00:54.775808
++(1 row)
++
+ select interval '153722867281 minutes';
+-ERROR:  interval field value out of range: "153722867281 minutes"
++         ?column?         
++--------------------------
++ -2562047788:00:54.775808
++(1 row)
++
+ select interval '-153722867281 minutes';
+-ERROR:  interval field value out of range: "-153722867281 minutes"
++         ?column?         
++--------------------------
++ -2562047788:00:54.775808
++(1 row)
++
+ select interval '9223372036855 seconds';
+-ERROR:  interval field value out of range: "9223372036855 seconds"
++         ?column?         
++--------------------------
++ -2562047788:00:54.775808
++(1 row)
++
+ select interval '-9223372036855 seconds';
+-ERROR:  interval field value out of range: "-9223372036855 seconds"
++         ?column?         
++--------------------------
++ -2562047788:00:54.775808
++(1 row)
++
+ select interval '9223372036854777 millisecond';
+-ERROR:  interval field value out of range: "9223372036854777 millisecond"
++         ?column?         
++--------------------------
++ -2562047788:00:54.775808
++(1 row)
++
+ select interval '-9223372036854777 millisecond';
+-ERROR:  interval field value out of range: "-9223372036854777 millisecond"
++         ?column?         
++--------------------------
++ -2562047788:00:54.775807
++(1 row)
++
+ select interval '9223372036854775808 microsecond';
+-ERROR:  interval field value out of range: "9223372036854775808 microsecond"
++         ?column?         
++--------------------------
++ -2562047788:00:54.775808
++(1 row)
++
+ select interval '-9223372036854775809 microsecond';
+-ERROR:  interval field value out of range: "-9223372036854775809 microsecond"
++         ?column?         
++--------------------------
++ -2562047788:00:54.775807
++(1 row)
++
+ select interval 'P2147483648';
+-ERROR:  interval field value out of range: "P2147483648"
++ERROR:  invalid input syntax for type interval: "P2147483648"
+ select interval 'P-2147483649';
+-ERROR:  interval field value out of range: "P-2147483649"
++ERROR:  invalid input syntax for type interval: "P-2147483649"
+ select interval 'P1-2147483647-2147483647';
+-ERROR:  interval out of range
++ERROR:  invalid input syntax for type interval: "P1-2147483647-2147483647"
+ select interval 'PT2562047789';
+-ERROR:  interval field value out of range: "PT2562047789"
++ERROR:  invalid input syntax for type interval: "PT2562047789"
+ select interval 'PT-2562047789';
+-ERROR:  interval field value out of range: "PT-2562047789"
++ERROR:  invalid input syntax for type interval: "PT-2562047789"
+ -- overflow with date/time unit aliases
+ select interval '2147483647 weeks';
+-ERROR:  interval field value out of range: "2147483647 weeks"
++                 ?column?                  
++-------------------------------------------
++ -2147483648 days -2562047788:00:54.775808
++(1 row)
++
+ select interval '-2147483648 weeks';
+-ERROR:  interval field value out of range: "-2147483648 weeks"
++                 ?column?                  
++-------------------------------------------
++ -2147483648 days -2562047788:00:54.775808
++(1 row)
++
+ select interval '2147483647 decades';
+-ERROR:  interval field value out of range: "2147483647 decades"
++ERROR:  invalid input syntax for type interval: "2147483647 decades"
+ select interval '-2147483648 decades';
+-ERROR:  interval field value out of range: "-2147483648 decades"
++ERROR:  invalid input syntax for type interval: "-2147483648 decades"
+ select interval '2147483647 centuries';
+-ERROR:  interval field value out of range: "2147483647 centuries"
++ERROR:  invalid input syntax for type interval: "2147483647 centuries"
+ select interval '-2147483648 centuries';
+-ERROR:  interval field value out of range: "-2147483648 centuries"
++ERROR:  invalid input syntax for type interval: "-2147483648 centuries"
+ select interval '2147483647 millennium';
+-ERROR:  interval field value out of range: "2147483647 millennium"
++ERROR:  invalid input syntax for type interval: "2147483647 millennium"
+ select interval '-2147483648 millennium';
+-ERROR:  interval field value out of range: "-2147483648 millennium"
++ERROR:  invalid input syntax for type interval: "-2147483648 millennium"
+ select interval '1 week 2147483647 days';
+-ERROR:  interval field value out of range: "1 week 2147483647 days"
++     ?column?     
++------------------
++ -2147483642 days
++(1 row)
++
+ select interval '-1 week -2147483648 days';
+-ERROR:  interval field value out of range: "-1 week -2147483648 days"
++    ?column?     
++-----------------
++ 2147483641 days
++(1 row)
++
+ select interval '2147483647 days 1 week';
+-ERROR:  interval field value out of range: "2147483647 days 1 week"
++ERROR:  invalid input syntax for type interval: "2147483647 days 1 week"
+ select interval '-2147483648 days -1 week';
+-ERROR:  interval field value out of range: "-2147483648 days -1 week"
++ERROR:  invalid input syntax for type interval: "-2147483648 days -1 week"
+ select interval 'P1W2147483647D';
+-ERROR:  interval field value out of range: "P1W2147483647D"
++ERROR:  invalid input syntax for type interval: "P1W2147483647D"
+ select interval 'P-1W-2147483648D';
+-ERROR:  interval field value out of range: "P-1W-2147483648D"
++ERROR:  invalid input syntax for type interval: "P-1W-2147483648D"
+ select interval 'P2147483647D1W';
+-ERROR:  interval field value out of range: "P2147483647D1W"
++ERROR:  invalid input syntax for type interval: "P2147483647D1W"
+ select interval 'P-2147483648D-1W';
+-ERROR:  interval field value out of range: "P-2147483648D-1W"
++ERROR:  invalid input syntax for type interval: "P-2147483648D-1W"
+ select interval '1 decade 2147483647 years';
+-ERROR:  interval field value out of range: "1 decade 2147483647 years"
++ERROR:  invalid input syntax for type interval: "1 decade 2147483647 years"
+ select interval '1 century 2147483647 years';
+-ERROR:  interval field value out of range: "1 century 2147483647 years"
++ERROR:  invalid input syntax for type interval: "1 century 2147483647 years"
+ select interval '1 millennium 2147483647 years';
+-ERROR:  interval field value out of range: "1 millennium 2147483647 years"
++ERROR:  invalid input syntax for type interval: "1 millennium 2147483647 years"
+ select interval '-1 decade -2147483648 years';
+-ERROR:  interval field value out of range: "-1 decade -2147483648 years"
++ERROR:  invalid input syntax for type interval: "-1 decade -2147483648 years"
+ select interval '-1 century -2147483648 years';
+-ERROR:  interval field value out of range: "-1 century -2147483648 years"
++ERROR:  invalid input syntax for type interval: "-1 century -2147483648 years"
+ select interval '-1 millennium -2147483648 years';
+-ERROR:  interval field value out of range: "-1 millennium -2147483648 years"
++ERROR:  invalid input syntax for type interval: "-1 millennium -2147483648 years"
+ select interval '2147483647 years 1 decade';
+-ERROR:  interval field value out of range: "2147483647 years 1 decade"
++ERROR:  invalid input syntax for type interval: "2147483647 years 1 decade"
+ select interval '2147483647 years 1 century';
+-ERROR:  interval field value out of range: "2147483647 years 1 century"
++ERROR:  invalid input syntax for type interval: "2147483647 years 1 century"
+ select interval '2147483647 years 1 millennium';
+-ERROR:  interval field value out of range: "2147483647 years 1 millennium"
++ERROR:  invalid input syntax for type interval: "2147483647 years 1 millennium"
+ select interval '-2147483648 years -1 decade';
+-ERROR:  interval field value out of range: "-2147483648 years -1 decade"
++ERROR:  invalid input syntax for type interval: "-2147483648 years -1 decade"
+ select interval '-2147483648 years -1 century';
+-ERROR:  interval field value out of range: "-2147483648 years -1 century"
++ERROR:  invalid input syntax for type interval: "-2147483648 years -1 century"
+ select interval '-2147483648 years -1 millennium';
+-ERROR:  interval field value out of range: "-2147483648 years -1 millennium"
++ERROR:  invalid input syntax for type interval: "-2147483648 years -1 millennium"
+ -- overflowing with fractional fields - postgres format
+ select interval '0.1 millennium 2147483647 months';
+-ERROR:  interval field value out of range: "0.1 millennium 2147483647 months"
++ERROR:  invalid input syntax for type interval: "0.1 millennium 2147483647 months"
+ select interval '0.1 centuries 2147483647 months';
+-ERROR:  interval field value out of range: "0.1 centuries 2147483647 months"
++ERROR:  invalid input syntax for type interval: "0.1 centuries 2147483647 months"
+ select interval '0.1 decades 2147483647 months';
+-ERROR:  interval field value out of range: "0.1 decades 2147483647 months"
++ERROR:  invalid input syntax for type interval: "0.1 decades 2147483647 months"
+ select interval '0.1 yrs 2147483647 months';
+-ERROR:  interval field value out of range: "0.1 yrs 2147483647 months"
++ERROR:  invalid input syntax for type interval: "0.1 yrs 2147483647 months"
+ select interval '-0.1 millennium -2147483648 months';
+-ERROR:  interval field value out of range: "-0.1 millennium -2147483648 months"
++ERROR:  invalid input syntax for type interval: "-0.1 millennium -2147483648 months"
+ select interval '-0.1 centuries -2147483648 months';
+-ERROR:  interval field value out of range: "-0.1 centuries -2147483648 months"
++ERROR:  invalid input syntax for type interval: "-0.1 centuries -2147483648 months"
+ select interval '-0.1 decades -2147483648 months';
+-ERROR:  interval field value out of range: "-0.1 decades -2147483648 months"
++ERROR:  invalid input syntax for type interval: "-0.1 decades -2147483648 months"
+ select interval '-0.1 yrs -2147483648 months';
+-ERROR:  interval field value out of range: "-0.1 yrs -2147483648 months"
++ERROR:  invalid input syntax for type interval: "-0.1 yrs -2147483648 months"
+ select interval '2147483647 months 0.1 millennium';
+-ERROR:  interval field value out of range: "2147483647 months 0.1 millennium"
++ERROR:  invalid input syntax for type interval: "2147483647 months 0.1 millennium"
+ select interval '2147483647 months 0.1 centuries';
+-ERROR:  interval field value out of range: "2147483647 months 0.1 centuries"
++ERROR:  invalid input syntax for type interval: "2147483647 months 0.1 centuries"
+ select interval '2147483647 months 0.1 decades';
+-ERROR:  interval field value out of range: "2147483647 months 0.1 decades"
++ERROR:  invalid input syntax for type interval: "2147483647 months 0.1 decades"
+ select interval '2147483647 months 0.1 yrs';
+-ERROR:  interval field value out of range: "2147483647 months 0.1 yrs"
++ERROR:  invalid input syntax for type interval: "2147483647 months 0.1 yrs"
+ select interval '-2147483648 months -0.1 millennium';
+-ERROR:  interval field value out of range: "-2147483648 months -0.1 millennium"
++ERROR:  invalid input syntax for type interval: "-2147483648 months -0.1 millennium"
+ select interval '-2147483648 months -0.1 centuries';
+-ERROR:  interval field value out of range: "-2147483648 months -0.1 centuries"
++ERROR:  invalid input syntax for type interval: "-2147483648 months -0.1 centuries"
+ select interval '-2147483648 months -0.1 decades';
+-ERROR:  interval field value out of range: "-2147483648 months -0.1 decades"
++ERROR:  invalid input syntax for type interval: "-2147483648 months -0.1 decades"
+ select interval '-2147483648 months -0.1 yrs';
+-ERROR:  interval field value out of range: "-2147483648 months -0.1 yrs"
++ERROR:  invalid input syntax for type interval: "-2147483648 months -0.1 yrs"
+ select interval '0.1 months 2147483647 days';
+-ERROR:  interval field value out of range: "0.1 months 2147483647 days"
++     ?column?     
++------------------
++ -2147483646 days
++(1 row)
++
+ select interval '-0.1 months -2147483648 days';
+-ERROR:  interval field value out of range: "-0.1 months -2147483648 days"
++    ?column?     
++-----------------
++ 2147483645 days
++(1 row)
++
+ select interval '2147483647 days 0.1 months';
+-ERROR:  interval field value out of range: "2147483647 days 0.1 months"
++ERROR:  invalid input syntax for type interval: "2147483647 days 0.1 months"
+ select interval '-2147483648 days -0.1 months';
+-ERROR:  interval field value out of range: "-2147483648 days -0.1 months"
++ERROR:  invalid input syntax for type interval: "-2147483648 days -0.1 months"
+ select interval '0.5 weeks 2147483647 days';
+-ERROR:  interval field value out of range: "0.5 weeks 2147483647 days"
++          ?column?          
++----------------------------
++ -2147483646 days +12:00:00
++(1 row)
++
+ select interval '-0.5 weeks -2147483648 days';
+-ERROR:  interval field value out of range: "-0.5 weeks -2147483648 days"
++         ?column?          
++---------------------------
++ 2147483645 days -12:00:00
++(1 row)
++
+ select interval '2147483647 days 0.5 weeks';
+-ERROR:  interval field value out of range: "2147483647 days 0.5 weeks"
++ERROR:  invalid input syntax for type interval: "2147483647 days 0.5 weeks"
+ select interval '-2147483648 days -0.5 weeks';
+-ERROR:  interval field value out of range: "-2147483648 days -0.5 weeks"
++ERROR:  invalid input syntax for type interval: "-2147483648 days -0.5 weeks"
+ select interval '0.01 months 9223372036854775807 microseconds';
+-ERROR:  interval field value out of range: "0.01 months 9223372036854775807 microseconds"
++         ?column?         
++--------------------------
++ -2562047780:48:54.775808
++(1 row)
++
+ select interval '-0.01 months -9223372036854775808 microseconds';
+-ERROR:  interval field value out of range: "-0.01 months -9223372036854775808 microseconds"
++        ?column?         
++-------------------------
++ 2562047780:48:54.775809
++(1 row)
++
+ select interval '9223372036854775807 microseconds 0.01 months';
+-ERROR:  interval field value out of range: "9223372036854775807 microseconds 0.01 months"
++ERROR:  invalid input syntax for type interval: "9223372036854775807 microseconds 0.01 months"
+ select interval '-9223372036854775808 microseconds -0.01 months';
+-ERROR:  interval field value out of range: "-9223372036854775808 microseconds -0.01 months"
++ERROR:  invalid input syntax for type interval: "-9223372036854775808 microseconds -0.01 months"
+ select interval '0.1 weeks 9223372036854775807 microseconds';
+-ERROR:  interval field value out of range: "0.1 weeks 9223372036854775807 microseconds"
++         ?column?         
++--------------------------
++ -2562047771:12:54.775808
++(1 row)
++
+ select interval '-0.1 weeks -9223372036854775808 microseconds';
+-ERROR:  interval field value out of range: "-0.1 weeks -9223372036854775808 microseconds"
++        ?column?         
++-------------------------
++ 2562047771:12:54.775809
++(1 row)
++
+ select interval '9223372036854775807 microseconds 0.1 weeks';
+-ERROR:  interval field value out of range: "9223372036854775807 microseconds 0.1 weeks"
++ERROR:  invalid input syntax for type interval: "9223372036854775807 microseconds 0.1 weeks"
+ select interval '-9223372036854775808 microseconds -0.1 weeks';
+-ERROR:  interval field value out of range: "-9223372036854775808 microseconds -0.1 weeks"
++ERROR:  invalid input syntax for type interval: "-9223372036854775808 microseconds -0.1 weeks"
+ select interval '0.1 days 9223372036854775807 microseconds';
+-ERROR:  interval field value out of range: "0.1 days 9223372036854775807 microseconds"
++         ?column?         
++--------------------------
++ -2562047785:36:54.775808
++(1 row)
++
+ select interval '-0.1 days -9223372036854775808 microseconds';
+-ERROR:  interval field value out of range: "-0.1 days -9223372036854775808 microseconds"
++        ?column?         
++-------------------------
++ 2562047785:36:54.775809
++(1 row)
++
+ select interval '9223372036854775807 microseconds 0.1 days';
+-ERROR:  interval field value out of range: "9223372036854775807 microseconds 0.1 days"
++ERROR:  invalid input syntax for type interval: "9223372036854775807 microseconds 0.1 days"
+ select interval '-9223372036854775808 microseconds -0.1 days';
+-ERROR:  interval field value out of range: "-9223372036854775808 microseconds -0.1 days"
++ERROR:  invalid input syntax for type interval: "-9223372036854775808 microseconds -0.1 days"
+ -- overflowing with fractional fields - ISO8601 format
+ select interval 'P0.1Y2147483647M';
+-ERROR:  interval field value out of range: "P0.1Y2147483647M"
++ERROR:  invalid input syntax for type interval: "P0.1Y2147483647M"
+ select interval 'P-0.1Y-2147483648M';
+-ERROR:  interval field value out of range: "P-0.1Y-2147483648M"
++ERROR:  invalid input syntax for type interval: "P-0.1Y-2147483648M"
+ select interval 'P2147483647M0.1Y';
+-ERROR:  interval field value out of range: "P2147483647M0.1Y"
++ERROR:  invalid input syntax for type interval: "P2147483647M0.1Y"
+ select interval 'P-2147483648M-0.1Y';
+-ERROR:  interval field value out of range: "P-2147483648M-0.1Y"
++ERROR:  invalid input syntax for type interval: "P-2147483648M-0.1Y"
+ select interval 'P0.1M2147483647D';
+-ERROR:  interval field value out of range: "P0.1M2147483647D"
++ERROR:  invalid input syntax for type interval: "P0.1M2147483647D"
+ select interval 'P-0.1M-2147483648D';
+-ERROR:  interval field value out of range: "P-0.1M-2147483648D"
++ERROR:  invalid input syntax for type interval: "P-0.1M-2147483648D"
+ select interval 'P2147483647D0.1M';
+-ERROR:  interval field value out of range: "P2147483647D0.1M"
++ERROR:  invalid input syntax for type interval: "P2147483647D0.1M"
+ select interval 'P-2147483648D-0.1M';
+-ERROR:  interval field value out of range: "P-2147483648D-0.1M"
++ERROR:  invalid input syntax for type interval: "P-2147483648D-0.1M"
+ select interval 'P0.5W2147483647D';
+-ERROR:  interval field value out of range: "P0.5W2147483647D"
++ERROR:  invalid input syntax for type interval: "P0.5W2147483647D"
+ select interval 'P-0.5W-2147483648D';
+-ERROR:  interval field value out of range: "P-0.5W-2147483648D"
++ERROR:  invalid input syntax for type interval: "P-0.5W-2147483648D"
+ select interval 'P2147483647D0.5W';
+-ERROR:  interval field value out of range: "P2147483647D0.5W"
++ERROR:  invalid input syntax for type interval: "P2147483647D0.5W"
+ select interval 'P-2147483648D-0.5W';
+-ERROR:  interval field value out of range: "P-2147483648D-0.5W"
++ERROR:  invalid input syntax for type interval: "P-2147483648D-0.5W"
+ select interval 'P0.01MT2562047788H54.775807S';
+-ERROR:  interval field value out of range: "P0.01MT2562047788H54.775807S"
++ERROR:  invalid input syntax for type interval: "P0.01MT2562047788H54.775807S"
+ select interval 'P-0.01MT-2562047788H-54.775808S';
+-ERROR:  interval field value out of range: "P-0.01MT-2562047788H-54.775808S"
++ERROR:  invalid input syntax for type interval: "P-0.01MT-2562047788H-54.775808S"
+ select interval 'P0.1DT2562047788H54.775807S';
+-ERROR:  interval field value out of range: "P0.1DT2562047788H54.775807S"
++ERROR:  invalid input syntax for type interval: "P0.1DT2562047788H54.775807S"
+ select interval 'P-0.1DT-2562047788H-54.775808S';
+-ERROR:  interval field value out of range: "P-0.1DT-2562047788H-54.775808S"
++ERROR:  invalid input syntax for type interval: "P-0.1DT-2562047788H-54.775808S"
+ select interval 'PT2562047788.1H54.775807S';
+-ERROR:  interval field value out of range: "PT2562047788.1H54.775807S"
++ERROR:  invalid input syntax for type interval: "PT2562047788.1H54.775807S"
+ select interval 'PT-2562047788.1H-54.775808S';
+-ERROR:  interval field value out of range: "PT-2562047788.1H-54.775808S"
++ERROR:  invalid input syntax for type interval: "PT-2562047788.1H-54.775808S"
+ select interval 'PT2562047788H0.1M54.775807S';
+-ERROR:  interval field value out of range: "PT2562047788H0.1M54.775807S"
++ERROR:  invalid input syntax for type interval: "PT2562047788H0.1M54.775807S"
+ select interval 'PT-2562047788H-0.1M-54.775808S';
+-ERROR:  interval field value out of range: "PT-2562047788H-0.1M-54.775808S"
++ERROR:  invalid input syntax for type interval: "PT-2562047788H-0.1M-54.775808S"
+ -- overflowing with fractional fields - ISO8601 alternative format
+ select interval 'P0.1-2147483647-00';
+-ERROR:  interval field value out of range: "P0.1-2147483647-00"
++ERROR:  invalid input syntax for type interval: "P0.1-2147483647-00"
+ select interval 'P00-0.1-2147483647';
+-ERROR:  interval field value out of range: "P00-0.1-2147483647"
++ERROR:  invalid input syntax for type interval: "P00-0.1-2147483647"
+ select interval 'P00-0.01-00T2562047788:00:54.775807';
+-ERROR:  interval field value out of range: "P00-0.01-00T2562047788:00:54.775807"
++ERROR:  invalid input syntax for type interval: "P00-0.01-00T2562047788:00:54.775807"
+ select interval 'P00-00-0.1T2562047788:00:54.775807';
+-ERROR:  interval field value out of range: "P00-00-0.1T2562047788:00:54.775807"
++ERROR:  invalid input syntax for type interval: "P00-00-0.1T2562047788:00:54.775807"
+ select interval 'PT2562047788.1:00:54.775807';
+-ERROR:  interval field value out of range: "PT2562047788.1:00:54.775807"
++ERROR:  invalid input syntax for type interval: "PT2562047788.1:00:54.775807"
+ select interval 'PT2562047788:01.:54.775807';
+-ERROR:  interval field value out of range: "PT2562047788:01.:54.775807"
++ERROR:  invalid input syntax for type interval: "PT2562047788:01.:54.775807"
+ -- overflowing with fractional fields - SQL standard format
+ select interval '0.1 2562047788:0:54.775807';
+-ERROR:  interval field value out of range: "0.1 2562047788:0:54.775807"
++         ?column?         
++--------------------------
++ -2562047785:36:54.775808
++(1 row)
++
+ select interval '0.1 2562047788:0:54.775808 ago';
+-ERROR:  interval field value out of range: "0.1 2562047788:0:54.775808 ago"
++ERROR:  invalid input syntax for type interval: "0.1 2562047788:0:54.775808 ago"
+ select interval '2562047788.1:0:54.775807';
+-ERROR:  interval field value out of range: "2562047788.1:0:54.775807"
++         ?column?         
++--------------------------
++ -2562047788:00:00.000001
++(1 row)
++
+ select interval '2562047788.1:0:54.775808 ago';
+-ERROR:  interval field value out of range: "2562047788.1:0:54.775808 ago"
++ERROR:  invalid input syntax for type interval: "2562047788.1:0:54.775808 ago"
+ select interval '2562047788:0.1:54.775807';
+-ERROR:  invalid input syntax for type interval: "2562047788:0.1:54.775807"
++         ?column?         
++--------------------------
++ -2562047788:00:48.775808
++(1 row)
++
+ select interval '2562047788:0.1:54.775808 ago';
+ ERROR:  invalid input syntax for type interval: "2562047788:0.1:54.775808 ago"
+ -- overflowing using AGO with INT_MIN
+ select interval '-2147483648 months ago';
+-ERROR:  interval field value out of range: "-2147483648 months ago"
++ERROR:  invalid input syntax for type interval: "-2147483648 months ago"
+ select interval '-2147483648 days ago';
+-ERROR:  interval field value out of range: "-2147483648 days ago"
++ERROR:  invalid input syntax for type interval: "-2147483648 days ago"
+ select interval '-9223372036854775808 microseconds ago';
+-ERROR:  interval field value out of range: "-9223372036854775808 microseconds ago"
++ERROR:  invalid input syntax for type interval: "-9223372036854775808 microseconds ago"
+ select interval '-2147483648 months -2147483648 days -9223372036854775808 microseconds ago';
+-ERROR:  interval field value out of range: "-2147483648 months -2147483648 days -9223372036854775808 microseconds ago"
++ERROR:  invalid input syntax for type interval: "-2147483648 months -2147483648 days -9223372036854775808 microseconds ago"
+ -- overflowing using make_interval
+ select make_interval(years := 178956971);
+-ERROR:  interval out of range
++ERROR:  function make_interval does not exist
+ select make_interval(years := -178956971);
+-ERROR:  interval out of range
++ERROR:  function make_interval does not exist
+ select make_interval(years := 1, months := 2147483647);
+-ERROR:  interval out of range
++ERROR:  function make_interval does not exist
+ select make_interval(years := -1, months := -2147483648);
+-ERROR:  interval out of range
++ERROR:  function make_interval does not exist
+ select make_interval(weeks := 306783379);
+-ERROR:  interval out of range
++ERROR:  function make_interval does not exist
+ select make_interval(weeks := -306783379);
+-ERROR:  interval out of range
++ERROR:  function make_interval does not exist
+ select make_interval(weeks := 1, days := 2147483647);
+-ERROR:  interval out of range
++ERROR:  function make_interval does not exist
+ select make_interval(weeks := -1, days := -2147483648);
+-ERROR:  interval out of range
++ERROR:  function make_interval does not exist
+ select make_interval(secs := 1e308);
+-ERROR:  value out of range: overflow
++ERROR:  function make_interval does not exist
+ select make_interval(secs := 1e18);
+-ERROR:  interval out of range
++ERROR:  function make_interval does not exist
+ select make_interval(secs := -1e18);
+-ERROR:  interval out of range
++ERROR:  function make_interval does not exist
+ select make_interval(mins := 1, secs := 9223372036800.0);
+-ERROR:  interval out of range
++ERROR:  function make_interval does not exist
+ select make_interval(mins := -1, secs := -9223372036800.0);
+-ERROR:  interval out of range
++ERROR:  function make_interval does not exist
+ -- test that INT_MIN number is formatted properly
+ SET IntervalStyle to postgres;
++ERROR:  only support select and create table statement
+ select interval '-2147483647 months -2147483648 days -9223372036854775808 us';
+-                              interval                              
+---------------------------------------------------------------------
+- -178956970 years -7 mons -2147483648 days -2562047788:00:54.775808
+-(1 row)
+-
++ERROR:  invalid input syntax for type interval: "-2147483647 months -2147483648 days -9223372036854775808 us"
+ SET IntervalStyle to sql_standard;
++ERROR:  only support select and create table statement
+ select interval '-2147483647 months -2147483648 days -9223372036854775808 us';
+-                     interval                      
+----------------------------------------------------
+- -178956970-7 -2147483648 -2562047788:00:54.775808
+-(1 row)
+-
++ERROR:  invalid input syntax for type interval: "-2147483647 months -2147483648 days -9223372036854775808 us"
+ SET IntervalStyle to iso_8601;
++ERROR:  only support select and create table statement
+ select interval '-2147483647 months -2147483648 days -9223372036854775808 us';
+-                      interval                       
+------------------------------------------------------
+- P-178956970Y-7M-2147483648DT-2562047788H-54.775808S
+-(1 row)
+-
++ERROR:  invalid input syntax for type interval: "-2147483647 months -2147483648 days -9223372036854775808 us"
+ --SET IntervalStyle to postgres_verbose;
+ select interval '-2147483647 months -2147483648 days -9223372036854775808 us';
+-                      interval                       
+------------------------------------------------------
+- P-178956970Y-7M-2147483648DT-2562047788H-54.775808S
+-(1 row)
+-
++ERROR:  invalid input syntax for type interval: "-2147483647 months -2147483648 days -9223372036854775808 us"
+ -- check that '30 days' equals '1 month' according to the hash function
+ select '30 days'::interval = '1 month'::interval as t;
+  t 
+@@ -1445,56 +1377,28 @@
+ (1 row)
+ 
+ select interval_hash('30 days'::interval) = interval_hash('1 month'::interval) as t;
+- t 
+----
+- t
+-(1 row)
+-
++ERROR:  function interval_hash does not exist
+ -- numeric constructor
+ select make_interval(years := 2);
+- make_interval 
+----------------
+- P2Y
+-(1 row)
+-
++ERROR:  function make_interval does not exist
+ select make_interval(years := 1, months := 6);
+- make_interval 
+----------------
+- P1Y6M
+-(1 row)
+-
++ERROR:  function make_interval does not exist
+ select make_interval(years := 1, months := -1, weeks := 5, days := -7, hours := 25, mins := -180);
+- make_interval 
+----------------
+- P11M28DT22H
+-(1 row)
+-
++ERROR:  function make_interval does not exist
+ select make_interval() = make_interval(years := 0, months := 0, weeks := 0, days := 0, mins := 0, secs := 0.0);
+- ?column? 
+-----------
+- t
+-(1 row)
+-
++ERROR:  function make_interval does not exist
+ select make_interval(hours := -2, mins := -10, secs := -25.3);
+-  make_interval  
+------------------
+- PT-2H-10M-25.3S
+-(1 row)
+-
++ERROR:  function make_interval does not exist
+ select make_interval(years := 'inf'::float::int);
+-ERROR:  integer out of range
++ERROR:  function make_interval does not exist
+ select make_interval(months := 'NaN'::float::int);
+-ERROR:  integer out of range
++ERROR:  function make_interval does not exist
+ select make_interval(secs := 'inf');
+-ERROR:  interval out of range
++ERROR:  function make_interval does not exist
+ select make_interval(secs := 'NaN');
+-ERROR:  interval out of range
++ERROR:  function make_interval does not exist
+ select make_interval(secs := 7e12);
+-    make_interval    
+----------------------
+- PT1944444444H26M40S
+-(1 row)
+-
++ERROR:  function make_interval does not exist
+ --
+ -- test EXTRACT
+ --
+@@ -1513,72 +1417,27 @@
+     EXTRACT(MILLENNIUM FROM f1) AS MILLENNIUM,
+     EXTRACT(EPOCH FROM f1) AS EPOCH
+     FROM INTERVAL_TBL order by 1;
+-     f1     | microsecond | millisecond |   second   | minute | hour | day | month | quarter | year | decade | century | millennium |       epoch       
+-------------+-------------+-------------+------------+--------+------+-----+-------+---------+------+--------+---------+------------+-------------------
+- PT-14S     |   -14000000 |  -14000.000 | -14.000000 |      0 |    0 |   0 |     0 |       1 |    0 |      0 |       0 |          0 |        -14.000000
+- PT1M       |           0 |       0.000 |   0.000000 |      1 |    0 |   0 |     0 |       1 |    0 |      0 |       0 |          0 |         60.000000
+- PT5H       |           0 |       0.000 |   0.000000 |      0 |    5 |   0 |     0 |       1 |    0 |      0 |       0 |          0 |      18000.000000
+- P1DT2H3M4S |     4000000 |    4000.000 |   4.000000 |      3 |    2 |   1 |     0 |       1 |    0 |      0 |       0 |          0 |      93784.000000
+- P10D       |           0 |       0.000 |   0.000000 |      0 |    0 |  10 |     0 |       1 |    0 |      0 |       0 |          0 |     864000.000000
+- P3M        |           0 |       0.000 |   0.000000 |      0 |    0 |   0 |     3 |       2 |    0 |      0 |       0 |          0 |    7776000.000000
+- P5M        |           0 |       0.000 |   0.000000 |      0 |    0 |   0 |     5 |       2 |    0 |      0 |       0 |          0 |   12960000.000000
+- P5MT12H    |           0 |       0.000 |   0.000000 |      0 |   12 |   0 |     5 |       2 |    0 |      0 |       0 |          0 |   13003200.000000
+- P6Y        |           0 |       0.000 |   0.000000 |      0 |    0 |   0 |     0 |       1 |    6 |      0 |       0 |          0 |  189345600.000000
+- P34Y       |           0 |       0.000 |   0.000000 |      0 |    0 |   0 |     0 |       1 |   34 |      3 |       0 |          0 | 1072958400.000000
+-(10 rows)
+-
++ERROR:  function DATE_PART(Unknown, Interval) does not exist
+ SELECT EXTRACT(FORTNIGHT FROM INTERVAL '2 days');  -- error
+-ERROR:  unit "fortnight" not recognized for type interval
++ERROR:  timestamp units "fortnight" not recognized
+ SELECT EXTRACT(TIMEZONE FROM INTERVAL '2 days');  -- error
+-ERROR:  unit "timezone" not supported for type interval
++ERROR:  timestamp units "timezone" not recognized
+ SELECT EXTRACT(DECADE FROM INTERVAL '100 y');
+- extract 
+----------
+-      10
+-(1 row)
+-
++ERROR:  invalid input syntax for type interval: "100 y"
+ SELECT EXTRACT(DECADE FROM INTERVAL '99 y');
+- extract 
+----------
+-       9
+-(1 row)
+-
++ERROR:  invalid input syntax for type interval: "99 y"
+ SELECT EXTRACT(DECADE FROM INTERVAL '-99 y');
+- extract 
+----------
+-      -9
+-(1 row)
+-
++ERROR:  invalid input syntax for type interval: "-99 y"
+ SELECT EXTRACT(DECADE FROM INTERVAL '-100 y');
+- extract 
+----------
+-     -10
+-(1 row)
+-
++ERROR:  invalid input syntax for type interval: "-100 y"
+ SELECT EXTRACT(CENTURY FROM INTERVAL '100 y');
+- extract 
+----------
+-       1
+-(1 row)
+-
++ERROR:  invalid input syntax for type interval: "100 y"
+ SELECT EXTRACT(CENTURY FROM INTERVAL '99 y');
+- extract 
+----------
+-       0
+-(1 row)
+-
++ERROR:  invalid input syntax for type interval: "99 y"
+ SELECT EXTRACT(CENTURY FROM INTERVAL '-99 y');
+- extract 
+----------
+-       0
+-(1 row)
+-
++ERROR:  invalid input syntax for type interval: "-99 y"
+ SELECT EXTRACT(CENTURY FROM INTERVAL '-100 y');
+- extract 
+----------
+-      -1
+-(1 row)
+-
++ERROR:  invalid input syntax for type interval: "-100 y"
+ -- date_part implementation is mostly the same as extract, so only
+ -- test a few cases for additional coverage.
+ SELECT f1,
+@@ -1587,56 +1446,23 @@
+     date_part('second', f1) AS second,
+     date_part('epoch', f1) AS epoch
+     FROM INTERVAL_TBL order by 1;
+-     f1     | microsecond | millisecond | second |   epoch    
+-------------+-------------+-------------+--------+------------
+- PT-14S     |   -14000000 |      -14000 |    -14 |        -14
+- PT1M       |           0 |           0 |      0 |         60
+- PT5H       |           0 |           0 |      0 |      18000
+- P1DT2H3M4S |     4000000 |        4000 |      4 |      93784
+- P10D       |           0 |           0 |      0 |     864000
+- P3M        |           0 |           0 |      0 |    7776000
+- P5M        |           0 |           0 |      0 |   12960000
+- P5MT12H    |           0 |           0 |      0 |   13003200
+- P6Y        |           0 |           0 |      0 |  189345600
+- P34Y       |           0 |           0 |      0 | 1072958400
+-(10 rows)
+-
++ERROR:  function DATE_PART(Unknown, Interval) does not exist
+ -- internal overflow test case
+ SELECT extract(epoch from interval '1000000000 days');
+-        extract        
+------------------------
+- 86400000000000.000000
+-(1 row)
+-
++ERROR:  timestamp units "epoch" not recognized
+ --
+ -- test infinite intervals
+ --
+ -- largest finite intervals
+ SELECT interval '-2147483648 months -2147483648 days -9223372036854775807 us';
+-                      interval                       
+------------------------------------------------------
+- P-178956970Y-8M-2147483648DT-2562047788H-54.775807S
+-(1 row)
+-
++ERROR:  invalid input syntax for type interval: "-2147483648 months -2147483648 days -9223372036854775807 us"
+ SELECT interval '2147483647 months 2147483647 days 9223372036854775806 us';
+-                    interval                    
+-------------------------------------------------
+- P178956970Y7M2147483647DT2562047788H54.775806S
+-(1 row)
+-
++ERROR:  invalid input syntax for type interval: "2147483647 months 2147483647 days 9223372036854775806 us"
+ -- infinite intervals
+ SELECT interval '-2147483648 months -2147483648 days -9223372036854775808 us';
+- interval  
+------------
+- -infinity
+-(1 row)
+-
++ERROR:  invalid input syntax for type interval: "-2147483648 months -2147483648 days -9223372036854775808 us"
+ SELECT interval '2147483647 months 2147483647 days 9223372036854775807 us';
+- interval 
+-----------
+- infinity
+-(1 row)
+-
++ERROR:  invalid input syntax for type interval: "2147483647 months 2147483647 days 9223372036854775807 us"
+ CREATE TABLE INFINITE_INTERVAL_TBL (i interval);
+ --INSERT INTO INFINITE_INTERVAL_TBL VALUES ('infinity'), ('-infinity'), ('1 year 2 days 3 hours');
+ --SELECT i, isfinite(i) FROM INFINITE_INTERVAL_TBL;
+@@ -1654,6 +1480,7 @@
+ END
+ $$
+ LANGUAGE plpgsql;
++ERROR:  only support select and create table statement
+ SELECT d AS date, i AS interval,
+        eval(format('date %L + interval %L', d, i)) AS plus,
+        eval(format('date %L - interval %L', d, i)) AS minus
+@@ -1662,16 +1489,7 @@
+              (date 'infinity')) AS t1(d),
+      (VALUES (interval '-infinity'),
+              (interval 'infinity')) AS t2(i);
+-    date    | interval  |          plus          |         minus          
+-------------+-----------+------------------------+------------------------
+- -infinity  | -infinity | -infinity              | timestamp out of range
+- -infinity  | infinity  | timestamp out of range | -infinity
+- 1995-08-06 | -infinity | -infinity              | infinity
+- 1995-08-06 | infinity  | infinity               | -infinity
+- infinity   | -infinity | timestamp out of range | infinity
+- infinity   | infinity  | infinity               | timestamp out of range
+-(6 rows)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ SELECT i1 AS interval1, i2 AS interval2,
+        eval(format('interval %L + interval %L', i1, i2)) AS plus,
+        eval(format('interval %L - interval %L', i1, i2)) AS minus
+@@ -1681,27 +1499,15 @@
+      (VALUES (interval '-infinity'),
+              (interval '10 days'),
+              (interval 'infinity')) AS t2(i2);
+- interval1 | interval2 |         plus          |         minus         
+------------+-----------+-----------------------+-----------------------
+- -infinity | -infinity | -infinity             | interval out of range
+- -infinity | P10D      | -infinity             | -infinity
+- -infinity | infinity  | interval out of range | -infinity
+- P2M       | -infinity | -infinity             | infinity
+- P2M       | P10D      | P2M10D                | P2M-10D
+- P2M       | infinity  | infinity              | -infinity
+- infinity  | -infinity | interval out of range | infinity
+- infinity  | P10D      | infinity              | infinity
+- infinity  | infinity  | infinity              | interval out of range
+-(9 rows)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ SELECT interval '2147483646 months 2147483646 days 9223372036854775806 us' + interval '1 month 1 day 1 us';
+-ERROR:  interval out of range
++ERROR:  invalid input syntax for type interval: "2147483646 months 2147483646 days 9223372036854775806 us"
+ SELECT interval '-2147483647 months -2147483647 days -9223372036854775807 us' + interval '-1 month -1 day -1 us';
+-ERROR:  interval out of range
++ERROR:  invalid input syntax for type interval: "-2147483647 months -2147483647 days -9223372036854775807 us"
+ SELECT interval '2147483646 months 2147483646 days 9223372036854775806 us' - interval '-1 month -1 day -1 us';
+-ERROR:  interval out of range
++ERROR:  invalid input syntax for type interval: "2147483646 months 2147483646 days 9223372036854775806 us"
+ SELECT interval '-2147483647 months -2147483647 days -9223372036854775807 us' - interval '1 month 1 day 1 us';
+-ERROR:  interval out of range
++ERROR:  invalid input syntax for type interval: "-2147483647 months -2147483647 days -9223372036854775807 us"
+ SELECT t AS timestamp, i AS interval,
+        eval(format('timestamp %L + interval %L', t, i)) AS plus,
+        eval(format('timestamp %L - interval %L', t, i)) AS minus
+@@ -1710,16 +1516,7 @@
+              (timestamp 'infinity')) AS t1(t),
+      (VALUES (interval '-infinity'),
+              (interval 'infinity')) AS t2(i);
+-      timestamp      | interval  |          plus          |         minus          
+----------------------+-----------+------------------------+------------------------
+- -infinity           | -infinity | -infinity              | timestamp out of range
+- -infinity           | infinity  | timestamp out of range | -infinity
+- 1995-08-06 12:30:15 | -infinity | -infinity              | infinity
+- 1995-08-06 12:30:15 | infinity  | infinity               | -infinity
+- infinity            | -infinity | timestamp out of range | infinity
+- infinity            | infinity  | infinity               | timestamp out of range
+-(6 rows)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ SELECT t AT TIME ZONE 'GMT' AS timestamptz, i AS interval,
+        eval(format('timestamptz %L + interval %L', t, i)) AS plus,
+        eval(format('timestamptz %L - interval %L', t, i)) AS minus
+@@ -1728,16 +1525,7 @@
+              (timestamptz 'infinity')) AS t1(t),
+      (VALUES (interval '-infinity'),
+              (interval 'infinity')) AS t2(i);
+-     timestamptz     | interval  |          plus          |         minus          
+----------------------+-----------+------------------------+------------------------
+- -infinity           | -infinity | -infinity              | timestamp out of range
+- -infinity           | infinity  | timestamp out of range | -infinity
+- 1995-08-06 12:30:15 | -infinity | -infinity              | infinity
+- 1995-08-06 12:30:15 | infinity  | infinity               | -infinity
+- infinity            | -infinity | timestamp out of range | infinity
+- infinity            | infinity  | infinity               | timestamp out of range
+-(6 rows)
+-
++ERROR:  clapdb doesn't support select ValueLists
+ -- time +/- infinite interval not supported
+ --SELECT time '11:27:42' + interval 'infinity';
+ --SELECT time '11:27:42' + interval '-infinity';
+@@ -1757,10 +1545,7 @@
+     lhst.i <> rhst.i AS ne
+     FROM INFINITE_INTERVAL_TBL lhst CROSS JOIN INFINITE_INTERVAL_TBL rhst
+     WHERE NOT isfinite(lhst.i);
+- lhs | rhs | lt | le | eq | gt | ge | ne 
+------+-----+----+----+----+----+----+----
+-(0 rows)
+-
++ERROR:  from_clause[i].node_case is not range_var or RangeSubselect [node_case=47] [index=0]
+ SELECT i AS interval,
+     -i AS um,
+     i * 2.0 AS mul,
+@@ -1771,16 +1556,13 @@
+     i / -3.0 AS div_neg
+     FROM INFINITE_INTERVAL_TBL
+     WHERE NOT isfinite(i);
+- interval | um | mul | mul_neg | mul_inf | mul_inf_neg | div | div_neg 
+-----------+----+-----+---------+---------+-------------+-----+---------
+-(0 rows)
+-
++ERROR:  function isfinite does not exist
+ SELECT -interval '-2147483647 months -2147483647 days -9223372036854775807 us';
+-ERROR:  interval out of range
++ERROR:  invalid input syntax for type interval: "-2147483647 months -2147483647 days -9223372036854775807 us"
+ --SELECT interval 'infinity' * 'nan';
+ --SELECT interval '-infinity' * 'nan';
+ SELECT interval '-1073741824 months -1073741824 days -4611686018427387904 us' * 2;
+-ERROR:  interval out of range
++ERROR:  invalid input syntax for type interval: "-1073741824 months -1073741824 days -4611686018427387904 us"
+ --SELECT interval 'infinity' * 0;
+ --SELECT interval '-infinity' * 0;
+ --SELECT interval '0 days' * 'infinity'::float;
+@@ -1794,23 +1576,17 @@
+ --SELECT interval '-infinity' / '-infinity';
+ --SELECT interval '-infinity' / 'nan';
+ SELECT interval '-1073741824 months -1073741824 days -4611686018427387904 us' / 0.5;
+-ERROR:  interval out of range
++ERROR:  invalid input syntax for type interval: "-1073741824 months -1073741824 days -4611686018427387904 us"
+ --SELECT date_bin('infinity', timestamp '2001-02-16 20:38:40', timestamp '2001-02-16 20:05:00');
+ --SELECT date_bin('-infinity', timestamp '2001-02-16 20:38:40', timestamp '2001-02-16 20:05:00');
+ SELECT i AS interval, date_trunc('hour', i)
+     FROM INFINITE_INTERVAL_TBL
+     WHERE NOT isfinite(i);
+- interval | date_trunc 
+-----------+------------
+-(0 rows)
+-
++ERROR:  function isfinite does not exist
+ SELECT i AS interval, justify_days(i), justify_hours(i), justify_interval(i)
+     FROM INFINITE_INTERVAL_TBL
+     WHERE NOT isfinite(i);
+- interval | justify_days | justify_hours | justify_interval 
+-----------+--------------+---------------+------------------
+-(0 rows)
+-
++ERROR:  function justify_days does not exist
+ --SELECT timezone('infinity'::interval, '1995-08-06 12:12:12'::timestamp);
+ --SELECT timezone('-infinity'::interval, '1995-08-06 12:12:12'::timestamp);
+ --SELECT timezone('infinity'::interval, '1995-08-06 12:12:12'::timestamptz);
 diff -U3 /home/longqimin/pg_regress_input/expected/select.out /home/longqimin/pg_regress_input/results/select.out
 --- /home/longqimin/pg_regress_input/expected/select.out	2024-03-26 10:12:30.471589674 +0800
-+++ /home/longqimin/pg_regress_input/results/select.out	2024-03-26 12:19:54.223555215 +0800
++++ /home/longqimin/pg_regress_input/results/select.out	2024-03-29 10:56:31.185826781 +0800
 @@ -219,16 +219,16 @@
  SELECT onek2.* FROM onek2 WHERE onek2.unique1 < 10;
   unique1 | unique2 | two | four | ten | twenty | hundred | thousand | twothousand | fivethous | tenthous | odd | even | stringu1 | stringu2 | string4 
@@ -6301,7 +8511,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select.out /home/longqimin/pg
 +ERROR:  only support select and create table statement
 diff -U3 /home/longqimin/pg_regress_input/expected/select_distinct.out /home/longqimin/pg_regress_input/results/select_distinct.out
 --- /home/longqimin/pg_regress_input/expected/select_distinct.out	2024-02-27 09:30:35.100460308 +0800
-+++ /home/longqimin/pg_regress_input/results/select_distinct.out	2024-03-26 12:20:03.152561909 +0800
++++ /home/longqimin/pg_regress_input/results/select_distinct.out	2024-03-29 10:56:41.379835858 +0800
 @@ -48,50 +48,7 @@
  SELECT DISTINCT two, string4, ten
     FROM onek
@@ -6822,7 +9032,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select_distinct.out /home/lon
 +ERROR:  a_expr only support op and between [kind=5]
 diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimin/pg_regress_input/results/aggregates.out
 --- /home/longqimin/pg_regress_input/expected/aggregates.out	2024-03-08 12:19:19.528430515 +0800
-+++ /home/longqimin/pg_regress_input/results/aggregates.out	2024-03-26 12:23:32.952713689 +0800
++++ /home/longqimin/pg_regress_input/results/aggregates.out	2024-03-29 11:00:16.404035193 +0800
 @@ -5,6 +5,7 @@
  \getenv abs_srcdir PG_ABS_SRCDIR
  -- avoid bit-exact output here because operations may not be bit-exact.
