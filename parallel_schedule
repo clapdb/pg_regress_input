@@ -23,7 +23,7 @@ test: boolean int2 int4 int8 float4 float8
 # multirangetypes shouldn't run concurrently with type_sanity
 # ----------
 # test: strings md5 numerology point lseg line box path polygon circle date time timetz timestamp timestamptz interval inet macaddr macaddr8 multirangetypes
-test: date time
+test: date time interval
 
 # ----------
 # Another group of parallel tests
