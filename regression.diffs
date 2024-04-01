@@ -1,6 +1,6 @@
 diff -U3 /home/longqimin/pg_regress_input/expected/boolean.out /home/longqimin/pg_regress_input/results/boolean.out
 --- /home/longqimin/pg_regress_input/expected/boolean.out	2024-03-25 09:21:06.160601856 +0800
-+++ /home/longqimin/pg_regress_input/results/boolean.out	2024-03-29 10:53:51.428684535 +0800
++++ /home/longqimin/pg_regress_input/results/boolean.out	2024-04-01 10:02:11.771972439 +0800
 @@ -136,11 +136,7 @@
  (1 row)
  
@@ -156,7 +156,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/boolean.out /home/longqimin/p
 +ERROR:  only support select and create table statement
 diff -U3 /home/longqimin/pg_regress_input/expected/int2.out /home/longqimin/pg_regress_input/results/int2.out
 --- /home/longqimin/pg_regress_input/expected/int2.out	2024-03-22 14:23:59.097610627 +0800
-+++ /home/longqimin/pg_regress_input/results/int2.out	2024-03-29 10:53:54.824687558 +0800
++++ /home/longqimin/pg_regress_input/results/int2.out	2024-04-01 10:02:15.145974110 +0800
 @@ -4,21 +4,21 @@
  -- int2_tbl was already created and filled in test_setup.sql.
  -- Here we just try to insert bad values.
@@ -523,7 +523,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int2.out /home/longqimin/pg_r
 +ERROR:  invalid input syntax for type integer: "10__000"
 diff -U3 /home/longqimin/pg_regress_input/expected/int4.out /home/longqimin/pg_regress_input/results/int4.out
 --- /home/longqimin/pg_regress_input/expected/int4.out	2024-03-11 11:46:21.656870844 +0800
-+++ /home/longqimin/pg_regress_input/results/int4.out	2024-03-29 10:53:58.573690896 +0800
++++ /home/longqimin/pg_regress_input/results/int4.out	2024-04-01 10:02:18.884975962 +0800
 @@ -49,11 +49,7 @@
  (1 row)
  
@@ -908,7 +908,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int4.out /home/longqimin/pg_r
  ERROR:  invalid input syntax for type integer: "_100"
 diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_regress_input/results/int8.out
 --- /home/longqimin/pg_regress_input/expected/int8.out	2024-03-11 11:46:21.657870845 +0800
-+++ /home/longqimin/pg_regress_input/results/int8.out	2024-03-29 10:54:09.108700276 +0800
++++ /home/longqimin/pg_regress_input/results/int8.out	2024-04-01 10:02:29.500981219 +0800
 @@ -5,19 +5,19 @@
  -- int8_tbl was already created and filled in test_setup.sql.
  -- Here we just try to insert bad values.
@@ -1799,7 +1799,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
 +ERROR:  invalid input syntax for type integer: "100__000"
 diff -U3 /home/longqimin/pg_regress_input/expected/float4.out /home/longqimin/pg_regress_input/results/float4.out
 --- /home/longqimin/pg_regress_input/expected/float4.out	2024-03-11 11:46:21.655870843 +0800
-+++ /home/longqimin/pg_regress_input/results/float4.out	2024-03-29 10:54:16.334706709 +0800
++++ /home/longqimin/pg_regress_input/results/float4.out	2024-04-01 10:02:36.567984719 +0800
 @@ -9,44 +9,44 @@
  INSERT INTO FLOAT4_TBL(f1) VALUES ('1.2345678901234e-20');
  -- test for over and under flow
@@ -2555,7 +2555,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float4.out /home/longqimin/pg
 +ERROR:  only support select and create table statement
 diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg_regress_input/results/float8.out
 --- /home/longqimin/pg_regress_input/expected/float8.out	2024-03-25 09:21:06.162601856 +0800
-+++ /home/longqimin/pg_regress_input/results/float8.out	2024-03-29 10:54:25.220714621 +0800
++++ /home/longqimin/pg_regress_input/results/float8.out	2024-04-01 10:02:45.630989207 +0800
 @@ -6,6 +6,7 @@
  -- (This temporarily hides the table created in test_setup.sql)
  --
@@ -4029,7 +4029,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
 +ERROR:  only support select and create table statement
 diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_regress_input/results/date.out
 --- /home/longqimin/pg_regress_input/expected/date.out	2024-03-25 09:21:23.437606375 +0800
-+++ /home/longqimin/pg_regress_input/results/date.out	2024-03-29 10:54:50.976737553 +0800
++++ /home/longqimin/pg_regress_input/results/date.out	2024-04-01 10:03:11.901002216 +0800
 @@ -10,7 +10,7 @@
  INSERT INTO DATE_TBL VALUES ('1996-03-02');
  INSERT INTO DATE_TBL VALUES ('1997-02-28');
@@ -5755,7 +5755,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
 +ERROR:  out of range
 diff -U3 /home/longqimin/pg_regress_input/expected/time.out /home/longqimin/pg_regress_input/results/time.out
 --- /home/longqimin/pg_regress_input/expected/time.out	2024-03-25 09:21:23.437606375 +0800
-+++ /home/longqimin/pg_regress_input/results/time.out	2024-03-29 10:55:34.133775965 +0800
++++ /home/longqimin/pg_regress_input/results/time.out	2024-04-01 10:03:55.457023791 +0800
 @@ -73,37 +73,29 @@
  
  -- Check edge cases
@@ -5910,7 +5910,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/time.out /home/longqimin/pg_r
 +ERROR:  timestamp units "epoch" not recognized
 diff -U3 /home/longqimin/pg_regress_input/expected/interval.out /home/longqimin/pg_regress_input/results/interval.out
 --- /home/longqimin/pg_regress_input/expected/interval.out	2024-03-29 10:53:18.230654980 +0800
-+++ /home/longqimin/pg_regress_input/results/interval.out	2024-03-29 10:56:20.567817327 +0800
++++ /home/longqimin/pg_regress_input/results/interval.out	2024-04-01 10:04:42.399047047 +0800
 @@ -2,7 +2,9 @@
  -- INTERVAL
  --
@@ -8118,7 +8118,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/interval.out /home/longqimin/
  --SELECT timezone('infinity'::interval, '1995-08-06 12:12:12'::timestamptz);
 diff -U3 /home/longqimin/pg_regress_input/expected/select.out /home/longqimin/pg_regress_input/results/select.out
 --- /home/longqimin/pg_regress_input/expected/select.out	2024-03-26 10:12:30.471589674 +0800
-+++ /home/longqimin/pg_regress_input/results/select.out	2024-03-29 10:56:31.185826781 +0800
++++ /home/longqimin/pg_regress_input/results/select.out	2024-04-01 10:04:53.215052403 +0800
 @@ -219,16 +219,16 @@
  SELECT onek2.* FROM onek2 WHERE onek2.unique1 < 10;
   unique1 | unique2 | two | four | ten | twenty | hundred | thousand | twothousand | fivethous | tenthous | odd | even | stringu1 | stringu2 | string4 
@@ -8511,7 +8511,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select.out /home/longqimin/pg
 +ERROR:  only support select and create table statement
 diff -U3 /home/longqimin/pg_regress_input/expected/select_distinct.out /home/longqimin/pg_regress_input/results/select_distinct.out
 --- /home/longqimin/pg_regress_input/expected/select_distinct.out	2024-02-27 09:30:35.100460308 +0800
-+++ /home/longqimin/pg_regress_input/results/select_distinct.out	2024-03-29 10:56:41.379835858 +0800
++++ /home/longqimin/pg_regress_input/results/select_distinct.out	2024-04-01 10:05:03.633057562 +0800
 @@ -48,50 +48,7 @@
  SELECT DISTINCT two, string4, ten
     FROM onek
@@ -8825,7 +8825,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select_distinct.out /home/lon
 -(3 rows)
 +                                                                   QUERY PLAN                                                                    
 +-------------------------------------------------------------------------------------------------------------------------------------------------
-+ tid(where) = parallel: [tid(var_5_1) = IndexFilter(column(four) == 0), return tid(var_5_1)]
++ tid(where) = parallel: [tid(var_5_1) = IndexFilter(column(four) in [[0,0]]), return tid(var_5_1)]
 + tuple(table_0) = broadcast: [tid(where)] parallel: [tuple(var_6_1) = IndexTopN([columns(four ASC)], tid(where), unique), return tuple(var_6_1)]
 + tuple(table_0) = Unique(tuple(table_0))
 + tuple(table_0) = Sort(tuple(table_0), [columns(0 ASC)])
@@ -8846,8 +8846,8 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select_distinct.out /home/lon
 -(3 rows)
 +                                                                   QUERY PLAN                                                                    
 +-------------------------------------------------------------------------------------------------------------------------------------------------
-+ tid(var_5_1) = parallel: [tid(var_5_2) = IndexFilter(column(four) == 0), return tid(var_5_2)]
-+ tid(var_5_3) = parallel: [tid(var_5_4) = IndexFilter(column(two) != 0), return tid(var_5_4)]
++ tid(var_5_1) = parallel: [tid(var_5_2) = IndexFilter(column(four) in [[0,0]]), return tid(var_5_2)]
++ tid(var_5_3) = parallel: [tid(var_5_4) = IndexFilter(column(two) in [[-inf,0), (0,+inf]]), return tid(var_5_4)]
 + tid(where) = [tid(var_5_3) and tid(var_5_1)]
 + tuple(table_0) = broadcast: [tid(where)] parallel: [tuple(var_6_1) = IndexTopN([columns(four ASC)], tid(where), unique), return tuple(var_6_1)]
 + tuple(table_0) = Unique(tuple(table_0))
@@ -8871,9 +8871,9 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select_distinct.out /home/lon
 -   ->  Seq Scan on tenk1
 -         Filter: (four = 0)
 -(3 rows)
-+                                                                    QUERY PLAN                                                                    
-+--------------------------------------------------------------------------------------------------------------------------------------------------
-+ tuple_with_tid(where_with_value) = parallel: [tuple_with_tid(var_4_1) = IndexFilterWithValue(column(four) == 0), return tuple_with_tid(var_4_1)]
++                                                                       QUERY PLAN                                                                       
++--------------------------------------------------------------------------------------------------------------------------------------------------------
++ tuple_with_tid(where_with_value) = parallel: [tuple_with_tid(var_4_1) = IndexFilterWithValue(column(four) in [[0,0]]), return tuple_with_tid(var_4_1)]
 + tuple(table_0) = tuple_with_tid(where_with_value)
 + datum(var_5_1) = TupleAt(tuple(table_0) 0)
 + tuple(var_5_3) = ConstExprTuple([1], table_0)
@@ -8913,7 +8913,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select_distinct.out /home/lon
 -(6 rows)
 +                                                                   QUERY PLAN                                                                    
 +-------------------------------------------------------------------------------------------------------------------------------------------------
-+ tid(where) = parallel: [tid(var_5_1) = IndexFilter(column(four) == 10), return tid(var_5_1)]
++ tid(where) = parallel: [tid(var_5_1) = IndexFilter(column(four) in [[10,10]]), return tid(var_5_1)]
 + tuple(table_0) = broadcast: [tid(where)] parallel: [tuple(var_6_1) = IndexTopN([columns(four ASC)], tid(where), unique), return tuple(var_6_1)]
 + tuple(table_0) = Unique(tuple(table_0))
 + tuple(table_0) = Sort(tuple(table_0), [columns(0 ASC)])
@@ -9032,7 +9032,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select_distinct.out /home/lon
 +ERROR:  a_expr only support op and between [kind=5]
 diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimin/pg_regress_input/results/aggregates.out
 --- /home/longqimin/pg_regress_input/expected/aggregates.out	2024-03-08 12:19:19.528430515 +0800
-+++ /home/longqimin/pg_regress_input/results/aggregates.out	2024-03-29 11:00:16.404035193 +0800
++++ /home/longqimin/pg_regress_input/results/aggregates.out	2024-04-01 10:08:39.987164696 +0800
 @@ -5,6 +5,7 @@
  \getenv abs_srcdir PG_ABS_SRCDIR
  -- avoid bit-exact output here because operations may not be bit-exact.
@@ -10005,9 +10005,9 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -           ->  Index Only Scan Backward using tenk1_unique1 on tenk1
 -                 Index Cond: ((unique1 IS NOT NULL) AND (unique1 < 42))
 -(5 rows)
-+                                           QUERY PLAN                                           
-+------------------------------------------------------------------------------------------------
-+ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(unique1) < 42), return tid(var_4_1)]
++                                                QUERY PLAN                                                
++----------------------------------------------------------------------------------------------------------
++ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(unique1) in [[-inf,42)]), return tid(var_4_1)]
 + datum(col_0_unique1) = IndexAggregateForMultiSegment(MAX, column(unique1), tid(where))
 + tuple(table_0) = [datum(col_0_unique1)]
 + return tuple(table_0)
@@ -10027,9 +10027,9 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -           ->  Index Only Scan Backward using tenk1_unique1 on tenk1
 -                 Index Cond: ((unique1 IS NOT NULL) AND (unique1 > 42))
 -(5 rows)
-+                                           QUERY PLAN                                           
-+------------------------------------------------------------------------------------------------
-+ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(unique1) > 42), return tid(var_4_1)]
++                                                QUERY PLAN                                                
++----------------------------------------------------------------------------------------------------------
++ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(unique1) in [(42,+inf]]), return tid(var_4_1)]
 + datum(col_0_unique1) = IndexAggregateForMultiSegment(MAX, column(unique1), tid(where))
 + tuple(table_0) = [datum(col_0_unique1)]
 + return tuple(table_0)
@@ -10054,9 +10054,9 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -           ->  Index Only Scan Backward using tenk1_unique1 on tenk1
 -                 Index Cond: ((unique1 IS NOT NULL) AND (unique1 > 42000))
 -(5 rows)
-+                                            QUERY PLAN                                             
-+---------------------------------------------------------------------------------------------------
-+ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(unique1) > 42000), return tid(var_4_1)]
++                                                 QUERY PLAN                                                  
++-------------------------------------------------------------------------------------------------------------
++ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(unique1) in [(42000,+inf]]), return tid(var_4_1)]
 + datum(col_0_unique1) = IndexAggregateForMultiSegment(MAX, column(unique1), tid(where))
 + tuple(table_0) = [datum(col_0_unique1)]
 + return tuple(table_0)
@@ -10082,9 +10082,9 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -           ->  Index Only Scan Backward using tenk1_thous_tenthous on tenk1
 -                 Index Cond: ((thousand = 33) AND (tenthous IS NOT NULL))
 -(5 rows)
-+                                            QUERY PLAN                                            
-+--------------------------------------------------------------------------------------------------
-+ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(thousand) == 33), return tid(var_4_1)]
++                                               QUERY PLAN                                                
++---------------------------------------------------------------------------------------------------------
++ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(thousand) in [[33,33]]), return tid(var_4_1)]
 + datum(col_0_tenthous) = IndexAggregateForMultiSegment(MAX, column(tenthous), tid(where))
 + tuple(table_0) = [datum(col_0_tenthous)]
 + return tuple(table_0)
@@ -10104,9 +10104,9 @@ diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimi
 -           ->  Index Only Scan using tenk1_thous_tenthous on tenk1
 -                 Index Cond: ((thousand = 33) AND (tenthous IS NOT NULL))
 -(5 rows)
-+                                            QUERY PLAN                                            
-+--------------------------------------------------------------------------------------------------
-+ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(thousand) == 33), return tid(var_4_1)]
++                                               QUERY PLAN                                                
++---------------------------------------------------------------------------------------------------------
++ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(thousand) in [[33,33]]), return tid(var_4_1)]
 + datum(col_0_tenthous) = IndexAggregateForMultiSegment(MIN, column(tenthous), tid(where))
 + tuple(table_0) = [datum(col_0_tenthous)]
 + return tuple(table_0)
