@@ -22,7 +22,7 @@ cd stdb/build.debug
 
 cmake .. -GNinja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
-ninja clap_node parse_ddl clap_riemann_fst_builder
+ninja clap_node_inject_license parse_ddl clap_riemann_fst_builder
 
 // init the admin user by building schema fst from `tenant.json`
 
