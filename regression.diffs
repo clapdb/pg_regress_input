@@ -1,6 +1,6 @@
-diff -U3 /home/longqimin/pg_regress_input/expected/boolean.out /home/longqimin/pg_regress_input/results/boolean.out
---- /home/longqimin/pg_regress_input/expected/boolean.out	2024-03-25 09:21:06.160601856 +0800
-+++ /home/longqimin/pg_regress_input/results/boolean.out	2024-04-01 10:02:11.771972439 +0800
+diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/boolean.out /home/longqimin/stdb/thirdparty/pg_regress_input/results/boolean.out
+--- /home/longqimin/stdb/thirdparty/pg_regress_input/expected/boolean.out	2024-03-25 11:16:04.663340587 +0800
++++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/boolean.out	2024-04-02 14:19:53.799954305 +0800
 @@ -136,11 +136,7 @@
  (1 row)
  
@@ -154,9 +154,9 @@ diff -U3 /home/longqimin/pg_regress_input/expected/boolean.out /home/longqimin/p
 +ERROR:  only support select and create table statement
  DROP TABLE  BOOLTBL4;
 +ERROR:  only support select and create table statement
-diff -U3 /home/longqimin/pg_regress_input/expected/int2.out /home/longqimin/pg_regress_input/results/int2.out
---- /home/longqimin/pg_regress_input/expected/int2.out	2024-03-22 14:23:59.097610627 +0800
-+++ /home/longqimin/pg_regress_input/results/int2.out	2024-04-01 10:02:15.145974110 +0800
+diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/int2.out /home/longqimin/stdb/thirdparty/pg_regress_input/results/int2.out
+--- /home/longqimin/stdb/thirdparty/pg_regress_input/expected/int2.out	2024-03-25 11:16:04.675340599 +0800
++++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/int2.out	2024-04-02 14:19:57.148969427 +0800
 @@ -4,21 +4,21 @@
  -- int2_tbl was already created and filled in test_setup.sql.
  -- Here we just try to insert bad values.
@@ -521,9 +521,9 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int2.out /home/longqimin/pg_r
  SELECT int2 '10__000';
 -ERROR:  invalid input syntax for type smallint: "10__000"
 +ERROR:  invalid input syntax for type integer: "10__000"
-diff -U3 /home/longqimin/pg_regress_input/expected/int4.out /home/longqimin/pg_regress_input/results/int4.out
---- /home/longqimin/pg_regress_input/expected/int4.out	2024-03-11 11:46:21.656870844 +0800
-+++ /home/longqimin/pg_regress_input/results/int4.out	2024-04-01 10:02:18.884975962 +0800
+diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/int4.out /home/longqimin/stdb/thirdparty/pg_regress_input/results/int4.out
+--- /home/longqimin/stdb/thirdparty/pg_regress_input/expected/int4.out	2024-03-25 11:16:04.675340599 +0800
++++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/int4.out	2024-04-02 14:20:00.820986008 +0800
 @@ -49,11 +49,7 @@
  (1 row)
  
@@ -906,9 +906,9 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int4.out /home/longqimin/pg_r
  -- error cases
  SELECT int4 '_100';
  ERROR:  invalid input syntax for type integer: "_100"
-diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_regress_input/results/int8.out
---- /home/longqimin/pg_regress_input/expected/int8.out	2024-03-11 11:46:21.657870845 +0800
-+++ /home/longqimin/pg_regress_input/results/int8.out	2024-04-01 10:02:29.500981219 +0800
+diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/int8.out /home/longqimin/stdb/thirdparty/pg_regress_input/results/int8.out
+--- /home/longqimin/stdb/thirdparty/pg_regress_input/expected/int8.out	2024-03-25 11:16:04.676340600 +0800
++++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/int8.out	2024-04-02 14:20:10.937031688 +0800
 @@ -5,19 +5,19 @@
  -- int8_tbl was already created and filled in test_setup.sql.
  -- Here we just try to insert bad values.
@@ -1265,10 +1265,10 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
 +
  select '9223372036854775800'::int8 / '0'::int8;
 -ERROR:  division by zero
-+ERROR:  div zero [func=func_10863380729723559177]
++ERROR:  div zero [func=func_14055022988487885011]
  select '9223372036854775800'::int8 % '0'::int8;
 -ERROR:  division by zero
-+ERROR:  div zero [func=func_14579211216900041302]
++ERROR:  div zero [func=func_7877234179416231410]
  select abs('-9223372036854775808'::int8);
 -ERROR:  bigint out of range
 +ERROR:  out of range
@@ -1337,7 +1337,7 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
 +
  select '-9223372036854775808'::int8 / '0'::int2;
 -ERROR:  division by zero
-+ERROR:  div zero [func=func_10863380729723559177]
++ERROR:  div zero [func=func_14055022988487885011]
  select '100'::int2 + '9223372036854775800'::int8;
 -ERROR:  bigint out of range
 +      ?column?       
@@ -1797,9 +1797,9 @@ diff -U3 /home/longqimin/pg_regress_input/expected/int8.out /home/longqimin/pg_r
  SELECT int8 '100__000';
 -ERROR:  invalid input syntax for type bigint: "100__000"
 +ERROR:  invalid input syntax for type integer: "100__000"
-diff -U3 /home/longqimin/pg_regress_input/expected/float4.out /home/longqimin/pg_regress_input/results/float4.out
---- /home/longqimin/pg_regress_input/expected/float4.out	2024-03-11 11:46:21.655870843 +0800
-+++ /home/longqimin/pg_regress_input/results/float4.out	2024-04-01 10:02:36.567984719 +0800
+diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/float4.out /home/longqimin/stdb/thirdparty/pg_regress_input/results/float4.out
+--- /home/longqimin/stdb/thirdparty/pg_regress_input/expected/float4.out	2024-03-25 11:16:04.670340594 +0800
++++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/float4.out	2024-04-02 14:20:17.776062569 +0800
 @@ -9,44 +9,44 @@
  INSERT INTO FLOAT4_TBL(f1) VALUES ('1.2345678901234e-20');
  -- test for over and under flow
@@ -2553,9 +2553,9 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float4.out /home/longqimin/pg
 -drop cascades to cast from xfloat4 to integer
 -drop cascades to cast from integer to xfloat4
 +ERROR:  only support select and create table statement
-diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg_regress_input/results/float8.out
---- /home/longqimin/pg_regress_input/expected/float8.out	2024-03-25 09:21:06.162601856 +0800
-+++ /home/longqimin/pg_regress_input/results/float8.out	2024-04-01 10:02:45.630989207 +0800
+diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/float8.out /home/longqimin/stdb/thirdparty/pg_regress_input/results/float8.out
+--- /home/longqimin/stdb/thirdparty/pg_regress_input/expected/float8.out	2024-03-25 11:16:04.670340594 +0800
++++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/float8.out	2024-04-02 14:20:26.658102677 +0800
 @@ -6,6 +6,7 @@
  -- (This temporarily hides the table created in test_setup.sql)
  --
@@ -4027,9 +4027,9 @@ diff -U3 /home/longqimin/pg_regress_input/expected/float8.out /home/longqimin/pg
 -drop cascades to cast from xfloat8 to bigint
 -drop cascades to cast from bigint to xfloat8
 +ERROR:  only support select and create table statement
-diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_regress_input/results/date.out
---- /home/longqimin/pg_regress_input/expected/date.out	2024-03-25 09:21:23.437606375 +0800
-+++ /home/longqimin/pg_regress_input/results/date.out	2024-04-01 10:03:11.901002216 +0800
+diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/date.out /home/longqimin/stdb/thirdparty/pg_regress_input/results/date.out
+--- /home/longqimin/stdb/thirdparty/pg_regress_input/expected/date.out	2024-03-25 11:16:04.668340592 +0800
++++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/date.out	2024-04-02 14:20:52.572219692 +0800
 @@ -10,7 +10,7 @@
  INSERT INTO DATE_TBL VALUES ('1996-03-02');
  INSERT INTO DATE_TBL VALUES ('1997-02-28');
@@ -5753,9 +5753,9 @@ diff -U3 /home/longqimin/pg_regress_input/expected/date.out /home/longqimin/pg_r
  select make_time(24, 0, 2.1);
 -ERROR:  time field value out of range: 24:00:2.1
 +ERROR:  out of range
-diff -U3 /home/longqimin/pg_regress_input/expected/time.out /home/longqimin/pg_regress_input/results/time.out
---- /home/longqimin/pg_regress_input/expected/time.out	2024-03-25 09:21:23.437606375 +0800
-+++ /home/longqimin/pg_regress_input/results/time.out	2024-04-01 10:03:55.457023791 +0800
+diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/time.out /home/longqimin/stdb/thirdparty/pg_regress_input/results/time.out
+--- /home/longqimin/stdb/thirdparty/pg_regress_input/expected/time.out	2024-03-25 11:16:04.689340612 +0800
++++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/time.out	2024-04-02 14:21:35.576413869 +0800
 @@ -73,37 +73,29 @@
  
  -- Check edge cases
@@ -5908,9 +5908,9 @@ diff -U3 /home/longqimin/pg_regress_input/expected/time.out /home/longqimin/pg_r
 -(1 row)
 -
 +ERROR:  timestamp units "epoch" not recognized
-diff -U3 /home/longqimin/pg_regress_input/expected/interval.out /home/longqimin/pg_regress_input/results/interval.out
---- /home/longqimin/pg_regress_input/expected/interval.out	2024-03-29 10:53:18.230654980 +0800
-+++ /home/longqimin/pg_regress_input/results/interval.out	2024-04-01 10:04:42.399047047 +0800
+diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/interval.out /home/longqimin/stdb/thirdparty/pg_regress_input/results/interval.out
+--- /home/longqimin/stdb/thirdparty/pg_regress_input/expected/interval.out	2024-03-29 11:02:48.915179683 +0800
++++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/interval.out	2024-04-02 14:22:21.830622728 +0800
 @@ -2,7 +2,9 @@
  -- INTERVAL
  --
@@ -8116,9 +8116,9 @@ diff -U3 /home/longqimin/pg_regress_input/expected/interval.out /home/longqimin/
  --SELECT timezone('infinity'::interval, '1995-08-06 12:12:12'::timestamp);
  --SELECT timezone('-infinity'::interval, '1995-08-06 12:12:12'::timestamp);
  --SELECT timezone('infinity'::interval, '1995-08-06 12:12:12'::timestamptz);
-diff -U3 /home/longqimin/pg_regress_input/expected/select.out /home/longqimin/pg_regress_input/results/select.out
---- /home/longqimin/pg_regress_input/expected/select.out	2024-03-26 10:12:30.471589674 +0800
-+++ /home/longqimin/pg_regress_input/results/select.out	2024-04-01 10:04:53.215052403 +0800
+diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/select.out /home/longqimin/stdb/thirdparty/pg_regress_input/results/select.out
+--- /home/longqimin/stdb/thirdparty/pg_regress_input/expected/select.out	2024-03-25 11:16:04.687340610 +0800
++++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/select.out	2024-04-02 14:22:32.033668800 +0800
 @@ -219,16 +219,16 @@
  SELECT onek2.* FROM onek2 WHERE onek2.unique1 < 10;
   unique1 | unique2 | two | four | ten | twenty | hundred | thousand | twothousand | fivethous | tenthous | odd | even | stringu1 | stringu2 | string4 
@@ -8509,9 +8509,9 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select.out /home/longqimin/pg
  
  drop table list_parted_tbl;
 +ERROR:  only support select and create table statement
-diff -U3 /home/longqimin/pg_regress_input/expected/select_distinct.out /home/longqimin/pg_regress_input/results/select_distinct.out
---- /home/longqimin/pg_regress_input/expected/select_distinct.out	2024-02-27 09:30:35.100460308 +0800
-+++ /home/longqimin/pg_regress_input/results/select_distinct.out	2024-04-01 10:05:03.633057562 +0800
+diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/select_distinct.out /home/longqimin/stdb/thirdparty/pg_regress_input/results/select_distinct.out
+--- /home/longqimin/stdb/thirdparty/pg_regress_input/expected/select_distinct.out	2024-03-25 11:16:04.687340610 +0800
++++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/select_distinct.out	2024-04-02 14:22:42.423715716 +0800
 @@ -48,50 +48,7 @@
  SELECT DISTINCT two, string4, ten
     FROM onek
@@ -9030,9 +9030,9 @@ diff -U3 /home/longqimin/pg_regress_input/expected/select_distinct.out /home/lon
 -(1 row)
 -
 +ERROR:  a_expr only support op and between [kind=5]
-diff -U3 /home/longqimin/pg_regress_input/expected/aggregates.out /home/longqimin/pg_regress_input/results/aggregates.out
---- /home/longqimin/pg_regress_input/expected/aggregates.out	2024-03-08 12:19:19.528430515 +0800
-+++ /home/longqimin/pg_regress_input/results/aggregates.out	2024-04-01 10:08:39.987164696 +0800
+diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.out /home/longqimin/stdb/thirdparty/pg_regress_input/results/aggregates.out
+--- /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.out	2024-03-25 11:16:04.660340585 +0800
++++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/aggregates.out	2024-04-02 14:26:14.219672086 +0800
 @@ -5,6 +5,7 @@
  \getenv abs_srcdir PG_ABS_SRCDIR
  -- avoid bit-exact output here because operations may not be bit-exact.
