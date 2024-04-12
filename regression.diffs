@@ -1,6 +1,6 @@
 diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/boolean.out /home/longqimin/stdb/thirdparty/pg_regress_input/results/boolean.out
 --- /home/longqimin/stdb/thirdparty/pg_regress_input/expected/boolean.out	2024-03-25 11:16:04.663340587 +0800
-+++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/boolean.out	2024-04-02 14:19:53.799954305 +0800
++++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/boolean.out	2024-04-12 10:23:20.136909022 +0800
 @@ -136,11 +136,7 @@
  (1 row)
  
@@ -156,7 +156,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/boolean.out /
 +ERROR:  only support select and create table statement
 diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/int2.out /home/longqimin/stdb/thirdparty/pg_regress_input/results/int2.out
 --- /home/longqimin/stdb/thirdparty/pg_regress_input/expected/int2.out	2024-03-25 11:16:04.675340599 +0800
-+++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/int2.out	2024-04-02 14:19:57.148969427 +0800
++++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/int2.out	2024-04-12 10:23:23.463911297 +0800
 @@ -4,21 +4,21 @@
  -- int2_tbl was already created and filled in test_setup.sql.
  -- Here we just try to insert bad values.
@@ -523,7 +523,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/int2.out /hom
 +ERROR:  invalid input syntax for type integer: "10__000"
 diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/int4.out /home/longqimin/stdb/thirdparty/pg_regress_input/results/int4.out
 --- /home/longqimin/stdb/thirdparty/pg_regress_input/expected/int4.out	2024-03-25 11:16:04.675340599 +0800
-+++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/int4.out	2024-04-02 14:20:00.820986008 +0800
++++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/int4.out	2024-04-12 10:23:27.019913730 +0800
 @@ -49,11 +49,7 @@
  (1 row)
  
@@ -908,7 +908,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/int4.out /hom
  ERROR:  invalid input syntax for type integer: "_100"
 diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/int8.out /home/longqimin/stdb/thirdparty/pg_regress_input/results/int8.out
 --- /home/longqimin/stdb/thirdparty/pg_regress_input/expected/int8.out	2024-03-25 11:16:04.676340600 +0800
-+++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/int8.out	2024-04-02 14:20:10.937031688 +0800
++++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/int8.out	2024-04-12 10:23:35.990919866 +0800
 @@ -5,19 +5,19 @@
  -- int8_tbl was already created and filled in test_setup.sql.
  -- Here we just try to insert bad values.
@@ -1799,7 +1799,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/int8.out /hom
 +ERROR:  invalid input syntax for type integer: "100__000"
 diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/float4.out /home/longqimin/stdb/thirdparty/pg_regress_input/results/float4.out
 --- /home/longqimin/stdb/thirdparty/pg_regress_input/expected/float4.out	2024-03-25 11:16:04.670340594 +0800
-+++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/float4.out	2024-04-02 14:20:17.776062569 +0800
++++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/float4.out	2024-04-12 10:23:42.798924522 +0800
 @@ -9,44 +9,44 @@
  INSERT INTO FLOAT4_TBL(f1) VALUES ('1.2345678901234e-20');
  -- test for over and under flow
@@ -2555,7 +2555,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/float4.out /h
 +ERROR:  only support select and create table statement
 diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/float8.out /home/longqimin/stdb/thirdparty/pg_regress_input/results/float8.out
 --- /home/longqimin/stdb/thirdparty/pg_regress_input/expected/float8.out	2024-03-25 11:16:04.670340594 +0800
-+++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/float8.out	2024-04-02 14:20:26.658102677 +0800
++++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/float8.out	2024-04-12 10:23:51.151930235 +0800
 @@ -6,6 +6,7 @@
  -- (This temporarily hides the table created in test_setup.sql)
  --
@@ -4029,7 +4029,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/float8.out /h
 +ERROR:  only support select and create table statement
 diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/date.out /home/longqimin/stdb/thirdparty/pg_regress_input/results/date.out
 --- /home/longqimin/stdb/thirdparty/pg_regress_input/expected/date.out	2024-03-25 11:16:04.668340592 +0800
-+++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/date.out	2024-04-02 14:20:52.572219692 +0800
++++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/date.out	2024-04-12 10:24:16.631947662 +0800
 @@ -10,7 +10,7 @@
  INSERT INTO DATE_TBL VALUES ('1996-03-02');
  INSERT INTO DATE_TBL VALUES ('1997-02-28');
@@ -5755,7 +5755,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/date.out /hom
 +ERROR:  out of range
 diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/time.out /home/longqimin/stdb/thirdparty/pg_regress_input/results/time.out
 --- /home/longqimin/stdb/thirdparty/pg_regress_input/expected/time.out	2024-03-25 11:16:04.689340612 +0800
-+++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/time.out	2024-04-02 14:21:35.576413869 +0800
++++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/time.out	2024-04-12 10:24:59.491976981 +0800
 @@ -73,37 +73,29 @@
  
  -- Check edge cases
@@ -5910,7 +5910,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/time.out /hom
 +ERROR:  timestamp units "epoch" not recognized
 diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/interval.out /home/longqimin/stdb/thirdparty/pg_regress_input/results/interval.out
 --- /home/longqimin/stdb/thirdparty/pg_regress_input/expected/interval.out	2024-03-29 11:02:48.915179683 +0800
-+++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/interval.out	2024-04-02 14:22:21.830622728 +0800
++++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/interval.out	2024-04-12 10:25:45.716008598 +0800
 @@ -2,7 +2,9 @@
  -- INTERVAL
  --
@@ -8118,7 +8118,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/interval.out 
  --SELECT timezone('infinity'::interval, '1995-08-06 12:12:12'::timestamptz);
 diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/select.out /home/longqimin/stdb/thirdparty/pg_regress_input/results/select.out
 --- /home/longqimin/stdb/thirdparty/pg_regress_input/expected/select.out	2024-03-25 11:16:04.687340610 +0800
-+++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/select.out	2024-04-02 14:22:32.033668800 +0800
++++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/select.out	2024-04-12 10:25:55.578015343 +0800
 @@ -219,16 +219,16 @@
  SELECT onek2.* FROM onek2 WHERE onek2.unique1 < 10;
   unique1 | unique2 | two | four | ten | twenty | hundred | thousand | twothousand | fivethous | tenthous | odd | even | stringu1 | stringu2 | string4 
@@ -8376,7 +8376,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/select.out /h
 -      99 |     101 |   1 |    3 |   9 |     19 |       9 |       99 |          99 |        99 |       99 |  18 |   19 | VDAAAA   | XDAAAA   | HHHHxx
 -(3 rows)
 -
-+ERROR:  clapdb doesn't support select ValueLists
++ERROR:  expr only support column_ref / a_const / func_call / type_cast [node_case=31]
  -- VALUES is also legal as a standalone query or a set-operation member
  VALUES (1,2), (3,4+4), (7,77.7);
 - column1 | column2 
@@ -8405,7 +8405,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/select.out /h
 - 4567890123456789 | -4567890123456789
 -(9 rows)
 -
-+ERROR:  clapdb doesn't support [op=SETOP_UNION]
++ERROR:  clapdb doesn't support select ValueLists
  -- corner case: VALUES with no columns
  CREATE TEMP TABLE nocols();
  INSERT INTO nocols DEFAULT VALUES;
@@ -8511,7 +8511,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/select.out /h
 +ERROR:  only support select and create table statement
 diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/select_distinct.out /home/longqimin/stdb/thirdparty/pg_regress_input/results/select_distinct.out
 --- /home/longqimin/stdb/thirdparty/pg_regress_input/expected/select_distinct.out	2024-03-25 11:16:04.687340610 +0800
-+++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/select_distinct.out	2024-04-02 14:22:42.423715716 +0800
++++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/select_distinct.out	2024-04-12 10:26:05.703022269 +0800
 @@ -48,50 +48,7 @@
  SELECT DISTINCT two, string4, ten
     FROM onek
@@ -8612,8 +8612,8 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/select_distin
 +                            QUERY PLAN                            
 +------------------------------------------------------------------
 + datum(col_0_literal) = LiteralAggregate(COUNT_NOT_NULL(0) tenk1)
-+ tuple(table_0) = [datum(col_0_literal)]
-+ return tuple(table_0)
++ tuple(table_1) = [datum(col_0_literal)]
++ return tuple(table_1)
 +(3 rows)
  
  SELECT count(*) FROM
@@ -8713,7 +8713,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/select_distin
 -----------
 -(0 rows)
 -
-+ERROR:  clapdb doesn't support [op=SETOP_UNION]
++ERROR:  relation "public.distinct_hash_1" does not exist
  (SELECT * FROM distinct_hash_1 EXCEPT SELECT * FROM distinct_group_1)
    UNION ALL
  (SELECT * FROM distinct_group_1 EXCEPT SELECT * FROM distinct_hash_1);
@@ -8721,7 +8721,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/select_distin
 -----------
 -(0 rows)
 -
-+ERROR:  clapdb doesn't support [op=SETOP_UNION]
++ERROR:  relation "public.distinct_hash_1" does not exist
  DROP TABLE distinct_hash_1;
 +ERROR:  only support select and create table statement
  DROP TABLE distinct_hash_2;
@@ -9032,7 +9032,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/select_distin
 +ERROR:  a_expr only support op and between [kind=5]
 diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.out /home/longqimin/stdb/thirdparty/pg_regress_input/results/aggregates.out
 --- /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.out	2024-03-25 11:16:04.660340585 +0800
-+++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/aggregates.out	2024-04-02 14:26:14.219672086 +0800
++++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/aggregates.out	2024-04-12 10:29:34.269164919 +0800
 @@ -5,6 +5,7 @@
  \getenv abs_srcdir PG_ABS_SRCDIR
  -- avoid bit-exact output here because operations may not be bit-exact.
@@ -10037,7 +10037,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  
  select max(unique1) from tenk1 where unique1 > 42;
   max  
-@@ -983,36 +552,36 @@
+@@ -983,17 +552,18 @@
  -- plan, which has almost identical cost, will not be.  we want to test
  -- the optimized plan, so temporarily disable parallel query.
  begin;
@@ -10064,10 +10064,8 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  
  select max(unique1) from tenk1 where unique1 > 42000;
   max 
- -----
--    
--(1 row)
-+(0 rows)
+@@ -1002,17 +572,17 @@
+ (1 row)
  
  rollback;
 +ERROR:  only support select and create table statement
@@ -10092,7 +10090,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  
  select max(tenthous) from tenk1 where thousand = 33;
   max  
-@@ -1022,14 +591,13 @@
+@@ -1022,14 +592,13 @@
  
  explain (costs off)
    select min(tenthous) from tenk1 where thousand = 33;
@@ -10114,7 +10112,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  
  select min(tenthous) from tenk1 where thousand = 33;
   min 
-@@ -1041,41 +609,19 @@
+@@ -1041,41 +610,19 @@
  explain (costs off)
    select f1, (select min(unique1) from tenk1 where unique1 > f1) AS gt
      from int4_tbl;
@@ -10164,7 +10162,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  
  select distinct max(unique2) from tenk1;
   max  
-@@ -1085,16 +631,13 @@
+@@ -1085,16 +632,13 @@
  
  explain (costs off)
    select max(unique2) from tenk1 order by 1;
@@ -10188,7 +10186,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  
  select max(unique2) from tenk1 order by 1;
   max  
-@@ -1104,16 +647,13 @@
+@@ -1104,16 +648,13 @@
  
  explain (costs off)
    select max(unique2) from tenk1 order by max(unique2);
@@ -10212,7 +10210,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  
  select max(unique2) from tenk1 order by max(unique2);
   max  
-@@ -1123,16 +663,18 @@
+@@ -1123,16 +664,18 @@
  
  explain (costs off)
    select max(unique2) from tenk1 order by max(unique2)+1;
@@ -10241,7 +10239,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  
  select max(unique2) from tenk1 order by max(unique2)+1;
   max  
-@@ -1142,38 +684,18 @@
+@@ -1142,38 +685,18 @@
  
  explain (costs off)
    select max(unique2), generate_series(1,3) as g from tenk1 order by g desc;
@@ -10288,7 +10286,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  
  select max(100) from tenk1;
   max 
-@@ -1187,191 +709,99 @@
+@@ -1187,191 +710,99 @@
  create table minmaxtest2(f1 int);
  create table minmaxtest3(f1 int);
  create index minmaxtesti on minmaxtest(f1);
@@ -10516,7 +10514,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  create temp table p_t1 (
    a int,
    b int,
-@@ -1379,66 +809,48 @@
+@@ -1379,66 +810,48 @@
    d int,
    primary key(a,b)
  ) partition by list(a);
@@ -10598,7 +10596,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  --
  -- Test planner's selection of pathkeys for ORDER BY aggregates
  --
-@@ -1446,13 +858,14 @@
+@@ -1446,13 +859,14 @@
  explain (costs off)
  select sum(two order by two),max(four order by four), min(four order by four)
  from tenk1;
@@ -10620,7 +10618,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  
  -- Ensure we order by two.  It's a tie between ordering by two and four but
  -- we tiebreak on the aggregate's position.
-@@ -1461,13 +874,15 @@
+@@ -1461,13 +875,15 @@
    sum(two order by two), max(four order by four),
    min(four order by four), max(two order by two)
  from tenk1;
@@ -10643,7 +10641,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  
  -- Similar to above, but tiebreak on ordering by four
  explain (costs off)
-@@ -1475,13 +890,15 @@
+@@ -1475,13 +891,15 @@
    max(four order by four), sum(two order by two),
    min(four order by four), max(two order by two)
  from tenk1;
@@ -10666,7 +10664,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  
  -- Ensure this one orders by ten since there are 3 aggregates that require ten
  -- vs two that suit two and four.
-@@ -1491,13 +908,18 @@
+@@ -1491,13 +909,18 @@
    min(four order by four), max(two order by two),
    sum(ten order by ten), min(ten order by ten), max(ten order by ten)
  from tenk1;
@@ -10692,7 +10690,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  
  -- Try a case involving a GROUP BY clause where the GROUP BY column is also
  -- part of an aggregate's ORDER BY clause.  We want a sort order that works
-@@ -1508,14 +930,20 @@
+@@ -1508,14 +931,20 @@
    sum(unique1 order by two, four)
  from tenk1
  group by ten;
@@ -10721,7 +10719,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  
  -- Ensure that we never choose to provide presorted input to an Aggref with
  -- a volatile function in the ORDER BY / DISTINCT clause.  We want to ensure
-@@ -1527,173 +955,110 @@
+@@ -1527,173 +956,110 @@
    sum(unique1 order by two, random(), random() + 1)
  from tenk1
  group by ten;
@@ -10940,7 +10938,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  -- test a more complex permutation that has previous caused issues
  select
      string_agg(distinct 'a', ','),
-@@ -1702,244 +1067,137 @@
+@@ -1702,244 +1068,137 @@
          from (values(1)) b(id)
          where a.id = b.id
  )) from unnest(array[1]) a(id);
@@ -11236,7 +11234,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  -- create a view as we otherwise have to repeat this query a few times.
  create view v_pagg_test AS
  select
-@@ -1967,424 +1225,223 @@
+@@ -1967,424 +1226,223 @@
  	) a1
  ) a2
  group by y;
@@ -11741,7 +11739,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  -- deparse and multiple features:
  create view aggordview1 as
  select ten,
-@@ -2393,74 +1450,31 @@
+@@ -2393,74 +1451,31 @@
         rank(5,'AZZZZ',50) within group (order by hundred, string4 desc, hundred)
    from tenk1
   group by ten order by ten;
@@ -11828,7 +11826,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  create or replace function avg_transfn(state avg_state, n int) returns avg_state as
  $$
  declare new_state avg_state;
-@@ -2482,6 +1496,7 @@
+@@ -2482,6 +1497,7 @@
  	return null;
  end
  $$ language plpgsql;
@@ -11836,7 +11834,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  create function avg_finalfn(state avg_state) returns int4 as
  $$
  begin
-@@ -2492,6 +1507,7 @@
+@@ -2492,6 +1508,7 @@
  	end if;
  end
  $$ language plpgsql;
@@ -11844,7 +11842,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  create function sum_finalfn(state avg_state) returns int4 as
  $$
  begin
-@@ -2502,106 +1518,56 @@
+@@ -2502,106 +1519,56 @@
  	end if;
  end
  $$ language plpgsql;
@@ -11963,7 +11961,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  -- test that aggs with the same sfunc and initcond share the same agg state
  create aggregate my_sum_init(int4)
  (
-@@ -2610,6 +1576,7 @@
+@@ -2610,6 +1577,7 @@
     finalfunc = sum_finalfn,
     initcond = '(10,0)'
  );
@@ -11971,7 +11969,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  create aggregate my_avg_init(int4)
  (
     stype = avg_state,
-@@ -2617,6 +1584,7 @@
+@@ -2617,6 +1585,7 @@
     finalfunc = avg_finalfn,
     initcond = '(10,0)'
  );
@@ -11979,7 +11977,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  create aggregate my_avg_init2(int4)
  (
     stype = avg_state,
-@@ -2624,30 +1592,19 @@
+@@ -2624,30 +1593,19 @@
     finalfunc = avg_finalfn,
     initcond = '(4,0)'
  );
@@ -12015,7 +12013,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  create or replace function sum_transfn(state int4, n int4) returns int4 as
  $$
  declare new_state int4;
-@@ -2667,6 +1624,7 @@
+@@ -2667,6 +1625,7 @@
  	return null;
  end
  $$ language plpgsql;
@@ -12023,7 +12021,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  create function halfsum_finalfn(state int4) returns int4 as
  $$
  begin
-@@ -2677,33 +1635,30 @@
+@@ -2677,33 +1636,30 @@
  	end if;
  end
  $$ language plpgsql;
@@ -12063,7 +12061,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  CREATE FUNCTION balkifnull(int8, int4)
  RETURNS int8
  STRICT
-@@ -2714,6 +1669,7 @@
+@@ -2714,6 +1670,7 @@
      END IF;
      RETURN NULL;
  END$$;
@@ -12071,7 +12069,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  CREATE AGGREGATE balk(int4)
  (
      SFUNC = balkifnull(int8, int4),
-@@ -2721,13 +1677,11 @@
+@@ -2721,13 +1678,11 @@
      PARALLEL = SAFE,
      INITCOND = '0'
  );
@@ -12088,7 +12086,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  -- GROUP BY optimization by reordering GROUP BY clauses
  CREATE TABLE btg AS SELECT
    i % 10 AS x,
-@@ -2735,116 +1689,58 @@
+@@ -2735,116 +1690,58 @@
    'abc' || i % 10 AS z,
    i AS w
  FROM generate_series(1, 100) AS i;
@@ -12222,7 +12220,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  -- Ensure that we do not select the aggregate pathkeys instead of the grouping
  -- pathkeys
  CREATE TABLE group_agg_pk AS SELECT
-@@ -2854,70 +1750,54 @@
+@@ -2854,70 +1751,54 @@
    2 AS w,
    i % 10 AS f
  FROM generate_series(1,100) AS i;
@@ -12311,7 +12309,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  CREATE FUNCTION balkifnull(int8, int8)
  RETURNS int8
  PARALLEL SAFE
-@@ -2929,6 +1809,7 @@
+@@ -2929,6 +1810,7 @@
      END IF;
      RETURN NULL;
  END$$;
@@ -12319,7 +12317,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  CREATE AGGREGATE balk(int4)
  (
      SFUNC = int4_sum(int8, int4),
-@@ -2937,35 +1818,30 @@
+@@ -2937,35 +1819,30 @@
      PARALLEL = SAFE,
      INITCOND = '0'
  );
@@ -12364,7 +12362,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  CREATE FUNCTION rwagg_finalfunc(x anyarray) RETURNS anyarray
  LANGUAGE plpgsql STRICT IMMUTABLE AS $$
  DECLARE
-@@ -2976,11 +1852,13 @@
+@@ -2976,11 +1853,13 @@
      RETURN res;
  END;
  $$;
@@ -12378,7 +12376,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  CREATE FUNCTION eatarray(x real[]) RETURNS real[]
  LANGUAGE plpgsql STRICT IMMUTABLE AS $$
  BEGIN
-@@ -2988,21 +1866,26 @@
+@@ -2988,21 +1867,26 @@
      RETURN x;
  END;
  $$;
@@ -12410,7 +12408,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  -- variance(int4) covers numeric_poly_combine
  -- sum(int8) covers int8_avg_combine
  -- regr_count(float8, float8) covers int8inc_float8_float8 and aggregates with > 1 arg
-@@ -3012,36 +1895,13 @@
+@@ -3012,36 +1896,13 @@
        UNION ALL SELECT * FROM tenk1
        UNION ALL SELECT * FROM tenk1
        UNION ALL SELECT * FROM tenk1) u;
@@ -12434,7 +12432,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 -                           Output: tenk1_3.unique1
 -(16 rows)
 -
-+ERROR:  clapdb doesn't support [op=SETOP_UNION]
++ERROR:  function variance does not exist
  SELECT variance(unique1::int4), sum(unique1::int8), regr_count(unique1::float8, unique1::float8)
  FROM (SELECT * FROM tenk1
        UNION ALL SELECT * FROM tenk1
@@ -12445,11 +12443,11 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 - 8333541.588539713493 | 199980000 |      40000
 -(1 row)
 -
-+ERROR:  clapdb doesn't support [op=SETOP_UNION]
++ERROR:  function variance does not exist
  -- variance(int8) covers numeric_combine
  -- avg(numeric) covers numeric_avg_combine
  EXPLAIN (COSTS OFF, VERBOSE)
-@@ -3050,192 +1910,117 @@
+@@ -3050,105 +1911,52 @@
        UNION ALL SELECT * FROM tenk1
        UNION ALL SELECT * FROM tenk1
        UNION ALL SELECT * FROM tenk1) u;
@@ -12473,7 +12471,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 -                           Output: tenk1_3.unique1
 -(16 rows)
 -
-+ERROR:  clapdb doesn't support [op=SETOP_UNION]
++ERROR:  function variance does not exist
  SELECT variance(unique1::int8), avg(unique1::numeric)
  FROM (SELECT * FROM tenk1
        UNION ALL SELECT * FROM tenk1
@@ -12484,7 +12482,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 - 8333541.588539713493 | 4999.5000000000000000
 -(1 row)
 -
-+ERROR:  clapdb doesn't support [op=SETOP_UNION]
++ERROR:  function variance does not exist
  ROLLBACK;
 +ERROR:  only support select and create table statement
  -- test coverage for dense_rank
@@ -12568,83 +12566,8 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  select unique1, count(*), sum(twothousand) from tenk1
  group by unique1
  having sum(fivethous) > 4975
- order by sum(twothousand);
-  unique1 | count | sum  
- ---------+-------+------
--    4976 |     1 |  976
--    4977 |     1 |  977
--    4978 |     1 |  978
--    4979 |     1 |  979
--    4980 |     1 |  980
--    4981 |     1 |  981
--    4982 |     1 |  982
--    4983 |     1 |  983
--    4984 |     1 |  984
--    4985 |     1 |  985
--    4986 |     1 |  986
--    4987 |     1 |  987
--    4988 |     1 |  988
--    4989 |     1 |  989
--    4990 |     1 |  990
--    4991 |     1 |  991
--    4992 |     1 |  992
--    4993 |     1 |  993
--    4994 |     1 |  994
--    4995 |     1 |  995
--    4996 |     1 |  996
--    4997 |     1 |  997
--    4998 |     1 |  998
--    4999 |     1 |  999
--    9976 |     1 | 1976
--    9977 |     1 | 1977
--    9978 |     1 | 1978
--    9979 |     1 | 1979
--    9980 |     1 | 1980
--    9981 |     1 | 1981
--    9982 |     1 | 1982
--    9983 |     1 | 1983
--    9984 |     1 | 1984
--    9985 |     1 | 1985
--    9986 |     1 | 1986
--    9987 |     1 | 1987
--    9988 |     1 | 1988
--    9989 |     1 | 1989
--    9990 |     1 | 1990
--    9991 |     1 | 1991
--    9992 |     1 | 1992
--    9993 |     1 | 1993
--    9994 |     1 | 1994
--    9995 |     1 | 1995
--    9996 |     1 | 1996
--    9997 |     1 | 1997
--    9998 |     1 | 1998
--    9999 |     1 | 1999
--(48 rows)
-+    7133 |     1 | 1133
-+    7135 |     1 | 1135
-+    7137 |     1 | 1137
-+    7139 |     1 | 1139
-+    7141 |     1 | 1141
-+    7143 |     1 | 1143
-+    7145 |     1 | 1145
-+    7147 |     1 | 1147
-+    7149 |     1 | 1149
-+    7151 |     1 | 1151
-+    7153 |     1 | 1153
-+    7155 |     1 | 1155
-+    7157 |     1 | 1157
-+    7159 |     1 | 1159
-+    7161 |     1 | 1161
-+    7163 |     1 | 1163
-+    7165 |     1 | 1165
-+    7167 |     1 | 1167
-+    7169 |     1 | 1169
-+    7171 |     1 | 1171
-+    7173 |     1 | 1173
-+    7175 |     1 | 1175
-+    7177 |     1 | 1177
-+    7179 |     1 | 1179
-+(24 rows)
+@@ -3206,36 +2014,38 @@
+ (48 rows)
  
  set work_mem to default;
 +ERROR:  only support select and create table statement
@@ -12691,7 +12614,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  create table agg_group_2 as
  select * from
    (values (100), (300), (500)) as r(a),
-@@ -3246,30 +2031,32 @@
+@@ -3246,30 +2056,32 @@
      from agg_data_2k
      where g < r.a
      group by g/2) as s;
@@ -12731,7 +12654,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  create table agg_hash_2 as
  select * from
    (values (100), (300), (500)) as r(a),
-@@ -3280,49 +2067,51 @@
+@@ -3280,49 +2092,51 @@
      from agg_data_2k
      where g < r.a
      group by g/2) as s;
@@ -12758,7 +12681,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 -----+----+----
 -(0 rows)
 -
-+ERROR:  clapdb doesn't support [op=SETOP_UNION]
++ERROR:  relation "public.agg_hash_1" does not exist
  (select * from agg_hash_2 except select * from agg_group_2)
    union all
  (select * from agg_group_2 except select * from agg_hash_2);
@@ -12766,7 +12689,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 ----+----+----+----
 -(0 rows)
 -
-+ERROR:  clapdb doesn't support [op=SETOP_UNION]
++ERROR:  relation "public.agg_hash_2" does not exist
  (select * from agg_hash_3 except select * from agg_group_3)
    union all
  (select * from agg_group_3 except select * from agg_hash_3);
@@ -12774,7 +12697,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 -----+----+----
 -(0 rows)
 -
-+ERROR:  clapdb doesn't support [op=SETOP_UNION]
++ERROR:  relation "public.agg_hash_3" does not exist
  (select * from agg_hash_4 except select * from agg_group_4)
    union all
  (select * from agg_group_4 except select * from agg_hash_4);
@@ -12782,7 +12705,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 -----+----+----
 -(0 rows)
 -
-+ERROR:  clapdb doesn't support [op=SETOP_UNION]
++ERROR:  relation "public.agg_hash_4" does not exist
  drop table agg_group_1;
 +ERROR:  only support select and create table statement
  drop table agg_group_2;
