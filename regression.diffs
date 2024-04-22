@@ -1,6 +1,6 @@
 diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/boolean.out /home/longqimin/stdb/thirdparty/pg_regress_input/results/boolean.out
 --- /home/longqimin/stdb/thirdparty/pg_regress_input/expected/boolean.out	2024-03-25 11:16:04.663340587 +0800
-+++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/boolean.out	2024-04-12 10:23:20.136909022 +0800
++++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/boolean.out	2024-04-22 15:52:51.864034272 +0800
 @@ -136,11 +136,7 @@
  (1 row)
  
@@ -35,27 +35,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/boolean.out /
  -- BOOLTBL2 should be full of false's at this point
  SELECT BOOLTBL2.* FROM BOOLTBL2;
   f1 
-@@ -294,76 +285,20 @@
- SELECT BOOLTBL1.*, BOOLTBL2.*
-    FROM BOOLTBL1, BOOLTBL2
-    WHERE BOOLTBL2.f1 <> BOOLTBL1.f1;
-- f1 | f1 
------+----
-- t  | f
-- t  | f
-- t  | f
-- t  | f
-- t  | f
-- t  | f
-- t  | f
-- t  | f
-- t  | f
-- t  | f
-- t  | f
-- t  | f
--(12 rows)
--
-+ERROR:  clapdb doesn't support join currently
+@@ -313,22 +304,7 @@
  SELECT BOOLTBL1.*, BOOLTBL2.*
     FROM BOOLTBL1, BOOLTBL2
     WHERE boolne(BOOLTBL2.f1,BOOLTBL1.f1);
@@ -79,44 +59,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/boolean.out /
  SELECT BOOLTBL1.*, BOOLTBL2.*
     FROM BOOLTBL1, BOOLTBL2
     WHERE BOOLTBL2.f1 = BOOLTBL1.f1 and BOOLTBL1.f1 = bool 'false';
-- f1 | f1 
------+----
-- f  | f
-- f  | f
-- f  | f
-- f  | f
--(4 rows)
--
-+ERROR:  clapdb doesn't support join currently
- SELECT BOOLTBL1.*, BOOLTBL2.*
-    FROM BOOLTBL1, BOOLTBL2
-    WHERE BOOLTBL2.f1 = BOOLTBL1.f1 or BOOLTBL1.f1 = bool 'true'
-    ORDER BY BOOLTBL1.f1, BOOLTBL2.f1;
-- f1 | f1 
------+----
-- f  | f
-- f  | f
-- f  | f
-- f  | f
-- t  | f
-- t  | f
-- t  | f
-- t  | f
-- t  | f
-- t  | f
-- t  | f
-- t  | f
-- t  | f
-- t  | f
-- t  | f
-- t  | f
--(16 rows)
--
-+ERROR:  clapdb doesn't support join currently
- --
- -- SQL syntax
- -- Try all combinations to ensure that we get nothing when we expect nothing
-@@ -548,20 +483,20 @@
+@@ -548,20 +524,20 @@
  
  -- Casts
  SELECT 0::boolean;
@@ -143,7 +86,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/boolean.out /
   t
  (1 row)
  
-@@ -572,6 +507,10 @@
+@@ -572,6 +548,10 @@
  --  - thomas 1997-11-30
  --
  DROP TABLE  BOOLTBL1;
@@ -156,7 +99,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/boolean.out /
 +ERROR:  only support select and create table statement
 diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/int2.out /home/longqimin/stdb/thirdparty/pg_regress_input/results/int2.out
 --- /home/longqimin/stdb/thirdparty/pg_regress_input/expected/int2.out	2024-03-25 11:16:04.675340599 +0800
-+++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/int2.out	2024-04-12 10:23:23.463911297 +0800
++++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/int2.out	2024-04-22 15:52:55.552037147 +0800
 @@ -4,21 +4,21 @@
  -- int2_tbl was already created and filled in test_setup.sql.
  -- Here we just try to insert bad values.
@@ -523,7 +466,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/int2.out /hom
 +ERROR:  invalid input syntax for type integer: "10__000"
 diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/int4.out /home/longqimin/stdb/thirdparty/pg_regress_input/results/int4.out
 --- /home/longqimin/stdb/thirdparty/pg_regress_input/expected/int4.out	2024-03-25 11:16:04.675340599 +0800
-+++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/int4.out	2024-04-12 10:23:27.019913730 +0800
++++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/int4.out	2024-04-22 15:52:59.216040002 +0800
 @@ -49,11 +49,7 @@
  (1 row)
  
@@ -908,7 +851,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/int4.out /hom
  ERROR:  invalid input syntax for type integer: "_100"
 diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/int8.out /home/longqimin/stdb/thirdparty/pg_regress_input/results/int8.out
 --- /home/longqimin/stdb/thirdparty/pg_regress_input/expected/int8.out	2024-03-25 11:16:04.676340600 +0800
-+++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/int8.out	2024-04-12 10:23:35.990919866 +0800
++++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/int8.out	2024-04-22 15:53:08.329047105 +0800
 @@ -5,19 +5,19 @@
  -- int8_tbl was already created and filled in test_setup.sql.
  -- Here we just try to insert bad values.
@@ -1265,10 +1208,10 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/int8.out /hom
 +
  select '9223372036854775800'::int8 / '0'::int8;
 -ERROR:  division by zero
-+ERROR:  div zero [func=func_14055022988487885011]
++ERROR:  div zero [func=func_9358153255180881640]
  select '9223372036854775800'::int8 % '0'::int8;
 -ERROR:  division by zero
-+ERROR:  div zero [func=func_7877234179416231410]
++ERROR:  div zero [func=func_1430826544106346375]
  select abs('-9223372036854775808'::int8);
 -ERROR:  bigint out of range
 +ERROR:  out of range
@@ -1337,7 +1280,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/int8.out /hom
 +
  select '-9223372036854775808'::int8 / '0'::int2;
 -ERROR:  division by zero
-+ERROR:  div zero [func=func_14055022988487885011]
++ERROR:  div zero [func=func_9358153255180881640]
  select '100'::int2 + '9223372036854775800'::int8;
 -ERROR:  bigint out of range
 +      ?column?       
@@ -1361,7 +1304,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/int8.out /hom
 +
  select '100'::int2 / '0'::int8;
 -ERROR:  division by zero
-+ERROR:  div zero [func=func_9060753810053611181]
++ERROR:  div zero [func=func_2221572441162896460]
  SELECT CAST(q1 AS int4) FROM int8_tbl WHERE q2 = 456;
   q1  
  -----
@@ -1799,7 +1742,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/int8.out /hom
 +ERROR:  invalid input syntax for type integer: "100__000"
 diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/float4.out /home/longqimin/stdb/thirdparty/pg_regress_input/results/float4.out
 --- /home/longqimin/stdb/thirdparty/pg_regress_input/expected/float4.out	2024-03-25 11:16:04.670340594 +0800
-+++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/float4.out	2024-04-12 10:23:42.798924522 +0800
++++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/float4.out	2024-04-22 15:53:15.722052870 +0800
 @@ -9,44 +9,44 @@
  INSERT INTO FLOAT4_TBL(f1) VALUES ('1.2345678901234e-20');
  -- test for over and under flow
@@ -1973,7 +1916,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/float4.out /h
  -- test divide by zero
  SELECT f.f1 / '0.0' from FLOAT4_TBL f order by 1;
 -ERROR:  division by zero
-+ERROR:  div zero [func=func_14154944641562171856]
++ERROR:  div zero [func=func_11934892741748165218]
  SELECT * FROM FLOAT4_TBL order by 1;
        f1       
  ---------------
@@ -2269,7 +2212,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/float4.out /h
 - \x007fffff | 1.1754942e-38
 -(21 rows)
 -
-+ERROR:  clapdb doesn't support CTE currently
++ERROR:  clapdb doesn't support select ValueLists
  with testdata(bits) as (values
    (x'00000000'),
    -- smallest normal values
@@ -2542,7 +2485,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/float4.out /h
 - \x03d20cfe | 1.23456735e-36 | 1.23456735e-36 | \x03d20cfe | t
 -(261 rows)
 -
-+ERROR:  clapdb doesn't support CTE currently
++ERROR:  clapdb doesn't support select ValueLists
  -- clean up, lest opr_sanity complain
  drop type xfloat4 cascade;
 -NOTICE:  drop cascades to 6 other objects
@@ -2555,7 +2498,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/float4.out /h
 +ERROR:  only support select and create table statement
 diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/float8.out /home/longqimin/stdb/thirdparty/pg_regress_input/results/float8.out
 --- /home/longqimin/stdb/thirdparty/pg_regress_input/expected/float8.out	2024-03-25 11:16:04.670340594 +0800
-+++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/float8.out	2024-04-12 10:23:51.151930235 +0800
++++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/float8.out	2024-04-22 15:53:25.854060767 +0800
 @@ -6,6 +6,7 @@
  -- (This temporarily hides the table created in test_setup.sql)
  --
@@ -3309,7 +3252,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/float8.out /h
 +ERROR:  function exp does not exist
  SELECT f.f1 / '0.0' from FLOAT8_TBL f order by 1;
 -ERROR:  division by zero
-+ERROR:  div zero [func=func_14505943978776108846]
++ERROR:  div zero [func=func_3832722560860974862]
  SELECT * FROM FLOAT8_TBL order by 1;
            f1           
  -----------------------
@@ -3795,7 +3738,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/float8.out /h
 - \x000fffffffffffff |  2.225073858507201e-308
 -(18 rows)
 -
-+ERROR:  clapdb doesn't support CTE currently
++ERROR:  clapdb doesn't support select ValueLists
  -- round-trip tests
  with testdata(bits) as (values
    (x'0000000000000000'),
@@ -4016,7 +3959,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/float8.out /h
 - \x3a6fa7161a4d6e0c |   3.196104012172126e-27 |   3.196104012172126e-27 | \x3a6fa7161a4d6e0c | t
 -(209 rows)
 -
-+ERROR:  clapdb doesn't support CTE currently
++ERROR:  clapdb doesn't support select ValueLists
  -- clean up, lest opr_sanity complain
  drop type xfloat8 cascade;
 -NOTICE:  drop cascades to 6 other objects
@@ -4029,7 +3972,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/float8.out /h
 +ERROR:  only support select and create table statement
 diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/date.out /home/longqimin/stdb/thirdparty/pg_regress_input/results/date.out
 --- /home/longqimin/stdb/thirdparty/pg_regress_input/expected/date.out	2024-03-25 11:16:04.668340592 +0800
-+++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/date.out	2024-04-12 10:24:16.631947662 +0800
++++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/date.out	2024-04-22 15:53:53.805082551 +0800
 @@ -10,7 +10,7 @@
  INSERT INTO DATE_TBL VALUES ('1996-03-02');
  INSERT INTO DATE_TBL VALUES ('1997-02-28');
@@ -5755,7 +5698,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/date.out /hom
 +ERROR:  out of range
 diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/time.out /home/longqimin/stdb/thirdparty/pg_regress_input/results/time.out
 --- /home/longqimin/stdb/thirdparty/pg_regress_input/expected/time.out	2024-03-25 11:16:04.689340612 +0800
-+++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/time.out	2024-04-12 10:24:59.491976981 +0800
++++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/time.out	2024-04-22 15:54:39.440118118 +0800
 @@ -73,37 +73,29 @@
  
  -- Check edge cases
@@ -5910,7 +5853,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/time.out /hom
 +ERROR:  timestamp units "epoch" not recognized
 diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/interval.out /home/longqimin/stdb/thirdparty/pg_regress_input/results/interval.out
 --- /home/longqimin/stdb/thirdparty/pg_regress_input/expected/interval.out	2024-03-29 11:02:48.915179683 +0800
-+++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/interval.out	2024-04-12 10:25:45.716008598 +0800
++++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/interval.out	2024-04-22 15:55:30.129157633 +0800
 @@ -2,7 +2,9 @@
  -- INTERVAL
  --
@@ -5961,60 +5904,8 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/interval.out 
  -- test interval operators
  SELECT * FROM INTERVAL_TBL order by 1;
         f1        
-@@ -199,97 +185,24 @@
-    FROM INTERVAL_TBL r1, INTERVAL_TBL r2
-    WHERE r1.f1 > r2.f1
-    ORDER BY r1.f1, r2.f1;
--       f1        |       f1        
-------------------+-----------------
-- 00:01:00        | -00:00:14
-- 05:00:00        | -00:00:14
-- 05:00:00        | 00:01:00
-- 1 day 02:03:04  | -00:00:14
-- 1 day 02:03:04  | 00:01:00
-- 1 day 02:03:04  | 05:00:00
-- 10 days         | -00:00:14
-- 10 days         | 00:01:00
-- 10 days         | 05:00:00
-- 10 days         | 1 day 02:03:04
-- 3 mons          | -00:00:14
-- 3 mons          | 00:01:00
-- 3 mons          | 05:00:00
-- 3 mons          | 1 day 02:03:04
-- 3 mons          | 10 days
-- 5 mons          | -00:00:14
-- 5 mons          | 00:01:00
-- 5 mons          | 05:00:00
-- 5 mons          | 1 day 02:03:04
-- 5 mons          | 10 days
-- 5 mons          | 3 mons
-- 5 mons 12:00:00 | -00:00:14
-- 5 mons 12:00:00 | 00:01:00
-- 5 mons 12:00:00 | 05:00:00
-- 5 mons 12:00:00 | 1 day 02:03:04
-- 5 mons 12:00:00 | 10 days
-- 5 mons 12:00:00 | 3 mons
-- 5 mons 12:00:00 | 5 mons
-- 6 years         | -00:00:14
-- 6 years         | 00:01:00
-- 6 years         | 05:00:00
-- 6 years         | 1 day 02:03:04
-- 6 years         | 10 days
-- 6 years         | 3 mons
-- 6 years         | 5 mons
-- 6 years         | 5 mons 12:00:00
-- 34 years        | -00:00:14
-- 34 years        | 00:01:00
-- 34 years        | 05:00:00
-- 34 years        | 1 day 02:03:04
-- 34 years        | 10 days
-- 34 years        | 3 mons
-- 34 years        | 5 mons
-- 34 years        | 5 mons 12:00:00
-- 34 years        | 6 years
--(45 rows)
--
-+ERROR:  clapdb doesn't support join currently
+@@ -250,46 +236,21 @@
+ 
  -- test unary minus
  SELECT f1, -f1 FROM INTERVAL_TBL order by 1;
 -       f1        |     ?column?      
@@ -6068,7 +5959,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/interval.out 
  -- Test intervals that are large enough to overflow 64 bits in comparisons
  CREATE TEMP TABLE INTERVAL_TBL_OF (f1 interval);
  INSERT INTO INTERVAL_TBL_OF (f1) VALUES
-@@ -298,68 +211,56 @@
+@@ -298,68 +259,64 @@
    ('1 year'),
    ('-2147483648 days 2147483647 months'),
    ('-2147483648 days -2147483648 months');
@@ -6103,8 +5994,15 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/interval.out 
 - 178956970 years 7 mons 2147483647 days    | 1 year
 - 178956970 years 7 mons 2147483647 days    | 178956970 years 7 mons -2147483648 days
 -(10 rows)
--
-+ERROR:  clapdb doesn't support join currently
++                        f1                        |                        f1                        
++--------------------------------------------------+--------------------------------------------------
++ -4744905 years -8 mons -19:37:59.683072          | -33211803 years -6 mons -16 days -20:22:14.62016
++ -4744905 years -8 mons -19:37:59.683072          | -33211803 years -6 mons -16 days -20:22:14.62016
++ -4744905 years -7 mons -29 days -19:37:59.683072 | -33211803 years -6 mons -16 days -20:22:14.62016
++ -4744905 years -7 mons -29 days -19:37:59.683072 | -33211803 years -6 mons -16 days -20:22:14.62016
++ -4744905 years -7 mons -29 days -19:37:59.683072 | -4744905 years -8 mons -19:37:59.683072
++(5 rows)
+ 
  CREATE INDEX ON INTERVAL_TBL_OF USING btree (f1);
 +ERROR:  only support select and create table statement
  SET enable_seqscan TO false;
@@ -6115,11 +6013,11 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/interval.out 
 ---------------------------------------------------------------------
 - Index Only Scan using interval_tbl_of_f1_idx on interval_tbl_of r1
 -(1 row)
-+                                          QUERY PLAN                                          
-+----------------------------------------------------------------------------------------------
-+ tuple(table_0) = parallel: [tuple(table_0) = IndexScan([column(f1)]), return tuple(table_0)]
++                                             QUERY PLAN                                             
++----------------------------------------------------------------------------------------------------
++ tuple(table_0) = parallel: [tuple(table_0) = IndexScan([column(f1)]), return move(tuple(table_0))]
 + tuple(table_0) = Sort(tuple(table_0), [columns(0 ASC)])
-+ return tuple(table_0)
++ return move(tuple(table_0))
 +(3 rows)
  
  SELECT f1 FROM INTERVAL_TBL_OF r1 ORDER BY f1;
@@ -6162,7 +6060,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/interval.out 
  -- Test multiplication and division with intervals.
  -- Floating point arithmetic rounding errors can lead to unexpected results,
  -- though the code attempts to do the right thing and round up to days and
-@@ -369,64 +270,33 @@
+@@ -369,64 +326,33 @@
  -- stored internally.
  CREATE TABLE INTERVAL_MULDIV_TBL (span interval);
  COPY INTERVAL_MULDIV_TBL FROM STDIN;
@@ -6244,7 +6142,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/interval.out 
  --SET IntervalStyle to postgres_verbose;
  SELECT * FROM INTERVAL_TBL order by 1;
         f1        
-@@ -445,111 +315,73 @@
+@@ -445,111 +371,73 @@
  
  -- multiplication and division overflow test cases
  SELECT '3000000 months'::interval * 1000;
@@ -6382,7 +6280,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/interval.out 
  ---------------------
   3 days 00:00:00.005
  (1 row)
-@@ -559,340 +391,377 @@
+@@ -559,340 +447,377 @@
  SELECT '10 milliseconds 20 milliseconds'::interval; -- error
  ERROR:  invalid input syntax for type interval: "10 milliseconds 20 milliseconds"
  SELECT '5.5 seconds 3 milliseconds'::interval;      -- error
@@ -6878,7 +6776,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/interval.out 
  -----------------+-------------------+-------------------------------------+----------------------------------------
   1 day -01:00:00 | -1 days +01:00:00 | 1 year 2 mons -3 days +04:05:06.789 | -1 years -2 mons +3 days -04:05:06.789
  (1 row)
-@@ -902,37 +771,39 @@
+@@ -902,37 +827,39 @@
          interval '-1 day 23 hours 45 min 12.34 sec',
          interval '-1 year 2 months 1 day 23 hours 45 min 12.34 sec',
          interval '-1 year 2 months 1 day 23 hours 45 min +12.34 sec';
@@ -6928,7 +6826,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/interval.out 
  select  interval '0'                                AS "zero",
          interval '1-2'                              AS "a year 2 months",
          interval '1 2:03:04'                        AS "a bit over a day",
-@@ -940,13 +811,10 @@
+@@ -940,13 +867,10 @@
          (interval '1-2' + interval '3 4:05:06.7')   AS "all fields",
          (interval '1-2' - interval '3 4:05:06.7')   AS "mixed sign",
          (- interval '1-2' + interval '3 4:05:06.7') AS "negative";
@@ -6944,7 +6842,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/interval.out 
  select  interval 'P0Y'                    AS "zero",
          interval 'P1Y2M'                  AS "a year 2 months",
          interval 'P1W'                    AS "a week",
-@@ -954,20 +822,13 @@
+@@ -954,20 +878,13 @@
          interval 'P1Y2M3DT4H5M6.7S'       AS "all fields",
          interval 'P-1Y-2M-3DT-4H-5M-6.7S' AS "negative",
          interval 'PT-0.1S'                AS "fractional second";
@@ -6968,7 +6866,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/interval.out 
  -- Make sure optional ISO8601 alternative format fields are optional.
  select  interval 'P0002'                  AS "year only",
          interval 'P0002-10'               AS "year month",
-@@ -977,466 +838,537 @@
+@@ -977,466 +894,537 @@
          interval 'P0002-10-15T1S'         AS "year month day plus time",
          interval 'PT10'                   AS "hour only",
          interval 'PT10:30'                AS "hour minute";
@@ -7747,7 +7645,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/interval.out 
  -- check that '30 days' equals '1 month' according to the hash function
  select '30 days'::interval = '1 month'::interval as t;
   t 
-@@ -1445,56 +1377,28 @@
+@@ -1445,56 +1433,28 @@
  (1 row)
  
  select interval_hash('30 days'::interval) = interval_hash('1 month'::interval) as t;
@@ -7815,7 +7713,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/interval.out 
  --
  -- test EXTRACT
  --
-@@ -1513,72 +1417,27 @@
+@@ -1513,72 +1473,27 @@
      EXTRACT(MILLENNIUM FROM f1) AS MILLENNIUM,
      EXTRACT(EPOCH FROM f1) AS EPOCH
      FROM INTERVAL_TBL order by 1;
@@ -7899,7 +7797,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/interval.out 
  -- date_part implementation is mostly the same as extract, so only
  -- test a few cases for additional coverage.
  SELECT f1,
-@@ -1587,56 +1446,23 @@
+@@ -1587,56 +1502,23 @@
      date_part('second', f1) AS second,
      date_part('epoch', f1) AS epoch
      FROM INTERVAL_TBL order by 1;
@@ -7962,7 +7860,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/interval.out 
  CREATE TABLE INFINITE_INTERVAL_TBL (i interval);
  --INSERT INTO INFINITE_INTERVAL_TBL VALUES ('infinity'), ('-infinity'), ('1 year 2 days 3 hours');
  --SELECT i, isfinite(i) FROM INFINITE_INTERVAL_TBL;
-@@ -1654,6 +1480,7 @@
+@@ -1654,6 +1536,7 @@
  END
  $$
  LANGUAGE plpgsql;
@@ -7970,7 +7868,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/interval.out 
  SELECT d AS date, i AS interval,
         eval(format('date %L + interval %L', d, i)) AS plus,
         eval(format('date %L - interval %L', d, i)) AS minus
-@@ -1662,16 +1489,7 @@
+@@ -1662,16 +1545,7 @@
               (date 'infinity')) AS t1(d),
       (VALUES (interval '-infinity'),
               (interval 'infinity')) AS t2(i);
@@ -7988,7 +7886,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/interval.out 
  SELECT i1 AS interval1, i2 AS interval2,
         eval(format('interval %L + interval %L', i1, i2)) AS plus,
         eval(format('interval %L - interval %L', i1, i2)) AS minus
-@@ -1681,27 +1499,15 @@
+@@ -1681,27 +1555,15 @@
       (VALUES (interval '-infinity'),
               (interval '10 days'),
               (interval 'infinity')) AS t2(i2);
@@ -8021,7 +7919,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/interval.out 
  SELECT t AS timestamp, i AS interval,
         eval(format('timestamp %L + interval %L', t, i)) AS plus,
         eval(format('timestamp %L - interval %L', t, i)) AS minus
-@@ -1710,16 +1516,7 @@
+@@ -1710,16 +1572,7 @@
               (timestamp 'infinity')) AS t1(t),
       (VALUES (interval '-infinity'),
               (interval 'infinity')) AS t2(i);
@@ -8039,7 +7937,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/interval.out 
  SELECT t AT TIME ZONE 'GMT' AS timestamptz, i AS interval,
         eval(format('timestamptz %L + interval %L', t, i)) AS plus,
         eval(format('timestamptz %L - interval %L', t, i)) AS minus
-@@ -1728,16 +1525,7 @@
+@@ -1728,16 +1581,7 @@
               (timestamptz 'infinity')) AS t1(t),
       (VALUES (interval '-infinity'),
               (interval 'infinity')) AS t2(i);
@@ -8057,7 +7955,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/interval.out 
  -- time +/- infinite interval not supported
  --SELECT time '11:27:42' + interval 'infinity';
  --SELECT time '11:27:42' + interval '-infinity';
-@@ -1757,10 +1545,7 @@
+@@ -1757,10 +1601,7 @@
      lhst.i <> rhst.i AS ne
      FROM INFINITE_INTERVAL_TBL lhst CROSS JOIN INFINITE_INTERVAL_TBL rhst
      WHERE NOT isfinite(lhst.i);
@@ -8065,11 +7963,11 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/interval.out 
 ------+-----+----+----+----+----+----+----
 -(0 rows)
 -
-+ERROR:  from_clause[i].node_case is not range_var or RangeSubselect [node_case=47] [index=0]
++ERROR:  expr only support column_ref / a_const / func_call / type_cast [node_case=0]
  SELECT i AS interval,
      -i AS um,
      i * 2.0 AS mul,
-@@ -1771,16 +1556,13 @@
+@@ -1771,16 +1612,13 @@
      i / -3.0 AS div_neg
      FROM INFINITE_INTERVAL_TBL
      WHERE NOT isfinite(i);
@@ -8089,7 +7987,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/interval.out 
  --SELECT interval 'infinity' * 0;
  --SELECT interval '-infinity' * 0;
  --SELECT interval '0 days' * 'infinity'::float;
-@@ -1794,23 +1576,17 @@
+@@ -1794,23 +1632,17 @@
  --SELECT interval '-infinity' / '-infinity';
  --SELECT interval '-infinity' / 'nan';
  SELECT interval '-1073741824 months -1073741824 days -4611686018427387904 us' / 0.5;
@@ -8118,7 +8016,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/interval.out 
  --SELECT timezone('infinity'::interval, '1995-08-06 12:12:12'::timestamptz);
 diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/select.out /home/longqimin/stdb/thirdparty/pg_regress_input/results/select.out
 --- /home/longqimin/stdb/thirdparty/pg_regress_input/expected/select.out	2024-03-25 11:16:04.687340610 +0800
-+++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/select.out	2024-04-12 10:25:55.578015343 +0800
++++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/select.out	2024-04-22 15:55:40.628165815 +0800
 @@ -219,16 +219,16 @@
  SELECT onek2.* FROM onek2 WHERE onek2.unique1 < 10;
   unique1 | unique2 | two | four | ten | twenty | hundred | thousand | twothousand | fivethous | tenthous | odd | even | stringu1 | stringu2 | string4 
@@ -8501,17 +8399,17 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/select.out /h
 - Result
 -   One-Time Filter: false
 +explain (costs off) select * from list_parted_tbl;
-+                        QUERY PLAN                        
-+----------------------------------------------------------
-+ tuple(table_0) = ProjectOnEmptyTable([], [Int32, Int32])
-+ return tuple(table_0)
++                                              QUERY PLAN                                              
++------------------------------------------------------------------------------------------------------
++ tuple(table_0) = ProjectOnEmptyTable([], [Type(type=Int32,args=[0][]), Type(type=Int32,args=[0][])])
++ return move(tuple(table_0))
  (2 rows)
  
  drop table list_parted_tbl;
 +ERROR:  only support select and create table statement
 diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/select_distinct.out /home/longqimin/stdb/thirdparty/pg_regress_input/results/select_distinct.out
 --- /home/longqimin/stdb/thirdparty/pg_regress_input/expected/select_distinct.out	2024-03-25 11:16:04.687340610 +0800
-+++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/select_distinct.out	2024-04-12 10:26:05.703022269 +0800
++++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/select_distinct.out	2024-04-22 15:55:51.976174660 +0800
 @@ -48,50 +48,7 @@
  SELECT DISTINCT two, string4, ten
     FROM onek
@@ -8612,8 +8510,8 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/select_distin
 +                            QUERY PLAN                            
 +------------------------------------------------------------------
 + datum(col_0_literal) = LiteralAggregate(COUNT_NOT_NULL(0) tenk1)
-+ tuple(table_1) = [datum(col_0_literal)]
-+ return tuple(table_1)
++ tuple(table_1) = [move(datum(col_0_literal))]
++ return move(tuple(table_1))
 +(3 rows)
  
  SELECT count(*) FROM
@@ -8667,11 +8565,11 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/select_distin
 -         Presorted Key: hundred
 -         ->  Index Scan using tenk1_hundred on tenk1
 -(5 rows)
-+                                                        QUERY PLAN                                                        
-+--------------------------------------------------------------------------------------------------------------------------
-+ tuple(table_0) = parallel: [tuple(table_0) = IndexScan([column(hundred), column(two)]) + unique), return tuple(table_0)]
++                                                           QUERY PLAN                                                           
++--------------------------------------------------------------------------------------------------------------------------------
++ tuple(table_0) = parallel: [tuple(table_0) = IndexScan([column(hundred), column(two)]) + unique), return move(tuple(table_0))]
 + tuple(table_0) = Unique(tuple(table_0))
-+ return tuple(table_0)
++ return move(tuple(table_0))
 +(3 rows)
  
  RESET enable_seqscan;
@@ -8753,12 +8651,12 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/select_distin
 -                     Group Key: four
 -                     ->  Parallel Seq Scan on tenk1
 -(8 rows)
-+                                                 QUERY PLAN                                                  
-+-------------------------------------------------------------------------------------------------------------
-+ tuple(table_0) = parallel: [tuple(var_5_1) = IndexTopN([columns(four ASC)], unique), return tuple(var_5_1)]
++                                                    QUERY PLAN                                                     
++-------------------------------------------------------------------------------------------------------------------
++ tuple(table_0) = parallel: [tuple(var_5_1) = IndexTopN([columns(four ASC)], unique), return move(tuple(var_5_1))]
 + tuple(table_0) = Unique(tuple(table_0))
 + tuple(table_0) = Sort(tuple(table_0), [columns(0 ASC)])
-+ return tuple(table_0)
++ return move(tuple(table_0))
 +(4 rows)
  
  -- Ensure the parallel plan produces the correct results
@@ -8823,13 +8721,13 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/select_distin
 -   ->  Seq Scan on tenk1
 -         Filter: (four = 0)
 -(3 rows)
-+                                                                   QUERY PLAN                                                                    
-+-------------------------------------------------------------------------------------------------------------------------------------------------
-+ tid(where) = parallel: [tid(var_5_1) = IndexFilter(column(four) in [[0,0]]), return tid(var_5_1)]
-+ tuple(table_0) = broadcast: [tid(where)] parallel: [tuple(var_6_1) = IndexTopN([columns(four ASC)], tid(where), unique), return tuple(var_6_1)]
++                                                                         QUERY PLAN                                                                          
++-------------------------------------------------------------------------------------------------------------------------------------------------------------
++ tid(where) = parallel: [tid(var_5_1) = IndexFilter(column(four) in [[0,0]]), return move(tid(var_5_1))]
++ tuple(table_0) = broadcast: [tid(where)] parallel: [tuple(var_6_1) = IndexTopN([columns(four ASC)], move(tid(where)), unique), return move(tuple(var_6_1))]
 + tuple(table_0) = Unique(tuple(table_0))
 + tuple(table_0) = Sort(tuple(table_0), [columns(0 ASC)])
-+ return tuple(table_0)
++ return move(tuple(table_0))
 +(5 rows)
  
  -- Ensure the above gives us the correct result
@@ -8844,15 +8742,15 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/select_distin
 -   ->  Seq Scan on tenk1
 -         Filter: ((two <> 0) AND (four = 0))
 -(3 rows)
-+                                                                   QUERY PLAN                                                                    
-+-------------------------------------------------------------------------------------------------------------------------------------------------
-+ tid(var_5_1) = parallel: [tid(var_5_2) = IndexFilter(column(four) in [[0,0]]), return tid(var_5_2)]
-+ tid(var_5_3) = parallel: [tid(var_5_4) = IndexFilter(column(two) in [[-inf,0), (0,+inf]]), return tid(var_5_4)]
-+ tid(where) = [tid(var_5_3) and tid(var_5_1)]
-+ tuple(table_0) = broadcast: [tid(where)] parallel: [tuple(var_6_1) = IndexTopN([columns(four ASC)], tid(where), unique), return tuple(var_6_1)]
++                                                                         QUERY PLAN                                                                          
++-------------------------------------------------------------------------------------------------------------------------------------------------------------
++ tid(var_5_1) = parallel: [tid(var_5_2) = IndexFilter(column(four) in [[0,0]]), return move(tid(var_5_2))]
++ tid(var_5_3) = parallel: [tid(var_5_4) = IndexFilter(column(two) in [[-inf,0), (0,+inf]]), return move(tid(var_5_4))]
++ tid(where) = [move(tid(var_5_3)) and move(tid(var_5_1))]
++ tuple(table_0) = broadcast: [tid(where)] parallel: [tuple(var_6_1) = IndexTopN([columns(four ASC)], move(tid(where)), unique), return move(tuple(var_6_1))]
 + tuple(table_0) = Unique(tuple(table_0))
 + tuple(table_0) = Sort(tuple(table_0), [columns(0 ASC)])
-+ return tuple(table_0)
++ return move(tuple(table_0))
 +(7 rows)
  
  -- Ensure no rows are returned
@@ -8871,20 +8769,20 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/select_distin
 -   ->  Seq Scan on tenk1
 -         Filter: (four = 0)
 -(3 rows)
-+                                                                       QUERY PLAN                                                                       
-+--------------------------------------------------------------------------------------------------------------------------------------------------------
-+ tuple_with_tid(where_with_value) = parallel: [tuple_with_tid(var_4_1) = IndexFilterWithValue(column(four) in [[0,0]]), return tuple_with_tid(var_4_1)]
-+ tuple(table_0) = tuple_with_tid(where_with_value)
++                                                                          QUERY PLAN                                                                          
++--------------------------------------------------------------------------------------------------------------------------------------------------------------
++ tuple_with_tid(where_with_value) = parallel: [tuple_with_tid(var_4_1) = IndexFilterWithValue(column(four) in [[0,0]]), return move(tuple_with_tid(var_4_1))]
++ tuple(table_0) = move(tuple_with_tid(where_with_value))
 + datum(var_5_1) = TupleAt(tuple(table_0) 0)
 + tuple(var_5_3) = ConstExprTuple([1], table_0)
-+ datum(var_5_2) = TupleAt(tuple(var_5_3) 0)
++ datum(var_5_2) = TupleAt(move(tuple(var_5_3)) 0)
 + tuple(var_5_5) = ConstExprTuple([2], table_0)
-+ datum(var_5_4) = TupleAt(tuple(var_5_5) 0)
++ datum(var_5_4) = TupleAt(move(tuple(var_5_5)) 0)
 + tuple(var_5_7) = ConstExprTuple([3], table_0)
-+ datum(var_5_6) = TupleAt(tuple(var_5_7) 0)
-+ tuple(table_0) = [datum(var_5_1), datum(var_5_2), datum(var_5_4), datum(var_5_6)]
++ datum(var_5_6) = TupleAt(move(tuple(var_5_7)) 0)
++ tuple(table_0) = [move(datum(var_5_1)), move(datum(var_5_2)), move(datum(var_5_4)), move(datum(var_5_6))]
 + tuple(table_0) = Unique(tuple(table_0))
-+ return tuple(table_0)
++ return move(tuple(table_0))
 +(12 rows)
  
  -- Ensure we only get 1 row
@@ -8911,13 +8809,13 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/select_distin
 -               ->  Parallel Seq Scan on tenk1
 -                     Filter: (four = 10)
 -(6 rows)
-+                                                                   QUERY PLAN                                                                    
-+-------------------------------------------------------------------------------------------------------------------------------------------------
-+ tid(where) = parallel: [tid(var_5_1) = IndexFilter(column(four) in [[10,10]]), return tid(var_5_1)]
-+ tuple(table_0) = broadcast: [tid(where)] parallel: [tuple(var_6_1) = IndexTopN([columns(four ASC)], tid(where), unique), return tuple(var_6_1)]
++                                                                         QUERY PLAN                                                                          
++-------------------------------------------------------------------------------------------------------------------------------------------------------------
++ tid(where) = parallel: [tid(var_5_1) = IndexFilter(column(four) in [[10,10]]), return move(tid(var_5_1))]
++ tuple(table_0) = broadcast: [tid(where)] parallel: [tuple(var_6_1) = IndexTopN([columns(four ASC)], move(tid(where)), unique), return move(tuple(var_6_1))]
 + tuple(table_0) = Unique(tuple(table_0))
 + tuple(table_0) = Sort(tuple(table_0), [columns(0 ASC)])
-+ return tuple(table_0)
++ return move(tuple(table_0))
 +(5 rows)
  
  RESET max_parallel_workers_per_gather;
@@ -9032,7 +8930,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/select_distin
 +ERROR:  a_expr only support op and between [kind=5]
 diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.out /home/longqimin/stdb/thirdparty/pg_regress_input/results/aggregates.out
 --- /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.out	2024-03-25 11:16:04.660340585 +0800
-+++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/aggregates.out	2024-04-12 10:29:34.269164919 +0800
++++ /home/longqimin/stdb/thirdparty/pg_regress_input/results/aggregates.out	2024-04-22 15:59:59.333367444 +0800
 @@ -5,6 +5,7 @@
  \getenv abs_srcdir PG_ABS_SRCDIR
  -- avoid bit-exact output here because operations may not be bit-exact.
@@ -9744,7 +9642,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 - 9999
 -(1 row)
 -
-+ERROR:  clapdb doesn't support subquery as expr currently
++ERROR:  missing FROM-clause entry for table "o"
  -- Test handling of Params within aggregate arguments in hashed aggregation.
  -- Per bug report from Jeevan Chalke.
  explain (verbose, costs off)
@@ -9966,8 +9864,8 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 +                                 QUERY PLAN                                 
 +----------------------------------------------------------------------------
 + datum(col_0_unique1) = IndexAggregateForMultiSegment(MIN, column(unique1))
-+ tuple(table_0) = [datum(col_0_unique1)]
-+ return tuple(table_0)
++ tuple(table_0) = [move(datum(col_0_unique1))]
++ return move(tuple(table_0))
 +(3 rows)
  
  select min(unique1) from tenk1;
@@ -9987,8 +9885,8 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 +                                 QUERY PLAN                                 
 +----------------------------------------------------------------------------
 + datum(col_0_unique1) = IndexAggregateForMultiSegment(MAX, column(unique1))
-+ tuple(table_0) = [datum(col_0_unique1)]
-+ return tuple(table_0)
++ tuple(table_0) = [move(datum(col_0_unique1))]
++ return move(tuple(table_0))
 +(3 rows)
  
  select max(unique1) from tenk1;
@@ -10005,12 +9903,12 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 -           ->  Index Only Scan Backward using tenk1_unique1 on tenk1
 -                 Index Cond: ((unique1 IS NOT NULL) AND (unique1 < 42))
 -(5 rows)
-+                                                QUERY PLAN                                                
-+----------------------------------------------------------------------------------------------------------
-+ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(unique1) in [[-inf,42)]), return tid(var_4_1)]
-+ datum(col_0_unique1) = IndexAggregateForMultiSegment(MAX, column(unique1), tid(where))
-+ tuple(table_0) = [datum(col_0_unique1)]
-+ return tuple(table_0)
++                                                   QUERY PLAN                                                   
++----------------------------------------------------------------------------------------------------------------
++ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(unique1) in [[-inf,42)]), return move(tid(var_4_1))]
++ datum(col_0_unique1) = IndexAggregateForMultiSegment(MAX, column(unique1), move(tid(where)))
++ tuple(table_0) = [move(datum(col_0_unique1))]
++ return move(tuple(table_0))
 +(4 rows)
  
  select max(unique1) from tenk1 where unique1 < 42;
@@ -10027,12 +9925,12 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 -           ->  Index Only Scan Backward using tenk1_unique1 on tenk1
 -                 Index Cond: ((unique1 IS NOT NULL) AND (unique1 > 42))
 -(5 rows)
-+                                                QUERY PLAN                                                
-+----------------------------------------------------------------------------------------------------------
-+ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(unique1) in [(42,+inf]]), return tid(var_4_1)]
-+ datum(col_0_unique1) = IndexAggregateForMultiSegment(MAX, column(unique1), tid(where))
-+ tuple(table_0) = [datum(col_0_unique1)]
-+ return tuple(table_0)
++                                                   QUERY PLAN                                                   
++----------------------------------------------------------------------------------------------------------------
++ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(unique1) in [(42,+inf]]), return move(tid(var_4_1))]
++ datum(col_0_unique1) = IndexAggregateForMultiSegment(MAX, column(unique1), move(tid(where)))
++ tuple(table_0) = [move(datum(col_0_unique1))]
++ return move(tuple(table_0))
 +(4 rows)
  
  select max(unique1) from tenk1 where unique1 > 42;
@@ -10054,12 +9952,12 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 -           ->  Index Only Scan Backward using tenk1_unique1 on tenk1
 -                 Index Cond: ((unique1 IS NOT NULL) AND (unique1 > 42000))
 -(5 rows)
-+                                                 QUERY PLAN                                                  
-+-------------------------------------------------------------------------------------------------------------
-+ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(unique1) in [(42000,+inf]]), return tid(var_4_1)]
-+ datum(col_0_unique1) = IndexAggregateForMultiSegment(MAX, column(unique1), tid(where))
-+ tuple(table_0) = [datum(col_0_unique1)]
-+ return tuple(table_0)
++                                                    QUERY PLAN                                                     
++-------------------------------------------------------------------------------------------------------------------
++ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(unique1) in [(42000,+inf]]), return move(tid(var_4_1))]
++ datum(col_0_unique1) = IndexAggregateForMultiSegment(MAX, column(unique1), move(tid(where)))
++ tuple(table_0) = [move(datum(col_0_unique1))]
++ return move(tuple(table_0))
 +(4 rows)
  
  select max(unique1) from tenk1 where unique1 > 42000;
@@ -10080,12 +9978,12 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 -           ->  Index Only Scan Backward using tenk1_thous_tenthous on tenk1
 -                 Index Cond: ((thousand = 33) AND (tenthous IS NOT NULL))
 -(5 rows)
-+                                               QUERY PLAN                                                
-+---------------------------------------------------------------------------------------------------------
-+ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(thousand) in [[33,33]]), return tid(var_4_1)]
-+ datum(col_0_tenthous) = IndexAggregateForMultiSegment(MAX, column(tenthous), tid(where))
-+ tuple(table_0) = [datum(col_0_tenthous)]
-+ return tuple(table_0)
++                                                  QUERY PLAN                                                   
++---------------------------------------------------------------------------------------------------------------
++ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(thousand) in [[33,33]]), return move(tid(var_4_1))]
++ datum(col_0_tenthous) = IndexAggregateForMultiSegment(MAX, column(tenthous), move(tid(where)))
++ tuple(table_0) = [move(datum(col_0_tenthous))]
++ return move(tuple(table_0))
 +(4 rows)
  
  select max(tenthous) from tenk1 where thousand = 33;
@@ -10102,12 +10000,12 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 -           ->  Index Only Scan using tenk1_thous_tenthous on tenk1
 -                 Index Cond: ((thousand = 33) AND (tenthous IS NOT NULL))
 -(5 rows)
-+                                               QUERY PLAN                                                
-+---------------------------------------------------------------------------------------------------------
-+ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(thousand) in [[33,33]]), return tid(var_4_1)]
-+ datum(col_0_tenthous) = IndexAggregateForMultiSegment(MIN, column(tenthous), tid(where))
-+ tuple(table_0) = [datum(col_0_tenthous)]
-+ return tuple(table_0)
++                                                  QUERY PLAN                                                   
++---------------------------------------------------------------------------------------------------------------
++ tid(where) = parallel: [tid(var_4_1) = IndexFilter(column(thousand) in [[33,33]]), return move(tid(var_4_1))]
++ datum(col_0_tenthous) = IndexAggregateForMultiSegment(MIN, column(tenthous), move(tid(where)))
++ tuple(table_0) = [move(datum(col_0_tenthous))]
++ return move(tuple(table_0))
 +(4 rows)
  
  select min(tenthous) from tenk1 where thousand = 33;
@@ -10127,7 +10025,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 -                         Index Cond: ((unique1 IS NOT NULL) AND (unique1 > int4_tbl.f1))
 -(7 rows)
 -
-+ERROR:  clapdb doesn't support subquery as expr currently
++ERROR:  column "f1" not exist
  select f1, (select min(unique1) from tenk1 where unique1 > f1) AS gt
    from int4_tbl;
 -     f1      | gt 
@@ -10139,7 +10037,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 - -2147483647 |  0
 -(5 rows)
 -
-+ERROR:  clapdb doesn't support subquery as expr currently
++ERROR:  column "f1" not exist
  -- check some cases that were handled incorrectly in 8.3.0
  explain (costs off)
    select distinct max(unique2) from tenk1;
@@ -10156,8 +10054,8 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 +                                 QUERY PLAN                                 
 +----------------------------------------------------------------------------
 + datum(col_0_unique2) = IndexAggregateForMultiSegment(MAX, column(unique2))
-+ tuple(table_0) = [datum(col_0_unique2)]
-+ return tuple(table_0)
++ tuple(table_0) = [move(datum(col_0_unique2))]
++ return move(tuple(table_0))
 +(3 rows)
  
  select distinct max(unique2) from tenk1;
@@ -10179,9 +10077,9 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 +                                 QUERY PLAN                                 
 +----------------------------------------------------------------------------
 + datum(col_0_unique2) = IndexAggregateForMultiSegment(MAX, column(unique2))
-+ tuple(table_0) = [datum(col_0_unique2)]
++ tuple(table_0) = [move(datum(col_0_unique2))]
 + tuple(table_0) = Sort(tuple(table_0), [columns(0 ASC)])
-+ return tuple(table_0)
++ return move(tuple(table_0))
 +(4 rows)
  
  select max(unique2) from tenk1 order by 1;
@@ -10203,9 +10101,9 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 +                                 QUERY PLAN                                 
 +----------------------------------------------------------------------------
 + datum(col_0_unique2) = IndexAggregateForMultiSegment(MAX, column(unique2))
-+ tuple(table_0) = [datum(col_0_unique2)]
++ tuple(table_0) = [move(datum(col_0_unique2))]
 + tuple(table_0) = Sort(tuple(table_0), [columns(0 ASC)])
-+ return tuple(table_0)
++ return move(tuple(table_0))
 +(4 rows)
  
  select max(unique2) from tenk1 order by max(unique2);
@@ -10227,14 +10125,14 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 +                                 QUERY PLAN                                 
 +----------------------------------------------------------------------------
 + datum(col_0_unique2) = IndexAggregateForMultiSegment(MAX, column(unique2))
-+ tuple(table_0) = [datum(col_0_unique2)]
++ tuple(table_0) = [move(datum(col_0_unique2))]
 + datum(var_7_1) = TupleAt(tuple(table_0) 0)
-+ datum(var_7_2) = DatumMapJIT(cast(Int64, datum(var_7_1)) + 1)
-+ tuple(tmp_order) = [datum(var_7_2)]
-+ tuple(table_0) = TupleExpand(tuple(table_0), tuple(tmp_order))
++ datum(var_7_2) = DatumMapJIT(cast(Int64, move(datum(var_7_1))) + 1)
++ tuple(tmp_order) = [move(datum(var_7_2))]
++ tuple(table_0) = TupleExpand(tuple(table_0), move(tuple(tmp_order)))
 + tuple(table_0) = Sort(tuple(table_0), [columns(1 ASC)])
 + tuple(table_0) = Erase(tuple(table_0), [1])
-+ return tuple(table_0)
++ return move(tuple(table_0))
 +(9 rows)
  
  select max(unique2) from tenk1 order by max(unique2)+1;
@@ -10280,8 +10178,8 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 +                       QUERY PLAN                        
 +---------------------------------------------------------
 + datum(col_0_literal) = LiteralAggregate(MAX(100) tenk1)
-+ tuple(table_0) = [datum(col_0_literal)]
-+ return tuple(table_0)
++ tuple(table_0) = [move(datum(col_0_literal))]
++ return move(tuple(table_0))
 +(3 rows)
  
  select max(100) from tenk1;
@@ -10333,8 +10231,8 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 +------------------------------------------------------------------
 + datum(col_0_f1) = IndexAggregateForMultiSegment(MIN, column(f1))
 + datum(col_1_f1) = IndexAggregateForMultiSegment(MAX, column(f1))
-+ tuple(table_0) = [datum(col_0_f1), datum(col_1_f1)]
-+ return tuple(table_0)
++ tuple(table_0) = [move(datum(col_0_f1)), move(datum(col_1_f1))]
++ return move(tuple(table_0))
 +(4 rows)
  
  select min(f1), max(f1) from minmaxtest;
@@ -10380,8 +10278,8 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 +------------------------------------------------------------------
 + datum(col_0_f1) = IndexAggregateForMultiSegment(MIN, column(f1))
 + datum(col_1_f1) = IndexAggregateForMultiSegment(MAX, column(f1))
-+ tuple(table_0) = [datum(col_0_f1), datum(col_1_f1)]
-+ return tuple(table_0)
++ tuple(table_0) = [move(datum(col_0_f1)), move(datum(col_1_f1))]
++ return move(tuple(table_0))
 +(4 rows)
  
  select distinct min(f1), max(f1) from minmaxtest;
@@ -10406,14 +10304,14 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 -ERROR:  aggregate function calls cannot be nested
 -LINE 1: select (select max(min(unique1)) from int8_tbl) from tenk1;
 -                           ^
-+ERROR:  clapdb doesn't support subquery as expr currently
++ERROR:  column "unique1" not exist
  select avg((select avg(a1.col1 order by (select avg(a2.col2) from tenk1 a3))
              from tenk1 a1(col1)))
  from tenk1 a2(col2);
 -ERROR:  aggregate function calls cannot be nested
 -LINE 1: select avg((select avg(a1.col1 order by (select avg(a2.col2)...
 -                                                        ^
-+ERROR:  clapdb doesn't support subquery as expr currently
++ERROR:  column a1.col1 not exist
  --
  -- Test removal of redundant GROUP BY columns
  --
@@ -10461,7 +10359,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 -               ->  Seq Scan on t1
 -(7 rows)
 -
-+ERROR:  from_clause[i].node_case is not range_var or RangeSubselect [node_case=47] [index=0]
++ERROR:  relation "public.t1" does not exist
  -- Test case where t1 can be optimized but not t2
  explain (costs off) select t1.*,t2.x,t2.z
  from t1 inner join t2 on t1.a = t2.x and t1.b = t2.y
@@ -10477,7 +10375,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 -               ->  Seq Scan on t1
 -(7 rows)
 -
-+ERROR:  from_clause[i].node_case is not range_var or RangeSubselect [node_case=47] [index=0]
++ERROR:  relation "public.t1" does not exist
  -- Cannot optimize when PK is deferrable
  explain (costs off) select * from t3 group by a,b,c;
 -      QUERY PLAN      
@@ -10554,25 +10452,25 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 -----
 -(0 rows)
 -
-+ERROR:  from_clause[i].node_case is not range_var or RangeSubselect [node_case=47] [index=0]
++ERROR:  expr only support column_ref / a_const / func_call / type_cast [node_case=0]
  select f1 from t1 left join t2 using (f1) group by t1.f1;
 - f1 
 -----
 -(0 rows)
 -
-+ERROR:  from_clause[i].node_case is not range_var or RangeSubselect [node_case=47] [index=0]
++ERROR:  expr only support column_ref / a_const / func_call / type_cast [node_case=0]
  select t1.f1 from t1 left join t2 using (f1) group by t1.f1;
 - f1 
 -----
 -(0 rows)
 -
-+ERROR:  from_clause[i].node_case is not range_var or RangeSubselect [node_case=47] [index=0]
++ERROR:  expr only support column_ref / a_const / func_call / type_cast [node_case=0]
  -- only this one should fail:
  select t1.f1 from t1 left join t2 using (f1) group by f1;
 -ERROR:  column "t1.f1" must appear in the GROUP BY clause or be used in an aggregate function
 -LINE 1: select t1.f1 from t1 left join t2 using (f1) group by f1;
 -               ^
-+ERROR:  from_clause[i].node_case is not range_var or RangeSubselect [node_case=47] [index=0]
++ERROR:  expr only support column_ref / a_const / func_call / type_cast [node_case=0]
  -- check case where we have to inject nullingrels into coerced join alias
  select f1, count(*) from
  t1 x(x0,x1) left join (t1 left join t2 using(f1)) on (x0 = 0)
@@ -10581,7 +10479,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 -----+-------
 -(0 rows)
 -
-+ERROR:  from_clause[i].node_case is not range_var or RangeSubselect [node_case=47] [index=0]
++ERROR:  expr only support column_ref / a_const / func_call / type_cast [node_case=0]
  -- same, for a RelabelType coercion
  select f2, count(*) from
  t1 x(x0,x1) left join (t1 left join t2 using(f2)) on (x0 = 0)
@@ -10590,7 +10488,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 -----+-------
 -(0 rows)
 -
-+ERROR:  from_clause[i].node_case is not range_var or RangeSubselect [node_case=47] [index=0]
++ERROR:  expr only support column_ref / a_const / func_call / type_cast [node_case=0]
  drop table t1, t2;
 +ERROR:  only support select and create table statement
  --
@@ -10607,13 +10505,13 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 -         Sort Key: four
 -         ->  Seq Scan on tenk1
 -(4 rows)
-+                                QUERY PLAN                                 
-+---------------------------------------------------------------------------
++                                         QUERY PLAN                                          
++---------------------------------------------------------------------------------------------
 + datum(col_0_two) = IndexAggregateForMultiSegment(SUM, column(two))
 + datum(col_1_four) = IndexAggregateForMultiSegment(MAX, column(four))
 + datum(col_2_four) = IndexAggregateForMultiSegment(MIN, column(four))
-+ tuple(table_0) = [datum(col_0_two), datum(col_1_four), datum(col_2_four)]
-+ return tuple(table_0)
++ tuple(table_0) = [move(datum(col_0_two)), move(datum(col_1_four)), move(datum(col_2_four))]
++ return move(tuple(table_0))
 +(5 rows)
  
  -- Ensure we order by two.  It's a tie between ordering by two and four but
@@ -10629,14 +10527,14 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 -         Sort Key: two
 -         ->  Seq Scan on tenk1
 -(4 rows)
-+                                         QUERY PLAN                                          
-+---------------------------------------------------------------------------------------------
++                                                     QUERY PLAN                                                      
++---------------------------------------------------------------------------------------------------------------------
 + datum(col_0_two) = IndexAggregateForMultiSegment(SUM, column(two))
 + datum(col_1_four) = IndexAggregateForMultiSegment(MAX, column(four))
 + datum(col_2_four) = IndexAggregateForMultiSegment(MIN, column(four))
 + datum(col_3_two) = IndexAggregateForMultiSegment(MAX, column(two))
-+ tuple(table_0) = [datum(col_0_two), datum(col_1_four), datum(col_2_four), datum(col_3_two)]
-+ return tuple(table_0)
++ tuple(table_0) = [move(datum(col_0_two)), move(datum(col_1_four)), move(datum(col_2_four)), move(datum(col_3_two))]
++ return move(tuple(table_0))
 +(6 rows)
  
  -- Similar to above, but tiebreak on ordering by four
@@ -10652,14 +10550,14 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 -         Sort Key: four
 -         ->  Seq Scan on tenk1
 -(4 rows)
-+                                         QUERY PLAN                                          
-+---------------------------------------------------------------------------------------------
++                                                     QUERY PLAN                                                      
++---------------------------------------------------------------------------------------------------------------------
 + datum(col_0_four) = IndexAggregateForMultiSegment(MAX, column(four))
 + datum(col_1_two) = IndexAggregateForMultiSegment(SUM, column(two))
 + datum(col_2_four) = IndexAggregateForMultiSegment(MIN, column(four))
 + datum(col_3_two) = IndexAggregateForMultiSegment(MAX, column(two))
-+ tuple(table_0) = [datum(col_0_four), datum(col_1_two), datum(col_2_four), datum(col_3_two)]
-+ return tuple(table_0)
++ tuple(table_0) = [move(datum(col_0_four)), move(datum(col_1_two)), move(datum(col_2_four)), move(datum(col_3_two))]
++ return move(tuple(table_0))
 +(6 rows)
  
  -- Ensure this one orders by ten since there are 3 aggregates that require ten
@@ -10675,8 +10573,8 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 -         Sort Key: ten
 -         ->  Seq Scan on tenk1
 -(4 rows)
-+                                                                    QUERY PLAN                                                                     
-+---------------------------------------------------------------------------------------------------------------------------------------------------
++                                                                                         QUERY PLAN                                                                                          
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 + datum(col_0_four) = IndexAggregateForMultiSegment(MAX, column(four))
 + datum(col_1_two) = IndexAggregateForMultiSegment(SUM, column(two))
 + datum(col_2_four) = IndexAggregateForMultiSegment(MIN, column(four))
@@ -10684,8 +10582,8 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 + datum(col_4_ten) = IndexAggregateForMultiSegment(SUM, column(ten))
 + datum(col_5_ten) = IndexAggregateForMultiSegment(MIN, column(ten))
 + datum(col_6_ten) = IndexAggregateForMultiSegment(MAX, column(ten))
-+ tuple(table_0) = [datum(col_0_four), datum(col_1_two), datum(col_2_four), datum(col_3_two), datum(col_4_ten), datum(col_5_ten), datum(col_6_ten)]
-+ return tuple(table_0)
++ tuple(table_0) = [move(datum(col_0_four)), move(datum(col_1_two)), move(datum(col_2_four)), move(datum(col_3_two)), move(datum(col_4_ten)), move(datum(col_5_ten)), move(datum(col_6_ten))]
++ return move(tuple(table_0))
 +(9 rows)
  
  -- Try a case involving a GROUP BY clause where the GROUP BY column is also
@@ -10702,19 +10600,19 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 -         Sort Key: ten, two, four
 -         ->  Seq Scan on tenk1
 -(5 rows)
-+                                                                              QUERY PLAN                                                                              
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-+ FilterHistogram(histogram_tenk1_0) = parallel: [FilterHistogram(var_5_1) = IndexTopNGroup([Get(ten)], 10000, [ASC_AND_NULLS_LAST]), return FilterHistogram(var_5_1)]
++                                                                                 QUERY PLAN                                                                                 
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
++ FilterHistogram(histogram_tenk1_0) = parallel: [FilterHistogram(var_5_1) = IndexTopNGroup([Get(ten)], 10000, [ASC_AND_NULLS_LAST]), return move(FilterHistogram(var_5_1))]
 + tuple(tuple_0_tenk1) = to_tuple(FilterHistogram(histogram_tenk1_0))
 + tuple(tuple_0_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))
 + tuple(tuple_1_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))
-+ tuple(tuple_2_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))
-+ tuple(table_0) = TupleExpand(tuple(tuple_0_tenk1), tuple(tuple_0_unique1))
-+ tuple(table_0) = TupleExpand(tuple(table_0), tuple(tuple_1_unique1))
-+ tuple(table_0) = TupleExpand(tuple(table_0), tuple(tuple_2_unique1))
++ tuple(tuple_2_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), move(FilterHistogram(histogram_tenk1_0)))
++ tuple(table_0) = TupleExpand(move(tuple(tuple_0_tenk1)), move(tuple(tuple_0_unique1)))
++ tuple(table_0) = TupleExpand(tuple(table_0), move(tuple(tuple_1_unique1)))
++ tuple(table_0) = TupleExpand(tuple(table_0), move(tuple(tuple_2_unique1)))
 + tuple(table_0) = TupleReorder(tuple(table_0), [3, 0, 1, 2])
 + tuple(table_0) = Erase(tuple(table_0), [3])
-+ return tuple(table_0)
++ return move(tuple(table_0))
 +(11 rows)
  
  -- Ensure that we never choose to provide presorted input to an Aggref with
@@ -10731,23 +10629,23 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 -         Sort Key: ten, four, two
 -         ->  Seq Scan on tenk1
 -(5 rows)
-+                                                                              QUERY PLAN                                                                              
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-+ FilterHistogram(histogram_tenk1_0) = parallel: [FilterHistogram(var_5_1) = IndexTopNGroup([Get(ten)], 10000, [ASC_AND_NULLS_LAST]), return FilterHistogram(var_5_1)]
++                                                                                 QUERY PLAN                                                                                 
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
++ FilterHistogram(histogram_tenk1_0) = parallel: [FilterHistogram(var_5_1) = IndexTopNGroup([Get(ten)], 10000, [ASC_AND_NULLS_LAST]), return move(FilterHistogram(var_5_1))]
 + tuple(tuple_0_tenk1) = to_tuple(FilterHistogram(histogram_tenk1_0))
 + tuple(tuple_0_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))
 + tuple(tuple_1_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))
 + tuple(tuple_2_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))
 + tuple(tuple_3_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))
-+ tuple(tuple_4_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), FilterHistogram(histogram_tenk1_0))
-+ tuple(table_0) = TupleExpand(tuple(tuple_0_tenk1), tuple(tuple_0_unique1))
-+ tuple(table_0) = TupleExpand(tuple(table_0), tuple(tuple_1_unique1))
-+ tuple(table_0) = TupleExpand(tuple(table_0), tuple(tuple_2_unique1))
-+ tuple(table_0) = TupleExpand(tuple(table_0), tuple(tuple_3_unique1))
-+ tuple(table_0) = TupleExpand(tuple(table_0), tuple(tuple_4_unique1))
++ tuple(tuple_4_unique1) = IndexAggregateWithGroupForMultiSegment(SUM, column(unique1), move(FilterHistogram(histogram_tenk1_0)))
++ tuple(table_0) = TupleExpand(move(tuple(tuple_0_tenk1)), move(tuple(tuple_0_unique1)))
++ tuple(table_0) = TupleExpand(tuple(table_0), move(tuple(tuple_1_unique1)))
++ tuple(table_0) = TupleExpand(tuple(table_0), move(tuple(tuple_2_unique1)))
++ tuple(table_0) = TupleExpand(tuple(table_0), move(tuple(tuple_3_unique1)))
++ tuple(table_0) = TupleExpand(tuple(table_0), move(tuple(tuple_4_unique1)))
 + tuple(table_0) = TupleReorder(tuple(table_0), [5, 0, 1, 2, 3, 4])
 + tuple(table_0) = Erase(tuple(table_0), [5])
-+ return tuple(table_0)
++ return move(tuple(table_0))
 +(15 rows)
  
  -- Ensure consecutive NULLs are properly treated as distinct from each other
@@ -10772,8 +10670,8 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 +                             QUERY PLAN                             
 +--------------------------------------------------------------------
 + datum(col_0_two) = IndexAggregateForMultiSegment(SUM, column(two))
-+ tuple(table_0) = [datum(col_0_two)]
-+ return tuple(table_0)
++ tuple(table_0) = [move(datum(col_0_two))]
++ return move(tuple(table_0))
 +(3 rows)
  
  reset enable_presorted_aggregate;
@@ -11234,7 +11132,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  -- create a view as we otherwise have to repeat this query a few times.
  create view v_pagg_test AS
  select
-@@ -1967,424 +1226,223 @@
+@@ -1967,424 +1226,226 @@
  	) a1
  ) a2
  group by y;
@@ -11326,7 +11224,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 - 1000
 -(1 row)
 -
-+ERROR:  div zero [func=func_18094236202898106640]
++ERROR:  div zero [func=func_16487110801617546058]
  select ten, sum(distinct four) filter (where four::text ~ '123') from onek a
  group by ten;
   ten | sum 
@@ -11420,7 +11318,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 - 9998
 -(1 row)
 -
-+ERROR:  clapdb doesn't support subquery as expr currently
++ERROR:  missing FROM-clause entry for table "o"
  -- subquery in FILTER clause (PostgreSQL extension)
  select sum(unique1) FILTER (WHERE
    unique1 IN (SELECT unique1 FROM onek where unique1 < 100)) FROM tenk1;
@@ -11455,8 +11353,10 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 ------
 -   0
 -(1 row)
--
-+ERROR:  clapdb doesn't support subquery as expr currently
++ ?column? 
++----------
++(0 rows)
+ 
  -- check for correct detection of nested-aggregate errors in FILTER
  select max(unique1) filter (where sum(ten) > 0) from tenk1;
 -ERROR:  aggregate functions are not allowed in FILTER
@@ -11471,7 +11371,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 -ERROR:  aggregate function calls cannot be nested
 -LINE 1: select (select max(unique1) filter (where sum(ten) > 0) from...
 -                                                  ^
-+ERROR:  clapdb doesn't support subquery as expr currently
++ERROR:  column "unique1" not exist
  select max(unique1) filter (where bool_or(ten > 0)) from tenk1;
 -ERROR:  aggregate functions are not allowed in FILTER
 -LINE 1: select max(unique1) filter (where bool_or(ten > 0)) from ten...
@@ -11485,7 +11385,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 -ERROR:  aggregate function calls cannot be nested
 -LINE 1: select (select max(unique1) filter (where bool_or(ten > 0)) ...
 -                                                  ^
-+ERROR:  clapdb doesn't support subquery as expr currently
++ERROR:  column "unique1" not exist
  -- ordered-set aggregates
  select p, percentile_cont(p) within group (order by x::float8)
  from generate_series(1,5) x,
@@ -11739,7 +11639,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  -- deparse and multiple features:
  create view aggordview1 as
  select ten,
-@@ -2393,74 +1451,31 @@
+@@ -2393,74 +1454,31 @@
         rank(5,'AZZZZ',50) within group (order by hundred, string4 desc, hundred)
    from tenk1
   group by ten order by ten;
@@ -11826,7 +11726,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  create or replace function avg_transfn(state avg_state, n int) returns avg_state as
  $$
  declare new_state avg_state;
-@@ -2482,6 +1497,7 @@
+@@ -2482,6 +1500,7 @@
  	return null;
  end
  $$ language plpgsql;
@@ -11834,7 +11734,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  create function avg_finalfn(state avg_state) returns int4 as
  $$
  begin
-@@ -2492,6 +1508,7 @@
+@@ -2492,6 +1511,7 @@
  	end if;
  end
  $$ language plpgsql;
@@ -11842,7 +11742,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  create function sum_finalfn(state avg_state) returns int4 as
  $$
  begin
-@@ -2502,106 +1519,56 @@
+@@ -2502,106 +1522,56 @@
  	end if;
  end
  $$ language plpgsql;
@@ -11961,7 +11861,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  -- test that aggs with the same sfunc and initcond share the same agg state
  create aggregate my_sum_init(int4)
  (
-@@ -2610,6 +1577,7 @@
+@@ -2610,6 +1580,7 @@
     finalfunc = sum_finalfn,
     initcond = '(10,0)'
  );
@@ -11969,7 +11869,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  create aggregate my_avg_init(int4)
  (
     stype = avg_state,
-@@ -2617,6 +1585,7 @@
+@@ -2617,6 +1588,7 @@
     finalfunc = avg_finalfn,
     initcond = '(10,0)'
  );
@@ -11977,7 +11877,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  create aggregate my_avg_init2(int4)
  (
     stype = avg_state,
-@@ -2624,30 +1593,19 @@
+@@ -2624,30 +1596,19 @@
     finalfunc = avg_finalfn,
     initcond = '(4,0)'
  );
@@ -12013,7 +11913,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  create or replace function sum_transfn(state int4, n int4) returns int4 as
  $$
  declare new_state int4;
-@@ -2667,6 +1625,7 @@
+@@ -2667,6 +1628,7 @@
  	return null;
  end
  $$ language plpgsql;
@@ -12021,7 +11921,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  create function halfsum_finalfn(state int4) returns int4 as
  $$
  begin
-@@ -2677,33 +1636,30 @@
+@@ -2677,33 +1639,30 @@
  	end if;
  end
  $$ language plpgsql;
@@ -12061,7 +11961,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  CREATE FUNCTION balkifnull(int8, int4)
  RETURNS int8
  STRICT
-@@ -2714,6 +1670,7 @@
+@@ -2714,6 +1673,7 @@
      END IF;
      RETURN NULL;
  END$$;
@@ -12069,7 +11969,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  CREATE AGGREGATE balk(int4)
  (
      SFUNC = balkifnull(int8, int4),
-@@ -2721,13 +1678,11 @@
+@@ -2721,13 +1681,11 @@
      PARALLEL = SAFE,
      INITCOND = '0'
  );
@@ -12086,7 +11986,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  -- GROUP BY optimization by reordering GROUP BY clauses
  CREATE TABLE btg AS SELECT
    i % 10 AS x,
-@@ -2735,116 +1690,58 @@
+@@ -2735,116 +1693,58 @@
    'abc' || i % 10 AS z,
    i AS w
  FROM generate_series(1, 100) AS i;
@@ -12165,7 +12065,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 -                     ->  Index Scan using btg_x_y_idx on btg t2
 -(13 rows)
 -
-+ERROR:  from_clause[i].node_case is not range_var or RangeSubselect [node_case=47] [index=0]
++ERROR:  relation "public.btg" does not exist
  RESET enable_nestloop;
 +ERROR:  only support select and create table statement
  RESET enable_hashjoin;
@@ -12220,7 +12120,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  -- Ensure that we do not select the aggregate pathkeys instead of the grouping
  -- pathkeys
  CREATE TABLE group_agg_pk AS SELECT
-@@ -2854,70 +1751,54 @@
+@@ -2854,70 +1754,54 @@
    2 AS w,
    i % 10 AS f
  FROM generate_series(1,100) AS i;
@@ -12251,7 +12151,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 -                     ->  Seq Scan on group_agg_pk c2
 -(12 rows)
 -
-+ERROR:  from_clause[i].node_case is not range_var or RangeSubselect [node_case=47] [index=0]
++ERROR:  relation "public.group_agg_pk" does not exist
  SELECT avg(c1.f ORDER BY c1.x, c1.y)
  FROM group_agg_pk c1 JOIN group_agg_pk c2 ON c1.x = c2.x
  GROUP BY c1.w, c1.z;
@@ -12261,7 +12161,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
 - 5.0000000000000000
 -(2 rows)
 -
-+ERROR:  from_clause[i].node_case is not range_var or RangeSubselect [node_case=47] [index=0]
++ERROR:  relation "public.group_agg_pk" does not exist
  RESET enable_nestloop;
 +ERROR:  only support select and create table statement
  RESET enable_hashjoin;
@@ -12309,7 +12209,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  CREATE FUNCTION balkifnull(int8, int8)
  RETURNS int8
  PARALLEL SAFE
-@@ -2929,6 +1810,7 @@
+@@ -2929,6 +1813,7 @@
      END IF;
      RETURN NULL;
  END$$;
@@ -12317,7 +12217,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  CREATE AGGREGATE balk(int4)
  (
      SFUNC = int4_sum(int8, int4),
-@@ -2937,35 +1819,30 @@
+@@ -2937,35 +1822,30 @@
      PARALLEL = SAFE,
      INITCOND = '0'
  );
@@ -12362,7 +12262,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  CREATE FUNCTION rwagg_finalfunc(x anyarray) RETURNS anyarray
  LANGUAGE plpgsql STRICT IMMUTABLE AS $$
  DECLARE
-@@ -2976,11 +1853,13 @@
+@@ -2976,11 +1856,13 @@
      RETURN res;
  END;
  $$;
@@ -12376,7 +12276,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  CREATE FUNCTION eatarray(x real[]) RETURNS real[]
  LANGUAGE plpgsql STRICT IMMUTABLE AS $$
  BEGIN
-@@ -2988,21 +1867,26 @@
+@@ -2988,21 +1870,26 @@
      RETURN x;
  END;
  $$;
@@ -12408,7 +12308,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  -- variance(int4) covers numeric_poly_combine
  -- sum(int8) covers int8_avg_combine
  -- regr_count(float8, float8) covers int8inc_float8_float8 and aggregates with > 1 arg
-@@ -3012,36 +1896,13 @@
+@@ -3012,36 +1899,13 @@
        UNION ALL SELECT * FROM tenk1
        UNION ALL SELECT * FROM tenk1
        UNION ALL SELECT * FROM tenk1) u;
@@ -12447,7 +12347,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  -- variance(int8) covers numeric_combine
  -- avg(numeric) covers numeric_avg_combine
  EXPLAIN (COSTS OFF, VERBOSE)
-@@ -3050,105 +1911,52 @@
+@@ -3050,105 +1914,52 @@
        UNION ALL SELECT * FROM tenk1
        UNION ALL SELECT * FROM tenk1
        UNION ALL SELECT * FROM tenk1) u;
@@ -12566,7 +12466,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  select unique1, count(*), sum(twothousand) from tenk1
  group by unique1
  having sum(fivethous) > 4975
-@@ -3206,36 +2014,38 @@
+@@ -3206,36 +2017,38 @@
  (48 rows)
  
  set work_mem to default;
@@ -12614,7 +12514,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  create table agg_group_2 as
  select * from
    (values (100), (300), (500)) as r(a),
-@@ -3246,30 +2056,32 @@
+@@ -3246,30 +2059,32 @@
      from agg_data_2k
      where g < r.a
      group by g/2) as s;
@@ -12654,7 +12554,7 @@ diff -U3 /home/longqimin/stdb/thirdparty/pg_regress_input/expected/aggregates.ou
  create table agg_hash_2 as
  select * from
    (values (100), (300), (500)) as r(a),
-@@ -3280,49 +2092,51 @@
+@@ -3280,49 +2095,51 @@
      from agg_data_2k
      where g < r.a
      group by g/2) as s;
