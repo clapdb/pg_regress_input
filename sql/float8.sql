@@ -7,13 +7,13 @@
 -- (This temporarily hides the table created in test_setup.sql)
 --
 
-CREATE TEMP TABLE FLOAT8_TBL(f1 float8);
+CREATE TEMP TABLE FLOAT8_TEMP_TBL(f1 float8);
 
-INSERT INTO FLOAT8_TBL(f1) VALUES ('    0.0   ');
-INSERT INTO FLOAT8_TBL(f1) VALUES ('1004.30  ');
-INSERT INTO FLOAT8_TBL(f1) VALUES ('   -34.84');
-INSERT INTO FLOAT8_TBL(f1) VALUES ('1.2345678901234e+200');
-INSERT INTO FLOAT8_TBL(f1) VALUES ('1.2345678901234e-200');
+INSERT INTO FLOAT8_TEMP_TBL(f1) VALUES ('    0.0   ');
+INSERT INTO FLOAT8_TEMP_TBL(f1) VALUES ('1004.30  ');
+INSERT INTO FLOAT8_TEMP_TBL(f1) VALUES ('   -34.84');
+INSERT INTO FLOAT8_TEMP_TBL(f1) VALUES ('1.2345678901234e+200');
+INSERT INTO FLOAT8_TEMP_TBL(f1) VALUES ('1.2345678901234e-200');
 
 -- test for underflow and overflow handling
 SELECT '10e400'::float8;
@@ -25,14 +25,14 @@ SELECT '-10e-400'::float8;
 SELECT float8send('2.2250738585072014E-308'::float8);
 
 -- bad input
-INSERT INTO FLOAT8_TBL(f1) VALUES ('');
-INSERT INTO FLOAT8_TBL(f1) VALUES ('     ');
-INSERT INTO FLOAT8_TBL(f1) VALUES ('xyz');
-INSERT INTO FLOAT8_TBL(f1) VALUES ('5.0.0');
-INSERT INTO FLOAT8_TBL(f1) VALUES ('5 . 0');
-INSERT INTO FLOAT8_TBL(f1) VALUES ('5.   0');
-INSERT INTO FLOAT8_TBL(f1) VALUES ('    - 3');
-INSERT INTO FLOAT8_TBL(f1) VALUES ('123           5');
+INSERT INTO FLOAT8_TEMP_TBL(f1) VALUES ('');
+INSERT INTO FLOAT8_TEMP_TBL(f1) VALUES ('     ');
+INSERT INTO FLOAT8_TEMP_TBL(f1) VALUES ('xyz');
+INSERT INTO FLOAT8_TEMP_TBL(f1) VALUES ('5.0.0');
+INSERT INTO FLOAT8_TEMP_TBL(f1) VALUES ('5 . 0');
+INSERT INTO FLOAT8_TEMP_TBL(f1) VALUES ('5.   0');
+INSERT INTO FLOAT8_TEMP_TBL(f1) VALUES ('    - 3');
+INSERT INTO FLOAT8_TEMP_TBL(f1) VALUES ('123           5');
 
 -- Also try it with non-error-throwing API
 SELECT pg_input_is_valid('34.5', 'float8');
@@ -58,63 +58,63 @@ SELECT 'nan'::float8 / 'nan'::float8;
 SELECT 'nan'::float8 / '0'::float8;
 SELECT 'nan'::numeric::float8;
 
-SELECT * FROM FLOAT8_TBL order by 1;
+SELECT * FROM FLOAT8_TEMP_TBL order by 1;
 
-SELECT f.* FROM FLOAT8_TBL f WHERE f.f1 <> '1004.3' order by 1;
+SELECT f.* FROM FLOAT8_TEMP_TBL f WHERE f.f1 <> '1004.3' order by 1;
 
-SELECT f.* FROM FLOAT8_TBL f WHERE f.f1 = '1004.3' order by 1;
+SELECT f.* FROM FLOAT8_TEMP_TBL f WHERE f.f1 = '1004.3' order by 1;
 
-SELECT f.* FROM FLOAT8_TBL f WHERE '1004.3' > f.f1 order by 1;
+SELECT f.* FROM FLOAT8_TEMP_TBL f WHERE '1004.3' > f.f1 order by 1;
 
-SELECT f.* FROM FLOAT8_TBL f WHERE  f.f1 < '1004.3' order by 1;
+SELECT f.* FROM FLOAT8_TEMP_TBL f WHERE  f.f1 < '1004.3' order by 1;
 
-SELECT f.* FROM FLOAT8_TBL f WHERE '1004.3' >= f.f1 order by 1;
+SELECT f.* FROM FLOAT8_TEMP_TBL f WHERE '1004.3' >= f.f1 order by 1;
 
-SELECT f.* FROM FLOAT8_TBL f WHERE  f.f1 <= '1004.3' order by 1;
+SELECT f.* FROM FLOAT8_TEMP_TBL f WHERE  f.f1 <= '1004.3' order by 1;
 
 SELECT f.f1, f.f1 * '-10' AS x
-   FROM FLOAT8_TBL f
+   FROM FLOAT8_TEMP_TBL f
    WHERE f.f1 > '0.0' order by 1;
 
 SELECT f.f1, f.f1 + '-10' AS x
-   FROM FLOAT8_TBL f
+   FROM FLOAT8_TEMP_TBL f
    WHERE f.f1 > '0.0' order by 1;
 
 SELECT f.f1, f.f1 / '-10' AS x
-   FROM FLOAT8_TBL f
+   FROM FLOAT8_TEMP_TBL f
    WHERE f.f1 > '0.0' order by 1;
 
 SELECT f.f1, f.f1 - '-10' AS x
-   FROM FLOAT8_TBL f
+   FROM FLOAT8_TEMP_TBL f
    WHERE f.f1 > '0.0' order by 1;
 
 SELECT f.f1 ^ '2.0' AS square_f1
-   FROM FLOAT8_TBL f where f.f1 = '1004.3' order by 1;
+   FROM FLOAT8_TEMP_TBL f where f.f1 = '1004.3' order by 1;
 
 -- absolute value
 SELECT f.f1, @f.f1 AS abs_f1
-   FROM FLOAT8_TBL f order by 1;
+   FROM FLOAT8_TEMP_TBL f order by 1;
 
 -- truncate
 SELECT f.f1, trunc(f.f1) AS trunc_f1
-   FROM FLOAT8_TBL f order by 1;
+   FROM FLOAT8_TEMP_TBL f order by 1;
 
 -- round
 SELECT f.f1, round(f.f1) AS round_f1
-   FROM FLOAT8_TBL f order by 1;
+   FROM FLOAT8_TEMP_TBL f order by 1;
 
 -- ceil / ceiling
-select ceil(f1) as ceil_f1 from float8_tbl f order by 1;
-select ceiling(f1) as ceiling_f1 from float8_tbl f order by 1;
+select ceil(f1) as ceil_f1 from float8_TEMP_tbl f order by 1;
+select ceiling(f1) as ceiling_f1 from float8_TEMP_tbl f order by 1;
 
 -- floor
-select floor(f1) as floor_f1 from float8_tbl f order by 1;
+select floor(f1) as floor_f1 from float8_TEMP_tbl f order by 1;
 
 -- sign
-select sign(f1) as sign_f1 from float8_tbl f order by 1;
+select sign(f1) as sign_f1 from float8_TEMP_tbl f order by 1;
 
 -- avoid bit-exact output here because operations may not be bit-exact.
-SET extra_float_digits = 0;
+--SET extra_float_digits = 0;
 
 -- square root
 SELECT sqrt(float8 '64') AS eight;
@@ -122,7 +122,7 @@ SELECT sqrt(float8 '64') AS eight;
 SELECT |/ float8 '64' AS eight;
 
 SELECT f.f1, |/f.f1 AS sqrt_f1
-   FROM FLOAT8_TBL f
+   FROM FLOAT8_TEMP_TBL f
    WHERE f.f1 > '0.0' order by 1;
 
 -- power
@@ -165,7 +165,7 @@ SELECT power(float8 '-inf', float8 '-inf');
 
 -- take exp of ln(f.f1)
 SELECT f.f1, exp(ln(f.f1)) AS exp_ln_f1
-   FROM FLOAT8_TBL f
+   FROM FLOAT8_TEMP_TBL f
    WHERE f.f1 > '0.0' order by 1;
 
 -- check edge cases for exp
@@ -174,30 +174,30 @@ SELECT exp('inf'::float8), exp('-inf'::float8), exp('nan'::float8);
 -- cube root
 SELECT ||/ float8 '27' AS three;
 
-SELECT f.f1, ||/f.f1 AS cbrt_f1 FROM FLOAT8_TBL f order by 1;
+SELECT f.f1, ||/f.f1 AS cbrt_f1 FROM FLOAT8_TEMP_TBL f order by 1;
 
 
-SELECT * FROM FLOAT8_TBL order by 1;
+SELECT * FROM FLOAT8_TEMP_TBL order by 1;
 
-UPDATE FLOAT8_TBL
-   SET f1 = FLOAT8_TBL.f1 * '-1'
-   WHERE FLOAT8_TBL.f1 > '0.0';
+UPDATE FLOAT8_TEMP_TBL
+   SET f1 = FLOAT8_TEMP_TBL.f1 * '-1'
+   WHERE FLOAT8_TEMP_TBL.f1 > '0.0';
 
-SELECT f.f1 * '1e200' from FLOAT8_TBL f order by 1;
+SELECT f.f1 * '1e200' from FLOAT8_TEMP_TBL f order by 1;
 
-SELECT f.f1 ^ '1e200' from FLOAT8_TBL f order by 1;
+SELECT f.f1 ^ '1e200' from FLOAT8_TEMP_TBL f order by 1;
 
 SELECT 0 ^ 0 + 0 ^ 1 + 0 ^ 0.0 + 0 ^ 0.5;
 
-SELECT ln(f.f1) from FLOAT8_TBL f where f.f1 = '0.0'  order by 1;
+SELECT ln(f.f1) from FLOAT8_TEMP_TBL f where f.f1 = '0.0'  order by 1;
 
-SELECT ln(f.f1) from FLOAT8_TBL f where f.f1 < '0.0'  order by 1;
+SELECT ln(f.f1) from FLOAT8_TEMP_TBL f where f.f1 < '0.0'  order by 1;
 
-SELECT exp(f.f1) from FLOAT8_TBL f order by 1;
+SELECT exp(f.f1) from FLOAT8_TEMP_TBL f order by 1;
 
-SELECT f.f1 / '0.0' from FLOAT8_TBL f order by 1;
+SELECT f.f1 / '0.0' from FLOAT8_TEMP_TBL f order by 1;
 
-SELECT * FROM FLOAT8_TBL order by 1;
+SELECT * FROM FLOAT8_TEMP_TBL order by 1;
 
 -- hyperbolic functions
 -- we run these with extra_float_digits = 0 too, since different platforms
@@ -246,15 +246,15 @@ FROM (VALUES (float8 '-infinity'),
 RESET extra_float_digits;
 
 -- test for over- and underflow
-INSERT INTO FLOAT8_TBL(f1) VALUES ('10e400');
+INSERT INTO FLOAT8_TEMP_TBL(f1) VALUES ('10e400');
 
-INSERT INTO FLOAT8_TBL(f1) VALUES ('-10e400');
+INSERT INTO FLOAT8_TEMP_TBL(f1) VALUES ('-10e400');
 
-INSERT INTO FLOAT8_TBL(f1) VALUES ('10e-400');
+INSERT INTO FLOAT8_TEMP_TBL(f1) VALUES ('10e-400');
 
-INSERT INTO FLOAT8_TBL(f1) VALUES ('-10e-400');
+INSERT INTO FLOAT8_TEMP_TBL(f1) VALUES ('-10e-400');
 
-DROP TABLE FLOAT8_TBL;
+DROP TABLE FLOAT8_TEMP_TBL;
 
 -- Check the float8 values exported for use by other tests
 

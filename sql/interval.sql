@@ -124,28 +124,28 @@ DROP TABLE INTERVAL_TBL_OF;
 -- stored internally.
 
 CREATE TABLE INTERVAL_MULDIV_TBL (span interval);
-COPY INTERVAL_MULDIV_TBL FROM STDIN;
-41 mon 12 days 360:00
--41 mon -12 days +360:00
--12 days
-9 mon -27 days 12:34:56
--3 years 482 days 76:54:32.189
-4 mon
-14 mon
-999 mon 999 days
-\.
+INSERT INTO INTERVAL_MULDIV_TBL VALUES
+('41 mon 12 days 360:00'),
+('-41 mon -12 days +360:00'),
+('-12 days'),
+('9 mon -27 days 12:34:56'),
+('-3 years 482 days 76:54:32.189'),
+('4 mon'),
+('14 mon'),
+('999 mon 999 days');
+
 
 SELECT span * 0.3 AS product
-FROM INTERVAL_MULDIV_TBL;
+FROM INTERVAL_MULDIV_TBL order by 1;
 
 SELECT span * 8.2 AS product
-FROM INTERVAL_MULDIV_TBL;
+FROM INTERVAL_MULDIV_TBL order by 1;
 
 SELECT span / 10 AS quotient
-FROM INTERVAL_MULDIV_TBL;
+FROM INTERVAL_MULDIV_TBL order by 1;
 
 SELECT span / 100 AS quotient
-FROM INTERVAL_MULDIV_TBL;
+FROM INTERVAL_MULDIV_TBL order by 1;
 
 DROP TABLE INTERVAL_MULDIV_TBL;
 
