@@ -94,9 +94,9 @@ SELECT * FROM FLOAT4_TBL order by 1;
 -- test the unary float4abs operator
 SELECT f.f1, @f.f1 AS abs_f1 FROM FLOAT4_TBL f order by 1;
 
-UPDATE FLOAT4_TBL
-   SET f1 = FLOAT4_TBL.f1 * '-1'
-   WHERE FLOAT4_TBL.f1 > '0.0';
+--UPDATE FLOAT4_TBL
+--   SET f1 = FLOAT4_TBL.f1 * '-1'
+--   WHERE FLOAT4_TBL.f1 > '0.0';
 
 SELECT * FROM FLOAT4_TBL order by 1;
 

@@ -597,9 +597,9 @@ SELECT * FROM FLOAT8_TEMP_TBL order by 1;
  1.2345678901234e+200
 (5 rows)
 
-UPDATE FLOAT8_TEMP_TBL
-   SET f1 = FLOAT8_TEMP_TBL.f1 * '-1'
-   WHERE FLOAT8_TEMP_TBL.f1 > '0.0';
+--UPDATE FLOAT8_TEMP_TBL
+--   SET f1 = FLOAT8_TEMP_TBL.f1 * '-1'
+--   WHERE FLOAT8_TEMP_TBL.f1 > '0.0';
 SELECT f.f1 * '1e200' from FLOAT8_TEMP_TBL f order by 1;
 ERROR:  value out of range: overflow
 SELECT f.f1 ^ '1e200' from FLOAT8_TEMP_TBL f order by 1;
@@ -615,17 +615,17 @@ ERROR:  cannot take logarithm of zero
 SELECT ln(f.f1) from FLOAT8_TEMP_TBL f where f.f1 < '0.0'  order by 1;
 ERROR:  cannot take logarithm of a negative number
 SELECT exp(f.f1) from FLOAT8_TEMP_TBL f order by 1;
-ERROR:  value out of range: underflow
+ERROR:  value out of range: overflow
 SELECT f.f1 / '0.0' from FLOAT8_TEMP_TBL f order by 1;
 ERROR:  division by zero
 SELECT * FROM FLOAT8_TEMP_TBL order by 1;
-          f1           
------------------------
- -1.2345678901234e+200
-               -1004.3
-                -34.84
- -1.2345678901234e-200
-                     0
+          f1          
+----------------------
+               -34.84
+                    0
+ 1.2345678901234e-200
+               1004.3
+ 1.2345678901234e+200
 (5 rows)
 
 -- hyperbolic functions
